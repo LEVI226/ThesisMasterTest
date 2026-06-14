@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIT/Nestlé Multimodal Accessibility Platform</title>
+    <!-- OpenDyslexic Font -->
+    <style>
+        @font-face {
+            font-family: 'OpenDyslexic';
+            src: url('https://opendyslexic.org/core/OpenDyslexic-Regular.otf') format('opentype');
+        }
+
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --primary: #005A9C; /* Nestlé blue-ish */
+            --secondary: #e9ecef;
+            --border: #dee2e6;
+            --highlight: #fff3cd;
+            --highlight-border: #ffeeba;
+            --font-family: 'Segoe UI', system-ui, sans-serif;
+            --font-size: 16px;
+        }
+
+        /* High Contrast Theme Variables */
+        body.theme-high-contrast {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --primary: #ffff00;
+            --secondary: #222222;
+            --border: #ffff00;
+            --highlight: #444400;
+            --highlight-border: #ffff00;
+        }
+
+        /* OpenDyslexic Theme Variables */
+        body.theme-dyslexic {
+            --font-family: 'OpenDyslexic', sans-serif;
+        }
+
+        /* Large Text Theme Variables */
+        body.theme-large-text {
+            --font-size: 24px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 { margin: 0; font-size: 1.5em; color: var(--primary); }
+        body.theme-high-contrast h1 { color: var(--primary); }
+
+        /* Accessibility Toolbar */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background-color: var(--secondary);
+            color: var(--text-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9em;
+            transition: 0.2s;
+        }
+        button:hover {
+            filter: brightness(0.9);
+        }
+        button.active {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        body.theme-high-contrast button.active {
+            color: #000;
+        }
+
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* Upload Zones */
+        .upload-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .dropzone {
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            background-color: var(--secondary);
+            cursor: pointer;
+        }
+        .dropzone:hover {
+            background-color: rgba(0, 90, 156, 0.1);
+        }
+        body.theme-high-contrast .dropzone:hover {
+            background-color: rgba(255, 255, 0, 0.2);
+        }
+
+        /* Reader View */
+        .reader-panel {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 150px);
+        }
+        .reader-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .export-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .reader-content {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Content Blocks */
+        .block {
+            padding: 10px;
+            border-radius: 6px;
+            background-color: var(--secondary);
+            display: flex;
+            gap: 15px;
+        }
+        .block-meta {
+            min-width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.85em;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .block-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        /* Low Confidence Highlight */
+        .low-confidence {
+            text-decoration: underline;
+            text-decoration-color: orange;
+            text-decoration-style: wavy;
+            text-decoration-thickness: 2px;
+            background-color: var(--highlight);
+            cursor: help;
+        }
+
+        body.theme-high-contrast .low-confidence {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BIT/Nestlé Accessibility Layer</h1>
+        <div class="toolbar">
+            <button id="btn-contrast" onclick="toggleTheme('theme-high-contrast', 'btn-contrast')">👁️ High Contrast</button>
+            <button id="btn-dyslexic" onclick="toggleTheme('theme-dyslexic', 'btn-dyslexic')">🅰️ OpenDyslexic</button>
+            <button id="btn-large" onclick="toggleTheme('theme-large-text', 'btn-large')">🔍 Large Text</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Left Column: Uploads -->
+        <div class="upload-panel">
+            <div class="dropzone" onclick="mockUpload()">
+                <h3>📄 Upload Document (OCR)</h3>
+                <p>Click to simulate PDF/Slide upload</p>
+            </div>
+            <div class="dropzone" onclick="mockUpload()">
+                <h3>🎙️ Upload Audio (STT)</h3>
+                <p>Click to simulate Teams recording upload</p>
+            </div>
+        </div>
+
+        <!-- Right Column: Unified Reader -->
+        <div class="reader-panel">
+            <div class="reader-header">
+                <h2>Unified Reader View</h2>
+                <div class="export-btns">
+                    <button onclick="exportFile('.vtt')">📥 Export Teams (.vtt)</button>
+                    <button onclick="exportFile('.docx')">📥 Export Outlook (.docx)</button>
+                </div>
+            </div>
+            <div class="reader-content" id="reader-content">
+                <p style="color: var(--primary); text-align: center; margin-top: 50px;">
+                    Upload documents and audio to view synchronized transcripts.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Accessibility Toggles ---
+        function toggleTheme(className, btnId) {
+            document.body.classList.toggle(className);
+            document.getElementById(btnId).classList.toggle('active');
+        }
+
+        // --- Mock Data simulating the Unified JSON Schema ---
+        const mockData = [
+            {
+                id: "1",
+                source_type: "ocr",
+                page_number: 1,
+                text: "Q3 Sustainability Goals: Expand plant-based portfolio across Europe by 15%. Reduce supply chain emissions.",
+                confidence_score: 0.95
+            },
+            {
+                id: "2",
+                source_type: "stt",
+                speaker: "SPEAKER_00",
+                start_time: 12.0,
+                end_time: 15.3,
+                text: "As you can see on slide 1, our main objective is the plant-based portfolio.",
+                confidence_score: 0.88
+            },
+            {
+                id: "3",
+                source_type: "stt",
+                speaker: "SPEAKER_01",
+                start_time: 16.1,
+                end_time: 19.4,
+                text: "Exactly. The Nespresso sustainability targets are also aligned with this.",
+                confidence_score: 0.92
+            },
+            {
+                id: "4",
+                source_type: "ocr",
+                page_number: 2,
+                text: "Maggi & Purina Supply Chain Logistics 2026",
+                confidence_score: 0.65 // Low confidence to trigger yellow underline
+            },
+            {
+                id: "5",
+                source_type: "stt",
+                speaker: "SPEAKER_00",
+                start_time: 22.0,
+                end_time: 26.5,
+                text: "Moving to page two, there are some minor supply chain bottlenecks for Purina.",
+                confidence_score: 0.62 // Low confidence
+            }
+        ];
+
+        let uploaded = false;
+
+        // --- Render Logic ---
+        function mockUpload() {
+            if (uploaded) return;
+            uploaded = true;
+            
+            const contentDiv = document.getElementById('reader-content');
+            contentDiv.innerHTML = ''; // Clear empty state
+            
+            mockData.forEach(item => {
+                const block = document.createElement('div');
+                block.className = 'block';
+
+                const meta = document.createElement('div');
+                meta.className = 'block-meta';
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'block-text';
+
+                // Handle Explainability (Confidence Score)
+                let displayText = item.text;
+                if (item.confidence_score < 0.7) {
+                    displayText = \`<span class="low-confidence" title="Low AI Confidence (\${Math.round(item.confidence_score * 100)}%) - Click to correct">\${item.text}</span>\`;
+                }
+
+                if (item.source_type === 'ocr') {
+                    meta.innerHTML = \`<span>📄 Page \${item.page_number}</span>\`;
+                    textDiv.innerHTML = \`<strong>[SLIDE TEXT]</strong><br/>\${displayText}\`;
+                } else if (item.source_type === 'stt') {
+                    meta.innerHTML = \`
+                        <span>🎙️ \${item.speaker}</span>
+                        <span style="font-weight:normal;">[\${formatTime(item.start_time)} - \${formatTime(item.end_time)}]</span>
+                    \`;
+                    textDiv.innerHTML = displayText;
+                }
+
+                block.appendChild(meta);
+                block.appendChild(textDiv);
+                contentDiv.appendChild(block);
+            });
+
+            // Add correction listener
+            document.querySelectorAll('.low-confidence').forEach(el => {
+                el.addEventListener('click', function() {
+                    const corrected = prompt("Correct the highlighted AI text:", this.innerText);
+                    if (corrected !== null) {
+                        this.innerText = corrected;
+                        this.classList.remove('low-confidence');
+                        this.removeAttribute('title');
+                        
+                        // Show visual feedback that it was corrected
+                        this.style.textDecoration = 'none';
+                        this.style.backgroundColor = '#d4edda'; // success green
+                        
+                        // Fake a backend call
+                        console.log("Feedback loop: Sent correction to backend for RLHF");
+                    }
+                });
+            });
+        }
+
+        // --- Utils ---
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return \`\${m}:\${s.toString().padStart(2, '0')}\`;
+        }
+
+        function exportFile(format) {
+            alert(\`Simulating export to \${format}.\\nIn production, this triggers the backend conversion endpoint for Microsoft Teams/Outlook.\`);
+        }
+    </script>
+</body>
+</html>

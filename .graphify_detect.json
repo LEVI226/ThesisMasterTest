@@ -1,0 +1,73 @@
+{
+  "files": {
+    "code": [
+      "backend\\main.py",
+      "backend\\models.py",
+      "backend\\__init__.py",
+      "backend\\evaluation\\dataset.py",
+      "backend\\evaluation\\metrics.py",
+      "backend\\evaluation\\report.py",
+      "backend\\evaluation\\runner.py",
+      "backend\\evaluation\\run_stt_eval.py",
+      "backend\\evaluation\\__init__.py",
+      "backend\\ocr\\engine.py",
+      "backend\\ocr\\__init__.py",
+      "backend\\rag\\chain.py",
+      "backend\\rag\\vectorstore.py",
+      "backend\\rag\\__init__.py",
+      "backend\\stt\\engine.py",
+      "backend\\stt\\__init__.py",
+      "tests\\test_evaluation.py",
+      "tmp\\test_ocr_rag.py"
+    ],
+    "document": [
+      "detail.md",
+      "README.md",
+      "STT_Demonstration_Report.md",
+      "Topic2_STT_Document_For_Colleague.md",
+      "Topic2_STT_Final_Report_Nestle.md",
+      "Topic2_STT_Final_Report_Nestle_Clean.md",
+      "Topic2_STT_Nestle_Submission.md",
+      "datasets\\stt_eval\\README.md",
+      "frontend\\accessibility_prototype.html",
+      "frontend\\index.html",
+      "frontend\\live_transcribe.html"
+    ],
+    "paper": [
+      "sttDocumentationMasterYannickBITNESTLE.pdf",
+      "storage\\uploads\\57fcff04-f978-4472-885e-8ebe1b0797bd.pdf",
+      "storage\\uploads\\7277bee1-fb6a-4e4d-a9c7-b18640bbd56e.pdf",
+      "storage\\uploads\\9597d417-39be-4538-b526-551906dffda5.pdf",
+      "storage\\uploads\\ae96884f-3cd1-4ce7-b62f-09891dad8dbc.pdf"
+    ],
+    "image": [
+      "explication.jpeg",
+      "storage\\uploads\\2df5b44d-70e4-4026-9e01-edc4df8e276b.png",
+      "tests\\ocr_test.png"
+    ],
+    "video": [
+      "storage\\uploads\\03555ada-f9f1-47b8-aa4d-a3e290b7a07e.mp4",
+      "storage\\uploads\\3cfafbc6-8691-4c6e-9aa6-342f21e09ff4.wav",
+      "storage\\uploads\\47f30406-6386-4c01-ab1e-96bd28380129.mp3",
+      "storage\\uploads\\6f283aa8-8f52-49c0-800c-d2b8d82d46b2.mp4",
+      "storage\\uploads\\767689d2-f25a-49a1-ae3b-de5455caefad.wav",
+      "storage\\uploads\\97b6bf7a-fba6-4a19-b390-94e08f61805d.mp4",
+      "storage\\uploads\\a9ad4ba5-f18a-47e9-abea-e00dc58fcccc.wav",
+      "storage\\uploads\\aa364bd9-8fa7-4aa8-817b-d405b50dc108.mp4",
+      "storage\\uploads\\ab0ff2ef-e427-4a12-99df-c70693df6ce6.m4a",
+      "storage\\uploads\\b4e21f3a-ac08-4dea-881a-2629022c7ec6.mp3",
+      "storage\\uploads\\dfba1fdd-5ca3-4dae-a3d2-12d9537e564a.wav",
+      "storage\\uploads\\dfc22ad4-c1b0-404a-be57-5ac041a30663.mp3",
+      "storage\\uploads\\e463890f-f48d-4166-b158-2b0a97aa4fed.wav",
+      "storage\\uploads\\f4602c63-9d7c-42b2-9989-a31aac7cd0c6.mp4",
+      "storage\\uploads\\f80624ef-123a-4c2a-a713-999325af496a.mp3",
+      "tests\\sample.wav"
+    ]
+  },
+  "total_files": 53,
+  "total_words": 73087,
+  "needs_graph": true,
+  "warning": null,
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 0
+}

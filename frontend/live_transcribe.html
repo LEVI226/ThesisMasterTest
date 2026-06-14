@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Transcription — Nestlé Accessibility</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --surface2:  #1a1e28;
+      --border:    rgba(255,255,255,0.08);
+      --accent:    #4f8ef7;
+      --accent2:   #7c5cfb;
+      --success:   #34d399;
+      --warning:   #fbbf24;
+      --danger:    #f87171;
+      --text:      #e8eaf2;
+      --muted:     #7b82a0;
+      --radius:    14px;
+      --radius-sm: 8px;
+    }
+
+    html { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #0f1623 0%, #1a1040 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: .75rem; }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .logo-text h1 { font-size: 1rem; font-weight: 600; }
+    .logo-text p  { font-size: .7rem; color: var(--muted); }
+
+    /* ── Status pill ── */
+    .status-pill {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .35rem .9rem; border-radius: 20px;
+      background: var(--surface2); border: 1px solid var(--border);
+      font-size: .78rem; font-weight: 500;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--muted); transition: background .3s;
+    }
+    .dot.idle        { background: var(--muted); }
+    .dot.connecting  { background: var(--warning); animation: pulse 1s infinite; }
+    .dot.connected   { background: var(--success); }
+    .dot.recording   { background: var(--danger);  animation: pulse .7s infinite; }
+    .dot.error       { background: var(--danger); }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+
+    /* ── Main layout ── */
+    main { flex: 1; max-width: 900px; margin: 0 auto; width: 100%; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+    }
+    .card-title {
+      font-size: .8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); margin-bottom: 1rem;
+    }
+
+    /* ── Controls ── */
+    .controls { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: .55rem 1.2rem; border-radius: var(--radius-sm); border: none;
+      font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .15s;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .btn:disabled { opacity: .35; cursor: not-allowed; }
+    .btn-primary  { background: var(--accent);  color: #fff; }
+    .btn-success  { background: var(--success); color: #0d1a10; }
+    .btn-danger   { background: var(--danger);  color: #fff; }
+    .btn-ghost    { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn:not(:disabled):hover { filter: brightness(1.15); transform: translateY(-1px); }
+
+    /* WS URL input */
+    .ws-row { display: flex; gap: .5rem; align-items: center; flex: 1; min-width: 220px; }
+    .ws-input {
+      flex: 1; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      padding: .5rem .8rem; font-size: .83rem; outline: none;
+    }
+    .ws-input:focus { border-color: var(--accent); }
+
+    /* ── Visualizer ── */
+    .viz-row { display: flex; align-items: center; gap: 1rem; }
+    canvas#viz { border-radius: 8px; background: var(--surface2); flex: 1; }
+    .mic-label { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── Transcript ── */
+    .transcript-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+    .segment-count { font-size: .75rem; color: var(--muted); }
+    .transcript-area {
+      background: var(--surface2); border-radius: var(--radius-sm);
+      border: 1px solid var(--border); height: 400px; overflow-y: auto;
+      padding: 1rem; display: flex; flex-direction: column; gap: .6rem;
+    }
+    .transcript-area:empty::after {
+      content: 'Waiting for transcription…';
+      color: var(--muted); font-size: .85rem; font-style: italic;
+      margin: auto; text-align: center;
+      display: block; padding-top: 160px;
+    }
+
+    .segment {
+      display: flex; gap: .75rem; align-items: flex-start;
+      padding: .6rem .75rem; border-radius: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      animation: fadeIn .25s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+    .speaker-badge {
+      flex-shrink: 0; padding: .2rem .55rem; border-radius: 20px;
+      font-size: .7rem; font-weight: 700; color: #fff;
+    }
+    .seg-ts { flex-shrink: 0; font-size: .72rem; color: var(--muted); padding-top: .15rem; font-variant-numeric: tabular-nums; }
+    .seg-text { font-size: .88rem; line-height: 1.5; flex: 1; }
+
+    .copy-btn {
+      padding: .3rem .7rem; font-size: .73rem; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 6px; color: var(--muted);
+      cursor: pointer; transition: all .15s;
+    }
+    .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    /* ── Scrollbar ── */
+    .transcript-area::-webkit-scrollbar { width: 6px; }
+    .transcript-area::-webkit-scrollbar-track { background: transparent; }
+    .transcript-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">♿</div>
+    <div class="logo-text">
+      <h1>Nestlé Accessibility Platform</h1>
+      <p>Live Speech-to-Text — Topic 2</p>
+    </div>
+  </div>
+  <div class="status-pill">
+    <span class="dot idle" id="dot"></span>
+    <span id="status-text">Disconnected</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Controls -->
+  <div class="card">
+    <div class="card-title">Connection &amp; Recording</div>
+    <div class="controls">
+      <div class="ws-row">
+        <input class="ws-input" id="ws-url" value="ws://localhost:8001/ws/transcribe" spellcheck="false" />
+      </div>
+      <button class="btn btn-primary" id="btn-connect">⚡ Connect</button>
+      <button class="btn btn-success" id="btn-start" disabled>🎙 Start</button>
+      <button class="btn btn-danger"  id="btn-stop"  disabled>⏹ Stop</button>
+      <button class="btn btn-ghost"   id="btn-disconnect" disabled>✕ Disconnect</button>
+    </div>
+  </div>
+
+  <!-- Visualizer -->
+  <div class="card">
+    <div class="card-title">Audio Level</div>
+    <div class="viz-row">
+      <span class="mic-label" id="mic-info">Microphone: —</span>
+      <canvas id="viz" height="48" width="600"></canvas>
+    </div>
+  </div>
+
+  <!-- Transcript -->
+  <div class="card">
+    <div class="transcript-header card-title">
+      <span>Live Transcript</span>
+      <div style="display:flex;gap:.5rem;align-items:center;">
+        <span class="segment-count" id="seg-count">0 segments</span>
+        <button class="copy-btn" id="btn-copy">Copy all</button>
+        <button class="copy-btn" id="btn-clear">Clear</button>
+      </div>
+    </div>
+    <div class="transcript-area" id="transcript"></div>
+  </div>
+
+</main>
+
+<script>
+/* ─────────────────────────────────────────────
+   State
+───────────────────────────────────────────── */
+const STATE = { IDLE: 'idle', CONNECTING: 'connecting', CONNECTED: 'connected', RECORDING: 'recording', ERROR: 'error' };
+let state = STATE.IDLE;
+
+let ws       = null;
+let audioCtx = null;
+let stream   = null;
+let sourceNode  = null;
+let processorNode = null;   // AudioWorkletNode or ScriptProcessorNode
+let animFrameId = null;
+
+const TARGET_SR    = 16000;     // Whisper expects 16 kHz
+const CHUNK_SAMPLES = 16000;    // send 1 s of audio per WebSocket message
+let pcmBuffer = new Float32Array(0);
+
+// Speaker → colour mapping
+const SPEAKER_PALETTE = ['#4f8ef7','#7c5cfb','#34d399','#fbbf24','#f87171','#38bdf8','#fb923c'];
+const speakerColors   = {};
+let   colorIndex      = 0;
+let   segmentCount    = 0;
+
+// Analyser for visualizer
+let analyser = null;
+
+/* ─────────────────────────────────────────────
+   DOM refs
+───────────────────────────────────────────── */
+const $dot        = document.getElementById('dot');
+const $statusTxt  = document.getElementById('status-text');
+const $btnConnect = document.getElementById('btn-connect');
+const $btnStart   = document.getElementById('btn-start');
+const $btnStop    = document.getElementById('btn-stop');
+const $btnDisconn = document.getElementById('btn-disconnect');
+const $wsUrl      = document.getElementById('ws-url');
+const $transcript = document.getElementById('transcript');
+const $segCount   = document.getElementById('seg-count');
+const $micInfo    = document.getElementById('mic-info');
+const canvas      = document.getElementById('viz');
+const ctx2d       = canvas.getContext('2d');
+
+/* ─────────────────────────────────────────────
+   State machine helpers
+───────────────────────────────────────────── */
+function setState(s) {
+  state = s;
+  $dot.className      = 'dot ' + s;
+  $statusTxt.textContent = {
+    [STATE.IDLE]:       'Disconnected',
+    [STATE.CONNECTING]: 'Connecting…',
+    [STATE.CONNECTED]:  'Connected',
+    [STATE.RECORDING]:  'Recording',
+    [STATE.ERROR]:      'Error',
+  }[s] || s;
+
+  $btnConnect.disabled  = s !== STATE.IDLE && s !== STATE.ERROR;
+  $btnStart.disabled    = s !== STATE.CONNECTED;
+  $btnStop.disabled     = s !== STATE.RECORDING;
+  $btnDisconn.disabled  = s !== STATE.CONNECTED && s !== STATE.RECORDING;
+}
+
+/* ─────────────────────────────────────────────
+   WebSocket
+───────────────────────────────────────────── */
+function connect() {
+  const url = $wsUrl.value.trim();
+  if (!url) return;
+  setState(STATE.CONNECTING);
+
+  ws = new WebSocket(url);
+  ws.binaryType = 'arraybuffer';
+
+  ws.onopen = () => {
+    setState(STATE.CONNECTED);
+  };
+
+  ws.onmessage = (evt) => {
+    if (typeof evt.data === 'string') {
+      try {
+        const msg = JSON.parse(evt.data);
+        appendSegment(msg);
+      } catch {/* ignore non-JSON */ }
+    }
+  };
+
+  ws.onerror = () => {
+    setState(STATE.ERROR);
+    stopRecording();
+  };
+
+  ws.onclose = () => {
+    if (state !== STATE.IDLE) setState(STATE.IDLE);
+    stopRecording();
+  };
+}
+
+function disconnect() {
+  stopRecording();
+  if (ws) { ws.close(); ws = null; }
+  setState(STATE.IDLE);
+}
+
+/* ─────────────────────────────────────────────
+   Float32 → Int16 PCM
+───────────────────────────────────────────── */
+function float32ToInt16(f32) {
+  const i16 = new Int16Array(f32.length);
+  for (let i = 0; i < f32.length; i++) {
+    const s = Math.max(-1, Math.min(1, f32[i]));
+    i16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+  return i16;
+}
+
+/* Simple linear-interpolation downsampler (used when AudioContext clamps sample rate) */
+function resampleTo16k(f32, inputSR) {
+  if (inputSR === TARGET_SR) return f32;
+  const ratio     = TARGET_SR / inputSR;
+  const outLength = Math.floor(f32.length * ratio);
+  const out       = new Float32Array(outLength);
+  for (let i = 0; i < outLength; i++) {
+    const pos = i / ratio;
+    const lo  = Math.floor(pos);
+    const hi  = Math.min(lo + 1, f32.length - 1);
+    out[i] = f32[lo] + (pos - lo) * (f32[hi] - f32[lo]);
+  }
+  return out;
+}
+
+/* Accumulate samples and flush 1-second chunks to WebSocket */
+function enqueueSamples(f32) {
+  const resampled = resampleTo16k(f32, audioCtx.sampleRate);
+  const merged    = new Float32Array(pcmBuffer.length + resampled.length);
+  merged.set(pcmBuffer);
+  merged.set(resampled, pcmBuffer.length);
+  pcmBuffer = merged;
+
+  while (pcmBuffer.length >= CHUNK_SAMPLES) {
+    const chunk = pcmBuffer.slice(0, CHUNK_SAMPLES);
+    pcmBuffer   = pcmBuffer.slice(CHUNK_SAMPLES);
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(float32ToInt16(chunk).buffer);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────
+   AudioWorklet processor (inlined as Blob URL)
+───────────────────────────────────────────── */
+const WORKLET_CODE = `
+class PCMCapture extends AudioWorkletProcessor {
+  process(inputs) {
+    const ch = inputs[0]?.[0];
+    if (ch) this.port.postMessage(ch.slice());   // copy Float32Array to main thread
+    return true;
+  }
+}
+registerProcessor('pcm-capture', PCMCapture);
+`;
+
+async function setupAudioWorklet(source) {
+  const blob = new Blob([WORKLET_CODE], { type: 'application/javascript' });
+  const url  = URL.createObjectURL(blob);
+  await audioCtx.audioWorklet.addModule(url);
+  URL.revokeObjectURL(url);
+
+  const node = new AudioWorkletNode(audioCtx, 'pcm-capture');
+  node.port.onmessage = (e) => enqueueSamples(e.data);
+  source.connect(node);
+  // Do NOT connect to destination (avoids mic feedback through speakers)
+  processorNode = node;
+}
+
+/* ScriptProcessorNode fallback (deprecated but universally supported) */
+function setupScriptProcessor(source) {
+  const node = audioCtx.createScriptProcessor(4096, 1, 1);
+  node.onaudioprocess = (e) => enqueueSamples(e.inputBuffer.getChannelData(0).slice());
+  source.connect(node);
+  node.connect(audioCtx.destination);   // must be connected to fire onaudioprocess
+  processorNode = node;
+}
+
+/* ─────────────────────────────────────────────
+   Start / stop recording
+───────────────────────────────────────────── */
+async function startRecording() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio: { channelCount: 1, sampleRate: { ideal: TARGET_SR }, echoCancellation: true, noiseSuppression: true }
+    });
+
+    const track = stream.getAudioTracks()[0];
+    $micInfo.textContent = 'Microphone: ' + (track.label || 'unknown');
+
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: TARGET_SR });
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+    sourceNode = audioCtx.createMediaStreamSource(stream);
+
+    // Analyser for visualizer (does not alter audio path)
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    sourceNode.connect(analyser);
+
+    if (typeof AudioWorkletNode !== 'undefined') {
+      try { await setupAudioWorklet(sourceNode); }
+      catch { setupScriptProcessor(sourceNode); }
+    } else {
+      setupScriptProcessor(sourceNode);
+    }
+
+    pcmBuffer = new Float32Array(0);
+    setState(STATE.RECORDING);
+    drawViz();
+
+  } catch (err) {
+    alert('Microphone access denied or unavailable:\n' + err.message);
+    setState(STATE.CONNECTED);
+  }
+}
+
+function stopRecording() {
+  if (processorNode) {
+    if (processorNode.disconnect) processorNode.disconnect();
+    processorNode = null;
+  }
+  if (sourceNode)  { sourceNode.disconnect();  sourceNode  = null; }
+  if (stream)      { stream.getTracks().forEach(t => t.stop()); stream = null; }
+  if (audioCtx)    { audioCtx.close(); audioCtx = null; }
+  if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
+  analyser = null;
+  pcmBuffer = new Float32Array(0);
+  $micInfo.textContent = 'Microphone: —';
+  clearCanvas();
+  if (state === STATE.RECORDING) setState(STATE.CONNECTED);
+}
+
+/* ─────────────────────────────────────────────
+   Canvas visualizer
+───────────────────────────────────────────── */
+function drawViz() {
+  if (!analyser) return;
+  animFrameId = requestAnimationFrame(drawViz);
+
+  const dpr = window.devicePixelRatio || 1;
+  const w   = canvas.clientWidth;
+  const h   = canvas.clientHeight;
+  if (canvas.width !== w * dpr) { canvas.width = w * dpr; canvas.height = h * dpr; ctx2d.scale(dpr, dpr); }
+
+  const data = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+
+  ctx2d.clearRect(0, 0, w, h);
+  const barW  = w / data.length * 2.5;
+  let   x     = 0;
+  for (let i = 0; i < data.length; i++) {
+    const barH = (data[i] / 255) * h;
+    const grad = ctx2d.createLinearGradient(0, h, 0, h - barH);
+    grad.addColorStop(0, '#4f8ef7');
+    grad.addColorStop(1, '#7c5cfb');
+    ctx2d.fillStyle = grad;
+    ctx2d.fillRect(x, h - barH, barW - 1, barH);
+    x += barW;
+    if (x > w) break;
+  }
+}
+
+function clearCanvas() {
+  ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/* ─────────────────────────────────────────────
+   Transcript rendering
+───────────────────────────────────────────── */
+function getSpeakerColor(speaker) {
+  if (!speakerColors[speaker]) {
+    speakerColors[speaker] = SPEAKER_PALETTE[colorIndex % SPEAKER_PALETTE.length];
+    colorIndex++;
+  }
+  return speakerColors[speaker];
+}
+
+function formatTime(seconds) {
+  if (seconds == null) return '—';
+  const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function appendSegment({ speaker, text, start, end } = {}) {
+  if (!text) return;
+  segmentCount++;
+  $segCount.textContent = segmentCount + ' segment' + (segmentCount !== 1 ? 's' : '');
+
+  const label   = speaker || 'SPEAKER';
+  const color   = getSpeakerColor(label);
+
+  const div = document.createElement('div');
+  div.className = 'segment';
+  div.innerHTML = `
+    <span class="speaker-badge" style="background:${color}">${label}</span>
+    <span class="seg-ts">${formatTime(start)}</span>
+    <span class="seg-text">${escapeHtml(text)}</span>
+  `;
+  $transcript.appendChild(div);
+  $transcript.scrollTop = $transcript.scrollHeight;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ─────────────────────────────────────────────
+   Button wiring
+───────────────────────────────────────────── */
+$btnConnect.addEventListener('click', connect);
+
+$btnStart.addEventListener('click', startRecording);
+
+$btnStop.addEventListener('click', () => {
+  stopRecording();
+});
+
+$btnDisconn.addEventListener('click', disconnect);
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+  $transcript.innerHTML = '';
+  segmentCount = 0;
+  $segCount.textContent = '0 segments';
+  Object.keys(speakerColors).forEach(k => delete speakerColors[k]);
+  colorIndex = 0;
+});
+
+document.getElementById('btn-copy').addEventListener('click', () => {
+  const lines = [...$transcript.querySelectorAll('.segment')].map(s => {
+    const speaker = s.querySelector('.speaker-badge').textContent;
+    const ts      = s.querySelector('.seg-ts').textContent;
+    const text    = s.querySelector('.seg-text').textContent;
+    return `[${speaker}] ${ts}  ${text}`;
+  });
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    document.getElementById('btn-copy').textContent = 'Copied ✓';
+    setTimeout(() => document.getElementById('btn-copy').textContent = 'Copy all', 2000);
+  });
+});
+
+/* Init */
+setState(STATE.IDLE);
+</script>
+</body>
+</html>

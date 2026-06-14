@@ -1,0 +1,19 @@
+# Who we are
+storage/uploads/
+storage/chroma_db/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.python-version
+
+# uv
+.uv/
+
+# IDE
+.vscode/
+.idea/
+*.DS_Store
