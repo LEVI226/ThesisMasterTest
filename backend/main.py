@@ -148,7 +148,7 @@ async def transcribe(
     logger.info(f"STT request: {file.filename} ({len(content)/1024:.1f} KB) → {doc_id}")
 
     # Transcribe (CPU/GPU blocking call → run in executor)
-    from backend.stt.engine import transcribe_file, get_audio_duration
+    from backend.stt.engine import transcribe_file
     loop = asyncio.get_event_loop()
 
     try:
@@ -172,6 +172,7 @@ async def transcribe(
         "full_text": full_text,
         "segments": result.get("segments", []),
         "duration_seconds": result.get("duration", 0),
+        "processing_time_seconds": result.get("processing_time", 0),
         "whisper_model": result.get("model", ""),
         "ingested_to_rag": chunks_count > 0,
         "chunks_ingested": chunks_count,

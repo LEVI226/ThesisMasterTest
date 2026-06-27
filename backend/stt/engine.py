@@ -13,10 +13,10 @@ from pathlib import Path
 from typing import Optional
 
 from faster_whisper import WhisperModel
+import torch
 
 try:
     from pyannote.audio import Pipeline
-    import torch
     PYANNOTE_AVAILABLE = True
 except ImportError:
     PYANNOTE_AVAILABLE = False
@@ -155,7 +155,7 @@ def transcribe_file(
         task: (legacy) "transcribe" or "translate". Prefer config.task.
 
     Returns:
-        dict with keys: text, segments, language, duration, model
+        dict with keys: text, segments, language, duration, processing_time, model
     """
     if config is None:
         config = TranscribeConfig(
@@ -202,15 +202,16 @@ def transcribe_file(
             })
 
         full_text = full_text.strip()
-        duration = time.time() - start_time
+        processing_time = time.time() - start_time
+        audio_duration = get_audio_duration(file_path)
         logger.info(
-            "Transcription done in %.1fs | language=%s | chars=%d",
-            duration, info.language, len(full_text),
+            "Transcription done in %.1fs | audio=%.1fs | language=%s | chars=%d",
+            processing_time, audio_duration, info.language, len(full_text),
         )
 
-        # Diarization post-processing
+        # Diarization post-processing (independent of noise-reduction preprocessing)
         diarizer = load_diarization_pipeline()
-        if diarizer and config.preprocessing:
+        if diarizer:
             logger.info("Starting speaker diarization...")
             try:
                 diarize_start = time.time()
@@ -232,7 +233,8 @@ def transcribe_file(
             "text": full_text,
             "segments": segments,
             "language": info.language,
-            "duration": duration,
+            "duration": audio_duration,        # length of the audio, in seconds
+            "processing_time": processing_time, # wall-clock transcription time, in seconds
             "model": _model_name,
         }
 
