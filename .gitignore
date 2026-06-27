@@ -17,3 +17,11 @@ __pycache__/
 .vscode/
 .idea/
 *.DS_Store
+
+# Runtime server logs
+server_stdout.log
+server_stderr.log
+# Junk / temp
+results/testfile.tmp
+# Graphify cache (regenerable)
+graphify-out/cache/
