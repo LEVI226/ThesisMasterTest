@@ -1,2 +1,37 @@
 audio_filename,reference_filename,language,noise_condition,speaker_count,notes
-example_en_clean.wav,example_en_clean.txt,en,clean,1,Placeholder — replace with real audio
+minds14_en_clean_01.wav,minds14_en_clean_01.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_noisy_01.wav,minds14_en_clean_01.txt,en,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_en_clean_02.wav,minds14_en_clean_02.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_noisy_02.wav,minds14_en_clean_02.txt,en,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_en_clean_03.wav,minds14_en_clean_03.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_noisy_03.wav,minds14_en_clean_03.txt,en,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_en_clean_04.wav,minds14_en_clean_04.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_noisy_04.wav,minds14_en_clean_04.txt,en,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_en_clean_05.wav,minds14_en_clean_05.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_clean_06.wav,minds14_en_clean_06.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_clean_07.wav,minds14_en_clean_07.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_en_clean_08.wav,minds14_en_clean_08.txt,en,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_clean_01.wav,minds14_fr_clean_01.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_noisy_01.wav,minds14_fr_clean_01.txt,fr,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_fr_clean_02.wav,minds14_fr_clean_02.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_noisy_02.wav,minds14_fr_clean_02.txt,fr,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_fr_clean_03.wav,minds14_fr_clean_03.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_noisy_03.wav,minds14_fr_clean_03.txt,fr,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_fr_clean_04.wav,minds14_fr_clean_04.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_noisy_04.wav,minds14_fr_clean_04.txt,fr,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_fr_clean_05.wav,minds14_fr_clean_05.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_clean_06.wav,minds14_fr_clean_06.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_clean_07.wav,minds14_fr_clean_07.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_fr_clean_08.wav,minds14_fr_clean_08.txt,fr,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_clean_01.wav,minds14_de_clean_01.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_noisy_01.wav,minds14_de_clean_01.txt,de,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_de_clean_02.wav,minds14_de_clean_02.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_noisy_02.wav,minds14_de_clean_02.txt,de,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_de_clean_03.wav,minds14_de_clean_03.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_noisy_03.wav,minds14_de_clean_03.txt,de,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_de_clean_04.wav,minds14_de_clean_04.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_noisy_04.wav,minds14_de_clean_04.txt,de,noisy,1,Synthetic white noise added at 8dB SNR over PolyAI/minds14 source (same reference transcript)
+minds14_de_clean_05.wav,minds14_de_clean_05.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_clean_06.wav,minds14_de_clean_06.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_clean_07.wav,minds14_de_clean_07.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
+minds14_de_clean_08.wav,minds14_de_clean_08.txt,de,clean,1,"PolyAI/minds14 (CC-BY-4.0), real telephone-banking speech"
