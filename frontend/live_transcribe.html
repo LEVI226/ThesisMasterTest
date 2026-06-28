@@ -97,10 +97,16 @@
       padding: .5rem .8rem; font-size: .83rem; outline: none;
     }
     .ws-input:focus { border-color: var(--accent); }
+    .lang-select {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      padding: .5rem .6rem; font-size: .83rem; outline: none; cursor: pointer;
+    }
+    .lang-select:focus { border-color: var(--accent); }
 
     /* ── Visualizer ── */
     .viz-row { display: flex; align-items: center; gap: 1rem; }
-    canvas#viz { border-radius: 8px; background: var(--surface2); flex: 1; }
+    canvas#viz { border-radius: 8px; background: var(--surface2); flex: 1; min-width: 0; height: 48px; }
     .mic-label { font-size: .78rem; color: var(--muted); white-space: nowrap; }
 
     /* ── Transcript ── */
@@ -170,6 +176,12 @@
     <div class="controls">
       <div class="ws-row">
         <input class="ws-input" id="ws-url" value="ws://localhost:8001/ws/transcribe" spellcheck="false" />
+        <select class="lang-select" id="lang-select">
+          <option value="auto">🌐 Auto</option>
+          <option value="fr">🇫🇷 FR</option>
+          <option value="en">🇬🇧 EN</option>
+          <option value="de">🇩🇪 DE</option>
+        </select>
       </div>
       <button class="btn btn-primary" id="btn-connect">⚡ Connect</button>
       <button class="btn btn-success" id="btn-start" disabled>🎙 Start</button>
@@ -242,6 +254,7 @@ const $wsUrl      = document.getElementById('ws-url');
 const $transcript = document.getElementById('transcript');
 const $segCount   = document.getElementById('seg-count');
 const $micInfo    = document.getElementById('mic-info');
+const $langSelect = document.getElementById('lang-select');
 const canvas      = document.getElementById('viz');
 const ctx2d       = canvas.getContext('2d');
 
@@ -269,8 +282,10 @@ function setState(s) {
    WebSocket
 ───────────────────────────────────────────── */
 function connect() {
-  const url = $wsUrl.value.trim();
-  if (!url) return;
+  const base = $wsUrl.value.trim();
+  if (!base) return;
+  const lang = $langSelect.value;
+  const url  = lang === 'auto' ? base : `${base}?lang=${lang}`;
   setState(STATE.CONNECTING);
 
   ws = new WebSocket(url);

@@ -11,7 +11,6 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
 import aiofiles
 import numpy as np
@@ -38,7 +37,7 @@ DOCUMENT_EXTENSIONS = {".pdf", ".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif"}
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_app: FastAPI):
     """Pre-load Whisper model and ChromaDB on startup."""
     logger.info("🚀 Starting Nestlé Accessibility Platform...")
     loop = asyncio.get_event_loop()
@@ -182,11 +181,12 @@ async def transcribe(
 # ─── WebSocket STT (Real-time) ───────────────────────────────────────────────
 
 class RealTimeSTTHandler:
-    def __init__(self, websocket: WebSocket):
+    def __init__(self, websocket: WebSocket, language: str | None = None):
         self.websocket = websocket
+        self.language = language          # None = Whisper auto-detect
         self.sample_rate = 16000
         self.silence_threshold = int(0.6 * self.sample_rate) # 0.6s silence
-        
+
         self.audio_buffer = bytearray()
         self.global_audio = bytearray()
         self.is_speaking = False
@@ -218,11 +218,18 @@ class RealTimeSTTHandler:
                     continue
 
                 audio_np = np.frombuffer(chunk, dtype=np.int16).astype(np.float32) / 32768.0
-                
-                # 2. Silero VAD detection
-                tensor_chunk = torch.from_numpy(audio_np)
-                speech_prob = _vad_model(tensor_chunk, self.sample_rate).item()
-                
+
+                # 2. Silero VAD — model requires exactly 512-sample windows at 16 kHz.
+                # The browser sends larger chunks (e.g. 16 000 samples / 1 s), so we
+                # slice into 512-sample windows and keep the maximum speech probability.
+                SILERO_WINDOW = 512
+                speech_prob = 0.0
+                for i in range(0, len(audio_np) - SILERO_WINDOW + 1, SILERO_WINDOW):
+                    window = torch.from_numpy(audio_np[i : i + SILERO_WINDOW])
+                    p = _vad_model(window, self.sample_rate).item()
+                    if p > speech_prob:
+                        speech_prob = p
+
                 if speech_prob > 0.5:
                     if not self.is_speaking:
                         logger.debug("Speech start detected.")
@@ -234,11 +241,12 @@ class RealTimeSTTHandler:
                     self.silence_frames += len(audio_np)
                     self.audio_buffer.extend(chunk)
                     self.global_audio.extend(chunk)
-                    
+
                     # End of speech detected (silence > 0.6s)
                     if self.silence_frames >= self.silence_threshold:
                         logger.debug("Speech end detected.")
                         self.is_speaking = False
+                        _vad_model.reset_states()
                         await self._transcribe_and_diarize(_model, _diarization_pipeline)
                         self.audio_buffer = bytearray()
                         self.silence_frames = 0
@@ -253,7 +261,13 @@ class RealTimeSTTHandler:
             return
 
         utterance_np = np.frombuffer(self.audio_buffer, dtype=np.int16).astype(np.float32) / 32768.0
-        
+
+        # Skip silent/near-silent utterances — avoids Whisper repeating the initial_prompt
+        rms = float(np.sqrt(np.mean(utterance_np ** 2)))
+        if rms < 0.01:
+            logger.debug("Skipping utterance: RMS %.4f below threshold", rms)
+            return
+
         try:
             # 3. faster-whisper transcription
             loop = asyncio.get_event_loop()
@@ -261,14 +275,27 @@ class RealTimeSTTHandler:
                 None,
                 lambda: model.transcribe(
                     utterance_np,
-                    language="fr",
-                    initial_prompt="Nestlé, Nespresso, Maggi, Purina, KitKat, Nescafé, supply chain, plant-based portfolio"
+                    language=self.language,
+                    # No initial_prompt in live mode: it causes Whisper to hallucinate
+                    # the prompt text when audio is silent or noisy.
+                    no_speech_threshold=0.6,
+                    log_prob_threshold=-1.0,
+                    compression_ratio_threshold=2.4,
                 )
             )
-            
+
             text = " ".join([s.text for s in segments_gen]).strip()
             if not text:
                 return
+
+            # Reject hallucinated repetitions: split into words, check if any phrase
+            # of 4+ words repeats more than twice in the output.
+            words = text.split()
+            if len(words) >= 8:
+                chunk = " ".join(words[:4])
+                if text.count(chunk) > 2:
+                    logger.debug("Skipping hallucinated repetition: %r", text[:60])
+                    return
                 
             # 4. Pyannote on last 10s context to identify speaker
             speaker = "SPEAKER_UNKNOWN"
@@ -285,8 +312,11 @@ class RealTimeSTTHandler:
                     None,
                     lambda: diarizer({"waveform": waveform, "sample_rate": self.sample_rate})
                 )
-                
-                for _, _, spk in diarization.itertracks(yield_label=True):
+
+                # pyannote.audio 4.x returns DiarizeOutput(speaker_diarization, exclusive_speaker_diarization, speaker_embeddings)
+                # rather than a bare Annotation when called with a waveform dict.
+                annotation = diarization.speaker_diarization if hasattr(diarization, "speaker_diarization") else diarization
+                for _, _, spk in annotation.itertracks(yield_label=True):
                     speaker = spk # Last active speaker in context window
 
             # Timestamps
@@ -306,8 +336,9 @@ class RealTimeSTTHandler:
 
 
 @app.websocket("/ws/transcribe")
-async def websocket_stt(websocket: WebSocket):
-    handler = RealTimeSTTHandler(websocket)
+async def websocket_stt(websocket: WebSocket, lang: str = "auto"):
+    language = lang if lang != "auto" else None
+    handler = RealTimeSTTHandler(websocket, language=language)
     await handler.process()
 
 
