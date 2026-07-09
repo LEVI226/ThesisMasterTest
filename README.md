@@ -4,7 +4,7 @@
 | Topic | Student | Focus |
 |---|---|---|
 | Topic 1 — OCR Engine | Fadel ZONGO | Deep learning OCR for corporate documents |
-| **Topic 2 — STT Engine** | **Ulric GOUET-ZONGO** | **Advanced Speech-to-Text for multilingual meetings** |
+| **Topic 2 — STT Engine** | **Yannick Ulrich Levi Ouedraogo** | **Advanced Speech-to-Text for multilingual meetings** |
 | Topic 3 — Accessibility Layer | (joint) | Personalized, explainable accessibility interface |
 
 ---
