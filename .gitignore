@@ -31,3 +31,6 @@ models/*/checkpoint-*/
 
 # Audio files du train split (régénérable via build_train_split.py)
 datasets/lora_train/audio/
+
+# Audio files des réunions simulées (régénérables via build_meetings.py)
+datasets/meetings/audio/

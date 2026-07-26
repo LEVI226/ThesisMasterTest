@@ -1,0 +1,415 @@
+[
+  {
+    "meeting_id": "meeting_en_clean_2spk",
+    "audio_file": "meeting_en_clean_2spk.wav",
+    "language": "en",
+    "noise_condition": "clean",
+    "n_speakers": 2,
+    "total_duration": 71.783,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 10.8374,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "I would like to set up a joint account with my partner",
+        "source_clip": "minds14_en_clean_01.wav"
+      },
+      {
+        "start": 11.3374,
+        "end": 17.9934,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "Henry County set up a joint account with my wife and where are they at",
+        "source_clip": "minds14_en_clean_02.wav"
+      },
+      {
+        "start": 18.4934,
+        "end": 42.728,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "hi I'd like to set up a joint account with my partner I'm not seeing the option to do it on the app so I called in to get some help can I do it over the phone with you and give you the information",
+        "source_clip": "minds14_en_clean_03.wav"
+      },
+      {
+        "start": 43.228,
+        "end": 46.4706,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "how do I start a joint account",
+        "source_clip": "minds14_en_clean_04.wav"
+      },
+      {
+        "start": 46.9706,
+        "end": 50.8106,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "can you help me set up a joint bank account",
+        "source_clip": "minds14_en_clean_05.wav"
+      },
+      {
+        "start": 51.3106,
+        "end": 55.8618,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "how to set up a joint account",
+        "source_clip": "minds14_en_clean_06.wav"
+      },
+      {
+        "start": 56.3618,
+        "end": 62.2497,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "is like you open a joint account tell me about processes",
+        "source_clip": "minds14_en_clean_07.wav"
+      },
+      {
+        "start": 62.7497,
+        "end": 71.2831,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "can I have an account with my sister I want to set up a joint account",
+        "source_clip": "minds14_en_clean_08.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_fr_clean_2spk",
+    "audio_file": "meeting_fr_clean_2spk.wav",
+    "language": "fr",
+    "noise_condition": "clean",
+    "n_speakers": 2,
+    "total_duration": 48.032,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 3.7546,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "je souhaite changer mon adresse",
+        "source_clip": "minds14_fr_clean_01.wav"
+      },
+      {
+        "start": 4.2546,
+        "end": 9.0332,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "Bonjour je voudrais changer d'adresse",
+        "source_clip": "minds14_fr_clean_02.wav"
+      },
+      {
+        "start": 9.5332,
+        "end": 24.2106,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "bonjour ok je vais changer d'adresse et je voulais savoir quelles étaient les démarches à faire quelque chose à faire ou pas",
+        "source_clip": "minds14_fr_clean_03.wav"
+      },
+      {
+        "start": 24.7106,
+        "end": 28.2946,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "je souhaiterais modifier mon adresse",
+        "source_clip": "minds14_fr_clean_04.wav"
+      },
+      {
+        "start": 28.7946,
+        "end": 32.1226,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "je souhaite changer d'adresse",
+        "source_clip": "minds14_fr_clean_05.wav"
+      },
+      {
+        "start": 32.6226,
+        "end": 36.6332,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "bonjour j'aimerais changer d'adresse",
+        "source_clip": "minds14_fr_clean_06.wav"
+      },
+      {
+        "start": 37.1332,
+        "end": 42.6799,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "je veux savoir comment changer mon adresse",
+        "source_clip": "minds14_fr_clean_07.wav"
+      },
+      {
+        "start": 43.1799,
+        "end": 47.5319,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "je voudrais changer d'adresse",
+        "source_clip": "minds14_fr_clean_08.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_de_clean_2spk",
+    "audio_file": "meeting_de_clean_2spk.wav",
+    "language": "de",
+    "noise_condition": "clean",
+    "n_speakers": 2,
+    "total_duration": 78.916,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 5.8514,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "ich möchte gerne Geld auf mein Konto einzahlen",
+        "source_clip": "minds14_de_clean_01.wav"
+      },
+      {
+        "start": 6.3514,
+        "end": 19.7488,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "Hallo ich möchte fragen ob ich Geld auf mein Konto einzahlen kann oder halt wie kann ich das genau machen ich will Bargeld auf mein Konto einzahlen weil ich kann auch von einem Konto auf ein anderes Konto Geld überweisen",
+        "source_clip": "minds14_de_clean_02.wav"
+      },
+      {
+        "start": 20.2488,
+        "end": 28.8488,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "Hallo ich möchte gerne Geld einbezahlen auf mein Konto wie kann ich das tun",
+        "source_clip": "minds14_de_clean_03.wav"
+      },
+      {
+        "start": 29.3488,
+        "end": 34.7358,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "was muss ich tun um Geld auf mein Konto einzuzahlen",
+        "source_clip": "minds14_de_clean_04.wav"
+      },
+      {
+        "start": 35.2358,
+        "end": 48.5478,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "guten Tag ich wollte gerne Geld einzahlen und wollte einmal fragen wie es geht und dann auch direkt wie man das Geld aufs Konto überweisen kann",
+        "source_clip": "minds14_de_clean_05.wav"
+      },
+      {
+        "start": 49.0478,
+        "end": 56.7278,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "guten Tag ich möchte Geld einzahlen über welche Funktion kann ich dies tun",
+        "source_clip": "minds14_de_clean_06.wav"
+      },
+      {
+        "start": 57.2278,
+        "end": 64.3478,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "ich möchte Geld auf das Konto einzahlen",
+        "source_clip": "minds14_de_clean_07.wav"
+      },
+      {
+        "start": 64.8478,
+        "end": 78.4158,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "hallo guten Tag ich möchte bitte Geld auf mein Konto Auftrag Geld auf mein Konto einzahlen von einem anderen Konto oder einer Karte danke",
+        "source_clip": "minds14_de_clean_08.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_en_noisy_2spk",
+    "audio_file": "meeting_en_noisy_2spk.wav",
+    "language": "en",
+    "noise_condition": "noisy",
+    "n_speakers": 2,
+    "total_duration": 46.971,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 10.8374,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "",
+        "source_clip": "minds14_en_noisy_01.wav"
+      },
+      {
+        "start": 11.3374,
+        "end": 17.9934,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "",
+        "source_clip": "minds14_en_noisy_02.wav"
+      },
+      {
+        "start": 18.4934,
+        "end": 42.728,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "",
+        "source_clip": "minds14_en_noisy_03.wav"
+      },
+      {
+        "start": 43.228,
+        "end": 46.4706,
+        "speaker": "SPEAKER_B",
+        "language": "en",
+        "transcript": "",
+        "source_clip": "minds14_en_noisy_04.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_fr_noisy_2spk",
+    "audio_file": "meeting_fr_noisy_2spk.wav",
+    "language": "fr",
+    "noise_condition": "noisy",
+    "n_speakers": 2,
+    "total_duration": 28.795,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 3.7546,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "",
+        "source_clip": "minds14_fr_noisy_01.wav"
+      },
+      {
+        "start": 4.2546,
+        "end": 9.0332,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "",
+        "source_clip": "minds14_fr_noisy_02.wav"
+      },
+      {
+        "start": 9.5332,
+        "end": 24.2106,
+        "speaker": "SPEAKER_A",
+        "language": "fr",
+        "transcript": "",
+        "source_clip": "minds14_fr_noisy_03.wav"
+      },
+      {
+        "start": 24.7106,
+        "end": 28.2946,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "",
+        "source_clip": "minds14_fr_noisy_04.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_de_noisy_2spk",
+    "audio_file": "meeting_de_noisy_2spk.wav",
+    "language": "de",
+    "noise_condition": "noisy",
+    "n_speakers": 2,
+    "total_duration": 35.236,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 5.8514,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "",
+        "source_clip": "minds14_de_noisy_01.wav"
+      },
+      {
+        "start": 6.3514,
+        "end": 19.7488,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "",
+        "source_clip": "minds14_de_noisy_02.wav"
+      },
+      {
+        "start": 20.2488,
+        "end": 28.8488,
+        "speaker": "SPEAKER_A",
+        "language": "de",
+        "transcript": "",
+        "source_clip": "minds14_de_noisy_03.wav"
+      },
+      {
+        "start": 29.3488,
+        "end": 34.7358,
+        "speaker": "SPEAKER_B",
+        "language": "de",
+        "transcript": "",
+        "source_clip": "minds14_de_noisy_04.wav"
+      }
+    ]
+  },
+  {
+    "meeting_id": "meeting_trilingual_3spk",
+    "audio_file": "meeting_trilingual_3spk.wav",
+    "language": "mixed",
+    "noise_condition": "clean",
+    "n_speakers": 3,
+    "total_duration": 48.275,
+    "limitation": "Sequential turns, no overlap — simulated meeting (weak diarization testbed). Cross-talk, interruptions, and speaker overlap not tested. Each turn is an isolated telephone-banking utterance — content continuity is not guaranteed.",
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 10.8374,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "I would like to set up a joint account with my partner",
+        "source_clip": "minds14_en_clean_01.wav"
+      },
+      {
+        "start": 11.3374,
+        "end": 15.092,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "je souhaite changer mon adresse",
+        "source_clip": "minds14_fr_clean_01.wav"
+      },
+      {
+        "start": 15.592,
+        "end": 21.4434,
+        "speaker": "SPEAKER_C",
+        "language": "de",
+        "transcript": "ich möchte gerne Geld auf mein Konto einzahlen",
+        "source_clip": "minds14_de_clean_01.wav"
+      },
+      {
+        "start": 21.9434,
+        "end": 28.5994,
+        "speaker": "SPEAKER_A",
+        "language": "en",
+        "transcript": "Henry County set up a joint account with my wife and where are they at",
+        "source_clip": "minds14_en_clean_02.wav"
+      },
+      {
+        "start": 29.0994,
+        "end": 33.878,
+        "speaker": "SPEAKER_B",
+        "language": "fr",
+        "transcript": "Bonjour je voudrais changer d'adresse",
+        "source_clip": "minds14_fr_clean_02.wav"
+      },
+      {
+        "start": 34.378,
+        "end": 47.7754,
+        "speaker": "SPEAKER_C",
+        "language": "de",
+        "transcript": "Hallo ich möchte fragen ob ich Geld auf mein Konto einzahlen kann oder halt wie kann ich das genau machen ich will Bargeld auf mein Konto einzahlen weil ich kann auch von einem Konto auf ein anderes Konto Geld überweisen",
+        "source_clip": "minds14_de_clean_02.wav"
+      }
+    ]
+  }
+]
