@@ -51,6 +51,9 @@ class TranscribeConfig:
     domain_prompt_text: str = DEFAULT_DOMAIN_PROMPT
     word_timestamps: bool = True
     condition_on_previous_text: bool = True
+    # faster-whisper native VAD (Silero) — more tightly integrated than
+    # load_vad_model(): operates segment-by-segment and handles any audio length.
+    vad: bool = False
 
 
 # ─── Model cache ─────────────────────────────────────────────────────────────
@@ -184,6 +187,8 @@ def transcribe_file(
             transcribe_options["language"] = config.language
         if config.domain_prompt:
             transcribe_options["initial_prompt"] = config.domain_prompt_text
+        if config.vad:
+            transcribe_options["vad_filter"] = True
 
         logger.info("Starting transcription: %s", Path(file_path).name)
         segments_gen, info = model.transcribe(cleaned_path, **transcribe_options)

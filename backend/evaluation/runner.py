@@ -31,7 +31,8 @@ class EvalResult:
     real_time_factor: float
     wer: float
     cer: float
-    transcript_output_path: str
+    detected_language: str = ""
+    transcript_output_path: str = ""
     reference_text: str = ""
     hypothesis_text: str = ""
     error: str = ""
@@ -57,6 +58,7 @@ def run_single(
     domain_prompt: bool = True,
     forced_language: Optional[str] = None,
     model_size: Optional[str] = None,
+    vad: bool = False,
 ) -> EvalResult:
     """
     Run one transcription experiment for a single EvalSample.
@@ -69,6 +71,7 @@ def run_single(
         domain_prompt  = domain_prompt,
         language       = forced_language,
         word_timestamps= False,          # not needed for evaluation
+        vad            = vad,
     )
     if model_size:
         cfg.model_size = model_size
@@ -89,8 +92,9 @@ def run_single(
         result = transcribe_file(audio_path, config=cfg)
         elapsed = time.time() - t0
 
-        hypothesis = result.get("text", "").strip()
-        model_used  = result.get("model", "unknown")
+        hypothesis    = result.get("text", "").strip()
+        model_used    = result.get("model", "unknown")
+        detected_lang = result.get("language", "")
 
         # Load reference
         ref_text = _read_reference(sample.reference_path) if sample.reference_path and sample.reference_path.exists() else ""
@@ -120,6 +124,7 @@ def run_single(
             real_time_factor      = round(r, 4),
             wer                   = round(w, 4) if w == w else w,  # preserve NaN
             cer                   = round(c, 4) if c == c else c,
+            detected_language     = detected_lang,
             transcript_output_path= str(transcript_path),
             reference_text        = ref_text,
             hypothesis_text       = hypothesis,

@@ -43,9 +43,13 @@ LOG_PATH = Path("results/pilot_run.log")
 CONDITIONS = [
     dict(tag="A_baseline", model="tiny", preprocessing=False, domain_prompt=False, forced_language=None),
     dict(tag="B_noise_reduction", model="tiny", preprocessing=True, domain_prompt=False, forced_language=None),
+    dict(tag="C_vad", model="tiny", preprocessing=True, domain_prompt=False, forced_language=None, vad=True),
     dict(tag="D_domain_prompt", model="tiny", preprocessing=True, domain_prompt=True, forced_language=None),
     dict(tag="E_forced_language", model="tiny", preprocessing=True, domain_prompt=True, forced_language="__sample_lang__"),
     dict(tag="F_model_base", model="base", preprocessing=True, domain_prompt=False, forced_language=None),
+    dict(tag="G_model_small", model="small", preprocessing=True, domain_prompt=False, forced_language=None),
+    dict(tag="H_model_medium", model="medium", preprocessing=True, domain_prompt=False, forced_language=None),
+    dict(tag="I_model_large_v3", model="large-v3", preprocessing=True, domain_prompt=False, forced_language=None),
 ]
 
 FIELDNAMES = [f.name for f in fields(EvalResult)] + ["condition_tag"]
@@ -117,6 +121,7 @@ def main():
                     domain_prompt=cond["domain_prompt"],
                     forced_language=forced_lang,
                     model_size=cond["model"],
+                    vad=cond.get("vad", False),
                 )
                 row = asdict(result)
                 row["condition_tag"] = cond["tag"]

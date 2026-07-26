@@ -4,8 +4,10 @@ Exposes STT, OCR, and RAG Q&A endpoints.
 """
 import os
 import uuid
+import time
 import logging
 import asyncio
+import csv as _csv
 from pathlib import Path
 from contextlib import asynccontextmanager
 
@@ -181,6 +183,8 @@ async def transcribe(
 # ─── WebSocket STT (Real-time) ───────────────────────────────────────────────
 
 class RealTimeSTTHandler:
+    LATENCY_CSV = Path("results/live_latency.csv")
+
     def __init__(self, websocket: WebSocket, language: str | None = None):
         self.websocket = websocket
         self.language = language          # None = Whisper auto-detect
@@ -191,6 +195,8 @@ class RealTimeSTTHandler:
         self.global_audio = bytearray()
         self.is_speaking = False
         self.silence_frames = 0
+        self._utterance_id = 0
+        self._t_silence_end: float = 0.0
 
     async def process(self):
         from backend.stt.engine import _model, _vad_model, _diarization_pipeline
@@ -246,6 +252,7 @@ class RealTimeSTTHandler:
                     if self.silence_frames >= self.silence_threshold:
                         logger.debug("Speech end detected.")
                         self.is_speaking = False
+                        self._t_silence_end = time.monotonic()
                         _vad_model.reset_states()
                         await self._transcribe_and_diarize(_model, _diarization_pipeline)
                         self.audio_buffer = bytearray()
@@ -323,7 +330,22 @@ class RealTimeSTTHandler:
             end_sec = len(self.global_audio) / (self.sample_rate * 2)
             start_sec = end_sec - (len(self.audio_buffer) / (self.sample_rate * 2))
 
-            # 5. Return JSON
+            # 5. Measure latency and log to CSV
+            latency = round(time.monotonic() - self._t_silence_end, 3)
+            duration_audio = round(len(self.audio_buffer) / (self.sample_rate * 2), 3)
+            self._utterance_id += 1
+            self.LATENCY_CSV.parent.mkdir(parents=True, exist_ok=True)
+            new_file = not self.LATENCY_CSV.exists()
+            with open(self.LATENCY_CSV, "a", newline="", encoding="utf-8") as f:
+                w = _csv.DictWriter(f, fieldnames=["utterance_id", "duration_audio", "latency_seconds"])
+                if new_file:
+                    w.writeheader()
+                w.writerow({"utterance_id": self._utterance_id,
+                            "duration_audio": duration_audio,
+                            "latency_seconds": latency})
+            logger.info("Utterance %d | audio=%.1fs | latency=%.3fs", self._utterance_id, duration_audio, latency)
+
+            # 6. Return JSON
             await self.websocket.send_json({
                 "speaker": speaker,
                 "text": text,

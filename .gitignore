@@ -25,3 +25,9 @@ server_stderr.log
 results/testfile.tmp
 # Graphify cache (regenerable)
 graphify-out/cache/
+
+# LoRA training checkpoints (regenerable, ~20 MB chacun)
+models/*/checkpoint-*/
+
+# Audio files du train split (régénérable via build_train_split.py)
+datasets/lora_train/audio/
