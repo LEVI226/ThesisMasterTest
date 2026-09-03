@@ -1,0 +1,1048 @@
+INFO:     Started server process [38132]
+INFO:     Waiting for application startup.
+2026-08-27 11:32:10,779 | INFO | nestle-platform | \U0001f680 Starting Nestlé Accessibility Platform...
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+* use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+* fix torchcodec installation. Error message was:
+
+Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.6.0+cu124) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+[end of libtorchcodec loading traceback].
+  warnings.warn(
+2026-08-27 11:32:40,048 | INFO | backend.stt.engine | Loading faster-whisper model: small on CUDA (float16)
+2026-08-27 11:32:40,743 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+Ignored error while writing commit hash to C:\Users\ulric\.cache\huggingface\hub\models--Systran--faster-whisper-small\refs\main: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--Systran--faster-whisper-small\\refs\\main'.
+2026-08-27 11:32:40,746 | WARNING | huggingface_hub._snapshot_download | Ignored error while writing commit hash to C:\Users\ulric\.cache\huggingface\hub\models--Systran--faster-whisper-small\refs\main: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--Systran--faster-whisper-small\\refs\\main'.
+2026-08-27 11:32:41,673 | INFO | backend.stt.engine | faster-whisper model 'small' loaded successfully.
+2026-08-27 11:32:41,675 | INFO | nestle-platform | \u2705 Whisper model loaded.
+2026-08-27 11:32:47,019 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: intfloat/multilingual-e5-small
+2026-08-27 11:32:47,387 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:47,634 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:47,934 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\config_sentence_transformers.json'
+2026-08-27 11:32:47,936 | ERROR | huggingface_hub.file_download | Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\config_sentence_transformers.json'
+2026-08-27 11:32:48,238 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\config_sentence_transformers.json'
+2026-08-27 11:32:48,239 | ERROR | huggingface_hub.file_download | Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\config_sentence_transformers.json'
+2026-08-27 11:32:48,513 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:48,793 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md "HTTP/1.1 200 OK"
+2026-08-27 11:32:49,107 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:49,260 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:49,560 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:49,796 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:50,097 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\adapter_config.json'
+2026-08-27 11:32:50,098 | ERROR | huggingface_hub.file_download | Could not cache non-existence of file. Will ignore error and continue. Error: [Errno 13] Permission denied: 'C:\\Users\\ulric\\.cache\\huggingface\\hub\\models--intfloat--multilingual-e5-small\\.no_exist\\614241f622f53c4eeff9890bdc4f31cfecc418b3\\adapter_config.json'
+2026-08-27 11:32:50,391 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:50,636 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:50,954 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:51,101 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4203.15it/s]
+[1mBertModel LOAD REPORT[0m from: intfloat/multilingual-e5-small
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+2026-08-27 11:32:51,530 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:51,573 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:51,865 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:52,114 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:52,424 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:52,564 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:52,866 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-08-27 11:32:53,156 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-08-27 11:32:55,523 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-08-27 11:32:56,298 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-27 11:32:56,567 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-08-27 11:32:56,893 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-08-27 11:32:57,318 | INFO | backend.rag.vectorstore | ChromaDB collection ready: nestle_accessibility (120 docs)
+2026-08-27 11:32:57,319 | INFO | nestle-platform | \u2705 ChromaDB initialized.
+2026-08-27 11:32:57,320 | INFO | backend.stt.engine | Loading Silero VAD model...
+Using cache found in C:\Users\ulric/.cache\torch\hub\snakers4_silero-vad_master
+2026-08-27 11:32:57,878 | INFO | backend.stt.engine | Silero VAD loaded successfully.
+2026-08-27 11:32:57,879 | INFO | backend.stt.engine | Loading pyannote diarization pipeline
+2026-08-27 11:32:58,159 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-08-27 11:33:03,829 | WARNING | nv_one_logger.api.config | OneLogger: Setting error_handling_strategy to DISABLE_QUIETLY_AND_REPORT_METRIC_ERROR for rank (rank=0) with OneLogger disabled. To override: explicitly set error_handling_strategy parameter.
+2026-08-27 11:33:03,858 | INFO | nv_one_logger.exporter.export_config_manager | Final configuration contains 0 exporter(s)
+2026-08-27 11:33:03,860 | WARNING | nv_one_logger.training_telemetry.api.training_telemetry_provider | No exporters were provided. This means that no telemetry data will be collected.
+2026-08-27 11:33:11,408 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-08-27 11:33:14,284 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-08-27 11:33:14,602 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-08-27 11:33:16,057 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-08-27 11:33:16,405 | INFO | backend.stt.engine | pyannote diarization loaded on cuda.
+2026-08-27 11:33:16,407 | INFO | nestle-platform | \u2705 VAD and Diarization models loaded.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+2026-08-27 11:33:25,644 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:39:08,555 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53389 - "WebSocket /ws/transcribe" [accepted]
+2026-08-27 11:39:16,156 | INFO | nestle-platform | WebSocket STT client connected.
+INFO:     connection open
+2026-08-27 11:39:23,522 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:39:28,840 | INFO | faster_whisper | Processing audio with duration 00:04.000
+2026-08-27 11:39:29,800 | INFO | faster_whisper | Detected language 'fr' with probability 0.88
+[NeMo W 2026-08-27 11:39:30 nemo_logging:364] C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\utils\reproducibility.py:74: ReproducibilityWarning: TensorFloat-32 (TF32) has been disabled as it might lead to reproducibility issues and lower accuracy.
+    It can be re-enabled by calling
+       >>> import torch
+       >>> torch.backends.cuda.matmul.allow_tf32 = True
+       >>> torch.backends.cudnn.allow_tf32 = True
+    See https://github.com/pyannote/pyannote-audio/issues/1370 for more details.
+    
+      warnings.warn(
+    
+2026-08-27 11:39:32,351 | INFO | nestle-platform | Utterance 1 | audio=4.0s | latency=3.519s
+2026-08-27 11:39:38,854 | INFO | faster_whisper | Processing audio with duration 00:10.000
+2026-08-27 11:39:38,865 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:39:39,155 | INFO | faster_whisper | Detected language 'fr' with probability 0.84
+2026-08-27 11:39:40,224 | INFO | nestle-platform | Utterance 2 | audio=10.0s | latency=1.382s
+2026-08-27 11:39:53,492 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:39:56,848 | INFO | faster_whisper | Processing audio with duration 00:18.000
+2026-08-27 11:39:57,147 | INFO | faster_whisper | Detected language 'sw' with probability 0.27
+2026-08-27 11:39:57,940 | INFO | nestle-platform | Utterance 3 | audio=18.0s | latency=1.103s
+2026-08-27 11:40:04,813 | INFO | faster_whisper | Processing audio with duration 00:02.000
+2026-08-27 11:40:05,132 | INFO | faster_whisper | Detected language 'en' with probability 0.25
+2026-08-27 11:40:05,318 | INFO | nestle-platform | Utterance 4 | audio=2.0s | latency=0.508s
+2026-08-27 11:40:08,773 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:40:11,835 | INFO | faster_whisper | Processing audio with duration 00:07.000
+2026-08-27 11:40:12,317 | INFO | faster_whisper | Detected language 'en' with probability 0.54
+2026-08-27 11:40:12,647 | INFO | nestle-platform | Utterance 5 | audio=7.0s | latency=0.817s
+2026-08-27 11:40:17,817 | INFO | faster_whisper | Processing audio with duration 00:06.000
+2026-08-27 11:40:18,131 | INFO | faster_whisper | Detected language 'en' with probability 0.52
+2026-08-27 11:40:18,431 | INFO | nestle-platform | Utterance 6 | audio=6.0s | latency=0.616s
+2026-08-27 11:40:23,636 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:40:25,813 | INFO | faster_whisper | Processing audio with duration 00:08.000
+2026-08-27 11:40:26,127 | INFO | faster_whisper | Detected language 'en' with probability 0.95
+2026-08-27 11:40:36,832 | INFO | nestle-platform | Utterance 7 | audio=8.0s | latency=11.021s
+2026-08-27 11:40:37,834 | INFO | faster_whisper | Processing audio with duration 00:10.000
+2026-08-27 11:40:37,953 | INFO | faster_whisper | Detected language 'en' with probability 0.89
+2026-08-27 11:40:38,885 | INFO | nestle-platform | Utterance 8 | audio=10.0s | latency=1.060s
+2026-08-27 11:40:39,147 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:40:44,817 | INFO | faster_whisper | Processing audio with duration 00:06.000
+2026-08-27 11:40:45,130 | INFO | faster_whisper | Detected language 'en' with probability 0.32
+2026-08-27 11:40:46,970 | INFO | nestle-platform | Utterance 9 | audio=6.0s | latency=2.154s
+2026-08-27 11:40:50,815 | INFO | faster_whisper | Processing audio with duration 00:02.000
+2026-08-27 11:40:51,100 | INFO | faster_whisper | Detected language 'it' with probability 0.36
+2026-08-27 11:40:51,426 | INFO | nestle-platform | Utterance 10 | audio=2.0s | latency=0.612s
+2026-08-27 11:40:53,484 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:40:54,818 | INFO | faster_whisper | Processing audio with duration 00:02.000
+2026-08-27 11:40:55,105 | INFO | faster_whisper | Detected language 'pt' with probability 0.26
+2026-08-27 11:40:55,616 | INFO | nestle-platform | Utterance 11 | audio=2.0s | latency=0.799s
+2026-08-27 11:40:59,821 | INFO | faster_whisper | Processing audio with duration 00:03.000
+2026-08-27 11:41:00,105 | INFO | faster_whisper | Detected language 'pt' with probability 0.29
+2026-08-27 11:41:00,317 | INFO | nestle-platform | Utterance 12 | audio=3.0s | latency=0.496s
+2026-08-27 11:41:08,752 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:41:15,817 | INFO | faster_whisper | Processing audio with duration 00:04.000
+2026-08-27 11:41:16,113 | INFO | faster_whisper | Detected language 'fr' with probability 0.53
+2026-08-27 11:41:16,354 | INFO | nestle-platform | Utterance 13 | audio=4.0s | latency=0.542s
+2026-08-27 11:41:22,813 | INFO | faster_whisper | Processing audio with duration 00:05.000
+2026-08-27 11:41:23,107 | INFO | faster_whisper | Detected language 'en' with probability 0.93
+2026-08-27 11:41:23,457 | INFO | nestle-platform | Utterance 14 | audio=5.0s | latency=0.645s
+2026-08-27 11:41:23,657 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:41:25,831 | INFO | faster_whisper | Processing audio with duration 00:03.000
+2026-08-27 11:41:26,080 | INFO | faster_whisper | Detected language 'en' with probability 0.27
+2026-08-27 11:41:26,305 | INFO | nestle-platform | Utterance 15 | audio=3.0s | latency=0.475s
+2026-08-27 11:41:29,841 | INFO | faster_whisper | Processing audio with duration 00:02.000
+2026-08-27 11:41:30,252 | INFO | faster_whisper | Detected language 'sv' with probability 0.65
+2026-08-27 11:41:30,498 | INFO | nestle-platform | Utterance 16 | audio=2.0s | latency=0.657s
+2026-08-27 11:41:38,731 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:41:53,443 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:42:08,712 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:42:23,411 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:42:38,734 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:42:53,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:43:09,010 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:43:23,414 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:43:38,752 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:43:47,078 | INFO | nestle-platform | STT request: Philipp Navratil, Nestlé's CEO, addresses infant formula recall.mp4 (14280.1 KB) \u2192 e3d92a2e-2131-44a3-a84a-bc7f2daaf5f9
+2026-08-27 11:43:50,334 | WARNING | backend.stt.engine | Noise reduction failed (), using original audio.
+2026-08-27 11:43:50,335 | INFO | backend.stt.engine | Starting transcription: e3d92a2e-2131-44a3-a84a-bc7f2daaf5f9.mp4
+2026-08-27 11:43:51,512 | INFO | faster_whisper | Processing audio with duration 04:14.584
+2026-08-27 11:43:52,059 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-08-27 11:43:53,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:43:59,656 | INFO | backend.stt.engine | Transcription done in 12.6s | audio=0.0s | language=en | chars=3006
+2026-08-27 11:43:59,657 | INFO | backend.stt.engine | Starting speaker diarization...
+2026-08-27 11:43:59,657 | ERROR | backend.stt.engine | Diarization failed: name 'AudioDecoder' is not defined
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:02<00:00,  2.19s/it]Batches: 100%|##########| 1/1 [00:02<00:00,  2.19s/it]
+2026-08-27 11:44:01,926 | INFO | backend.rag.vectorstore | Ingested 2 chunks for Philipp Navratil, Nestlé's CEO, addresses infant formula recall.mp4 (stt)
+2026-08-27 11:44:02,575 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:44:08,784 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:44:23,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:44:38,802 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:44:53,417 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:45:09,033 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 35.70it/s]
+2026-08-27 11:45:12,905 | INFO | backend.rag.chain | RAG query [ollama]: 'philipp...'
+2026-08-27 11:45:22,843 | INFO | httpx | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-08-27 11:45:23,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:45:38,395 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:45:53,727 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:46:02,007 | INFO | nestle-platform | OCR request: Research Proposal.pdf (60.6 KB) \u2192 a23eab86-3aca-42c6-b05c-5e0193b9ad18
+2026-08-27 11:46:03,942 | INFO | backend.ocr.engine | OCR page 1/5 — 1389 chars
+2026-08-27 11:46:04,946 | INFO | backend.ocr.engine | OCR page 2/5 — 1200 chars
+2026-08-27 11:46:05,752 | INFO | backend.ocr.engine | OCR page 3/5 — 1090 chars
+2026-08-27 11:46:06,573 | INFO | backend.ocr.engine | OCR page 4/5 — 1287 chars
+2026-08-27 11:46:06,840 | INFO | backend.ocr.engine | OCR page 5/5 — 0 chars
+2026-08-27 11:46:06,860 | INFO | backend.ocr.engine | OCR complete: a23eab86-3aca-42c6-b05c-5e0193b9ad18.pdf | 5 page(s) | 4972 total chars
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  1.32it/s]Batches: 100%|##########| 1/1 [00:00<00:00,  1.32it/s]
+2026-08-27 11:46:07,668 | INFO | backend.rag.vectorstore | Ingested 2 chunks for Research Proposal.pdf (ocr)
+2026-08-27 11:46:08,174 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:46:08,729 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:46:23,397 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:46:38,724 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:46:53,454 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 50.61it/s]
+2026-08-27 11:46:58,827 | INFO | backend.rag.chain | RAG query [ollama]: 'philipp...'
+2026-08-27 11:47:02,165 | INFO | httpx | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-08-27 11:47:08,723 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 52.67it/s]
+2026-08-27 11:47:08,891 | INFO | backend.rag.chain | RAG query [ollama]: 'Philippe Navartil...'
+2026-08-27 11:47:11,881 | INFO | httpx | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:00<00:00, 55.74it/s]
+2026-08-27 11:47:11,943 | INFO | backend.rag.chain | RAG query [ollama]: 'Who is Philippe Navartil?...'
+2026-08-27 11:47:15,156 | INFO | httpx | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-08-27 11:47:23,402 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:47:38,741 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:47:53,415 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:48:08,730 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:48:23,424 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:48:38,722 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:48:53,419 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:49:08,722 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:49:23,405 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:49:38,716 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:49:53,932 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:50:09,284 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:50:23,964 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:50:39,291 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:51:43,297 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:52:43,093 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:53:10,264 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:53:24,315 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:53:39,278 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:53:53,976 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:54:09,310 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:54:43,005 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:55:43,394 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:56:43,055 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:57:43,335 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:58:45,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 11:59:43,183 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:00:43,286 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:01:43,037 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:02:43,319 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:03:43,029 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:04:43,319 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:05:42,967 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:06:43,288 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:07:43,004 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:08:43,296 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:09:42,974 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:10:43,308 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:11:42,995 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:12:43,357 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:13:43,292 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:14:40,760 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:15:40,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:16:40,753 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:17:40,433 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:18:40,763 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:19:40,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:20:40,800 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:21:40,456 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:22:40,767 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:23:40,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 12:24:17,493 | INFO | nestle-platform | WebSocket STT client disconnected.
+INFO:     connection closed
+2026-08-27 13:24:25,186 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-27 14:30:53,388 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:18:04,852 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:18:37,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:19:36,906 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:20:37,298 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:21:36,901 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:22:37,265 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:23:36,960 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:24:37,372 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:25:36,755 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:26:37,068 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:27:36,744 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:28:37,153 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:29:36,746 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:30:37,038 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:31:36,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:32:37,047 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:33:36,742 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:34:37,078 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:35:36,777 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:36:37,063 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:37:36,750 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:38:37,066 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:39:36,775 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:40:37,077 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:41:36,812 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:42:37,092 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:43:37,003 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:44:37,082 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:45:36,808 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:46:37,095 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:47:36,763 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:48:37,109 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:49:36,744 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:50:37,189 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:51:36,853 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:52:37,192 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:53:36,824 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:54:37,256 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:55:37,044 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:56:37,358 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:57:37,004 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:58:37,354 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 00:59:37,035 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:00:37,316 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:01:36,960 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:02:37,370 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:03:37,042 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:04:37,316 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:05:36,950 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:06:37,256 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:07:36,969 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:08:37,343 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:09:36,972 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:10:37,360 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:11:37,031 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:12:37,323 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:13:37,039 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:14:37,276 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:15:36,974 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:16:37,305 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:17:37,024 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:18:37,369 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:19:37,007 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:20:37,318 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:21:37,022 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:22:37,294 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:23:36,975 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:24:37,289 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:25:37,025 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:26:37,333 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:27:37,008 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:28:37,333 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:29:36,994 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:30:37,369 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:31:36,991 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:32:37,349 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:33:36,967 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:34:37,308 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:35:36,988 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:36:37,416 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:37:36,968 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:38:37,319 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:39:37,005 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:40:37,366 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:41:37,056 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:42:37,285 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:43:37,058 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:44:37,354 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:45:37,034 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:46:37,332 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:47:37,044 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:48:37,310 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:49:36,990 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:50:37,248 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:51:36,955 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:52:37,254 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:53:36,929 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:54:37,263 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:55:36,951 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:56:37,239 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:57:36,951 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:58:37,271 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 01:59:36,935 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:00:37,251 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:01:36,927 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:02:37,262 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:03:36,944 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:04:37,275 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:05:36,938 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:06:37,268 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:07:36,946 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:08:37,239 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:09:36,971 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:10:37,258 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:11:36,960 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:12:37,249 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:13:36,947 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:14:37,245 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:15:36,943 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:16:37,257 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:17:36,938 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:18:37,252 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:19:36,944 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:20:37,275 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:21:36,948 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:22:37,260 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:23:36,953 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:24:37,252 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:25:37,002 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:26:37,251 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:27:36,945 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:28:37,248 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:29:36,948 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:30:37,274 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:31:36,969 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:32:37,244 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:33:36,933 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:34:37,275 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:35:36,963 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:36:37,294 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:37:36,934 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:38:37,277 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:39:36,927 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:40:37,279 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:41:36,950 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:42:37,244 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:43:36,937 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:44:37,252 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:45:36,964 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:46:37,283 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:47:36,979 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:48:37,274 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 02:49:37,010 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 03:05:23,757 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 03:05:37,418 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 03:40:32,856 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:13:15,303 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:13:33,450 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:14:33,189 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:15:33,552 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:16:33,181 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:17:33,717 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:18:33,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:19:33,694 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:20:33,491 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:21:33,119 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:22:34,705 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:23:33,814 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:24:33,564 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:25:33,158 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:26:33,434 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:27:33,159 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:28:33,454 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:29:33,130 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:30:33,536 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:31:33,136 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:32:33,499 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:33:33,141 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:34:33,672 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:35:33,233 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:36:33,460 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:37:33,228 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:38:33,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:39:33,137 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:40:33,633 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:41:33,147 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:42:33,633 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:43:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:44:33,825 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:45:33,715 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:46:33,811 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:47:33,896 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:48:33,653 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:49:33,865 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:50:33,639 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:51:33,866 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:52:33,487 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:53:33,893 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:54:33,967 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:55:34,193 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:56:33,527 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:57:34,048 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:58:33,500 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 08:59:33,879 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:00:33,460 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:01:33,815 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:02:33,559 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:03:33,484 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:04:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:05:33,492 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:06:33,139 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:07:33,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:08:33,193 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:09:33,445 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:10:33,187 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:11:33,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:12:33,194 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:13:33,579 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:14:33,141 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:15:33,474 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:16:33,150 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:17:33,451 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:18:33,145 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:19:33,455 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:20:33,147 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:21:33,444 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:22:33,156 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:23:33,455 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:24:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:25:33,483 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:26:33,133 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:27:33,761 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:27:34,015 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:28:33,158 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:29:33,442 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:30:33,598 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:31:33,767 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:32:33,664 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:33:33,906 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:34:33,437 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:35:33,842 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:36:33,538 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:37:33,906 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:38:33,559 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:39:33,832 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:40:33,501 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:41:33,829 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:42:33,538 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:43:33,893 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:44:33,543 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:45:33,805 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:46:33,556 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:47:33,429 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:48:33,140 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:49:33,523 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:50:33,144 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:51:33,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:52:33,253 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:53:33,432 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:54:33,129 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:55:33,487 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:56:33,114 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:57:33,459 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:58:33,168 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 09:59:34,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:00:33,577 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:01:33,793 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:02:33,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:03:33,930 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:04:33,534 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:05:33,925 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:06:33,230 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:07:33,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:08:33,654 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:09:33,530 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:10:33,164 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:11:33,652 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:12:33,220 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:13:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:14:33,174 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:15:33,523 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:16:33,178 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:17:33,505 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:18:33,161 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:19:33,499 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:20:33,150 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:21:33,486 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:22:33,199 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:23:33,666 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:24:33,222 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:25:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:26:33,203 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:27:33,528 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:28:33,197 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:29:33,574 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:30:33,282 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:31:33,532 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:32:33,196 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:33:33,459 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:34:33,144 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:35:33,504 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:36:35,923 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:37:33,867 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:38:33,627 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:39:33,956 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:40:33,168 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:41:33,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:42:33,299 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:43:33,434 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:44:33,213 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:45:33,916 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:46:33,200 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:47:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:48:33,168 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:49:33,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:50:33,367 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:51:33,935 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:52:33,691 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:53:33,673 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:54:33,183 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:55:33,497 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:56:33,243 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:57:33,558 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:58:33,290 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 10:59:33,663 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:00:33,172 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:01:33,644 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:02:33,533 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:03:33,465 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:04:33,261 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:05:33,608 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:06:33,327 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:07:33,771 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:08:33,564 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:09:33,835 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:10:33,303 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:11:33,596 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:12:33,346 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:13:33,500 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:14:33,392 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:15:33,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:16:33,541 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:17:33,868 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:18:33,346 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:19:33,531 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:20:33,412 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:21:33,645 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:22:33,291 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:23:33,660 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:24:33,589 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:25:33,627 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:26:33,506 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:27:33,625 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:28:33,398 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:29:33,722 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:30:33,497 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:31:33,668 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:32:33,658 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:33:33,807 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:34:33,442 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:35:33,721 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:36:33,480 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:37:33,848 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:38:33,373 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:39:33,809 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:40:33,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:41:33,584 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:42:33,412 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:43:33,843 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:44:33,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:45:33,683 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:46:33,427 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:47:33,579 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:48:33,880 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:49:33,518 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:50:33,613 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:51:33,355 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:52:33,721 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:53:33,388 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:54:33,673 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:55:33,378 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:56:33,879 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:57:33,398 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:58:33,588 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 11:59:33,385 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:00:33,767 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:01:33,299 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:02:33,720 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:03:33,370 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:04:33,688 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:05:33,445 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:06:33,771 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:07:33,367 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:08:33,706 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:09:33,509 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:10:33,818 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:11:33,299 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:12:33,568 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:13:33,353 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:14:33,856 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:15:33,482 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:16:33,758 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:17:33,349 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:18:33,668 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:19:33,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:20:33,689 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:21:34,933 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:22:33,804 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:23:33,385 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:24:34,037 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:25:33,698 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:26:33,780 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:27:33,434 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:28:33,601 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:29:33,811 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:30:33,797 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:31:33,576 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:32:33,718 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:33:33,289 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:34:33,695 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:35:33,372 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:36:33,883 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:37:33,356 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:38:33,666 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:39:33,542 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:40:33,828 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:41:33,526 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:42:33,591 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:43:33,314 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:44:33,692 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:45:33,359 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:46:33,826 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:47:33,587 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:48:33,333 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:49:33,613 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:50:33,217 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:51:33,690 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:52:33,474 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:53:33,495 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:54:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:55:33,483 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:56:33,185 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:57:33,480 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:58:33,145 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 12:59:33,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:00:33,265 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:01:33,485 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:02:33,252 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:03:33,451 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:04:33,176 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:05:33,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:06:33,144 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:07:33,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:08:33,266 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:09:33,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:10:33,163 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:11:33,426 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:12:33,139 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:13:34,389 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:14:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:15:33,543 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:16:33,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:17:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:18:33,275 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:19:33,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:20:33,197 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:21:33,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:22:33,196 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:23:33,482 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:24:33,173 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:25:33,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:26:33,197 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:27:33,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:28:33,208 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:29:33,468 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:30:33,182 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:31:33,505 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:32:33,146 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:33:33,525 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:34:33,246 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:35:33,501 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:36:33,176 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:37:33,537 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:38:33,188 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:39:33,451 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:40:33,296 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:41:33,486 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:42:33,276 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:43:33,438 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:44:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:45:33,505 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:46:33,152 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:47:33,510 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:48:33,191 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:49:33,468 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:50:33,189 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:51:33,527 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:52:33,175 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:53:33,454 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:54:33,119 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:55:33,465 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:56:33,151 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:57:33,473 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:58:33,239 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 13:59:33,569 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:00:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:01:33,439 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:02:33,233 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:03:33,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:04:33,147 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:05:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:06:33,191 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:07:33,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:08:33,206 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:09:33,469 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:10:33,168 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:11:33,548 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:12:33,173 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:13:33,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:14:33,178 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:15:33,495 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:16:33,155 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:17:33,503 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:18:33,167 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:19:33,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:20:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:21:33,489 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:22:33,191 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:23:33,514 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:24:33,148 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:25:33,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:26:33,189 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:27:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:28:33,137 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:29:33,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:30:33,260 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:31:33,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:32:33,190 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:33:33,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:34:33,199 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:35:33,473 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:36:33,128 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:37:33,449 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:38:33,130 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:39:33,539 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:40:33,136 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:41:33,453 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:42:33,179 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:43:33,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:44:33,301 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:45:33,527 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:46:33,134 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:47:33,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:48:33,161 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:49:33,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:50:33,217 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:51:33,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:52:33,203 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:53:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:54:33,166 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:55:33,441 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:56:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:57:33,508 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:58:33,152 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 14:59:33,482 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:00:33,144 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:01:33,583 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:02:33,182 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:03:33,506 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:04:33,136 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:05:33,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:06:33,139 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:07:33,452 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:08:33,149 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:09:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:10:33,206 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:11:33,432 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:12:33,158 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:13:33,512 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:14:33,138 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:15:33,489 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:16:33,169 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:17:33,482 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:18:33,224 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:19:33,506 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:20:33,136 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:21:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:22:33,172 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:23:33,479 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:24:33,148 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:25:33,587 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:26:33,191 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:27:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:28:33,154 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:29:33,479 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:30:33,169 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:31:33,472 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:32:33,184 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:33:33,484 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:34:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:35:33,450 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:36:33,161 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:37:33,494 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:38:33,121 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:39:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:40:33,153 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:41:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:42:33,248 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:43:33,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:44:33,165 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:45:33,450 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:46:33,195 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:47:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:48:33,186 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:49:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:50:33,184 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:51:33,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:52:33,153 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:53:33,488 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:54:33,177 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:55:33,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:56:33,155 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:57:33,479 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:58:33,159 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 15:59:33,435 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:00:33,223 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:01:33,497 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:02:33,153 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:03:33,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:04:33,112 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:05:33,441 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:06:33,104 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:07:33,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:08:33,134 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:09:33,455 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:10:33,121 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:11:34,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:12:33,139 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:13:33,440 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:14:33,114 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:15:37,555 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:16:33,707 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:17:40,304 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:18:34,385 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:19:35,150 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:20:35,365 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:21:33,691 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:22:33,206 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:23:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:24:33,233 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:25:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:26:33,178 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:27:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:28:33,150 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:29:33,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:30:33,157 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:31:33,439 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:32:33,155 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:33:33,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:34:33,101 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:35:33,472 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:36:33,142 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:37:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:38:33,132 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:39:33,439 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:40:33,117 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:41:33,481 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:42:33,138 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:43:33,579 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:44:33,145 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:45:33,427 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:46:33,191 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:47:33,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:48:33,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:49:33,192 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:50:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:51:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:52:33,468 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:53:33,138 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:54:33,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:55:33,160 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:56:33,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:57:33,144 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:58:33,513 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 16:59:33,159 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:00:33,462 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:01:33,210 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:02:33,687 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:03:33,167 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:04:33,592 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:10:04,309 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:10:33,119 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:11:33,451 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:12:33,133 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:13:33,456 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:24:06,818 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:24:43,158 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:43:09,425 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:43:33,209 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:44:33,523 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:45:33,213 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:46:33,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:47:33,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:48:33,271 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:49:33,514 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:50:33,232 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:51:33,538 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:52:33,250 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:53:33,510 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-08-28 17:54:33,187 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"

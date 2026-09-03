@@ -131,6 +131,25 @@ class TestSummarizeMetrics:
     def test_empty_list(self):
         assert summarize_metrics([]) == {}
 
+    def test_uses_valid_count_for_each_metric(self):
+        results = [
+            {"wer": 0.2, "cer": 0.1, "real_time_factor": 0.3},
+            {"wer": None, "cer": 0.3, "real_time_factor": float("inf")},
+            {"cer": "invalid", "real_time_factor": 0.5},
+        ]
+        summary = summarize_metrics(results)
+        assert summary["mean_wer"] == pytest.approx(0.2)
+        assert summary["mean_cer"] == pytest.approx(0.2)
+        assert summary["mean_real_time_factor"] == pytest.approx(0.4)
+
+    def test_returns_none_when_metric_has_no_valid_values(self):
+        summary = summarize_metrics([{"wer": float("nan")}])
+        assert summary == {
+            "mean_wer": None,
+            "mean_cer": None,
+            "mean_real_time_factor": None,
+        }
+
 
 # ── load_metadata ────────────────────────────────────────────────────────────
 

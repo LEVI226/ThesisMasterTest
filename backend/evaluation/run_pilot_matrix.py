@@ -35,7 +35,7 @@ from dataclasses import asdict, fields
 sys.path.insert(0, ".")
 
 from backend.evaluation.dataset import load_metadata, validate_samples
-from backend.evaluation.runner import run_single, EvalResult
+from backend.evaluation.runner import EvalResult, SAMPLE_LANGUAGE, run_single
 
 OUTPUT_CSV = Path("results/stt_eval_pilot_results.csv")
 LOG_PATH = Path("results/pilot_run.log")
@@ -45,14 +45,16 @@ CONDITIONS = [
     dict(tag="B_noise_reduction", model="tiny", preprocessing=True, domain_prompt=False, forced_language=None),
     dict(tag="C_vad", model="tiny", preprocessing=True, domain_prompt=False, forced_language=None, vad=True),
     dict(tag="D_domain_prompt", model="tiny", preprocessing=True, domain_prompt=True, forced_language=None),
-    dict(tag="E_forced_language", model="tiny", preprocessing=True, domain_prompt=True, forced_language="__sample_lang__"),
+    dict(tag="E_forced_language", model="tiny", preprocessing=True, domain_prompt=True, forced_language=SAMPLE_LANGUAGE),
     dict(tag="F_model_base", model="base", preprocessing=True, domain_prompt=False, forced_language=None),
     dict(tag="G_model_small", model="small", preprocessing=True, domain_prompt=False, forced_language=None),
     dict(tag="H_model_medium", model="medium", preprocessing=True, domain_prompt=False, forced_language=None),
     dict(tag="I_model_large_v3", model="large-v3", preprocessing=True, domain_prompt=False, forced_language=None),
 ]
 
-FIELDNAMES = [f.name for f in fields(EvalResult)] + ["condition_tag"]
+# Existing canonical pilot CSVs identify VAD through condition_tag. Keep their
+# stable schema when resuming, while the generic runner records vad_enabled.
+FIELDNAMES = [f.name for f in fields(EvalResult) if f.name != "vad_enabled"] + ["condition_tag"]
 
 
 def log(msg):
@@ -113,7 +115,7 @@ def main():
                 stopped_early = True
                 break
 
-            forced_lang = sample.language if cond["forced_language"] == "__sample_lang__" else cond["forced_language"]
+            forced_lang = sample.language if cond["forced_language"] == SAMPLE_LANGUAGE else cond["forced_language"]
             try:
                 result = run_single(
                     sample,

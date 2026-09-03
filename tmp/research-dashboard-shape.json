@@ -1,0 +1,81 @@
+{
+  "title": "Choose the research dashboard structure",
+  "question": "Which structure best communicates the Topic 2 findings to a supervisor or thesis jury?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Research Evidence Map",
+      "kicker": "THE ROLL",
+      "lineage": "evidence maps and scientific argument graphs",
+      "thesis": "The three research questions form one connected map from claim to evidence and limitation.",
+      "palette": ["#0d0f14", "#13161e", "#4f8ef7", "#7c5cfb"],
+      "materials": ["connected evidence nodes", "expandable audit drawer"],
+      "viewport": "A central Topic 2 thesis connects three RQ panels, each showing its verdict, evidence strength, and primary result.",
+      "risk": "The spatial model may be slower to scan during a linear jury presentation.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "scope + dataset warning", "x": 0, "y": 0, "w": 12, "h": 1},
+          {"label": "topic 2 thesis", "x": 3, "y": 1, "w": 6, "h": 2, "accent": true},
+          {"label": "RQ1 robustness", "x": 0, "y": 4, "w": 4, "h": 3},
+          {"label": "RQ2 adaptation", "x": 4, "y": 4, "w": 4, "h": 3},
+          {"label": "RQ3 real-time", "x": 8, "y": 4, "w": 4, "h": 3},
+          {"label": "cross-cutting limitations", "x": 0, "y": 8, "w": 8, "h": 2},
+          {"label": "evidence drawer", "x": 8, "y": 8, "w": 4, "h": 2, "accent": true}
+        ]
+      },
+      "comp": ".impeccable/mocks/decision/research-evidence-map.webp"
+    },
+    {
+      "id": "jury-briefing",
+      "label": "Jury Briefing",
+      "lineage": "scientific briefing decks and executive research summaries",
+      "thesis": "A guided narrative turns the study into a concise three-act defense of the findings.",
+      "palette": ["#0d0f14", "#13161e", "#4f8ef7", "#7c5cfb"],
+      "materials": ["sticky chapter rail", "progressive evidence disclosure"],
+      "viewport": "An executive verdict leads into RQ chapters with one key figure, one interpretation, and one limitation each.",
+      "risk": "The presentation flow offers less freedom for exploratory model and dataset comparison.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "chapter rail", "x": 0, "y": 0, "w": 2, "h": 10, "accent": true},
+          {"label": "scope statement", "x": 2, "y": 0, "w": 10, "h": 1},
+          {"label": "executive verdict", "x": 2, "y": 1, "w": 10, "h": 3, "accent": true},
+          {"label": "key figure", "x": 2, "y": 5, "w": 6, "h": 4},
+          {"label": "interpretation", "x": 8, "y": 5, "w": 4, "h": 2},
+          {"label": "limitation", "x": 8, "y": 7, "w": 4, "h": 2}
+        ]
+      },
+      "comp": ".impeccable/mocks/decision/jury-briefing.webp"
+    },
+    {
+      "id": "rq-evidence-spine",
+      "label": "RQ Evidence Spine",
+      "lineage": "reproducible research reports and evidence synthesis",
+      "thesis": "A single vertical spine gives every research question the same rigorous claim-to-evidence anatomy.",
+      "palette": ["#0d0f14", "#13161e", "#4f8ef7", "#7c5cfb"],
+      "materials": ["repeatable RQ sections", "expandable methods and provenance"],
+      "viewport": "A sticky RQ rail accompanies a verdict, key comparison, confidence note, source, and limitation for each question.",
+      "risk": "The complete report becomes long and needs strong navigation on smaller screens.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          {"label": "RQ navigation", "x": 0, "y": 0, "w": 2, "h": 10, "accent": true},
+          {"label": "scope + filters", "x": 2, "y": 0, "w": 10, "h": 1},
+          {"label": "RQ question + verdict", "x": 2, "y": 1, "w": 10, "h": 2, "accent": true},
+          {"label": "key comparison", "x": 2, "y": 4, "w": 6, "h": 4},
+          {"label": "interpretation", "x": 8, "y": 4, "w": 4, "h": 2},
+          {"label": "confidence + limitation", "x": 8, "y": 6, "w": 4, "h": 2},
+          {"label": "methods + provenance", "x": 2, "y": 9, "w": 10, "h": 1}
+        ]
+      },
+      "comp": ".impeccable/mocks/decision/rq-evidence-spine.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": true},
+  "steer": true
+}

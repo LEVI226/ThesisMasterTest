@@ -479,3 +479,24 @@ async def serve_live():
     if not frontend_path.exists():
         return HTMLResponse("<h1>live_transcribe.html not found</h1>", status_code=404)
     return FileResponse(str(frontend_path))
+
+
+@app.get("/research", response_class=HTMLResponse, include_in_schema=False)
+async def serve_research_dashboard():
+    """Serve the Topic 2 academic evidence dashboard."""
+    frontend_path = Path("frontend/research.html")
+    if not frontend_path.exists():
+        return HTMLResponse("<h1>research.html not found</h1>", status_code=404)
+    return FileResponse(str(frontend_path))
+
+
+@app.get("/api/research/evidence", tags=["Evaluation — Topic 2"])
+async def research_evidence():
+    """Return current, provenance-rich summaries from canonical result files."""
+    from backend.evaluation.research_dashboard import build_research_dashboard
+
+    try:
+        return build_research_dashboard(Path("results"))
+    except (FileNotFoundError, ValueError) as exc:
+        logger.error("Research dashboard evidence unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=str(exc)) from exc

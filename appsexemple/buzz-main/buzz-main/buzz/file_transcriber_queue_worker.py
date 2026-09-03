@@ -1,0 +1,424 @@
+import logging
+import multiprocessing
+import os
+import queue
+import ssl
+import sys
+from pathlib import Path
+from typing import Optional, Tuple, List, Set
+from uuid import UUID
+from dataclasses import dataclass
+
+# Fix SSL certificate verification for bundled applications (macOS, Windows)
+# This must be done before importing demucs which uses torch.hub with urllib
+try:
+    import certifi
+    os.environ.setdefault('REQUESTS_CA_BUNDLE', certifi.where())
+    os.environ.setdefault('SSL_CERT_FILE', certifi.where())
+    os.environ.setdefault('SSL_CERT_DIR', os.path.dirname(certifi.where()))
+    # Also update the default SSL context for urllib
+    ssl._create_default_https_context = lambda: ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    pass
+
+from PyQt6.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, Qt
+
+# Patch subprocess for demucs to prevent console windows on Windows
+if sys.platform == "win32":
+    import subprocess
+    _original_run = subprocess.run
+    _original_check_output = subprocess.check_output
+
+    def _patched_run(*args, **kwargs):
+        if 'startupinfo' not in kwargs:
+            si = subprocess.STARTUPINFO()
+            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            si.wShowWindow = subprocess.SW_HIDE
+            kwargs['startupinfo'] = si
+        if 'creationflags' not in kwargs:
+            kwargs['creationflags'] = subprocess.CREATE_NO_WINDOW
+        return _original_run(*args, **kwargs)
+
+    def _patched_check_output(*args, **kwargs):
+        if 'startupinfo' not in kwargs:
+            si = subprocess.STARTUPINFO()
+            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            si.wShowWindow = subprocess.SW_HIDE
+            kwargs['startupinfo'] = si
+        if 'creationflags' not in kwargs:
+            kwargs['creationflags'] = subprocess.CREATE_NO_WINDOW
+        return _original_check_output(*args, **kwargs)
+
+    subprocess.run = _patched_run
+    subprocess.check_output = _patched_check_output
+
+from demucs import api as demucsApi
+
+from buzz.locale import _
+
+
+def _speech_extraction_worker(conn, file_path: str, speech_path: str, device: str) -> None:
+    """Extract speech with demucs in a dedicated process.
+    """
+    try:
+        def callback(progress):
+            try:
+                conn.send(
+                    ("progress", progress["segment_offset"], progress["audio_length"])
+                )
+            except Exception:
+                pass
+
+        separator = demucsApi.Separator(
+            device=device,
+            progress=True,
+            callback=callback,
+        )
+        _origin, separated = separator.separate_audio_file(Path(file_path))
+        demucsApi.save_audio(separated["vocals"], speech_path, separator.samplerate)
+        conn.send(("done", None))
+    except IndexError as e:
+        # File has no audio stream (e.g. a silent video). Signal the parent to
+        # skip speech extraction and transcribe the original file as-is.
+        conn.send(("no_audio", str(e)))
+    except Exception as e:
+        logging.error(f"Error during speech extraction: {e}", exc_info=True)
+        conn.send(("error", str(e)))
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+from buzz.model_loader import ModelType
+from buzz.transcriber.file_transcriber import FileTranscriber
+from buzz.transcriber.openai_whisper_api_file_transcriber import (
+    OpenAIWhisperAPIFileTranscriber,
+)
+from buzz.transcriber.transcriber import FileTranscriptionTask, Segment
+from buzz.transcriber.whisper_file_transcriber import WhisperFileTranscriber
+
+
+@dataclass
+class _CurrentTranscription:
+    task: Optional[FileTranscriptionTask] = None
+    transcriber: Optional[FileTranscriber] = None
+    transcriber_thread: Optional[QThread] = None
+
+
+class FileTranscriberQueueWorker(QObject):
+    tasks_queue: multiprocessing.Queue
+
+    task_started = pyqtSignal(FileTranscriptionTask)
+    task_progress = pyqtSignal(FileTranscriptionTask, float)
+    task_download_progress = pyqtSignal(FileTranscriptionTask, float)
+    task_completed = pyqtSignal(FileTranscriptionTask, list)
+    task_error = pyqtSignal(FileTranscriptionTask, str)
+
+    completed = pyqtSignal()
+    trigger_run = pyqtSignal()
+
+    def __init__(self, parent: Optional[QObject] = None):
+        super().__init__(parent)
+        self.tasks_queue = queue.Queue()
+        self.current = _CurrentTranscription()
+        self.canceled_tasks: Set[UUID] = set()
+        self.speech_path = None
+        self.speech_extractor_process = None
+        self.is_running = False
+        # Assigned by MainWindow after construction. Duck-typed to avoid an
+        # import cycle with the plugins package.
+        self.plugin_manager = None
+        # Use QueuedConnection to ensure run() is called in the correct thread context
+        # and doesn't block signal handlers
+        self.trigger_run.connect(self.run, Qt.ConnectionType.QueuedConnection)
+
+    @pyqtSlot()
+    def run(self):
+        if self.is_running:
+            return
+
+        logging.debug("Waiting for next transcription task")
+
+        self._cleanup_previous_transcriber()
+
+        if not self._get_next_task():
+            self.is_running = False
+            self.completed.emit()
+            return
+
+        self.is_running = True
+
+        if self.current.task.transcription_options.extract_speech:
+            status = self._setup_speech_extraction()
+            if status == "error":
+                self.is_running = False
+                return
+
+        if not self._run_plugins():
+            return
+
+        logging.debug("Starting next transcription task")
+        self.task_progress.emit(self.current.task, 0)
+
+        self._create_transcriber()
+        self._setup_transcriber_thread()
+
+    def _cleanup_previous_transcriber(self):
+        if self.current.transcriber is not None:
+            self.current.transcriber.stop()
+            self.current.transcriber = None
+
+    def _get_next_task(self) -> bool:
+        while True:
+            self.current.task = self.tasks_queue.get()
+            if self.current.task is None:
+                return False
+            if self.current.task.uid in self.canceled_tasks:
+                continue
+            return True
+
+    def _setup_speech_extraction(self) -> str:
+        logging.debug("Will extract speech")
+
+        force_cpu = os.getenv("BUZZ_FORCE_CPU", "false").lower() == "true"
+        if force_cpu:
+            device = "cpu"
+        else:
+            import torch
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        task_file_path = Path(self.current.task.file_path)
+        speech_path = task_file_path.with_name(f"{task_file_path.stem}_speech.mp3")
+
+        status = self._extract_speech(str(task_file_path), str(speech_path), device)
+
+        if status == "error":
+            self.task_error.emit(
+                self.current.task,
+                _("Speech extraction failed! Check your internet connection \u2014 a model may need to be downloaded."),
+            )
+        elif status == "ok":
+            self.speech_path = speech_path
+            if not self.current.task.original_file_path:
+                self.current.task.original_file_path = str(task_file_path)
+            self.current.task.file_path = str(speech_path)
+
+        return status
+
+    def _run_plugins(self) -> bool:
+        """Run before_transcription and check_skip hooks.
+
+        Returns False if a plugin signaled that the task should be skipped,
+        True to continue with normal transcription.
+        """
+        if self.plugin_manager is not None:
+            try:
+                self.plugin_manager.run_before_transcription(self.current.task)
+            except Exception as e:
+                logging.error(f"Plugin before_transcription failed: {e}", exc_info=True)
+
+            should_skip, skip_segments = self.plugin_manager.run_check_skip(self.current.task)
+            if should_skip:
+                logging.debug("Skipping transcription task (plugin signaled skip)")
+                self.current.task.status = FileTranscriptionTask.Status.SKIPPED
+                self.on_task_completed(skip_segments)
+                self.is_running = False
+                self._on_task_finished()
+                return False
+
+        return True
+
+    def _create_transcriber(self):
+        model_type = self.current.task.transcription_options.model.model_type
+        if model_type == ModelType.OPEN_AI_WHISPER_API:
+            self.current.transcriber = OpenAIWhisperAPIFileTranscriber(
+                task=self.current.task
+            )
+        elif (
+            model_type == ModelType.WHISPER_CPP
+            or model_type == ModelType.HUGGING_FACE
+            or model_type == ModelType.WHISPER
+            or model_type == ModelType.FASTER_WHISPER
+        ):
+            self.current.transcriber = WhisperFileTranscriber(task=self.current.task)
+        else:
+            raise Exception(f"Unknown model type: {model_type}")
+
+    def _setup_transcriber_thread(self):
+        self.current.transcriber_thread = QThread(self)
+
+        self.current.transcriber.moveToThread(self.current.transcriber_thread)
+
+        self.current.transcriber_thread.started.connect(self.current.transcriber.run)
+        self.current.transcriber.completed.connect(self.current.transcriber_thread.quit)
+        self.current.transcriber.error.connect(self.current.transcriber_thread.quit)
+
+        self.current.transcriber.completed.connect(self.current.transcriber.deleteLater)
+        self.current.transcriber.error.connect(self.current.transcriber.deleteLater)
+        self.current.transcriber_thread.finished.connect(
+            self.current.transcriber_thread.deleteLater
+        )
+
+        self.current.transcriber.progress.connect(self.on_task_progress)
+        self.current.transcriber.download_progress.connect(
+            self.on_task_download_progress
+        )
+        self.current.transcriber.error.connect(self.on_task_error)
+
+        self.current.transcriber.completed.connect(self.on_task_completed)
+
+        self.current.transcriber.error.connect(lambda: self._on_task_finished())
+        self.current.transcriber.completed.connect(lambda: self._on_task_finished())
+
+        self.task_started.emit(self.current.task)
+        self.current.transcriber_thread.start()
+
+    def _extract_speech(self, file_path: str, speech_path: str, device: str) -> str:
+        """Run demucs speech extraction in a separate process.
+
+        Returns one of ``"ok"``, ``"no_audio"`` or ``"error"``.
+        """
+        recv_conn, send_conn = multiprocessing.Pipe(duplex=False)
+        process = multiprocessing.Process(
+            target=_speech_extraction_worker,
+            args=(send_conn, file_path, speech_path, device),
+        )
+        self.speech_extractor_process = process
+        process.start()
+        # The parent only reads; close its copy of the send end so recv() gets
+        # EOF once the child exits.
+        send_conn.close()
+
+        status = None
+        error_detail = None
+        try:
+            while True:
+                try:
+                    message = recv_conn.recv()
+                except EOFError:
+                    break
+
+                kind = message[0]
+                if kind == "progress":
+                    audio_length = int(message[2] * 100)
+                    if audio_length:
+                        self.task_progress.emit(
+                            self.current.task,
+                            int(message[1] * 100) / audio_length,
+                        )
+                elif kind == "done":
+                    status = "ok"
+                elif kind == "no_audio":
+                    status = "no_audio"
+                    logging.warning(
+                        f"Skipping speech extraction, file has no audio stream: {message[1]}"
+                    )
+                elif kind == "error":
+                    status = "error"
+                    error_detail = message[1]
+        finally:
+            try:
+                recv_conn.close()
+            except OSError:
+                pass
+            process.join()
+            self.speech_extractor_process = None
+
+        if status is None:
+            # Child died without reporting a terminal result (e.g. killed).
+            status = "error"
+            error_detail = (
+                f"speech extraction process exited with code {process.exitcode}"
+            )
+
+        if status == "error":
+            logging.error(f"Error during speech extraction: {error_detail}")
+
+        return status
+
+    def _terminate_speech_extractor_process(self):
+        """Terminate the speech extraction process if one is still running."""
+        process = self.speech_extractor_process
+        if process is not None and process.is_alive():
+            process.terminate()
+            process.join(timeout=5)
+            if process.is_alive():
+                logging.warning(
+                    "Speech extraction process did not terminate gracefully, killing it"
+                )
+                process.kill()
+                process.join(timeout=5)
+
+    def _on_task_finished(self):
+        """Called when a task completes or errors, resets state and triggers next run"""
+        self.is_running = False
+        # Use signal to avoid blocking in signal handler context
+        self.trigger_run.emit()
+
+    def add_task(self, task: FileTranscriptionTask):
+        # Remove from canceled tasks if it was previously canceled (for restart functionality)
+        if task.uid in self.canceled_tasks:
+            self.canceled_tasks.remove(task.uid)
+
+        self.tasks_queue.put(task)
+        # If the worker is not currently running, trigger it to start processing
+        # Use signal to avoid blocking the main thread
+        if not self.is_running:
+            self.trigger_run.emit()
+
+    def cancel_task(self, task_id: UUID):
+        self.canceled_tasks.add(task_id)
+
+        if self.current.task is not None and self.current.task.uid == task_id:
+            self._terminate_speech_extractor_process()
+
+            if self.current.transcriber is not None:
+                self.current.transcriber.stop()
+
+            if self.current.transcriber_thread is not None:
+                if not self.current.transcriber_thread.wait(5000):
+                    logging.warning("Transcriber thread did not terminate gracefully")
+                    self.current.transcriber_thread.terminate()
+
+    def on_task_error(self, error: str):
+        if (
+            self.current.task is not None
+            and self.current.task.uid not in self.canceled_tasks
+        ):
+            # Check if the error indicates cancellation
+            if "canceled" in error.lower() or "cancelled" in error.lower():
+                self.current.task.status = FileTranscriptionTask.Status.CANCELED
+                self.current.task.error = error
+            else:
+                self.current.task.status = FileTranscriptionTask.Status.FAILED
+                self.current.task.error = error
+            self.task_error.emit(self.current.task, error)
+
+    @pyqtSlot(tuple)
+    def on_task_progress(self, progress: Tuple[int, int]):
+        if self.current.task is not None:
+            self.task_progress.emit(self.current.task, progress[0] / progress[1])
+
+    def on_task_download_progress(self, fraction_downloaded: float):
+        if self.current.task is not None:
+            self.task_download_progress.emit(self.current.task, fraction_downloaded)
+
+    @pyqtSlot(list)
+    def on_task_completed(self, segments: List[Segment]):
+        if self.current.task is not None:
+            self.task_completed.emit(self.current.task, segments)
+
+        if self.speech_path is not None:
+            try:
+                Path(self.speech_path).unlink()
+            except Exception:
+                pass
+            self.speech_path = None
+
+    def stop(self):
+        self.tasks_queue.put(None)
+        if self.current.transcriber is not None:
+            self.current.transcriber.stop()
+
+        # Terminate the speech extraction process if one is still running.
+        self._terminate_speech_extractor_process()

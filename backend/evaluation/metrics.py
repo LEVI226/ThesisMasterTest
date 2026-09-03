@@ -3,9 +3,9 @@ STT evaluation metrics: WER, CER, RTF.
 Pure Python implementation using dynamic programming (Levenshtein distance).
 No external NLP libraries required.
 """
+import math
 import re
 import string
-from typing import Union
 
 DEFAULT_PUNCTUATION = string.punctuation + "‘’“”—–"
 
@@ -124,8 +124,17 @@ def summarize_metrics(results: list[dict]) -> dict:
     """
     if not results:
         return {}
-    keys = ["wer", "cer", "real_time_factor"]
-    return {
-        f"mean_{k}": round(sum(r[k] for r in results if r.get(k) is not None) / len(results), 4)
-        for k in keys
-    }
+    summary = {}
+    for key in ("wer", "cer", "real_time_factor"):
+        values = []
+        for row in results:
+            try:
+                value = float(row[key])
+            except (KeyError, TypeError, ValueError):
+                continue
+            if math.isfinite(value):
+                values.append(value)
+        summary[f"mean_{key}"] = (
+            round(sum(values) / len(values), 4) if values else None
+        )
+    return summary

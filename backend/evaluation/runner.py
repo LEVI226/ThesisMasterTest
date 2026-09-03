@@ -14,6 +14,7 @@ from backend.evaluation.metrics import wer, cer, rtf
 logger = logging.getLogger(__name__)
 
 TRANSCRIPT_DIR = Path("results/transcripts")
+SAMPLE_LANGUAGE = "__sample_language__"
 
 
 @dataclass
@@ -36,6 +37,7 @@ class EvalResult:
     reference_text: str = ""
     hypothesis_text: str = ""
     error: str = ""
+    vad_enabled: bool = False
 
 
 def _read_reference(path: Path) -> str:
@@ -128,6 +130,7 @@ def run_single(
             transcript_output_path= str(transcript_path),
             reference_text        = ref_text,
             hypothesis_text       = hypothesis,
+            vad_enabled           = vad,
         )
 
     except Exception as exc:
@@ -148,6 +151,7 @@ def run_single(
             cer                   = float("nan"),
             transcript_output_path= "",
             error                 = str(exc),
+            vad_enabled           = vad,
         )
 
 
@@ -164,7 +168,9 @@ def run_evaluation(
         samples: List of EvalSample objects.
         output_csv: Path to write results CSV.
         conditions: List of condition dicts with keys:
-                    preprocessing, domain_prompt, forced_language.
+                    preprocessing, domain_prompt, forced_language, and optionally vad.
+                    Set forced_language to SAMPLE_LANGUAGE to use each sample's
+                    ground-truth language.
                     Defaults to 4 standard conditions.
         model_size: Whisper model size override (e.g. "base", "small", "medium").
 
@@ -176,7 +182,11 @@ def run_evaluation(
             {"preprocessing": False, "domain_prompt": False, "forced_language": None},
             {"preprocessing": True,  "domain_prompt": False, "forced_language": None},
             {"preprocessing": True,  "domain_prompt": True,  "forced_language": None},
-            {"preprocessing": True,  "domain_prompt": True,  "forced_language": "en"},
+            {
+                "preprocessing": True,
+                "domain_prompt": True,
+                "forced_language": SAMPLE_LANGUAGE,
+            },
         ]
 
     all_results: list[EvalResult] = []
@@ -187,12 +197,19 @@ def run_evaluation(
         for cond in conditions:
             done += 1
             logger.info("[%d/%d] %s | %s", done, total, sample.audio_filename, cond)
+            configured_language = cond.get("forced_language")
+            forced_language = (
+                sample.language
+                if configured_language == SAMPLE_LANGUAGE
+                else configured_language
+            )
             result = run_single(
                 sample,
                 preprocessing  = cond.get("preprocessing", True),
                 domain_prompt  = cond.get("domain_prompt", True),
-                forced_language= cond.get("forced_language"),
+                forced_language= forced_language,
                 model_size     = model_size,
+                vad            = cond.get("vad", False),
             )
             all_results.append(result)
 
@@ -200,14 +217,14 @@ def run_evaluation(
     out_path = Path(output_csv)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if all_results:
-        fieldnames = [f for f in EvalResult.__dataclass_fields__ if f not in ("reference_text", "hypothesis_text")]
+        # Keep reference and hypothesis in the result CSV so every metric remains
+        # independently auditable without relying on sidecar transcript files.
+        fieldnames = list(EvalResult.__dataclass_fields__)
         with open(out_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             for r in all_results:
-                row = asdict(r)
-                row = {k: v for k, v in row.items() if k in fieldnames}
-                writer.writerow(row)
+                writer.writerow(asdict(r))
         logger.info("Results written to %s", output_csv)
 
     return all_results
