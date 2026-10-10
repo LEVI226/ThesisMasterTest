@@ -27,7 +27,7 @@ _DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 _ST_DTYPES = {"F32": torch.float32, "F16": torch.float16, "BF16": torch.bfloat16, "I64": torch.int64}
 
 
-def _read_safetensors(path, dtype) -> dict:
+def _read_safetensors(path, dtype, device="cpu") -> dict:
     """Stream a .safetensors file tensor by tensor with plain file reads (no mmap).
 
     Windows workaround: transformers 5.3 / torch 2.6 load large checkpoints through
@@ -48,7 +48,7 @@ def _read_safetensors(path, dtype) -> dict:
             f.readinto(buf)
             src = _ST_DTYPES[meta["dtype"]]
             t = torch.frombuffer(buf, dtype=src).reshape(meta["shape"]) if b > a else torch.empty(meta["shape"], dtype=src)
-            sd[key] = t.to(dtype) if t.is_floating_point() else t.clone()
+            sd[key] = (t.to(dtype) if t.is_floating_point() else t.clone()).to(device)  # device=cuda: no host copy of the model
     return sd
 
 
@@ -112,10 +112,16 @@ class MMSTranscriber:
         self.processor = AutoProcessor.from_pretrained(model_id)
         from huggingface_hub import hf_hub_download
         from transformers import AutoConfig
-        state = _read_safetensors(hf_hub_download(model_id, "model.safetensors"), self.dtype)
-        self.model = Wav2Vec2ForCTC.from_pretrained(None, config=AutoConfig.from_pretrained(model_id), state_dict=state,
-                                                    torch_dtype=self.dtype,
-                                                    ignore_mismatched_sizes=True).to(_DEVICE).eval()
+        # Tensors go straight to the GPU: a host-side copy of the 1B weights keeps ~4.5 GB of process
+        # commit alive and, with Windows commit tight, CUDA's lazy cuDNN/cuBLAS init then fails with "out of memory".
+        state = _read_safetensors(hf_hub_download(model_id, "model.safetensors"), self.dtype, _DEVICE)
+        config = AutoConfig.from_pretrained(model_id)
+        with torch.device("meta"):
+            model = Wav2Vec2ForCTC(config).to(self.dtype)
+        missing, unexpected = model.load_state_dict(state, strict=False, assign=True)
+        if unexpected or [k for k in missing if "lm_head" not in k and "adapter" not in k]:
+            raise RuntimeError(f"MMS state dict mismatch: missing={missing[:5]} unexpected={unexpected[:5]}")
+        self.model = model.to(_DEVICE).eval()
         del state
         self.model.config._name_or_path = model_id  # load_adapter resolves adapter files from this
         self.current = None
