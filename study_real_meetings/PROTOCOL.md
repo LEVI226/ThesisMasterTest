@@ -1,4 +1,6 @@
-# PROTOCOL: Real-Meetings Validation Study (DRAFT — not frozen; awaiting author spot-check)
+# PROTOCOL: Real-Meetings Validation Study (frozen 2026-10-10)
+
+Frozen at the commit tagged `protocol-frozen` (see `git show protocol-frozen`).
 
 Pre-registration of the study described in `docs/specs/2026-10-10-real-meetings-study-design.md`.
 Nothing below may change after the freeze commit; changes go to §9 "Deviations" with date and reason.
@@ -21,7 +23,8 @@ Segmentation: caption/IPU units merged to target 15 s, max 20 s, max gap 2 s, pa
 AMI: official utterances, 1–30 s. Dev = first 180 s of each source cluster; test = the rest.
 
 ## 3. Reference quality
-AGM FR / EN verbatim rate: PENDING author spot-check (results/real_meetings/agm_spotcheck.csv).
+AGM FR verbatim rate: 20/20 (minor 0, major 0). AGM EN: 20/20 (minor 0, major 0). Author listening check of 20 seed-drawn test segments per language (results/real_meetings/agm_spotcheck.csv).
+The rule that more than 25 % "major" segments would trigger action was pre-declared and is not triggered.
 AGM DE: publisher captions, partially verified. Automatic checks (`results/real_meetings/agm_de_caption_checks.csv`, test segments):
 
 | Language | Segments | Words/s | Coverage | Flagged (outside 0.5–4.5 words/s) |
@@ -31,6 +34,8 @@ AGM DE: publisher captions, partially verified. Automatic checks (`results/real_
 | fr | 68 | 2.19 | 0.997 | 0 |
 
 DE speech rate and coverage are in line with EN/FR and no DE segment is flagged.
+The 1 flagged EN segment is agm-en-0014 (245.04–260.8 s, 0.44 words/s, "and resilience. Very well-deserved by our people."); it was inspected as a rate outlier only.
+The coverage denominator uses (file duration − 180 s), an approximation of the test window (the R12 boundary differs by less than one segment).
 AMI and SUMM-RE: published human gold transcripts.
 
 ## 4. Systems and decoding
@@ -40,7 +45,7 @@ conformer-ctc-large (NeMo stt_{en,fr,de}_conformer_ctc_large, greedy CTC);
 hf-whisper-small and hf-whisper-small-lora (transformers, adapter models/lora_small_minds14, beam 5).
 CTC systems always receive the language. Whisper receives it in "forced" conditions only.
 Each system label maps to exactly one model configuration (study_real_meetings/transcribers.make_transcriber); changing a model requires a new label or a new results file.
-mms-1b-all weights are read with a custom safetensors reader (same file, same fp16 cast) because the stock loader crashes on this machine; equivalence is checked on the dev smoke run.
+mms-1b-all weights are read with a custom safetensors reader directly to the GPU (same file, same fp16 cast) because the stock loader exhausts host memory on this machine; dev check (R9): AGM forced-clean WER en 13.5 %, fr 18.9 %, de 16.2 %.
 
 ## 5. Conditions
 Noise: DEMAND OMEETING / OOFFICE / PCAFETER (channel 1), one environment and offset per
@@ -50,6 +55,7 @@ per segment. Prompt: the thesis domain prompt (identical text). Streaming (H5): 
 
 ## 6. Metrics
 Primary: corpus WER = Σ(S+D+I)/ΣN, thesis normaliser + filler removal (lists in config.py).
+Segments whose reference is empty after normalisation (filler-only, e.g. AMI 'UH') are excluded from all WER aggregates and primary tests and counted per dataset (n_excluded_empty_ref); they remain in runs.csv (ruling R16).
 Secondary: WER with the digits→words rule (num2words), CER, Nestlé-term recall (10 terms, config.py),
 repetition-loop rate (a 4-gram repeated ≥ 3 times), insertions on noise-only clips, DER
 (collar 0.25 s, overlap scored), RTF, streaming latency (p50/p95).
@@ -74,3 +80,5 @@ per system; reported on TEST. Stop rule: everything not run by the end of week 2
 - 2026-10-10: H5 dev/test audio boundary = start of the first test segment per language (ruling R12).
 - 2026-10-10: one system per Python process (ruling R8).
 - 2026-10-10: test-split runs are gated on the git tag `protocol-frozen` (ruling R2).
+- 2026-10-10: segments with an empty normalised reference are excluded from WER aggregates and primary tests, counted as n_excluded_empty_ref, kept in runs.csv (ruling R16).
+- 2026-10-10: mms-1b-all is loaded with a custom safetensors reader directly to the GPU (same file, same fp16 cast) because the stock loader exhausts host memory.
