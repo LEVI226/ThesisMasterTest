@@ -1,3 +1,5 @@
+import pytest
+
 from study_real_meetings.analysis import PRIMARY, primary_tests, summarise, to_latex
 
 
@@ -31,3 +33,29 @@ def test_primary_tests_cover_nine_comparisons_and_apply_holm():
 def test_latex_table_escapes_and_has_booktabs():
     tex = to_latex([{"system": "whisper_large", "wer": "0.123"}], [("system", "System"), ("wer", "WER")], "Cap", "tab:x")
     assert "\\toprule" in tex and "whisper\\_large" in tex and "\\label{tab:x}" in tex
+
+
+def test_latex_headers_are_not_escaped():
+    tex = to_latex([{"x": "a_b"}], [("x", r"$\Delta$WER (\%)")], "C", "tab:y")
+    assert r"$\Delta$WER (\%)" in tex
+    assert "\\textbackslash" not in tex
+    assert r"a\_b" in tex
+
+
+def test_holm_family_is_nine_even_when_comparisons_are_missing():
+    rows = []
+    for lang in ("de", "en", "fr"):
+        rows += [_row("whisper-large-v3", "forced-clean", "agm", i, 1, lang=lang) for i in range(8)]
+        rows += [_row("conformer-ctc-large", "forced-clean", "agm", i, 3, lang=lang) for i in range(8)]
+    out = {r["key"]: r for r in primary_tests(rows)}
+    assert out["P1"]["holm_m"] == 9
+    assert float(out["P1"]["p_holm"]) >= float(out["P1"]["p_value"]) * 7
+    assert out["P5"]["p_holm"] == ""
+
+
+def test_p5_pairs_ihm_and_sdm_by_pair_key():
+    rows = [_row("whisper-large-v3", "forced-clean", "ami-sdm", i, 3, pair=f"k{i}") for i in range(8)]
+    rows += [_row("whisper-large-v3", "forced-clean", "ami-ihm", 100 + i, 1, pair=f"k{i}") for i in range(8)]
+    out = {r["key"]: r for r in primary_tests(rows)}
+    assert out["P5"]["status"] == "ok"
+    assert float(out["P5"]["estimate"]) == pytest.approx(0.2)
