@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import subprocess
 
 from backend.evaluation.statistics import latency_summary
 from study_real_meetings import config as C
@@ -14,6 +15,10 @@ from study_real_meetings.transcribers import make_transcriber, release
 
 
 def main() -> None:
+    frozen = subprocess.run(["git", "tag", "-l", "protocol-frozen"], capture_output=True, text=True,
+                            cwd=C.ROOT).stdout.strip()
+    if not frozen:
+        raise SystemExit("Protocol not frozen (git tag 'protocol-frozen' missing): H5 test windows are test-split results (Task 9).")
     segs = read_manifest(C.MANIFESTS / "agm.jsonl")
     prov = collect_provenance()
     out = C.RESULTS / "streaming.csv"
@@ -24,7 +29,8 @@ def main() -> None:
         t = make_transcriber(system)
         for lang in C.AGM_LANGUAGES:
             wav = C.AUDIO / "agm" / f"agm_{lang}.wav"
-            windows = {"dev": (0.0, C.DEV_SECONDS), "test": (C.DEV_SECONDS, wav_duration(wav))}
+            boundary = min(s.start for s in segs if s.language == lang and s.split == "test")
+            windows = {"dev": (0.0, boundary), "test": (boundary, wav_duration(wav))}
             refs = {sp: " ".join(s.reference for s in segs if s.language == lang and s.split == sp) for sp in windows}
             dev_wer, per_split = {}, {}
             for split, (a, b) in windows.items():
