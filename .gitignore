@@ -53,3 +53,7 @@ tmp/
 
 # Real-meetings study: downloaded/converted audio (regenerable via study_real_meetings/scripts/build_data.py)
 datasets/real_meetings/
+
+# pytest scratch (tmp/ has a Windows ACL problem on this machine)
+.pytest_cache/
+.pytest_tmp/

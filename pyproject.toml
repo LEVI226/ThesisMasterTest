@@ -63,10 +63,10 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-cache_dir = "tmp/pytest_cache"
+cache_dir = ".pytest_cache"
 pythonpath = ["."]
 markers = ["gpu: needs CUDA and downloaded models (run with -m gpu)"]
-addopts = "-m 'not gpu'"
+addopts = "-m 'not gpu' --basetemp=.pytest_tmp"
 
 [[tool.uv.index]]
 name = "pytorch"
