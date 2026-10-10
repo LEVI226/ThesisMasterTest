@@ -27,9 +27,15 @@ def summarise(rows: list[dict]) -> list[dict]:
             groups[(r["dataset"], r["language"], r["system"], r["condition"])].append(r)
     out = []
     for (dataset, language, system, condition), rs in sorted(groups.items()):
+        n_excluded = 0
+        if dataset != "noise":  # R16: filler-only references normalise to zero words; WER undefined
+            kept = [r for r in rs if _int(r, "n_ref") > 0]
+            n_excluded, rs = len(rs) - len(kept), kept
+        if not rs:
+            continue
         n_ref = [_int(r, "n_ref") for r in rs]
         summary = {"dataset": dataset, "language": language, "system": system, "condition": condition,
-                   "n_segments": len(rs), "n_ref_words": sum(n_ref)}
+                   "n_segments": len(rs), "n_ref_words": sum(n_ref), "n_excluded_empty_ref": n_excluded}
         if sum(n_ref):
             est = cluster_bootstrap_wer([_errors(r) for r in rs], n_ref, [r["cluster"] for r in rs])
             summary |= {"wer": f"{est.estimate:.4f}", "ci_low": f"{est.ci_low:.4f}", "ci_high": f"{est.ci_high:.4f}",
@@ -58,6 +64,7 @@ class Selector:
 
     def pick(self, rows):
         return [r for r in rows if r["split"] == "test" and r["system"] == self.system
+                and not (r["dataset"] != "noise" and r["n_ref"] == "0")  # R16
                 and r["condition"] == self.condition and r["dataset"] in self.datasets
                 and (self.language is None or r["language"] == self.language)]
 

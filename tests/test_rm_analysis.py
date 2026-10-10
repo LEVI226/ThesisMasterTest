@@ -59,3 +59,29 @@ def test_p5_pairs_ihm_and_sdm_by_pair_key():
     out = {r["key"]: r for r in primary_tests(rows)}
     assert out["P5"]["status"] == "ok"
     assert float(out["P5"]["estimate"]) == pytest.approx(0.2)
+
+
+def test_summary_excludes_empty_reference_rows_from_wer():
+    rows = [_row("A", "forced-clean", "ami-ihm", i, 2) for i in range(8)]
+    empty = _row("A", "forced-clean", "ami-ihm", 50, 0, n=0)
+    empty["ins"] = "440"
+    (s,) = summarise(rows + [empty])
+    assert abs(float(s["wer"]) - 0.2) < 1e-9
+    assert s["n_excluded_empty_ref"] == 1 and s["n_segments"] == 8
+    (s0,) = summarise(rows)
+    assert s0["n_excluded_empty_ref"] == 0
+
+
+def test_primary_test_ignores_empty_reference_rows():
+    def build(extra):
+        rows = []
+        for i in range(8):
+            rows.append(_row("whisper-large-v3", "forced-clean", "agm", i, 1, lang="de"))
+            rows.append(_row("conformer-ctc-large", "forced-clean", "agm", i, 3, lang="de"))
+        if extra:
+            bad = _row("whisper-large-v3", "forced-clean", "agm", 77, 0, n=0, lang="de")
+            bad["ins"] = "440"
+            rows.append(bad)
+            rows.append(_row("conformer-ctc-large", "forced-clean", "agm", 77, 0, n=0, lang="de"))
+        return {r["key"]: r for r in primary_tests(rows)}["P1"]
+    assert build(True)["estimate"] == build(False)["estimate"]
