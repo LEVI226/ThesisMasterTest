@@ -44,6 +44,7 @@ dependencies = [
     "pytorch-lightning==2.4.0",
     "datasets>=5.0.0",
     "peft>=0.19.1",
+    "num2words>=0.5.13",
 ]
 
 [build-system]
@@ -63,6 +64,9 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 cache_dir = "tmp/pytest_cache"
+pythonpath = ["."]
+markers = ["gpu: needs CUDA and downloaded models (run with -m gpu)"]
+addopts = "-m 'not gpu'"
 
 [[tool.uv.index]]
 name = "pytorch"

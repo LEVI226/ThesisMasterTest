@@ -103,3 +103,14 @@ Environnement code : Windows, `.venv` (torch 2.6.0+cu124, CUDA RTX 4060, NeMo 3.
 - Ne pas construire OCR (Topic 1), couche perso/étude utilisateur (Topic 3), ni déploiement Azure/Teams/Outlook.
 - Ne pas fusionner de résultats issus d'un autre jeu de données ou d'un autre SNR (ex. pipeline 8 clips / 10 dB / MLS) dans les tableaux canoniques.
 - Ne pas coller de chiffres non tracés jusqu'à un CSV. Tout nombre du mémoire doit être reproductible.
+
+---
+
+## 5. Étude complémentaire « réunions réelles » (branche `study/real-meetings`, ouverte le 10/10/2026)
+
+- **Statut :** en cours. Jeu de validation EXTERNE distinct, déclaré ici pour ne pas être confondu
+  avec un pipeline parallèle égaré. Il ne remplace PAS le jeu canonique MInDS-14 (§2).
+- **Spec :** `docs/specs/2026-10-10-real-meetings-study-design.md` ; **plan :** `docs/plans/2026-10-10-real-meetings-study-pipeline.md`.
+- **Données :** AGM Nestlé 2026 (DE/EN/FR, sous-titres Nestlé), AMI (EN), SUMM-RE (FR), bruit DEMAND.
+  Les enregistrements privés de `audioReunionréel/` sont EXCLUS (pas de consentement des participants).
+- **Résultats :** `results/real_meetings/` (CSV = source de vérité, comme pour le reste du mémoire).

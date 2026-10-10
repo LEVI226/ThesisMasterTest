@@ -107,3 +107,10 @@ uniquement sur des horodatages de fichiers.
 - Le hash SHA-256 de `results/live_latency.csv` a été contrôlé après chaque exécution live.
 - Aucune inférence nouvelle n'a été lancée pour produire les chiffres révisés : les hypothèses
   stockées dans les CSV ont été rescorées.
+
+## Phase 4 — Étude de validation sur réunions réelles (octobre 2026)
+
+**2026-10-10** — Instantané de l'état soutenable : commit `9054422`, tag `defense-baseline`.
+`.gitignore` exclut désormais l'audio privé, les sondes d'audit et `tmp/`. Ouverture de la branche
+`study/real-meetings` ; spec (`53248d7`) et plan d'implémentation rédigés. Les réunions privées sont
+exclues faute de consentement. → `docs/specs/`, `docs/plans/`.

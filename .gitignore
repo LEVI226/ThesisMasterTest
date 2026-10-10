@@ -50,3 +50,6 @@ training/english_defense/*.wav
 
 # Fichiers temporaires (les fichiers déjà suivis restent suivis)
 tmp/
+
+# Real-meetings study: downloaded/converted audio (regenerable via study_real_meetings/scripts/build_data.py)
+datasets/real_meetings/
