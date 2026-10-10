@@ -60,6 +60,8 @@ class TranscribeConfig:
 
 _model = None
 _model_name: str = ""
+_model_device: str = ""
+_model_compute_type: str = ""
 _diarization_pipeline = None
 _vad_model = None
 
@@ -108,16 +110,33 @@ def load_diarization_pipeline():
 
 def load_model(model_size: Optional[str] = None) -> WhisperModel:
     """Load (or return cached) Whisper model."""
-    global _model, _model_name
+    global _model, _model_name, _model_device, _model_compute_type
     name = model_size or os.getenv("WHISPER_MODEL", "small")
-    if _model is None or _model_name != name:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        compute_type = "float16" if device == "cuda" else "int8"
+    # STT_DEVICE / STT_COMPUTE_TYPE let a validation run force e.g. cpu/int8
+    # even when CUDA is present. Unset = historical behaviour.
+    device = os.getenv("STT_DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
+    compute_type = os.getenv("STT_COMPUTE_TYPE") or ("float16" if device == "cuda" else "int8")
+    if _model is None or _model_name != name or _model_device != device or _model_compute_type != compute_type:
         logger.info("Loading faster-whisper model: %s on %s (%s)", name, device.upper(), compute_type)
         _model = WhisperModel(name, device=device, compute_type=compute_type)
         _model_name = name
+        _model_device = device
+        _model_compute_type = compute_type
         logger.info("faster-whisper model '%s' loaded successfully.", name)
     return _model
+
+
+def get_model_info() -> dict:
+    """What is actually loaded right now (not what was requested)."""
+    return {
+        "model": _model_name or None,
+        "device": _model_device or None,
+        "compute_type": _model_compute_type or None,
+        "cuda_available": bool(torch.cuda.is_available()),
+        "gpu_name": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
+        "vad_loaded": _vad_model is not None,
+        "diarization_loaded": _diarization_pipeline is not None,
+    }
 
 
 # ─── Audio preprocessing ─────────────────────────────────────────────────────
@@ -220,7 +239,17 @@ def transcribe_file(
             logger.info("Starting speaker diarization...")
             try:
                 diarize_start = time.time()
-                diarization_result = diarizer(cleaned_path)
+                # Decode through librosa/FFmpeg rather than TorchCodec (its DLLs
+                # are unavailable in the Windows torch 2.6 runtime).
+                waveform, sample_rate = librosa.load(cleaned_path, sr=16000, mono=True)
+                diarization_output = diarizer({
+                    "waveform": torch.from_numpy(waveform).unsqueeze(0),
+                    "sample_rate": sample_rate,
+                })
+                # pyannote 4 returns DiarizeOutput; legacy versions return Annotation.
+                diarization_result = getattr(
+                    diarization_output, "speaker_diarization", diarization_output
+                )
                 for w_seg in segments:
                     best_speaker = None
                     max_overlap = 0.0

@@ -1,0 +1,71 @@
+{
+  "scope": "Real ASR and pyannote on existing simulated meeting; file and live method, fake transport only. Not speaker accuracy validation.",
+  "model_info": {
+    "model": "tiny",
+    "device": "cuda",
+    "compute_type": "float16",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vad_loaded": false,
+    "diarization_loaded": true
+  },
+  "file": {
+    "text": "Je ne souhaite changer mon adresse. Bonjour, je voudrais changer d'adresse. Bonjour, donc je vais changer d'adresse dans quelques semaines, donc je vais savoir qu'elle était l'idée de marcher à faire, elle ne part pas un macarbon qui est assez vite, quelque chose à faire ou pas.",
+    "segments": [
+      {
+        "start": 0.74,
+        "end": 2.56,
+        "text": "Je ne souhaite changer mon adresse.",
+        "speaker": "SPEAKER_01",
+        "confidence": null
+      },
+      {
+        "start": 6.14,
+        "end": 7.68,
+        "text": "Bonjour, je voudrais changer d'adresse.",
+        "speaker": "SPEAKER_00",
+        "confidence": null
+      },
+      {
+        "start": 10.5,
+        "end": 15.86,
+        "text": "Bonjour, donc je vais changer d'adresse dans quelques semaines,",
+        "speaker": "SPEAKER_00",
+        "confidence": null
+      },
+      {
+        "start": 16.14,
+        "end": 19.38,
+        "text": "donc je vais savoir qu'elle était l'idée de marcher à faire,",
+        "speaker": "SPEAKER_00",
+        "confidence": null
+      },
+      {
+        "start": 19.4,
+        "end": 22.18,
+        "text": "elle ne part pas un macarbon qui est assez vite,",
+        "speaker": "SPEAKER_00",
+        "confidence": null
+      },
+      {
+        "start": 22.4,
+        "end": 23.6,
+        "text": "quelque chose à faire ou pas.",
+        "speaker": "SPEAKER_00",
+        "confidence": null
+      }
+    ],
+    "language": "fr",
+    "duration": 25.0,
+    "processing_time": 1.806762933731079,
+    "model": "tiny"
+  },
+  "live": [
+    {
+      "speaker": "SPEAKER_00",
+      "text": "Je serais de changer mon adresse.  Bonjour, je voudrais changer d'adresse.",
+      "start": 0.0,
+      "end": 10.0
+    }
+  ]
+}

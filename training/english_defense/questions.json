@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "What is the main contribution of your thesis?",
+    "answer": "My contribution is a configurable speech-to-text prototype and a traceable pilot evaluation. I compared several configurations and reported their performance and limitations. The work does not yet validate a complete real-meeting system."
+  },
+  {
+    "id": 2,
+    "question": "Why did you choose MInDS-14 for a topic about meetings?",
+    "answer": "It supports a controlled evaluation in English, French and German. However, it contains telephone-banking speech, not real corporate meetings. This limits the conclusions I can draw about the target setting."
+  },
+  {
+    "id": 3,
+    "question": "How many independent recordings are in your evaluation set?",
+    "answer": "There are twenty-four distinct source utterances. Twelve also have a noisy copy, giving thirty-six evaluation files. The four hundred and sixty-eight figure refers to transcription runs, not independent recordings."
+  },
+  {
+    "id": 4,
+    "question": "Could you explain how word error rate is calculated?",
+    "answer": "I add the number of substitutions, deletions and insertions, then divide by the number of words in the reference. Lower is better. The score can exceed one hundred percent when there are many inserted words."
+  },
+  {
+    "id": 5,
+    "question": "Why did you compare matched clean and noisy recordings?",
+    "answer": "To compare the same spoken content before and after adding noise. On twelve matched pairs, mean word error rate increased from sixty-one point one to ninety-six point four percent. That is an increase of thirty-five point three percentage points."
+  },
+  {
+    "id": 6,
+    "question": "Was the improvement from LoRA statistically significant?",
+    "answer": "A reliable improvement was not established. The mean gain was about one word error rate point, but the confidence interval includes zero. This does not prove that LoRA is useless; it limits what I can conclude from this study."
+  },
+  {
+    "id": 7,
+    "question": "How do you know that the system handles multiple speakers correctly?",
+    "answer": "I cannot establish that from the simulated test. The speaker labels were assigned during construction and do not verify real speaker identities. A stronger evaluation requires meeting audio with reliable speaker annotations."
+  },
+  {
+    "id": 8,
+    "question": "Does your latency measurement include the delay until the text appears in the browser?",
+    "answer": "No. The elapsed time is measured on the server before WebSocket transmission. It does not include browser receipt and rendering. A controlled end-to-end study is still required."
+  },
+  {
+    "id": 9,
+    "question": "How do you explain the slow observation in the extended latency log?",
+    "answer": "The legacy log lacks the configuration and system information needed to identify the cause. I retained the slow observation. The extended log has a maximum of about eleven seconds, so I cannot claim a consistent sub-second response."
+  },
+  {
+    "id": 10,
+    "question": "Did you evaluate changes of language within the same sentence?",
+    "answer": "No. I evaluated separate English, French and German recordings. This does not establish performance on language changes within the same sentence. An annotated language-switching test would be needed."
+  },
+  {
+    "id": 11,
+    "question": "How would you test the effect of company-specific vocabulary?",
+    "answer": "I would compare the same recordings with and without a fixed glossary prompt. I would measure word error rate, target-term recognition and hallucinated terms. Training and evaluation material would remain separate."
+  },
+  {
+    "id": 12,
+    "question": "What would you improve first if you had more time?",
+    "answer": "My first priority would be evaluation on real meeting audio. I would then add a vocabulary-focused test and a controlled study measuring accuracy and end-to-end latency on the same content. These are proposed extensions, not completed experiments."
+  }
+]

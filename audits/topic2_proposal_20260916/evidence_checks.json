@@ -1,0 +1,189 @@
+{
+  "scope": "Stored evidence and local file checks; no inference",
+  "dataset": {
+    "files": 36,
+    "reference_files": 24,
+    "missing": [],
+    "languages": {
+      "en": 12,
+      "fr": 12,
+      "de": 12
+    },
+    "sample_rates": {
+      "8000": 36
+    },
+    "noise_snr_db_measured": [
+      {
+        "file": "minds14_en_noisy_01.wav",
+        "snr": 7.999994073929298
+      },
+      {
+        "file": "minds14_en_noisy_02.wav",
+        "snr": 7.999948924648069
+      },
+      {
+        "file": "minds14_en_noisy_03.wav",
+        "snr": 8.000003920329299
+      },
+      {
+        "file": "minds14_en_noisy_04.wav",
+        "snr": 8.000017163296278
+      },
+      {
+        "file": "minds14_fr_noisy_01.wav",
+        "snr": 7.999985027226998
+      },
+      {
+        "file": "minds14_fr_noisy_02.wav",
+        "snr": 7.999914759139937
+      },
+      {
+        "file": "minds14_fr_noisy_03.wav",
+        "snr": 7.999988907411119
+      },
+      {
+        "file": "minds14_fr_noisy_04.wav",
+        "snr": 7.999964334616758
+      },
+      {
+        "file": "minds14_de_noisy_01.wav",
+        "snr": 7.999971589798653
+      },
+      {
+        "file": "minds14_de_noisy_02.wav",
+        "snr": 8.0000011944507
+      },
+      {
+        "file": "minds14_de_noisy_03.wav",
+        "snr": 8.000069660096905
+      },
+      {
+        "file": "minds14_de_noisy_04.wav",
+        "snr": 7.999963160671863
+      }
+    ]
+  },
+  "csvs": {
+    "stt_eval_pilot_results.csv": {
+      "rows": 324,
+      "sha256": "d180fb122347d1dccac2b79104269b0fb060d9e9abbe14124a0e641757d9e5c3",
+      "errors": 0,
+      "empty_references": 0,
+      "empty_hypotheses": 0,
+      "duplicate_keys": 0,
+      "max_stored_wer_difference": 4.615384615386242e-05,
+      "groups": {
+        "A_baseline": {
+          "n": 36,
+          "mean_wer": 0.6344888888888889
+        },
+        "B_noise_reduction": {
+          "n": 36,
+          "mean_wer": 0.6217805555555556
+        },
+        "D_domain_prompt": {
+          "n": 36,
+          "mean_wer": 0.6129305555555555
+        },
+        "E_forced_language": {
+          "n": 36,
+          "mean_wer": 0.5960833333333333
+        },
+        "F_model_base": {
+          "n": 36,
+          "mean_wer": 0.4834666666666667
+        },
+        "G_model_small": {
+          "n": 36,
+          "mean_wer": 0.332975
+        },
+        "H_model_medium": {
+          "n": 36,
+          "mean_wer": 0.25928333333333337
+        },
+        "I_model_large_v3": {
+          "n": 36,
+          "mean_wer": 0.2462666666666667
+        },
+        "C_vad": {
+          "n": 36,
+          "mean_wer": 0.6215166666666667
+        }
+      }
+    },
+    "stt_eval_lora_results.csv": {
+      "rows": 72,
+      "sha256": "3de7153f61e1b091f5fbf3a88c253e729f2ff32b1aae5e15b6cbaebdbacde674",
+      "errors": 0,
+      "empty_references": 0,
+      "empty_hypotheses": 0,
+      "duplicate_keys": 0,
+      "max_stored_wer_difference": 4.615384615386242e-05,
+      "groups": {
+        "J0_small_hf_vanilla": {
+          "n": 36,
+          "mean_wer": 0.3124138888888889
+        },
+        "J_lora_small": {
+          "n": 36,
+          "mean_wer": 0.3023888888888889
+        }
+      }
+    },
+    "stt_eval_wav2vec_results.csv": {
+      "rows": 36,
+      "sha256": "2ad082e6163c2e5c47eee128986977d1f37f0b5d7b54d5fd21e7049a3e87d875",
+      "errors": 0,
+      "empty_references": 0,
+      "empty_hypotheses": 0,
+      "duplicate_keys": 0,
+      "max_stored_wer_difference": 4.545454545468175e-05,
+      "groups": {
+        "K_wav2vec": {
+          "n": 36,
+          "mean_wer": 0.35373055555555555
+        }
+      }
+    },
+    "stt_eval_conformer_results.csv": {
+      "rows": 36,
+      "sha256": "37cf3ed40f81ad654c662049589a2f41d3f9c3ccd503fd97fa86a044ac41d468",
+      "errors": 0,
+      "empty_references": 0,
+      "empty_hypotheses": 0,
+      "duplicate_keys": 0,
+      "max_stored_wer_difference": 4.615384615386242e-05,
+      "groups": {
+        "L_conformer_en": {
+          "n": 12,
+          "mean_wer": 0.3983333333333334
+        },
+        "L_conformer_fr": {
+          "n": 12,
+          "mean_wer": 0.23615
+        },
+        "L_conformer_de": {
+          "n": 12,
+          "mean_wer": 0.15325833333333333
+        }
+      }
+    }
+  },
+  "transcript_sidecars": {
+    "paths_shared_by_multiple_rows": 72,
+    "missing_paths": 0,
+    "row_hypotheses_differing_from_current_sidecar": 219
+  },
+  "training": {
+    "rows": 300,
+    "languages": {
+      "en": 100,
+      "fr": 100,
+      "de": 100
+    },
+    "missing_audio": 0,
+    "exact_normalized_text_overlap": 0,
+    "identical_audio_file_overlap": 0,
+    "limitation": "Exact text/file checks do not prove independent speakers or absence of near duplicates."
+  }
+}

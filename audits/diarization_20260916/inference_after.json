@@ -1,0 +1,28 @@
+{
+  "model": "pyannote/speaker-diarization-3.1",
+  "seconds": 2.524174199963454,
+  "audio_seconds": 25.0,
+  "device": "cuda",
+  "turns": [
+    {
+      "start": 1.14471875,
+      "end": 2.42721875,
+      "speaker": "SPEAKER_01"
+    },
+    {
+      "start": 6.021593750000001,
+      "end": 7.64159375,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 10.45971875,
+      "end": 18.96471875,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 19.082843750000002,
+      "end": 23.65596875,
+      "speaker": "SPEAKER_00"
+    }
+  ]
+}

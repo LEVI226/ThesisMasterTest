@@ -1,0 +1,11 @@
+label,file,true_language,mode,forced_language,detected_language,model,device,compute_type,reference,hypothesis,wer,cer,audio_s,engine_processing_s,wall_s,rtf_wall,error
+cpu_int8,minds14_en_clean_01,en,auto,,en,small,cpu,int8,I would like to set up a joint account with my partner,I would like to set up a joint account with my partner. How do I proceed with doing that?,0.5833,0.6047,10.837,6.625891208648682,6.627,0.611,
+cpu_int8,minds14_en_clean_01,en,forced,en,en,small,cpu,int8,I would like to set up a joint account with my partner,I would like to set up a joint account with my partner. How do I proceed with doing that?,0.5833,0.6047,10.837,3.9104056358337402,3.912,0.361,
+cpu_int8,minds14_fr_clean_01,fr,auto,,fr,small,cpu,int8,je souhaite changer mon adresse,Je souhaite changer mon adresse,0.0,0.0,3.755,6.538260459899902,6.539,1.742,
+cpu_int8,minds14_fr_clean_01,fr,forced,fr,fr,small,cpu,int8,je souhaite changer mon adresse,Je souhaite changer mon adresse,0.0,0.0,3.755,3.2775309085845947,3.279,0.873,
+cpu_int8,minds14_de_clean_01,de,auto,,de,small,cpu,int8,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Geld auf mein Konto einsäumen.,0.125,0.1026,5.851,5.757085561752319,5.759,0.984,
+cpu_int8,minds14_de_clean_01,de,forced,de,de,small,cpu,int8,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Geld auf mein Konto einsäumen.,0.125,0.1026,5.851,3.6159136295318604,3.617,0.618,
+cpu_int8,minds14_fr_noisy_01,fr,auto,,fr,small,cpu,int8,je souhaite changer mon adresse,Je souhaite changer mon adorant.,0.2,0.1852,3.755,5.5710976123809814,5.572,1.484,
+cpu_int8,minds14_fr_noisy_01,fr,forced,fr,fr,small,cpu,int8,je souhaite changer mon adresse,Je souhaite changer mon adorant.,0.2,0.1852,3.755,3.211911916732788,3.214,0.856,
+cpu_int8,minds14_de_noisy_01,de,auto,,de,small,cpu,int8,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Gämpf auf meinen Kampel haben.,0.5,0.3846,5.851,5.518336057662964,5.519,0.943,
+cpu_int8,minds14_de_noisy_01,de,forced,de,de,small,cpu,int8,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Gämpf auf meinen Kampel haben.,0.5,0.3846,5.851,3.450151205062866,3.454,0.59,

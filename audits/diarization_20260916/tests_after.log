@@ -1,0 +1,334 @@
+...............FF...................................................     [100%]
+================================== FAILURES ===================================
+___ test_file_speaker_assignment_uses_waveform_and_supported_output[False] ____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000028BA9E7B750>
+tmp_path = WindowsPath('C:/Users/ulric/Documents/ThesisMasterTest/audits/diarization_20260916/pytest_green/test_file_speaker_assignment_u0')
+wrapped = False
+
+    @pytest.mark.parametrize("wrapped", [False, True])
+    def test_file_speaker_assignment_uses_waveform_and_supported_output(monkeypatch, tmp_path, wrapped):
+>       from backend.stt import engine
+
+tests\test_diarization_files.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\stt\engine.py:15: in <module>
+    from faster_whisper import WhisperModel
+.venv\Lib\site-packages\faster_whisper\__init__.py:2: in <module>
+    from faster_whisper.transcribe import BatchedInferencePipeline, WhisperModel
+.venv\Lib\site-packages\faster_whisper\transcribe.py:15: in <module>
+    import tokenizers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from enum import Enum
+    from typing import List, Tuple, Union
+    
+    
+    Offsets = Tuple[int, int]
+    
+    TextInputSequence = str
+    """A :obj:`str` that represents an input sequence """
+    
+    PreTokenizedInputSequence = Union[List[str], Tuple[str]]
+    """A pre-tokenized input sequence. Can be one of:
+    
+        - A :obj:`List` of :obj:`str`
+        - A :obj:`Tuple` of :obj:`str`
+    """
+    
+    TextEncodeInput = Union[
+        TextInputSequence,
+        Tuple[TextInputSequence, TextInputSequence],
+        List[TextInputSequence],
+    ]
+    """Represents a textual input for encoding. Can be either:
+    
+        - A single sequence: :data:`~tokenizers.TextInputSequence`
+        - A pair of sequences:
+    
+          - A :obj:`Tuple` of :data:`~tokenizers.TextInputSequence`
+          - Or a :obj:`List` of :data:`~tokenizers.TextInputSequence` of size 2
+    """
+    
+    PreTokenizedEncodeInput = Union[
+        PreTokenizedInputSequence,
+        Tuple[PreTokenizedInputSequence, PreTokenizedInputSequence],
+        List[PreTokenizedInputSequence],
+    ]
+    """Represents a pre-tokenized input for encoding. Can be either:
+    
+        - A single sequence: :data:`~tokenizers.PreTokenizedInputSequence`
+        - A pair of sequences:
+    
+          - A :obj:`Tuple` of :data:`~tokenizers.PreTokenizedInputSequence`
+          - Or a :obj:`List` of :data:`~tokenizers.PreTokenizedInputSequence` of size 2
+    """
+    
+    InputSequence = Union[TextInputSequence, PreTokenizedInputSequence]
+    """Represents all the possible types of input sequences for encoding. Can be:
+    
+        - When ``is_pretokenized=False``: :data:`~TextInputSequence`
+        - When ``is_pretokenized=True``: :data:`~PreTokenizedInputSequence`
+    """
+    
+    EncodeInput = Union[TextEncodeInput, PreTokenizedEncodeInput]
+    """Represents all the possible types of input for encoding. Can be:
+    
+        - When ``is_pretokenized=False``: :data:`~TextEncodeInput`
+        - When ``is_pretokenized=True``: :data:`~PreTokenizedEncodeInput`
+    """
+    
+    
+    class OffsetReferential(Enum):
+        ORIGINAL = "original"
+        NORMALIZED = "normalized"
+    
+    
+    class OffsetType(Enum):
+        BYTE = "byte"
+        CHAR = "char"
+    
+    
+    class SplitDelimiterBehavior(Enum):
+        REMOVED = "removed"
+        ISOLATED = "isolated"
+        MERGED_WITH_PREVIOUS = "merged_with_previous"
+        MERGED_WITH_NEXT = "merged_with_next"
+        CONTIGUOUS = "contiguous"
+    
+    
+>   from .tokenizers import (  # type: ignore[import]
+        AddedToken,
+        Encoding,
+        NormalizedString,
+        PreTokenizedString,
+        Regex,
+        Token,
+        Tokenizer,
+        decoders,
+        models,
+        normalizers,
+        pre_tokenizers,
+        processors,
+        trainers,
+        __version__,
+    )
+E   ImportError: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process
+
+.venv\Lib\site-packages\tokenizers\__init__.py:78: ImportError
+____ test_file_speaker_assignment_uses_waveform_and_supported_output[True] ____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000028BE57F0AA0>
+tmp_path = WindowsPath('C:/Users/ulric/Documents/ThesisMasterTest/audits/diarization_20260916/pytest_green/test_file_speaker_assignment_u1')
+wrapped = True
+
+    @pytest.mark.parametrize("wrapped", [False, True])
+    def test_file_speaker_assignment_uses_waveform_and_supported_output(monkeypatch, tmp_path, wrapped):
+>       from backend.stt import engine
+
+tests\test_diarization_files.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+backend\stt\engine.py:15: in <module>
+    from faster_whisper import WhisperModel
+.venv\Lib\site-packages\faster_whisper\__init__.py:2: in <module>
+    from faster_whisper.transcribe import BatchedInferencePipeline, WhisperModel
+.venv\Lib\site-packages\faster_whisper\transcribe.py:15: in <module>
+    import tokenizers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from enum import Enum
+    from typing import List, Tuple, Union
+    
+    
+    Offsets = Tuple[int, int]
+    
+    TextInputSequence = str
+    """A :obj:`str` that represents an input sequence """
+    
+    PreTokenizedInputSequence = Union[List[str], Tuple[str]]
+    """A pre-tokenized input sequence. Can be one of:
+    
+        - A :obj:`List` of :obj:`str`
+        - A :obj:`Tuple` of :obj:`str`
+    """
+    
+    TextEncodeInput = Union[
+        TextInputSequence,
+        Tuple[TextInputSequence, TextInputSequence],
+        List[TextInputSequence],
+    ]
+    """Represents a textual input for encoding. Can be either:
+    
+        - A single sequence: :data:`~tokenizers.TextInputSequence`
+        - A pair of sequences:
+    
+          - A :obj:`Tuple` of :data:`~tokenizers.TextInputSequence`
+          - Or a :obj:`List` of :data:`~tokenizers.TextInputSequence` of size 2
+    """
+    
+    PreTokenizedEncodeInput = Union[
+        PreTokenizedInputSequence,
+        Tuple[PreTokenizedInputSequence, PreTokenizedInputSequence],
+        List[PreTokenizedInputSequence],
+    ]
+    """Represents a pre-tokenized input for encoding. Can be either:
+    
+        - A single sequence: :data:`~tokenizers.PreTokenizedInputSequence`
+        - A pair of sequences:
+    
+          - A :obj:`Tuple` of :data:`~tokenizers.PreTokenizedInputSequence`
+          - Or a :obj:`List` of :data:`~tokenizers.PreTokenizedInputSequence` of size 2
+    """
+    
+    InputSequence = Union[TextInputSequence, PreTokenizedInputSequence]
+    """Represents all the possible types of input sequences for encoding. Can be:
+    
+        - When ``is_pretokenized=False``: :data:`~TextInputSequence`
+        - When ``is_pretokenized=True``: :data:`~PreTokenizedInputSequence`
+    """
+    
+    EncodeInput = Union[TextEncodeInput, PreTokenizedEncodeInput]
+    """Represents all the possible types of input for encoding. Can be:
+    
+        - When ``is_pretokenized=False``: :data:`~TextEncodeInput`
+        - When ``is_pretokenized=True``: :data:`~PreTokenizedEncodeInput`
+    """
+    
+    
+    class OffsetReferential(Enum):
+        ORIGINAL = "original"
+        NORMALIZED = "normalized"
+    
+    
+    class OffsetType(Enum):
+        BYTE = "byte"
+        CHAR = "char"
+    
+    
+    class SplitDelimiterBehavior(Enum):
+        REMOVED = "removed"
+        ISOLATED = "isolated"
+        MERGED_WITH_PREVIOUS = "merged_with_previous"
+        MERGED_WITH_NEXT = "merged_with_next"
+        CONTIGUOUS = "contiguous"
+    
+    
+>   from .tokenizers import (  # type: ignore[import]
+        AddedToken,
+        Encoding,
+        NormalizedString,
+        PreTokenizedString,
+        Regex,
+        Token,
+        Tokenizer,
+        decoders,
+        models,
+        normalizers,
+        pre_tokenizers,
+        processors,
+        trainers,
+        __version__,
+    )
+E   ImportError: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process
+
+.venv\Lib\site-packages\tokenizers\__init__.py:78: ImportError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\config\__init__.py:1428
+  C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\_pytest\config\__init__.py:1428: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/test_contract_regressions.py::test_pending_speech_is_flushed_when_client_disconnects
+  C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+  torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+  * use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+  * fix torchcodec installation. Error message was:
+  
+  Could not load libtorchcodec. Likely causes:
+            1. FFmpeg is not properly installed in your environment. We support
+               versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+               for each of those versions. Errors for versions not installed on
+               your system are expected; only the error for your installed FFmpeg
+               version is relevant. On Windows, ensure you've installed the
+               "full-shared" version which ships DLLs.
+            2. The PyTorch version (2.6.0+cu124) is not compatible with
+               this version of TorchCodec. Refer to the version compatibility
+               table:
+               https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+            3. Another runtime dependency; see exceptions below.
+  
+          The following exceptions were raised as we tried to load libtorchcodec:
+          
+  [start of libtorchcodec loading traceback]
+  FFmpeg version 8:
+  Traceback (most recent call last):
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+      torch.ops.load_library(core_library_path)
+      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+      ctypes.CDLL(path)
+      ~~~~~~~~~~~^^^^^^
+    File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+      self._handle = _dlopen(self._name, mode)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+  
+  FFmpeg version 7:
+  Traceback (most recent call last):
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+      torch.ops.load_library(core_library_path)
+      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+      ctypes.CDLL(path)
+      ~~~~~~~~~~~^^^^^^
+    File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+      self._handle = _dlopen(self._name, mode)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+  
+  FFmpeg version 6:
+  Traceback (most recent call last):
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+      torch.ops.load_library(core_library_path)
+      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+      ctypes.CDLL(path)
+      ~~~~~~~~~~~^^^^^^
+    File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+      self._handle = _dlopen(self._name, mode)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+  
+  FFmpeg version 5:
+  Traceback (most recent call last):
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+      torch.ops.load_library(core_library_path)
+      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+      ctypes.CDLL(path)
+      ~~~~~~~~~~~^^^^^^
+    File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+      self._handle = _dlopen(self._name, mode)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+  
+  FFmpeg version 4:
+  Traceback (most recent call last):
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+      torch.ops.load_library(core_library_path)
+      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+      ctypes.CDLL(path)
+      ~~~~~~~~~~~^^^^^^
+    File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+      self._handle = _dlopen(self._name, mode)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+  [end of libtorchcodec loading traceback].
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_diarization_files.py::test_file_speaker_assignment_uses_waveform_and_supported_output[False]
+FAILED tests/test_diarization_files.py::test_file_speaker_assignment_uses_waveform_and_supported_output[True]
+2 failed, 66 passed, 2 warnings in 72.03s (0:01:12)

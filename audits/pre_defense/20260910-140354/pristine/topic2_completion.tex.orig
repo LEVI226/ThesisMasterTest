@@ -1,0 +1,70 @@
+\section*{Topic 2 Completion Audit and Validation Protocol}
+\addcontentsline{toc}{section}{Topic 2 Completion Audit and Validation Protocol}
+
+This supplement distinguishes corrected analysis from experiments that remain
+prospective. The proposal asks for robust multilingual meeting transcription,
+adaptation and a measured accuracy--latency trade-off. The existing 468 canonical
+transcriptions support a component-level pilot; they do not establish all three
+requirements in real meetings. No additional ASR experiment is claimed in this
+supplement.
+
+\subsection*{Audit of the Extended Live Log}
+The historical 22-observation study must be distinguished from the current
+\texttt{results/live\_latency.csv}, which contains 38 observations. Inferring
+session boundaries from the utterance counter restarting at one yields three
+sessions. Excluding those three first observations gives 35 observations with
+median 0.575\,s, p95 1.614\,s and maximum 11.021\,s. The third inferred session
+alone contains 15 non-initial observations, with median 0.657\,s and p95
+4.814\,s. The slow observation is retained. The legacy log does not record
+session timestamps, model settings, hardware or concurrent load, so pooling
+these observations is descriptive and does not establish comparable conditions.
+The first observation is a cold-start proxy rather than an isolated measurement
+of model loading. The audit is reproducible with
+\texttt{python -m backend.evaluation.topic2\_readiness}; its report records the
+input file's SHA-256 digest.
+
+Code inspection further bounds the measurement: the elapsed time is recorded
+before WebSocket transmission, rather than at browser receipt or rendering.
+Empty or rejected outputs can return before logging. Consequently the CSV
+neither measures end-to-end display latency nor estimates the overall failure
+rate. The historical p95 of 0.844\,s is not a service guarantee. Adding the
+configured silence interval is only an approximation of part of the additional
+delay.
+
+\subsection*{Meeting and Speaker Validation}
+The simulated meeting builder alternates speaker labels across independent
+telephone clips without verified persistent speaker identities. Its DER cannot
+validate real speaker-attribution accuracy. A complementary experiment requires
+licensed meeting audio with verified transcripts, speaker identities and overlap
+annotations. Development and evaluation must be separated by meeting, with
+channel choice, time windows and scoring rules fixed before inference. WER,
+DER and an established speaker-attributed transcription metric should be
+reported per meeting, including failures. Uncertainty should respect meeting
+boundaries. An English-only extension would not validate multilingual meetings.
+These data and results are not yet supplied by the existing simulated corpus.
+
+\subsection*{Domain and Multilingual Validation}
+A vocabulary-specific evaluation should compare identical recordings with and
+without a fixed glossary prompt, holding the model and decoding settings
+constant. Human-verified references should include target terms and matched
+negative controls, allowing both term recall and hallucinated terms to be
+reported alongside WER. Any additional adaptation must use separate training
+material. The existing banking-domain LoRA result cannot establish a benefit
+for Nestl\'e terminology. Likewise, separate English, French and German clips
+do not establish within-utterance language-switching performance. An annotated
+switching set and additional documented acoustic conditions are needed; their
+results must remain separate from the canonical 8\,dB white-noise campaign.
+
+\subsection*{Controlled Live Validation}
+A prospective live study should replay held-out audio at real-time speed through
+the WebSocket path, varying model size and endpointing settings on identical
+content with repeated, randomised trials. Each run must record configuration,
+hardware, reference and final hypothesis, speech end, endpoint decision,
+server transmission and browser receipt/render durations. Monotonic durations
+must not be formed by subtracting unsynchronised client and server clocks.
+Empty outputs, rejected outputs, failures and cold starts must remain visible.
+Joint WER, median/p95/maximum latency and failure rates are required before
+selecting an accuracy--latency operating point. A simulated Teams trial must
+also document its actual audio-routing path; an adjacent browser prototype
+alone is not a Teams integration. These protocols define remaining validation
+work, not completed experiments or measured accessibility benefits.

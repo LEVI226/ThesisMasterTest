@@ -1,0 +1,2 @@
+filename,language,noise_condition,speaker_count,model,preprocessing_enabled,domain_prompt_enabled,forced_language,duration_audio_seconds,processing_time_seconds,real_time_factor,wer,cer,detected_language,transcript_output_path,reference_text,hypothesis_text,error,vad_enabled
+fr.wav,fr,noisy,2,tiny,False,False,fr,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,True

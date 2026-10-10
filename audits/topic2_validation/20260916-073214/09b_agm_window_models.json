@@ -1,0 +1,188 @@
+[
+  {
+    "model": "small",
+    "forced": null,
+    "detected": "de",
+    "device": "cuda",
+    "s": 7.3,
+    "segments": [
+      [
+        0.0,
+        4.0,
+        "für ihre städtfaste Kommission."
+      ],
+      [
+        4.0,
+        10.0,
+        "Bitte allow me now hand over to, please allow me to now hand over to our CEO,"
+      ],
+      [
+        10.0,
+        12.0,
+        "Philipp Nabratil."
+      ],
+      [
+        16.0,
+        22.0,
+        "Merci Pablo et merci chers actionär d'être venu aujourd'hui."
+      ],
+      [
+        22.0,
+        25.0,
+        "Liebe Aktionären und Aktionäre,"
+      ],
+      [
+        25.0,
+        29.0,
+        "es ist mir eine große Freude, Sie begrüßen zu dürfen."
+      ],
+      [
+        29.0,
+        34.0,
+        "Welcome everyone and thanks for joining this year's annual meeting."
+      ],
+      [
+        34.0,
+        37.0,
+        "Let me echo Pablo in saying,"
+      ],
+      [
+        37.0,
+        40.0,
+        "what an honor it is to address you today for"
+      ]
+    ]
+  },
+  {
+    "model": "large-v3",
+    "forced": null,
+    "detected": "en",
+    "device": "cuda",
+    "s": 23.6,
+    "segments": [
+      [
+        0.0,
+        7.8,
+        "employees for their steadfast commitment please allow me now hand over to please"
+      ],
+      [
+        7.8,
+        11.8,
+        "allow me to now hand over to our ceo philip navratil"
+      ],
+      [
+        11.8,
+        32.8,
+        "welcome everyone and thanks for joining this year's annual meeting"
+      ],
+      [
+        34.2,
+        39.9,
+        "let me echo pablo in saying what an honor it is to address you today for"
+      ]
+    ]
+  },
+  {
+    "model": "small",
+    "forced": "fr",
+    "detected": "fr",
+    "device": "cuda",
+    "s": 7.6,
+    "segments": [
+      [
+        0.0,
+        3.7,
+        "leurs employés pour leur commettement rapide."
+      ],
+      [
+        4.7,
+        11.9,
+        "Pouvez-vous m'aider maintenant à notre CEO, Philippe Nabratil ?"
+      ],
+      [
+        16.4,
+        22.0,
+        "Merci Pablo et merci chers actionnaires d'être venus aujourd'hui."
+      ],
+      [
+        22.7,
+        26.6,
+        "L'Actionnaire et l'Actionnaire, c'est à moi une grande joyeuse,"
+      ],
+      [
+        26.7,
+        28.8,
+        "et c'est à vous de dire le bienvenue."
+      ],
+      [
+        29.0,
+        33.2,
+        "Bienvenue à tous et merci d'être venu à cette année's annuale."
+      ],
+      [
+        34.2,
+        36.8,
+        "Je vais m'écovoir Pablo en disant"
+      ],
+      [
+        37.0,
+        39.8,
+        "ce que l'honneur est pour vous adresser aujourd'hui"
+      ]
+    ]
+  },
+  {
+    "model": "small",
+    "forced": "de",
+    "detected": "de",
+    "device": "cuda",
+    "s": 1.9,
+    "segments": [
+      [
+        0.0,
+        4.0,
+        "für ihre städtfaste Kommission."
+      ],
+      [
+        4.0,
+        10.0,
+        "Bitte allow me now hand over to, please allow me to now hand over to our CEO,"
+      ],
+      [
+        10.0,
+        12.0,
+        "Philipp Nabratil."
+      ],
+      [
+        16.0,
+        22.0,
+        "Merci Pablo et merci chers actionär d'être venu aujourd'hui."
+      ],
+      [
+        22.0,
+        25.0,
+        "Liebe Aktionären und Aktionäre,"
+      ],
+      [
+        25.0,
+        29.0,
+        "es ist mir eine große Freude, Sie begrüßen zu dürfen."
+      ],
+      [
+        29.0,
+        34.0,
+        "Welcome everyone and thanks for joining this year's annual meeting."
+      ],
+      [
+        34.0,
+        37.0,
+        "Let me echo Pablo in saying,"
+      ],
+      [
+        37.0,
+        40.0,
+        "what an honor it is to address you today for"
+      ]
+    ]
+  }
+]

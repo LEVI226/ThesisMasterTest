@@ -30,9 +30,9 @@
 
 | Promesse du proposal (Topic 2) | Livré | Où / justification |
 |---|---|---|
-| ASR transformers en bruité/multilingue | ✅ complet | 288 runs, bruit ×2, EN/FR/DE, échelle tiny→large-v3 |
+| ASR en bruité/multilingue | Partiel pour les réunions réelles | 468 transcriptions canoniques, bruit apparié +35,3 points, EN/FR/DE, échelle tiny→large-v3 |
 | Adaptation (transfer learning, fine-tuning) | ✅ mesuré | Prompting testé (−0,9 pt + hallucination) ET LoRA fine-tuning testé (−1,0 pt, apparié, contamination PASS). Les deux ≈ 1 pt = ordre de grandeur sous la taille de modèle. Reste hors périmètre : fine-tuning sur vocabulaire Nestlé réel (données confidentielles) |
-| Temps réel / latence | ✅ mesuré | RTF < 1 (CPU et GPU) + latence live mesurée : médiane 0.56 s, p95 1.18 s (~1.2 s perçu). Pas de Teams réel ni streaming frame-synchrone (hors périmètre déclaré) |
+| Temps réel / latence | Prototype mesuré, validation partielle | Historique : médiane 0.555 s, p95 0.844 s, maximum 1.177 s (20 observations). Journal actuel : médiane 0.575 s, p95 1.614 s, maximum 11.021 s (35 observations hors premiers énoncés). Pas de mesure client ni de compromis WER/latence contrôlé. |
 | wav2vec 2.0, Conformer | ✅/🟡 | wav2vec 2.0 (MMS-1B) benchmarké sur les 36 clips (section 0quinquies) · Conformer discuté avec justification |
 | Diarization multi-locuteurs | ✅ exercée | pyannote 3.1 sur 7 réunions simulées, DER rapporté AVEC caveats testbed (section 0quinquies) |
 | Datasets "réunions simulées" | ✅ construits | MInDS-14 CC-BY + 7 réunions multi-locuteurs simulées (EN/FR/DE clean+noisy + trilingue), ground truth JSON |
@@ -92,7 +92,7 @@ Réponse en 3 étages :
 | E | + Forced language | 59.6 % | 41.1 % | 0.260 |
 | F | Base model (sans prompt) | **48.4 %** | 33.6 % | 0.635 |
 
-**Effet du bruit (Table 6.2, baseline A)** : clean **47.0 %** → noisy **96.4 %** (≈ ×2).
+**Effet du bruit apparié (baseline A)** : **61.1 % → 96.4 %**, sur les mêmes 12 énoncés, soit +35.3 points ; IC 95 % [7.0 ; 60.0]. Le chiffre 47.0 % porte sur les 24 propres, ensemble différent.
 Noise reduction sur noisy : 96.4 % → **88.1 %** (−8.3 pts). Sur clean : 47.0 % → 49.2 % (+2.2 pts, petit coût).
 
 **WER par langue (Table 6.3)** : allemand toujours le plus bas, français le plus haut.
@@ -137,10 +137,10 @@ Lecture : gain modeste en agrégé, mais **miroir du compromis noisereduce** —
 
 **Piège : « le VAD rend 2.9× plus rapide ? »** NON — c'était une comparaison C(GPU) vs B(CPU), interdite. Même backend : 0.144 → 0.130, soit ~10 %. Toujours comparer à backend constant.
 
-**NOUVEAU — Latence live mesurée (RQ3 du proposal)** : 22 énoncés, 2 sessions, RTX 4060 fp16. **Médiane 0.56 s, p95 1.18 s** (hors cold-start de 2.6-3.6 s au 1er énoncé — mitigé en prod par le pré-chargement lifespan). Nuance à connaître : mesuré du seuil de silence → envoi du transcript ; le délai *perçu* ajoute la fenêtre de silence de 0.6 s → ~1.2 s perçu en médiane.
+**Latence live (RQ3)** : l'étude historique couvre 22 observations, dont 20 hors premiers énoncés : médiane 0.555 s, p95 0.844 s, maximum 1.177 s. Le CSV contient maintenant une troisième session : 38 observations au total ; résumé hors premiers énoncés 0.575 / 1.614 / 11.021 s (médiane / p95 / maximum). Le timer s'arrête avant envoi WebSocket, sans réception ni rendu client. Ajouter 0.6 s de silence est une approximation, pas une mesure de bout en bout. Voir `results/topic2_readiness_audit.md`.
 - *Piège : « quel est le WER de la session live ? »* → AUCUN chiffre : pas de référence ground truth. On rapporte la latence (mesurée) et le qualitatif ("Magie" pour Maggi = problème d'entités du Ch. 1 reproduit en live). Ne JAMAIS citer un WER estimé à l'oreille.
 
-**Pourquoi le bruit double le WER / que fait noisereduce ?**
+**Pourquoi le bruit augmente le WER / que fait noisereduce ?**
 Spectral gating : estime le profil de bruit fréquentiel et atténue les fréquences sous le seuil. Aveugle → sur du propre, il rabote aussi les consonnes fricatives faibles (s, f, ch).
 
 ## 4. Réflexes code (à savoir tracer)

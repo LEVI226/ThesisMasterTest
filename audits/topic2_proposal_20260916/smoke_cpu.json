@@ -1,0 +1,53 @@
+{
+  "scope": "Real tiny CPU/int8 ASR via transcribe_file; model selection overridden to CPU; diarization explicitly disabled; no browser/RAG/Teams test",
+  "python": "3.13.7",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.7.1",
+    "pyannote.audio": "4.0.4"
+  },
+  "samples": [
+    {
+      "file": "minds14_en_clean_01",
+      "reference": "I would like to set up a joint account with my partner",
+      "hypothesis": "I would like to set up a joint account with my partner, how do I proceed with doing that.",
+      "detected_language": "en",
+      "wer": 0.5833333333333334,
+      "wall_seconds_including_audio_duration_read": 10.516661199973896,
+      "rtf": 0.9704066898094692,
+      "engine_processing_seconds": 2.1287922859191895
+    },
+    {
+      "file": "minds14_fr_clean_01",
+      "reference": "je souhaite changer mon adresse",
+      "hypothesis": "Je souhaite changer mon adresse.",
+      "detected_language": "fr",
+      "wer": 0.0,
+      "wall_seconds_including_audio_duration_read": 1.5681001999764703,
+      "rtf": 0.417644957879008,
+      "engine_processing_seconds": 1.5663232803344727
+    },
+    {
+      "file": "minds14_de_clean_01",
+      "reference": "ich möchte gerne Geld auf mein Konto einzahlen",
+      "hypothesis": "You must take a look at the game of my computer and time.",
+      "detected_language": "en",
+      "wer": 1.625,
+      "wall_seconds_including_audio_duration_read": 2.8268977000261657,
+      "rtf": 0.483116822973432,
+      "engine_processing_seconds": 2.8258795738220215
+    },
+    {
+      "file": "minds14_fr_noisy_01",
+      "reference": "je souhaite changer mon adresse",
+      "hypothesis": "Scusciò il giro e mometta.",
+      "detected_language": "it",
+      "wer": 1.0,
+      "wall_seconds_including_audio_duration_read": 3.461811100016348,
+      "rtf": 0.9220124779482234,
+      "engine_processing_seconds": 3.458399534225464
+    }
+  ],
+  "load_seconds": 0.4932907000184059
+}

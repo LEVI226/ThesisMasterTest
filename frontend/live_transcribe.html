@@ -296,6 +296,7 @@ function connect() {
   };
 
   ws.onmessage = (evt) => {
+    try { if (JSON.parse(evt.data).type === 'flushed') return; } catch {}
     if (typeof evt.data === 'string') {
       try {
         const msg = JSON.parse(evt.data);
@@ -317,8 +318,15 @@ function connect() {
 
 function disconnect() {
   stopRecording();
-  if (ws) { ws.close(); ws = null; }
+  // Close after the server acknowledges the flush; 30 s guard for a dead server.
+  const sock = ws; ws = null;
   setState(STATE.IDLE);
+  if (!sock) return;
+  let closed = false;
+  const done = () => { if (!closed) { closed = true; try { sock.close(); } catch {} } };
+  const prev = sock.onmessage;
+  sock.onmessage = (evt) => { if (prev) prev(evt); try { if (JSON.parse(evt.data).type === 'flushed') done(); } catch {} };
+  setTimeout(done, 30000);
 }
 
 /* ─────────────────────────────────────────────
@@ -441,6 +449,13 @@ async function startRecording() {
 }
 
 function stopRecording() {
+  // Send the residual samples (< 1 packet) and ask the server to flush what it holds.
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    try {
+      if (pcmBuffer.length > 0) { ws.send(float32ToInt16(pcmBuffer).buffer); pcmBuffer = new Float32Array(0); }
+      ws.send('__end__');
+    } catch {}
+  }
   if (processorNode) {
     if (processorNode.disconnect) processorNode.disconnect();
     processorNode = null;

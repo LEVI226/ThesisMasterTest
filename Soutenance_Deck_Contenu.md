@@ -52,7 +52,7 @@ Evaluation of a Whisper-Based Pipeline for Workplace Accessibility
 ## Slide 5 — Démarche
 **Six étapes, hypothèses fixées AVANT de mesurer (pré-enregistrement).**
 
-1. Revue de littérature → 2. Dataset (MInDS-14 + bruit contrôlé) → 3. Pipeline faster-whisper → 4. Conditions & hypothèses H1-H4 figées par écrit → 5. Campagne (432 runs) → 6. Analyse contre les hypothèses
+1. Revue de littérature → 2. Dataset (MInDS-14 + bruit contrôlé) → 3. Pipeline faster-whisper → 4. Conditions & hypothèses H1-H4 spécifiées → 5. Campagne (468 runs) → 6. Analyse contre les hypothèses
 
 - H1 : réduction de bruit aide sans coûter · H2 : prompt métier aide sur les entités · H3 : RTF < 1 sur CPU · H4 : forcer la langue bat l'auto-détection
 
@@ -78,18 +78,18 @@ Evaluation of a Whisper-Based Pipeline for Workplace Accessibility
 - MInDS-14 (CC-BY-4.0) : parole téléphonique spontanée réelle — 8 propres + 4 bruités (SNR 8 dB) × EN/FR/DE
 - Bruit synthétique sur les MÊMES énoncés → isole l'effet du bruit du contenu
 - Conditions chaînées : A base → B +noisereduce → C +VAD → D +prompt → E +langue forcée · F-I : échelle de tailles
-- **432 runs** (180 CPU pré-enregistrés + 252 extensions GPU), zéro erreur, tout traçable au CSV
+- **468 runs** (180 CPU pré-spécifiés + 288 extensions GPU), incluant MMS et Conformer, traçables aux CSV
 
 *Note orateur : pourquoi pas un corpus Nestlé ? Confidentiel, non disponible — substitution documentée. Ne jamais dire « pour prouver que ça marche ».*
 
 ---
 
-## Slide 8 — Résultat 1 : le bruit domine tout
-**Le bruit double le WER. Aucune autre manipulation n'approche cet effet.**
+## Slide 8 — Résultat 1 : effet du bruit sur les mêmes phrases
+**Sur 12 paires, le bruit ajoute 35,3 points de WER ; IC 95 % [7,0 ; 60,0].**
 
 | Condition A (tiny) | WER |
 |---|---|
-| Audio propre | 47,0 % |
+| Audio propre apparié (12 fichiers) | 61,1 % |
 | Audio bruité (8 dB) | 96,4 % |
 
 - Réduction de bruit : −8,3 pts sur bruité, MAIS +2,2 pts sur propre → vrai compromis
@@ -143,7 +143,9 @@ Evaluation of a Whisper-Based Pipeline for Workplace Accessibility
 ---
 
 ## Slide 12 — Temps réel
-**Latence live mesurée : médiane 0,56 s, p95 1,18 s.**
+**Étude historique : médiane 0,56 s, p95 0,84 s, maximum 1,18 s sur 20 observations hors premiers énoncés.**
+
+Le journal actuel contient 38 observations : hors premiers énoncés, n=35, médiane 0,575 s, p95 1,614 s, maximum 11,021 s. Sessions non caractérisées dans le CSV ; ce résumé est descriptif. Le délai est mesuré côté serveur avant envoi, sans le rendu navigateur ni la fenêtre de silence. Aucun optimum précision/latence n'est établi.
 
 - Chemin WebSocket : VAD Silero segmente, transcription du buffer à la fin d'énoncé
 - Délai perçu ≈ 1,2 s (latence + fenêtre de silence 0,6 s) — hors cold-start (~3 s, mitigé par pré-chargement)
@@ -192,9 +194,9 @@ Evaluation of a Whisper-Based Pipeline for Workplace Accessibility
 ---
 
 ## Slide 16 — Conclusion
-**Ce mémoire remplace des suppositions par 432 mesures traçables.**
+**Ce mémoire apporte 468 transcriptions traçables sur un corpus contrôlé.**
 
-- Le bruit est le facteur dominant (×2) — loin devant tout le reste
+- Le bruit ajoute 35,3 points sur 12 paires ; la taille du modèle apporte le plus grand gain de précision observé
 - La taille du modèle est le levier n°1 (63 → 25 % WER) ; l'adaptation à bas coût pèse ≈ 1 pt
 - Forcer la langue : le gain le plus actionnable, coût zéro
 - Un pipeline temps réel local fonctionne (médiane 0,56 s) — sans cloud, sans fuite de données
@@ -216,7 +218,7 @@ Evaluation of a Whisper-Based Pipeline for Workplace Accessibility
 **Questions bienvenues.**
 
 - OUEDRAOGO Yannick Ulrich Levi · Master AI, Burkina Institute of Technology
-- Code, données et 432 runs : dépôt Git du projet — chaque chiffre re-calculable depuis les CSV
+- Code, données et 468 runs : dépôt Git du projet ; chaque chiffre doit être associé au CSV et à son périmètre
 
 *Note orateur : respirer. Tu as construit, mesuré et compris chaque pièce. Les questions sont des occasions.*
 
@@ -309,4 +311,4 @@ Frontend → FastAPI → { `/transcribe` (batch) · `/ws/transcribe` (live) · `
 
 1. **Souveraineté** : Copilot = cloud Microsoft. Nestlé a créé NesGPT pour du GenAI interne sécurisé → mon Phase 1 100 % local suit cette doctrine
 2. **Accessibilité d'abord** : Copilot fait des notes génériques — pas de couche malentendants, aucune garantie mesurée sur le code-switching ni le vocabulaire de marque
-3. **Mesurable et adaptable** : Copilot est une boîte noire — impossible d'en mesurer le WER ou de l'adapter ; mon pipeline est instrumenté (432 runs) et adaptable (prompt, LoRA)
+3. **Mesurable et adaptable** : mon pipeline expose ses paramètres et ses résultats (468 runs), avec prompt et LoRA. Un service fermé peut aussi être évalué sur ses sorties avec des références ; aucune supériorité sur Copilot n'a été mesurée ici.

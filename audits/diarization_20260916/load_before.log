@@ -1,0 +1,165 @@
+HF_TOKEN present: True
+pyannote.audio 4.0.4
+torch 2.6.0+cu124
+pytorch-lightning 2.6.1
+lightning 2.6.1
+nemo_toolkit 3.0.0
+nv-one-logger-pytorch-lightning-integration 2.3.1
+overrides 7.7.0
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+* use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+* fix torchcodec installation. Error message was:
+
+Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.6.0+cu124) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+[end of libtorchcodec loading traceback].
+  warnings.warn(
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\pipeline.py", line 239, in from_pretrained
+    Klass = get_class_by_name(
+        pipeline_name, default_module_name="pyannote.pipeline.blocks"
+    )
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\core\utils\helper.py", line 68, in get_class_by_name
+    return getattr(import_module(module_name), class_name)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\pipelines\__init__.py", line 25, in <module>
+    from .speaker_diarization import SpeakerDiarization
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\pipelines\speaker_diarization.py", line 41, in <module>
+    from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\pipelines\speaker_verification.py", line 49, in <module>
+    from nemo.collections.asr.models import (
+        EncDecSpeakerLabelModel as NeMo_EncDecSpeakerLabelModel,
+    )
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\collections\asr\__init__.py", line 15, in <module>
+    from nemo.collections.asr import data, losses, models, modules
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\collections\asr\losses\__init__.py", line 15, in <module>
+    from nemo.collections.asr.losses.angularloss import AngularSoftmaxLoss
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\collections\asr\losses\angularloss.py", line 18, in <module>
+    from nemo.core.classes import Loss, Typing, typecheck
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\core\__init__.py", line 16, in <module>
+    from nemo.core.classes import *
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\core\classes\__init__.py", line 33, in <module>
+    from nemo.core.classes.modelPT import ModelPT
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\core\classes\modelPT.py", line 37, in <module>
+    from nemo.lightning.callback_group import CallbackGroup
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\lightning\callback_group.py", line 21, in <module>
+    from nemo.lightning.one_logger_callback import OneLoggerNeMoCallback
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nemo\lightning\one_logger_callback.py", line 29, in <module>
+    from nv_one_logger.training_telemetry.integration.pytorch_lightning import TimeEventCallback as OneLoggerPTLCallback
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nv_one_logger\training_telemetry\integration\pytorch_lightning.py", line 251, in <module>
+    class OneLoggerPTLTrainer(Trainer):
+    ...<52 lines>...
+            return self._nv_one_logger_callback
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\nv_one_logger\training_telemetry\integration\pytorch_lightning.py", line 274, in OneLoggerPTLTrainer
+    @override
+     ^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\overrides\overrides.py", line 143, in override
+    return _overrides(method, check_signature, check_at_runtime)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\overrides\overrides.py", line 172, in _overrides
+    _validate_method(method, super_class, check_signature)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\overrides\overrides.py", line 191, in _validate_method
+    ensure_signature_is_compatible(super_method, method, is_static)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\overrides\signature.py", line 104, in ensure_signature_is_compatible
+    ensure_all_kwargs_defined_in_sub(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        super_sig, sub_sig, super_type_hints, sub_type_hints, is_static, method_name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\overrides\signature.py", line 165, in ensure_all_kwargs_defined_in_sub
+    raise TypeError(
+        f"`{method_name}: {name} must be a supertype of `{super_param.annotation}` but is `{sub_param.annotation}`"
+    )
+TypeError: `OneLoggerPTLTrainer.save_checkpoint: weights_only must be a supertype of `typing.Optional[bool]` but is `<class 'bool'>`
+

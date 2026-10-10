@@ -33,7 +33,15 @@ dependencies = [
     "ffmpeg-python>=0.2.0",
     "pypdfium2>=5.6.0",
     "faster-whisper>=1.2.1",
+    # Windows: CT2 4.6 ships cuDNN 9.1, matching torch 2.6+cu124.
+    # CT2 4.7's cuDNN 9.10 dispatcher conflicts with torch's 9.1 DLLs.
+    "ctranslate2==4.6.0; sys_platform == 'win32'",
+    "setuptools==80.9.0; sys_platform == 'win32'",  # CT2 4.6 uses pkg_resources
     "pyannote-audio>=4.0.4",
+    # NeMo 3 / OneLogger 2.3.1 cannot import with Lightning 2.6's
+    # Optional[bool] save_checkpoint signature; shared pyannote runtime.
+    "lightning==2.4.0",
+    "pytorch-lightning==2.4.0",
     "datasets>=5.0.0",
     "peft>=0.19.1",
 ]

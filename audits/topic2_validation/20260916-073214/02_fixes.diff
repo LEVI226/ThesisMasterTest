@@ -1,0 +1,213 @@
+diff --git a/backend/evaluation/runner.py b/backend/evaluation/runner.py
+index 4d38ef6..dca9ecf 100644
+--- a/backend/evaluation/runner.py
++++ b/backend/evaluation/runner.py
+@@ -4,6 +4,7 @@ Runs transcription experiments across multiple conditions and records metrics.
+ """
+ import csv
+ import logging
++import os
+ import time
+ from dataclasses import asdict, dataclass
+ from pathlib import Path
+@@ -13,7 +14,9 @@ from backend.evaluation.metrics import wer, cer, rtf
+ 
+ logger = logging.getLogger(__name__)
+ 
+-TRANSCRIPT_DIR = Path("results/transcripts")
++# Historical location by default; new campaigns should set TRANSCRIPT_DIR so
++# their side files never overwrite the canonical ones.
++TRANSCRIPT_DIR = Path(os.environ.get("TRANSCRIPT_DIR", "results/transcripts"))
+ SAMPLE_LANGUAGE = "__sample_language__"
+ 
+ 
+@@ -84,10 +87,6 @@ def run_single(
+     except Exception:
+         audio_dur = 0.0
+ 
+-    condition_tag = (
+-        f"prep{int(preprocessing)}_prompt{int(domain_prompt)}"
+-        f"_lang{forced_language or 'auto'}"
+-    )
+ 
+     try:
+         t0 = time.time()
+@@ -105,6 +104,11 @@ def run_single(
+         c = cer(ref_text, hypothesis) if ref_text else float("nan")
+         r = rtf(audio_dur, elapsed)
+ 
++        # Model actually used + VAD are part of the name so runs never collide.
++        condition_tag = (
++            f"{model_used}_prep{int(preprocessing)}_prompt{int(domain_prompt)}"
++            f"_lang{forced_language or 'auto'}_vad{int(vad)}"
++        )
+         transcript_path = _save_transcript(sample.audio_filename, condition_tag, hypothesis)
+ 
+         logger.info(
+@@ -228,3 +232,4 @@ def run_evaluation(
+         logger.info("Results written to %s", output_csv)
+ 
+     return all_results
++
+diff --git a/backend/main.py b/backend/main.py
+index 740800b..195d8d9 100644
+--- a/backend/main.py
++++ b/backend/main.py
+@@ -11,7 +11,7 @@ import csv as _csv
+ from pathlib import Path
+ from contextlib import asynccontextmanager
+ 
+-from fastapi import FastAPI, UploadFile, File, HTTPException, WebSocket, WebSocketDisconnect
++from fastapi import FastAPI, UploadFile, File, Form, Query, HTTPException, WebSocket, WebSocketDisconnect
+ from fastapi.middleware.cors import CORSMiddleware
+ from fastapi.responses import HTMLResponse, FileResponse
+ import aiofiles
+@@ -123,7 +123,8 @@ async def health():
+ @app.post("/transcribe", tags=["STT — Topic 2"], summary="Transcribe audio/video file")
+ async def transcribe(
+     file: UploadFile = File(..., description="Audio or video file (mp3, mp4, wav, m4a…)"),
+-    language: str | None = None,
++    language: str | None = Form(None, description="Force language (fr/en/de) as a form field"),
++    language_query: str | None = Query(None, alias="language", include_in_schema=False),
+ ):
+     """
+     Upload an audio/video file → transcribe with Whisper → ingest to RAG.
+@@ -155,7 +156,7 @@ async def transcribe(
+     try:
+         result = await loop.run_in_executor(
+             None,
+-            lambda: transcribe_file(str(save_path), forced_language=language),
++            lambda: transcribe_file(str(save_path), forced_language=(language or language_query)),
+         )
+     except Exception as e:
+         logger.error(f"Transcription failed: {e}")
+@@ -183,11 +184,15 @@ async def transcribe(
+ # ─── WebSocket STT (Real-time) ───────────────────────────────────────────────
+ 
+ class RealTimeSTTHandler:
+-    LATENCY_CSV = Path("results/live_latency.csv")
++    # Historical file by default; validation runs override with LIVE_LATENCY_CSV.
++    LATENCY_CSV = Path(os.environ.get("LIVE_LATENCY_CSV", "results/live_latency.csv"))
++    END_SIGNAL = "__end__"   # text frame the client sends to flush the last utterance
+ 
+     def __init__(self, websocket: WebSocket, language: str | None = None):
+         self.websocket = websocket
+         self.language = language          # None = Whisper auto-detect
++        # Read per session so validation runs can redirect with LIVE_LATENCY_CSV.
++        self.latency_csv = Path(os.environ.get("LIVE_LATENCY_CSV", str(self.LATENCY_CSV)))
+         self.sample_rate = 16000
+         self.silence_threshold = int(0.6 * self.sample_rate) # 0.6s silence
+ 
+@@ -211,15 +216,26 @@ class RealTimeSTTHandler:
+         
+         try:
+             while True:
+-                # 1. Accept raw 16kHz mono PCM (binary)
++                # 1. Accept raw 16kHz mono PCM (binary) or the text end-signal
+                 try:
+-                    chunk = await self.websocket.receive_bytes()
++                    msg = await self.websocket.receive()
+                 except WebSocketDisconnect:
+                     break
+                 except Exception as e:
+                     logger.error(f"WS receive error: {e}")
+                     break
+ 
++                if msg.get("type") == "websocket.disconnect":
++                    break
++                if msg.get("text") is not None:
++                    if msg["text"].strip() == self.END_SIGNAL:
++                        await self._flush_pending(_model, _diarization_pipeline, _vad_model, reason="end_signal")
++                        try:
++                            await self.websocket.send_json({"type": "flushed"})
++                        except Exception:
++                            pass
++                    continue
++                chunk = msg.get("bytes")
+                 if not chunk:
+                     continue
+ 
+@@ -261,8 +277,27 @@ class RealTimeSTTHandler:
+         except Exception as e:
+             logger.error(f"WebSocket loop error: {e}")
+         finally:
++            # Best effort: transcribe whatever was still buffered when the client
++            # left. Delivery may fail (socket gone) but the text is still logged.
++            await self._flush_pending(_model, _diarization_pipeline, _vad_model, reason="disconnect")
+             logger.info("WebSocket STT client disconnected.")
+ 
++    async def _flush_pending(self, model, diarizer, vad_model, reason: str):
++        """Transcribe the pending buffer without waiting for a silence window."""
++        if not self.audio_buffer:
++            return
++        logger.info("Flushing pending audio (%d bytes, reason=%s)", len(self.audio_buffer), reason)
++        self.is_speaking = False
++        self._t_silence_end = time.monotonic()
++        if vad_model is not None:
++            try:
++                vad_model.reset_states()
++            except Exception:
++                pass
++        await self._transcribe_and_diarize(model, diarizer)
++        self.audio_buffer = bytearray()
++        self.silence_frames = 0
++
+     async def _transcribe_and_diarize(self, model, diarizer):
+         if len(self.audio_buffer) < 1600: # Ignore very short artifacts (<0.1s)
+             return
+@@ -334,16 +369,17 @@ class RealTimeSTTHandler:
+             latency = round(time.monotonic() - self._t_silence_end, 3)
+             duration_audio = round(len(self.audio_buffer) / (self.sample_rate * 2), 3)
+             self._utterance_id += 1
+-            self.LATENCY_CSV.parent.mkdir(parents=True, exist_ok=True)
+-            new_file = not self.LATENCY_CSV.exists()
+-            with open(self.LATENCY_CSV, "a", newline="", encoding="utf-8") as f:
++            self.latency_csv.parent.mkdir(parents=True, exist_ok=True)
++            new_file = not self.latency_csv.exists()
++            with open(self.latency_csv, "a", newline="", encoding="utf-8") as f:
+                 w = _csv.DictWriter(f, fieldnames=["utterance_id", "duration_audio", "latency_seconds"])
+                 if new_file:
+                     w.writeheader()
+                 w.writerow({"utterance_id": self._utterance_id,
+                             "duration_audio": duration_audio,
+                             "latency_seconds": latency})
+-            logger.info("Utterance %d | audio=%.1fs | latency=%.3fs", self._utterance_id, duration_audio, latency)
++            logger.info("Utterance %d | audio=%.1fs | latency=%.3fs | %s | %r",
++                        self._utterance_id, duration_audio, latency, speaker, text)
+ 
+             # 6. Return JSON
+             await self.websocket.send_json({
+@@ -500,3 +536,4 @@ async def research_evidence():
+     except (FileNotFoundError, ValueError) as exc:
+         logger.error("Research dashboard evidence unavailable: %s", exc)
+         raise HTTPException(status_code=503, detail=str(exc)) from exc
++
+diff --git a/frontend/index.html b/frontend/index.html
+index ebaa118..fde5121 100644
+--- a/frontend/index.html
++++ b/frontend/index.html
+@@ -1039,7 +1039,14 @@ registerProcessor('pcm-capture', PCMCapture);
+ 
+     function liveDisconnect() {
+       liveStopRecord();
+-      if (liveWs) { liveWs.close(); liveWs = null; }
++      // Give the server up to 2 s to deliver the flushed last utterance before closing.
++      const ws = liveWs; liveWs = null;
++      if (!ws) return;
++      let closed = false;
++      const done = () => { if (!closed) { closed = true; try { ws.close(); } catch {} } };
++      const prev = ws.onmessage;
++      ws.onmessage = (e) => { if (prev) prev(e); try { if (JSON.parse(e.data).type === 'flushed') done(); } catch {} };
++      setTimeout(done, 2000);
+     }
+ 
+     async function liveToggleRecord() {
+@@ -1088,6 +1095,8 @@ registerProcessor('pcm-capture', PCMCapture);
+ 
+     function liveStopRecord() {
+       liveRecording = false;
++      // Ask the server to transcribe whatever is still buffered (last sentence).
++      if (liveWs && liveWs.readyState === WebSocket.OPEN) { try { liveWs.send('__end__'); } catch {} }
+       if (liveProcessor) { try { liveProcessor.disconnect(); } catch {} liveProcessor = null; }
+       if (liveSource)    { try { liveSource.disconnect(); }    catch {} liveSource    = null; }
+       if (liveStream)    { liveStream.getTracks().forEach(t => t.stop()); liveStream = null; }

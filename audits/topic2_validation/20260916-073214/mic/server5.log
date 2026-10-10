@@ -1,0 +1,1615 @@
+INFO:     Started server process [56624]
+INFO:     Waiting for application startup.
+2026-09-16 17:30:54,051 | INFO | nestle-platform | \U0001f680 Starting Nestlé Accessibility Platform...
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+* use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+* fix torchcodec installation. Error message was:
+
+Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.6.0+cu124) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+[end of libtorchcodec loading traceback].
+  warnings.warn(
+2026-09-16 17:31:02,954 | INFO | backend.stt.engine | Loading faster-whisper model: small on CUDA (float16)
+2026-09-16 17:31:03,714 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+2026-09-16 17:31:04,548 | INFO | backend.stt.engine | faster-whisper model 'small' loaded successfully.
+2026-09-16 17:31:04,549 | INFO | nestle-platform | \u2705 Whisper model loaded.
+2026-09-16 17:31:09,608 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: intfloat/multilingual-e5-small
+2026-09-16 17:31:09,997 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:10,056 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:10,355 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-09-16 17:31:10,647 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-09-16 17:31:10,940 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:10,991 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md "HTTP/1.1 200 OK"
+2026-09-16 17:31:11,284 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:11,335 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:11,629 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:11,683 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:11,983 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-09-16 17:31:12,277 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:12,320 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:12,646 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:12,697 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 2110.29it/s]
+[1mBertModel LOAD REPORT[0m from: intfloat/multilingual-e5-small
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+2026-09-16 17:31:13,231 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:13,285 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:13,585 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:13,636 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:13,937 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:13,979 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:14,279 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-16 17:31:14,582 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-16 17:31:16,873 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-09-16 17:31:17,556 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-16 17:31:17,591 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-09-16 17:31:17,925 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-09-16 17:31:18,047 | INFO | backend.rag.vectorstore | ChromaDB collection ready: nestle_accessibility (136 docs)
+2026-09-16 17:31:18,049 | INFO | nestle-platform | \u2705 ChromaDB initialized.
+2026-09-16 17:31:18,049 | INFO | backend.stt.engine | Loading Silero VAD model...
+Using cache found in C:\Users\ulric/.cache\torch\hub\snakers4_silero-vad_master
+2026-09-16 17:31:18,667 | INFO | backend.stt.engine | Silero VAD loaded successfully.
+2026-09-16 17:31:18,667 | INFO | backend.stt.engine | Loading pyannote diarization pipeline
+2026-09-16 17:31:18,971 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-3.1/resolve/main/config.yaml "HTTP/1.1 200 OK"
+2026-09-16 17:31:22,123 | WARNING | nv_one_logger.api.config | OneLogger: Setting error_handling_strategy to DISABLE_QUIETLY_AND_REPORT_METRIC_ERROR for rank (rank=0) with OneLogger disabled. To override: explicitly set error_handling_strategy parameter.
+2026-09-16 17:31:22,146 | INFO | nv_one_logger.exporter.export_config_manager | Final configuration contains 0 exporter(s)
+2026-09-16 17:31:22,149 | WARNING | nv_one_logger.training_telemetry.api.training_telemetry_provider | No exporters were provided. This means that no telemetry data will be collected.
+2026-09-16 17:31:26,900 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/segmentation-3.0/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-09-16 17:31:28,269 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/xvec_transform.npz "HTTP/1.1 302 Found"
+2026-09-16 17:31:28,574 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/speaker-diarization-community-1/resolve/main/plda/plda.npz "HTTP/1.1 302 Found"
+2026-09-16 17:31:29,835 | INFO | httpx | HTTP Request: HEAD https://huggingface.co/pyannote/wespeaker-voxceleb-resnet34-LM/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-09-16 17:31:30,139 | INFO | backend.stt.engine | pyannote diarization loaded on cuda.
+2026-09-16 17:31:30,140 | INFO | nestle-platform | Whisper=small on cuda/float16 | VAD loaded | Diarization loaded
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+2026-09-16 17:31:32,450 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54662 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54665 - "GET / HTTP/1.1" 200 OK
+2026-09-16 17:32:22,326 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52300 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:32:54,784 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52142 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:33:05,666 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65206 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65206 - "GET / HTTP/1.1" 200 OK
+2026-09-16 17:33:12,007 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65206 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:33:26,418 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56665 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:33:31,355 | INFO | nestle-platform | STT request: Nestlé Chair & CEO Annual General Meeting 2026 (EN).mp3 (31254.5 KB) \u2192 199d8956-0393-4203-9546-6a777fbf001e
+2026-09-16 17:33:42,420 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56162 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:33:57,568 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51916 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:34:02,091 | INFO | backend.stt.engine | Audio preprocessed: storage\uploads\199d8956-0393-4203-9546-6a777fbf001e.mp3 \u2192 C:\Users\ulric\AppData\Local\Temp\tmpfa0zztaw.wav
+2026-09-16 17:34:02,128 | INFO | backend.stt.engine | Starting transcription: 199d8956-0393-4203-9546-6a777fbf001e.mp3
+2026-09-16 17:34:03,947 | INFO | faster_whisper | Processing audio with duration 22:13.525
+2026-09-16 17:34:08,038 | INFO | faster_whisper | Detected language 'en' with probability 0.78
+2026-09-16 17:34:12,523 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64952 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:34:27,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52195 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:34:42,418 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59249 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:35:22,553 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61572 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:36:06,473 | INFO | backend.stt.engine | Transcription done in 150.8s | audio=1333.5s | language=en | chars=14917
+2026-09-16 17:36:06,474 | INFO | backend.stt.engine | Starting speaker diarization...
+[NeMo W 2026-09-16 17:36:06 nemo_logging:364] C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\utils\reproducibility.py:74: ReproducibilityWarning: TensorFloat-32 (TF32) has been disabled as it might lead to reproducibility issues and lower accuracy.
+    It can be re-enabled by calling
+       >>> import torch
+       >>> torch.backends.cuda.matmul.allow_tf32 = True
+       >>> torch.backends.cudnn.allow_tf32 = True
+    See https://github.com/pyannote/pyannote-audio/issues/1370 for more details.
+    
+      warnings.warn(
+    
+2026-09-16 17:36:22,479 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50396 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:37:23,034 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59847 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:37:46,199 | INFO | backend.stt.engine | Diarization done in 99.7s
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:08<00:00,  8.47s/it]Batches: 100%|##########| 1/1 [00:08<00:00,  8.47s/it]
+2026-09-16 17:37:54,871 | INFO | backend.rag.vectorstore | Ingested 6 chunks for Nestlé Chair & CEO Annual General Meeting 2026 (EN).mp3 (stt)
+INFO:     127.0.0.1:56665 - "POST /transcribe HTTP/1.1" 200 OK
+2026-09-16 17:37:55,604 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55693 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:38:22,676 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54572 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:39:22,470 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61493 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:40:10,480 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54405 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:40:11,415 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54405 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:40:26,385 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50744 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:40:41,449 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55843 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:40:57,217 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57457 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:41:12,161 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53066 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:41:27,190 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61013 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:41:42,187 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55672 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:42:22,240 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53863 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:43:22,866 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63969 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:44:22,184 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62207 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:45:22,187 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51029 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:46:22,273 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50088 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:47:22,753 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62179 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:48:22,304 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51283 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:49:22,346 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60209 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:50:22,291 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62959 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:51:12,113 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63561 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55234 - "WebSocket /ws/transcribe" [accepted]
+2026-09-16 17:51:15,790 | INFO | nestle-platform | WebSocket STT client connected.
+INFO:     connection open
+2026-09-16 17:51:21,821 | INFO | faster_whisper | Processing audio with duration 00:02.000
+2026-09-16 17:51:22,293 | INFO | faster_whisper | Detected language 'en' with probability 0.72
+[NeMo W 2026-09-16 17:51:23 nemo_logging:364] C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\numpy\_core\fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+      return _methods._mean(a, axis=axis, dtype=dtype,
+    
+[NeMo W 2026-09-16 17:51:23 nemo_logging:364] C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\numpy\_core\_methods.py:134: RuntimeWarning: invalid value encountered in divide
+      ret = um.true_divide(
+    
+2026-09-16 17:51:23,530 | INFO | nestle-platform | Utterance 1 | audio=2.0s | latency=1.724s | SPEAKER_00 | "and what doesn't."
+2026-09-16 17:51:26,539 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51042 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:51:29,809 | INFO | faster_whisper | Processing audio with duration 00:08.000
+2026-09-16 17:51:30,173 | INFO | faster_whisper | Detected language 'en' with probability 0.86
+2026-09-16 17:51:31,238 | INFO | nestle-platform | Utterance 2 | audio=8.0s | latency=1.445s | SPEAKER_00 | 'We have to get past hierarchies to celebrate great ideas wherever they come from.'
+2026-09-16 17:51:41,603 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64288 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:51:56,556 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58916 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:52:05,823 | INFO | faster_whisper | Processing audio with duration 00:35.000
+2026-09-16 17:52:06,207 | INFO | faster_whisper | Detected language 'en' with probability 0.56
+2026-09-16 17:52:10,051 | INFO | nestle-platform | Utterance 3 | audio=35.0s | latency=4.256s | SPEAKER_00 | "As Don Quixote says to Sancho,  cada uno es artífice de su propia aventura,  meaning each of us is the architect of our own fortune.  At Nestle, each of us has both the power  and the responsibility to shape our company's destiny.  Through the culture we build, the decisions we make,  and the execution we drive.  It starts with our leaders and is delivered by our teams."
+2026-09-16 17:52:11,552 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55502 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:52:26,568 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:52:30,808 | INFO | faster_whisper | Processing audio with duration 00:25.000
+2026-09-16 17:52:31,211 | INFO | faster_whisper | Detected language 'en' with probability 0.90
+2026-09-16 17:52:33,411 | INFO | nestle-platform | Utterance 4 | audio=25.0s | latency=2.626s | SPEAKER_00 | "Together with Philip, the executive team and the entire board of directors are committed  to shaping a company that is simpler, faster, more competitive and more innovative.  Our Nestle offers stability today, clarity on when we are going and discipline in how  we'll get there."
+2026-09-16 17:52:41,566 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51077 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:52:56,531 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55944 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:53:00,828 | INFO | faster_whisper | Processing audio with duration 00:30.000
+2026-09-16 17:53:01,211 | INFO | faster_whisper | Detected language 'en' with probability 0.85
+2026-09-16 17:53:04,447 | INFO | nestle-platform | Utterance 5 | audio=30.0s | latency=3.651s | SPEAKER_00 | "This is how we'll strengthen our performance and deliver consistent growth.  Now is the time to unlock the full potential of this great company.  Thank you for your trust and thank you to our employees for their steadfast commitment.  Please allow me now to hand over to our CEO, Philippe Naprati."
+2026-09-16 17:53:11,572 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51610 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:53:21,816 | INFO | faster_whisper | Processing audio with duration 00:18.000
+2026-09-16 17:53:22,271 | INFO | faster_whisper | Detected language 'de' with probability 0.66
+2026-09-16 17:53:24,801 | INFO | nestle-platform | Utterance 6 | audio=18.0s | latency=3.007s | SPEAKER_00 | "Merci, Pablo, und merci, Scherz-Aktionär,  der hier zu sein.  Liebe Aktionärinnen und Aktionärs,  es ist mir eine große Freude, Sie begrüßen zu dürfen.  Welcome everyone, and thanks for joining this year's annual meet."
+2026-09-16 17:53:26,609 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58617 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:53:41,656 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62584 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:53:56,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50894 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:54:11,579 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49739 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:54:26,536 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49855 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:54:31,866 | INFO | faster_whisper | Processing audio with duration 01:10.000
+2026-09-16 17:54:32,330 | INFO | faster_whisper | Detected language 'en' with probability 0.98
+2026-09-16 17:54:40,046 | INFO | nestle-platform | Utterance 7 | audio=70.0s | latency=8.247s | SPEAKER_00 | "Let me echo Pablo in saying,  what an honor it is to address you today  for the first time as CEO of Nestle.  After 25 years with the company,  I have profound respect for its history  and ability to adapt and thrive for 160 years.  Nestle has always been shaped by passionate people.  People who have built enduring brands and products  loved around the world.  Today, once again, Nestle is at a turning point.  The world is changing fast.  Consumers are changing too.  At the same time, we've had to navigate our own challenges.  In an environment like this, success  requires a clear plan, focus, and disciplined execution.  And ladies and gentlemen, we have a plan.  A plan to create long-term value for you,  our shareholders, and for all of our stakeholders.  Pablo has outlined key elements I will expand on the details.  But before we look forward, let's briefly look back."
+2026-09-16 17:54:41,575 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51490 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:54:56,616 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60973 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:55:11,606 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59047 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:55:26,535 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55621 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:55:41,552 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49176 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:55:56,620 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51924 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:56:11,544 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51082 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:56:26,610 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55932 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:56:41,543 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64283 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:56:56,563 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62074 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:57:00,809 | INFO | nestle-platform | Flushing pending audio (4768768 bytes, reason=end_signal)
+2026-09-16 17:57:00,962 | INFO | faster_whisper | Processing audio with duration 02:29.024
+2026-09-16 17:57:01,479 | INFO | faster_whisper | Detected language 'en' with probability 0.99
+2026-09-16 17:57:14,439 | INFO | nestle-platform | Utterance 8 | audio=149.0s | latency=13.629s | SPEAKER_00 | "Last year, we delivered solid organic growth with positive real internal growth.  For the second half of the year, momentum accelerated because we invested in key  growth areas and took decisive action to turn around underperforming businesses.  As a result, market share is improving. This shows that our plan is working.  Our underlying trading operating profit margin was in line with the guidance,  and free cash flow came in ahead of expectations.  I am encouraged by the progress we made in 2025, and I want to take this moment to thank  all Nestle colleagues for their dedication during times of rapid change.  Their commitment has been extraordinary.  We are now moving forward with renewed focus and urgency.  We have to find five priorities that will guide our actions and strengthen our performance.  First, we need a winning portfolio, a portfolio built on businesses in categories  with attractive structural growth, businesses with strong returns, businesses  where we are positioned and able to win, and businesses that are gaining market share.  After reviewing our entire portfolio, we have sharpened our focus on four core businesses,  coffee, tech care, nutrition, and food and snacks. Together, they give us strong competitive  advantages and powerful synergies. They form the backbone of a portfolio built for sustained,  profitable growth, which brings me to our second and most important priority,  achieving organic growth led by real internal growth. Our aim is to sell more of our products,  and this starts with a deep understanding of consumers.  Drawing on long-term trends, strong consumer insights, and Nestle's strength, we have identified  several growth platforms where we can accelerate our performance to high single-digit organic  growth. To get there, we are prioritizing investment in these platforms alongside our  core brands. For each, we're building"
+2026-09-16 17:57:14,453 | INFO | nestle-platform | WebSocket STT client disconnected.
+INFO:     connection closed
+2026-09-16 17:57:14,708 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62074 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:57:26,530 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51363 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:57:42,200 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50060 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:57:57,206 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57833 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:58:12,207 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61552 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:58:27,204 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60240 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 17:59:22,970 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57242 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:00:22,275 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55033 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:01:29,341 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50801 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:02:22,382 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58917 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:03:22,255 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59720 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:04:22,262 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57466 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:05:22,266 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63961 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:06:17,171 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57361 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:06:26,444 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52787 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:06:32,032 | INFO | nestle-platform | STT request: Reunion Dhis2.m4a (136206.5 KB) \u2192 4018bd68-6e6a-480b-b85e-ac5df9727a31
+2026-09-16 18:06:41,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60447 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:06:56,518 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62229 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:07:11,470 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49698 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:07:26,458 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50060 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:07:39,724 | INFO | backend.stt.engine | Audio preprocessed: storage\uploads\4018bd68-6e6a-480b-b85e-ac5df9727a31.m4a \u2192 C:\Users\ulric\AppData\Local\Temp\tmptodk_y09.wav
+2026-09-16 18:07:39,817 | INFO | backend.stt.engine | Starting transcription: 4018bd68-6e6a-480b-b85e-ac5df9727a31.m4a
+2026-09-16 18:07:41,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55346 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:07:44,523 | INFO | faster_whisper | Processing audio with duration 01:16:17.600
+2026-09-16 18:07:52,028 | INFO | faster_whisper | Detected language 'ht' with probability 0.41
+2026-09-16 18:07:56,631 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51516 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:08:11,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58520 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:08:26,501 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54866 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:08:41,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62050 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:08:56,401 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63338 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:09:11,511 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53563 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:09:26,466 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63924 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:09:41,605 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52276 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:09:56,532 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55634 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:10:11,506 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59951 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:10:26,518 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51439 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:10:41,454 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53022 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:10:56,446 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53923 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:11:11,579 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64289 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:11:26,554 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63158 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:11:41,520 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51988 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:11:56,755 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61065 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:12:11,724 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63507 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:12:26,680 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61349 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:12:41,705 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57061 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:12:56,660 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52044 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:13:11,699 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62731 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:13:26,702 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50625 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:13:41,702 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50127 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:13:56,673 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64852 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:14:11,683 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56211 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:14:26,683 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52904 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:14:41,689 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50231 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:14:56,685 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64905 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:15:11,663 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54187 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:15:26,680 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53215 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:15:41,699 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52695 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:15:56,703 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53431 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:16:11,686 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54746 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:16:26,685 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50666 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:16:41,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57019 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:16:56,755 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58444 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:17:11,718 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62018 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:17:26,739 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:17:41,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60645 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:17:56,757 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65149 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:18:11,694 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52525 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:18:26,700 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64852 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:18:41,720 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62718 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:18:56,713 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51168 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:19:11,719 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50353 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:19:26,620 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55146 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:19:41,693 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50060 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:19:56,696 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51119 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:20:11,667 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54749 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:20:26,681 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62171 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:20:41,682 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59472 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:20:56,685 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59673 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:21:11,684 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64852 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:21:26,678 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54533 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:21:41,684 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49785 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:21:56,685 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52016 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:22:11,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54612 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:22:26,742 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53721 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:22:41,731 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51509 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:22:56,775 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64978 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:23:11,791 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55756 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:23:26,750 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49959 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:23:41,760 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51495 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:23:56,748 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57374 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:24:11,732 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53695 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:24:26,734 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59084 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:24:41,761 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64520 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:24:56,735 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50642 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:25:11,740 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54363 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:25:26,734 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57404 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:25:41,745 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58545 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:25:56,736 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59652 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:26:11,717 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62358 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:26:26,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64852 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:26:41,762 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57246 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:26:56,756 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55355 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:27:11,762 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51655 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:27:26,780 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64283 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:27:33,145 | INFO | backend.stt.engine | Transcription done in 1247.3s | audio=4577.6s | language=ht | chars=25198
+2026-09-16 18:27:33,146 | INFO | backend.stt.engine | Starting speaker diarization...
+2026-09-16 18:27:41,749 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56076 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:27:56,743 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50302 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:28:11,907 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60194 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:28:26,884 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59287 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:28:41,908 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54390 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:28:56,906 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62843 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:29:11,870 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53126 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:29:26,879 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49997 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:29:41,873 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57231 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:29:56,885 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61572 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:30:11,908 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54248 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:30:26,895 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62640 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:30:41,899 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53363 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:30:56,880 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65319 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:31:11,894 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:31:26,894 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51318 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:31:41,899 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49953 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:31:56,884 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62578 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:32:11,913 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50959 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:32:26,927 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62474 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:32:41,884 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58271 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:32:57,020 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65085 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:33:06,127 | INFO | backend.stt.engine | Diarization done in 333.0s
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|##########| 1/1 [00:15<00:00, 15.11s/it]Batches: 100%|##########| 1/1 [00:15<00:00, 15.11s/it]
+2026-09-16 18:33:21,624 | INFO | backend.rag.vectorstore | Ingested 10 chunks for Reunion Dhis2.m4a (stt)
+INFO:     127.0.0.1:52787 - "POST /transcribe HTTP/1.1" 200 OK
+2026-09-16 18:33:22,615 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49771 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:33:23,725 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57737 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:33:26,730 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57737 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:33:41,753 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54824 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:33:56,757 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60720 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:34:11,748 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61946 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:34:26,754 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56601 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:34:41,825 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56361 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:34:56,830 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58693 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:35:11,755 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55970 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:35:26,891 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57028 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:35:41,776 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54513 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:35:56,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57949 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:36:11,769 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62364 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:36:26,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64283 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:36:41,795 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54722 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:36:56,786 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55095 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:37:11,786 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59724 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:37:26,734 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58331 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:37:41,762 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54389 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:37:56,798 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51862 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:38:11,782 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61758 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:38:26,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57666 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:38:41,815 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54565 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:38:56,805 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64852 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:39:11,797 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55085 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:39:26,802 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52190 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:39:41,847 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55364 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:39:56,763 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52424 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:40:11,799 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60179 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:40:26,837 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50750 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:40:41,817 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62924 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:40:56,770 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61077 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:41:11,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49343 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:41:26,812 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64347 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:41:41,774 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60759 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:41:56,775 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52168 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:42:11,749 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62257 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:42:26,797 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54810 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:42:41,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50335 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:42:56,767 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56718 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:43:11,733 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63810 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:43:26,739 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53650 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:43:41,725 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55276 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:43:56,791 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49233 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:44:11,758 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58809 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:44:26,744 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51666 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:44:41,796 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60722 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:44:56,743 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60973 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:45:11,755 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57071 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:45:27,923 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59447 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:45:41,767 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51012 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:45:56,857 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60114 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:46:11,745 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56620 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:46:26,762 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49178 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:46:41,819 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62934 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:46:56,796 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59098 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:47:11,780 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53353 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:47:26,773 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51370 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:47:41,811 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56201 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:47:56,822 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:48:11,788 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56387 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:48:26,795 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51032 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:48:41,804 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55561 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:48:56,783 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53654 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:49:11,967 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50231 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:49:26,414 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62128 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:49:41,452 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:49:56,428 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56085 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:50:11,471 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54034 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:50:26,452 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62567 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:50:41,395 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54237 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:50:56,450 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58217 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:51:11,571 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49673 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:51:26,787 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60528 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:51:41,769 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62783 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:51:56,550 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60087 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:52:11,462 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52239 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:52:26,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63909 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:52:41,599 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56048 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:52:56,638 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63945 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:53:11,502 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53899 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:53:26,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49932 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:53:41,731 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59484 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:53:56,535 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53117 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:54:11,537 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56581 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:54:26,577 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54657 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:54:41,539 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51276 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:54:56,454 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57322 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:55:11,546 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59220 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:55:26,525 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61670 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:55:41,689 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51917 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:55:56,456 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61247 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:56:11,796 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51093 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:56:26,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60498 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:56:41,351 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51586 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:56:56,453 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64104 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:57:11,544 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63447 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:57:26,625 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52187 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:57:41,719 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58300 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:57:56,516 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53458 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:58:11,377 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60347 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:58:26,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49820 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:58:41,449 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58079 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:58:56,496 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61619 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:59:11,533 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58287 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:59:26,499 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59911 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:59:41,490 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52887 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 18:59:56,673 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65001 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:00:11,393 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62402 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:00:27,391 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50884 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:00:42,381 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61487 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:00:57,263 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56558 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:01:12,543 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56795 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:02:24,330 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60329 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:03:24,213 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60378 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:04:23,695 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50247 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:05:24,610 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59132 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:06:23,955 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50181 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:07:22,414 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51756 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:08:23,081 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49686 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:09:24,332 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51920 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:10:23,518 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50096 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:11:26,662 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52947 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:12:23,727 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52094 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:13:22,416 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59174 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:14:25,187 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64113 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:15:26,878 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50596 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:16:23,865 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57871 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:17:23,851 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61007 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:18:26,753 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58077 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:19:24,684 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55715 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:20:24,227 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49156 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:21:27,145 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54836 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:22:23,393 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57206 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:23:24,654 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59903 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:24:27,441 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59093 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:25:23,888 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63955 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:26:26,591 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57079 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:27:25,529 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64618 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:28:27,370 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53028 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:29:25,389 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58069 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:30:25,671 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50745 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:31:23,135 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61093 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:32:24,059 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58865 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:33:26,124 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59848 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:34:24,630 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52880 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:35:25,386 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54400 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:36:23,850 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60010 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:37:24,636 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58216 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:38:24,739 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65486 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:39:26,143 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51178 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:40:23,947 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54655 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:41:25,893 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50315 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:42:23,726 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61009 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:43:24,547 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63769 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:44:25,486 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56151 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:45:25,594 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57250 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:46:24,061 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57545 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:47:24,971 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59632 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:48:25,295 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50067 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:49:27,196 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50968 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:50:27,137 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63513 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:51:22,384 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60351 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:52:26,676 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58039 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:53:24,942 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55697 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:54:23,641 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61442 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:55:23,045 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54311 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:56:24,502 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59846 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:57:22,963 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59540 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:58:22,299 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51455 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:58:56,059 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60561 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:59:11,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63713 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:59:26,507 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52543 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:59:41,510 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65056 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 19:59:56,384 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64313 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:00:11,513 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58790 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:00:26,778 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58998 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:00:41,461 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59401 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:00:56,416 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55793 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:01:11,683 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59178 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:01:26,463 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52888 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:01:41,409 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58920 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:01:56,596 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54773 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:02:11,501 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60093 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:02:26,788 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52816 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:02:41,334 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59026 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:02:56,451 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58936 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:03:11,458 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50559 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:03:26,494 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58736 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:03:41,773 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60973 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:03:56,425 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50122 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:04:11,765 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52666 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:04:26,605 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64853 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:04:41,435 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59830 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:04:56,409 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56802 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:05:12,139 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63597 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:05:26,367 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60973 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:05:41,474 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51901 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:05:56,407 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58857 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:06:11,425 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51132 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:06:26,477 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63542 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:06:41,624 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63993 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:06:56,455 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64417 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:07:11,405 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55625 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:07:26,511 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64532 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:07:41,412 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52541 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:07:56,771 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55847 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:08:11,405 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58489 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:08:26,436 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60038 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:08:41,363 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50069 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:08:56,398 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49793 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:09:11,949 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62964 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:09:26,388 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64853 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:09:41,927 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50512 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:09:56,423 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58803 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:10:11,434 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62995 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:10:26,435 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62115 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:10:41,563 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53248 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:10:56,405 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49799 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:11:12,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50805 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:11:27,398 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59053 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:11:42,386 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58046 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:11:57,392 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56287 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:12:22,425 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56949 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:13:22,599 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49915 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:14:22,474 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56915 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:15:22,445 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:16:22,502 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59126 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:17:22,465 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55511 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:18:22,433 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55288 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:19:22,421 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52191 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:20:22,410 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50365 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:21:22,479 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57907 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:22:22,367 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52752 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:23:22,433 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57868 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:24:22,476 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57506 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:25:22,631 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56290 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:26:22,460 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51270 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:27:22,589 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53422 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:28:22,457 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56893 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:29:22,555 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64284 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:30:22,443 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50247 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:31:22,489 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51894 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:32:22,481 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63402 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:33:22,695 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59246 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:34:24,930 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65200 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:35:22,533 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61786 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:36:22,764 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52754 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:37:24,068 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51916 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:38:22,408 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52268 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:39:22,530 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51368 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:40:22,435 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65408 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:41:22,423 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51642 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:42:22,398 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51198 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:43:23,092 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60713 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:44:22,784 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58908 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:45:22,437 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52331 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:46:22,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49924 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:47:22,507 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64157 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:48:22,448 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50998 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:49:22,326 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52419 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:50:22,372 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49327 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:51:22,858 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56303 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:52:22,469 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51686 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:53:23,983 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:54:22,455 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58302 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:55:23,087 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59684 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:56:22,456 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62303 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:57:26,984 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49819 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:58:22,546 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56754 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 20:59:22,253 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63202 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:00:22,321 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55081 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:01:22,848 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64054 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:02:22,221 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58582 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:03:22,236 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57863 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:04:22,231 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63317 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:05:23,678 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54142 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:06:22,860 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57395 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:07:22,299 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49400 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:08:33,064 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54341 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:09:22,172 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53728 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:14:48,100 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63831 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:19:13,467 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54183 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:20:22,638 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55623 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:21:22,416 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59051 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:22:22,339 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56961 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:23:23,377 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63955 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:24:22,434 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59842 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:25:22,430 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51783 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:26:22,731 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61173 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:27:22,345 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65140 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:28:22,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52637 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:29:22,421 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57955 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:30:22,464 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51235 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:31:22,374 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63773 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:32:22,498 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64348 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:33:22,456 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56832 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:34:22,373 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53012 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:35:22,468 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63585 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:36:22,536 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63574 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:37:22,258 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57430 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:38:22,259 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52692 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:39:22,334 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52819 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:40:24,271 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60590 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:41:22,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51245 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:42:22,347 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65406 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:43:22,438 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62254 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:44:22,409 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63264 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:45:22,378 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57273 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:46:22,365 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55259 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:47:22,392 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59986 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:48:22,349 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55824 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:49:22,332 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58057 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:50:22,402 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57247 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:51:22,233 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58848 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:52:22,266 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58804 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:53:22,298 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55672 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:54:22,277 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58259 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:55:22,216 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56169 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:56:22,216 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51267 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:58:09,719 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54112 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:58:22,333 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52854 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 21:59:22,272 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64064 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:00:22,408 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58444 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:01:22,287 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60973 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:02:22,233 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53821 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:03:22,268 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54929 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:04:22,243 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55610 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:05:22,287 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60630 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:06:22,241 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55606 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:07:22,273 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56547 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:08:22,325 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54099 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:09:22,292 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57694 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:10:22,350 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51388 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:11:22,779 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64853 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:12:22,786 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54757 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:13:22,829 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55306 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:14:22,751 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51120 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:15:22,754 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60668 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:16:22,768 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55462 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:16:28,246 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55462 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:16:42,680 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53402 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:16:57,741 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61199 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:17:12,704 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59624 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:17:27,617 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49676 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:18:22,731 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56889 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:19:22,625 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53611 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:20:22,906 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60727 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:21:22,939 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51279 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:22:22,992 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50625 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:23:23,041 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51383 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:24:22,878 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58358 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:25:22,959 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59949 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:26:22,636 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53173 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:27:22,899 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60554 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:28:23,006 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62509 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:29:23,020 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52629 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:30:22,858 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57972 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:31:23,347 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61205 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:32:22,794 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52951 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:33:23,027 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61338 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:34:23,345 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56762 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:35:22,899 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53884 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:36:22,979 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51394 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:37:23,018 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64616 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:38:23,225 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56690 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:39:22,921 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53136 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:40:22,830 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49679 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:41:22,842 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58498 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:42:22,865 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58182 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:43:23,115 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60445 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:44:22,977 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56058 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:45:22,828 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49676 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:46:22,798 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58291 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:47:22,704 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50562 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:48:22,860 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52029 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:49:22,844 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63516 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:50:22,903 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59261 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:51:22,802 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64603 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:52:22,880 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60398 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:53:22,852 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53289 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:54:22,956 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65406 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:55:22,825 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51150 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:56:22,889 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53144 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:57:22,813 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63895 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:58:22,816 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58033 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 22:59:22,866 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55388 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:00:22,775 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62800 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:01:22,800 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54853 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:02:22,857 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58537 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:03:22,826 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58466 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:04:22,748 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60637 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:05:22,881 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63140 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:06:22,873 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60254 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:07:22,819 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54310 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:08:22,849 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52625 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:09:22,861 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63615 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:10:22,824 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61446 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:11:22,846 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58477 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:12:22,814 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51605 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:13:22,793 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51645 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:14:22,847 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59025 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:15:23,135 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50062 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:16:22,850 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53115 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:17:22,832 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54559 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:18:22,852 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56642 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:19:22,798 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61587 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:20:22,933 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55269 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:21:22,860 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62142 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:22:22,844 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:23:22,857 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51766 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:24:22,854 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52559 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:25:22,834 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60217 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:26:22,881 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60976 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:27:22,868 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50333 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:28:22,909 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62792 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:29:22,887 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64114 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:30:22,818 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50250 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:31:22,801 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58988 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:32:22,853 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52257 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:33:22,842 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65131 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:34:22,828 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61648 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:35:22,835 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64284 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:36:22,817 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63273 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:37:22,834 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64856 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:38:22,852 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55180 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:39:22,841 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56816 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:40:22,858 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58518 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:41:22,930 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50971 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:42:22,904 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54232 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:43:22,863 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54304 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:44:22,858 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64854 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:45:22,865 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54001 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:46:22,874 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50707 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:47:22,799 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52846 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:48:22,339 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52335 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:49:22,351 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60974 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:50:22,429 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60484 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:51:22,345 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58472 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:52:22,338 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50285 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:53:22,363 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63462 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:54:22,342 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53037 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:55:22,248 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54538 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:56:22,287 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59817 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:57:22,308 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60159 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:58:22,367 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56687 - "GET /health HTTP/1.1" 200 OK
+2026-09-16 23:59:22,340 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53580 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:00:22,422 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63017 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:01:22,273 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62925 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:02:22,633 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65148 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:03:22,430 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51124 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:04:22,321 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63335 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:05:22,359 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53999 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:06:22,271 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63973 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:07:22,273 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56804 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:08:22,301 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54611 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:09:22,409 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52632 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:10:22,324 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63350 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:11:22,328 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63011 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:12:22,363 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59989 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:13:22,304 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64601 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:14:22,314 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63890 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:15:22,308 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52750 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:16:22,331 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63590 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:17:22,292 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51512 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:18:22,314 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49159 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:19:22,338 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51569 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:20:22,373 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65464 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:21:22,319 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59371 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:22:22,330 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57033 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:23:22,342 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61480 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:24:22,317 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55227 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:25:22,387 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58327 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:26:24,091 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49971 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:27:22,594 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55317 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:28:22,266 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64137 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:29:22,393 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54499 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:30:22,351 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57430 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:31:22,742 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53992 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:32:22,384 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52502 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:33:22,269 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:65514 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:34:22,250 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59300 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:35:22,338 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50598 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:36:22,293 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64133 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:37:22,388 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58183 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:38:22,197 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49319 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:39:22,345 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64286 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:40:22,417 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61976 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:41:22,393 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64411 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:42:22,475 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49723 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:43:22,432 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50544 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:44:22,449 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63282 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:45:22,400 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62735 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:46:22,445 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56912 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:47:22,341 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61680 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:48:22,437 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62212 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:49:22,407 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50204 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:50:22,557 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55385 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:51:22,442 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54951 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:52:22,431 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63788 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:53:22,544 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51249 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:54:22,394 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:49671 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:55:22,411 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50150 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:56:22,356 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53613 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:57:22,512 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:51165 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:58:22,400 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62542 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 00:59:22,357 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53665 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:00:22,495 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57869 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:01:22,372 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56274 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:02:23,785 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57498 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:03:22,391 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63147 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:04:22,485 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56656 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:05:22,431 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60476 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:06:22,400 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:62548 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:07:22,603 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59795 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:08:22,317 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56220 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:09:22,284 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52442 - "GET /health HTTP/1.1" 200 OK
+2026-09-17 01:10:22,329 | INFO | httpx | HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50525 - "GET /health HTTP/1.1" 200 OK

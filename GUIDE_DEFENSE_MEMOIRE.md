@@ -43,7 +43,7 @@ Ces chiffres sont tes ancres. Tu dois pouvoir les sortir sans chercher.
 |---|---:|---|
 | Taille du dataset canonique | 36 clips | 24 propres + 12 bruites, EN/FR/DE |
 | Campagne totale | 468 transcriptions | 180 CPU + 288 GPU/extensions |
-| Effet du bruit baseline | 47.0 % -> 96.4 % WER | le bruit double environ l'erreur |
+| Effet du bruit baseline | 61.1 % -> 96.4 % WER, sur 12 paires | +35.3 points ; IC 95 % [7.0, 60.0] |
 | Echelle Whisper | 63.4 % -> 24.6 % WER | de tiny a large-v3 |
 | LoRA / prompting | environ 1 point | effet faible, non comparable a la taille du modele |
 
@@ -53,7 +53,9 @@ Ajoute aussi ces trois chiffres de defense :
 |---|---:|
 | Detection automatique FR en echec | 42 % des clips francais |
 | RTF CPU sous 1 | 93.9 % des 180 runs CPU |
-| Latence live steady-state | mediane 0.56 s, p95 1.18 s |
+| Latence live historique, 20 observations hors premiers enonces | mediane 0.56 s, p95 0.84 s, maximum 1.18 s |
+
+Attention : le journal contient maintenant 38 observations. Les 35 hors premiers enonces donnent une mediane de 0.575 s, un p95 de 1.614 s et un maximum de 11.021 s. Les configurations des sessions ne sont pas consignees. Voir `results/topic2_readiness_audit.md` et `COMPLEMENTS_TOPIC2.md` ; ne pas presenter le resultat historique comme une garantie actuelle.
 
 ---
 
@@ -63,7 +65,7 @@ Ajoute aussi ces trois chiffres de defense :
 
 Ce que tu dis :
 
-> Le bruit est le facteur de degradation dominant. En baseline, le WER passe de 47.0 % sur audio propre a 96.4 % sur audio bruite. Aucun autre levier teste ne produit un effet de cette taille.
+> Sur les 12 memes enonces avant et apres ajout de bruit, le WER passe de 61.1 % a 96.4 %, soit +35.3 points. C'est un effet important, avec une incertitude large. Le contraste 47.0 % contre 96.4 % utilise des ensembles differents et ne mesure pas a lui seul l'effet du bruit.
 
 Ce que ca veut dire :
 
@@ -449,11 +451,11 @@ A memoriser :
 
 - 36 clips.
 - 468 runs.
-- Bruit : 47.0 -> 96.4.
+- Bruit apparie : 61.1 -> 96.4, soit +35.3 points.
 - Taille : 63.4 -> 24.6.
 - Prompt/LoRA : environ 1 point.
 - FR auto-detect : 42 % d'echecs.
-- Live : 0.56 s mediane, 1.18 s p95.
+- Live historique : 0.56 s mediane, 0.84 s p95, 1.18 s maximum ; consulter aussi l'audit des 38 observations.
 
 Technique :
 
@@ -461,7 +463,7 @@ Associe chaque chiffre a une image mentale :
 
 - 36 = petit dataset pilote.
 - 468 = grosse campagne tracee.
-- 47 -> 96 = bruit qui double.
+- 61 -> 96 = environ 35 points de degradation sur les memes enonces.
 - 63 -> 25 = modele plus grand.
 - 1 point = adaptation faible ici.
 - 42 = francais auto-detect fragile.
@@ -642,7 +644,7 @@ Dis plutot :
 >
 > I implemented a local STT pipeline based on faster-whisper and evaluated it under controlled conditions using a trilingual MInDS-14 dataset with clean and noise-augmented audio. The experimental campaign includes 468 transcription runs: a CPU pilot, GPU model-size extensions, VAD, LoRA fine-tuning, and comparisons with MMS and Conformer.
 >
-> The main finding is that noise is the dominant source of degradation: baseline WER rises from 47.0 percent on clean audio to 96.4 percent on noisy audio. Model size is the strongest accuracy lever, reducing mean WER from 63.4 percent with tiny to 24.6 percent with large-v3. Forced language identification is the most actionable low-cost improvement, especially for French, where automatic language detection failed on 42 percent of clips. By contrast, prompting and LoRA only changed WER by about one point on this dataset.
+> Matched noise augmentation raises baseline WER from 61.1 to 96.4 percent on twelve paired utterances. Model size is the strongest accuracy lever, reducing mean WER from 63.4 percent with tiny to 24.6 percent with large-v3. Providing the expected language repairs several wrong-script outputs, but direct language-identification accuracy was not logged in the CPU pilot. Prompting and LoRA only changed WER by about one point on this dataset; a reliable LoRA benefit is not established.
 >
 > The work is deliberately honest about its limits: the dataset is not real Nestle meeting audio, the noise is synthetic, and the system is a pilot rather than a production deployment. The contribution is therefore not a universal ASR solution, but a reproducible measurement of what works, what fails, and what should be tested next.
 
@@ -766,11 +768,11 @@ Phrase de defense :
 
 ### Danger 1 : contradiction 432 vs 468
 
-Dans certains documents de support, il reste des mentions de 432 runs. La version officielle actuelle parle de 468 runs. Si on te demande :
+Les supports corriges utilisent 468 runs. Les anciennes versions pouvaient mentionner 432. Si on te demande :
 
 > La version finale integre les extensions qui portent la campagne totale a 468 transcriptions. Certaines notes de preparation plus anciennes mentionnaient 432, mais le chiffre canonique du memoire final est 468.
 
-Action avant envoi : corriger les documents annexes qui disent encore 432 si tu les utilises.
+Action avant envoi : verifier que les exports PDF et les diapositives utilisent eux aussi 468.
 
 ### Danger 2 : dataset proxy
 
@@ -819,7 +821,7 @@ Ta reponse :
 ### A corriger dans les fichiers
 
 - Supprimer ou completer les `\todo{ ...}` dans `Memoire_LaTeX/main.tex`.
-- Harmoniser `432` vs `468` dans les documents de support.
+- Verifier que les exports des supports conservent le total corrige de 468.
 - Verifier que le PDF compile proprement.
 - Verifier que les tableaux du deck reprennent les chiffres finaux.
 - Ne pas utiliser `Topic2_Thesis_Rewrite.md` comme source finale si `main.tex` est plus a jour.

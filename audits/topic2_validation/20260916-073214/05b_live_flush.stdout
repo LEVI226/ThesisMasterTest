@@ -1,0 +1,21 @@
+loaded: {'model': 'small', 'device': 'cuda', 'compute_type': 'float16', 'cuda_available': True, 'gpu_name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'vad_loaded': True, 'diarization_loaded': False}
+
+minds14_fr_clean_01: cut at 2.06s, 3 chunks, tail RMS 0.251 (must be well above 0.01)
+   PRISTINE end_signal delivered=0 ack=False ''
+   FIXED    end_signal delivered=1 ack=True  'Je souhaite changer mon a...'
+   PRISTINE disconnect delivered=0 ack=False ''
+   FIXED    disconnect delivered=1 ack=False 'Je souhaite changer mon a...'
+
+minds14_en_clean_01: cut at 5.96s, 6 chunks, tail RMS 0.0005 (must be well above 0.01)
+   PRISTINE end_signal delivered=0 ack=False ''
+   FIXED    end_signal delivered=1 ack=True  'I would like to set up a joint account with my partner.'
+   PRISTINE disconnect delivered=0 ack=False ''
+   FIXED    disconnect delivered=1 ack=False 'I would like to set up a joint account with my partner.'
+
+minds14_de_clean_01: cut at 3.22s, 4 chunks, tail RMS 0.09 (must be well above 0.01)
+   PRISTINE end_signal delivered=0 ack=False ''
+   FIXED    end_signal delivered=1 ack=True  'Hverste gjerne gelt?'
+   PRISTINE disconnect delivered=0 ack=False ''
+   FIXED    disconnect delivered=1 ack=False 'Hverste gjerne gelt?'
+
+written: C:\Users\ulric\Documents\ThesisMasterTest\audits\topic2_validation\20260916-073214\05b_live_flush_before_after.json

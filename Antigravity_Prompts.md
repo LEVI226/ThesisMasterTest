@@ -1,5 +1,7 @@
 # Prompts Antigravity / Claude Code — Topic 2 STT
 
+> Historique de developpement. Pour l'audit avant soutenance, utiliser `PROMPTS_ANTIGRAVITY_AUDIT_SOUTENANCE.md`. Les blocs ci-dessous contiennent des consignes anciennes et parfois contradictoires : notamment, un changement de WER entre CPU INT8 et GPU float16 n'est pas automatiquement un bug. Ne pas rejouer ces blocs dans les CSV canoniques sans isolation des sorties.
+
 But : faire **tourner** le système (GPU) et me faire **comprendre + défendre** mon propre travail.
 Mode recommandé : **Review-driven** (je valide chaque commande/édition).
 

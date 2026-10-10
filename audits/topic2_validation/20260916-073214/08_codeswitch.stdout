@@ -1,0 +1,25 @@
+loaded: {'model': 'small', 'device': 'cuda', 'compute_type': 'float16', 'cuda_available': True, 'gpu_name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'vad_loaded': True, 'diarization_loaded': False}
+
+minds14_fr_clean_01 + minds14_en_clean_01  gap=0.0s  -> 2 utterance(s)  WER(concat refs)=0.647
+    Je souhaite changer mon adresse.
+    How do I proceed with doing that?
+
+minds14_fr_clean_01 + minds14_en_clean_01  gap=1.5s  -> 2 utterance(s)  WER(concat refs)=0.882
+    Je souhaite changer mon adresse.  Je voudrais mettre un compte joint avec mon partner.
+    How do I proceed with doing that?
+
+minds14_fr_clean_01 + minds14_de_clean_01  gap=0.0s  -> 1 utterance(s)  WER(concat refs)=0.769
+    Je souhaite changer mon adresse.  Je me souviens d'avoir un geld sur mon compte en temps.
+
+minds14_fr_clean_01 + minds14_de_clean_01  gap=1.5s  -> 2 utterance(s)  WER(concat refs)=0.615
+    Je souhaite changer mon adresse
+    \u1793\u17d2\u1098\u17d1\u17cd\u17d2\u1780\u17d1\u17d1\u17cd.  \u17d2\u17d2\u17d2\u1780\u17d2\u1780\u17d2\u1780\u17d2\u1780\u17d2\u17d2,
+
+minds14_en_clean_04 + minds14_fr_clean_02  gap=0.0s  -> 1 utterance(s)  WER(concat refs)=0.083
+    How do I start a join account?  Bonjour, je voudrais changer d'adresse.
+
+minds14_en_clean_04 + minds14_fr_clean_02  gap=1.5s  -> 2 utterance(s)  WER(concat refs)=0.083
+    How do I start a join account?
+    Bonjour, je voudrais changer d'adresse.
+
+written: C:\Users\ulric\Documents\ThesisMasterTest\audits\topic2_validation\20260916-073214\08_codeswitch_live.json

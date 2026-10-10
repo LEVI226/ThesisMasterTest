@@ -4,6 +4,7 @@ Runs transcription experiments across multiple conditions and records metrics.
 """
 import csv
 import logging
+import os
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -13,7 +14,9 @@ from backend.evaluation.metrics import wer, cer, rtf
 
 logger = logging.getLogger(__name__)
 
-TRANSCRIPT_DIR = Path("results/transcripts")
+# Historical location by default; new campaigns should set TRANSCRIPT_DIR so
+# their side files never overwrite the canonical ones.
+TRANSCRIPT_DIR = Path(os.environ.get("TRANSCRIPT_DIR", "results/transcripts"))
 SAMPLE_LANGUAGE = "__sample_language__"
 
 
@@ -84,10 +87,6 @@ def run_single(
     except Exception:
         audio_dur = 0.0
 
-    condition_tag = (
-        f"prep{int(preprocessing)}_prompt{int(domain_prompt)}"
-        f"_lang{forced_language or 'auto'}"
-    )
 
     try:
         t0 = time.time()
@@ -105,6 +104,11 @@ def run_single(
         c = cer(ref_text, hypothesis) if ref_text else float("nan")
         r = rtf(audio_dur, elapsed)
 
+        # Model actually used + VAD are part of the name so runs never collide.
+        condition_tag = (
+            f"{model_used}_prep{int(preprocessing)}_prompt{int(domain_prompt)}"
+            f"_lang{forced_language or 'auto'}_vad{int(vad)}"
+        )
         transcript_path = _save_transcript(sample.audio_filename, condition_tag, hypothesis)
 
         logger.info(
@@ -228,3 +232,8 @@ def run_evaluation(
         logger.info("Results written to %s", output_csv)
 
     return all_results
+
+
+
+
+

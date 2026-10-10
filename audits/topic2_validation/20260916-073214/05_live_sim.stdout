@@ -1,0 +1,12 @@
+loaded: {'model': 'small', 'device': 'cuda', 'compute_type': 'float16', 'cuda_available': True, 'gpu_name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'vad_loaded': True, 'diarization_loaded': False}
+  minds14_fr_clean_01    end_signal utt=1 ack=True  WER=0.0    'je souhaite changer mon adresse'
+  minds14_fr_clean_01    disconnect utt=1 ack=False WER=0.0    'je souhaite changer mon adresse'
+  minds14_fr_clean_01    silence    utt=1 ack=False WER=0.0    'je souhaite changer mon adresse'
+  minds14_en_clean_01    end_signal utt=2 ack=True  WER=0.5833 'I would like to set up a joint account with my partner.'
+  minds14_en_clean_01    disconnect utt=2 ack=False WER=0.5833 'I would like to set up a joint account with my partner.'
+  minds14_en_clean_01    silence    utt=2 ack=False WER=0.5833 'I would like to set up a joint account with my partner.'
+  minds14_de_clean_01    end_signal utt=1 ack=True  WER=1.0    'Møste gjerne gelt av meg kant og ansøg.'
+  minds14_de_clean_01    disconnect utt=1 ack=False WER=1.0    'Møste gjerne gelt av meg kant og ansøg.'
+  minds14_de_clean_01    silence    utt=1 ack=False WER=1.0    'Møste gjerne gelt av meg kant og ansøg.'
+  de forced              end_signal utt=1 WER=0.125 'Ich möchte gerne Geld auf mein Konto eintragen.'
+written: C:\Users\ulric\Documents\ThesisMasterTest\audits\topic2_validation\20260916-073214\05_live_sim.json

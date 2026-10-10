@@ -1,0 +1,11 @@
+label,file,true_language,mode,forced_language,detected_language,model,device,compute_type,reference,hypothesis,wer,cer,audio_s,engine_processing_s,wall_s,rtf_wall,error
+gpu_fp16,minds14_en_clean_01,en,auto,,en,small,cuda,float16,I would like to set up a joint account with my partner,I would like to set up a joint account with my partner. How do I proceed with doing that?,0.5833,0.6047,10.837,1.3983347415924072,1.4,0.129,
+gpu_fp16,minds14_en_clean_01,en,forced,en,en,small,cuda,float16,I would like to set up a joint account with my partner,I would like to set up a joint account with my partner. How do I proceed with doing that?,0.5833,0.6047,10.837,0.7696065902709961,0.771,0.071,
+gpu_fp16,minds14_fr_clean_01,fr,auto,,fr,small,cuda,float16,je souhaite changer mon adresse,Je souhaite changer mon adresse,0.0,0.0,3.755,0.6015501022338867,0.604,0.161,
+gpu_fp16,minds14_fr_clean_01,fr,forced,fr,fr,small,cuda,float16,je souhaite changer mon adresse,Je souhaite changer mon adresse,0.0,0.0,3.755,0.5277194976806641,0.529,0.141,
+gpu_fp16,minds14_de_clean_01,de,auto,,de,small,cuda,float16,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Geld auf mein Konto einsäumen.,0.125,0.1026,5.851,0.6703925132751465,0.671,0.115,
+gpu_fp16,minds14_de_clean_01,de,forced,de,de,small,cuda,float16,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Geld auf mein Konto einsäumen.,0.125,0.1026,5.851,0.6271469593048096,0.628,0.107,
+gpu_fp16,minds14_fr_noisy_01,fr,auto,,fr,small,cuda,float16,je souhaite changer mon adresse,Je souhaite changer mon adorant,0.2,0.1852,3.755,0.5980849266052246,0.599,0.16,
+gpu_fp16,minds14_fr_noisy_01,fr,forced,fr,fr,small,cuda,float16,je souhaite changer mon adresse,Je souhaite changer mon adorant,0.2,0.1852,3.755,0.6051831245422363,0.607,0.162,
+gpu_fp16,minds14_de_noisy_01,de,auto,,de,small,cuda,float16,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Gämpf auf meinen Kampel haben.,0.5,0.3846,5.851,0.8061656951904297,0.808,0.138,
+gpu_fp16,minds14_de_noisy_01,de,forced,de,de,small,cuda,float16,ich möchte gerne Geld auf mein Konto einzahlen,Ich möchte gerne Gämpf auf meinen Kampel haben.,0.5,0.3846,5.851,0.8132193088531494,0.815,0.139,

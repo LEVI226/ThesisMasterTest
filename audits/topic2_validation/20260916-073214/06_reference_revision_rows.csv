@@ -1,0 +1,27 @@
+source,filename,condition_tag,model,wer_old,wer_new,cer_old,cer_new,hypothesis
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,A_baseline,tiny,0.5833,0.0,0.6047,0.0,"I would like to set up a joint account with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,A_baseline,tiny,0.8333,0.1579,0.6744,0.0435,"I would like to set up, join the count with my partner, how do I proceed with doing that?"
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,B_noise_reduction,tiny,0.5833,0.0,0.6047,0.0,"I would like to set up a joint account with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,B_noise_reduction,tiny,0.9167,0.2105,0.7209,0.0725,"I would like to set up the join to count with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,D_domain_prompt,tiny,0.5833,0.0,0.6047,0.0,"I would like to set up a joint account with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,D_domain_prompt,tiny,0.5833,0.0526,0.5581,0.0435,"I would like to set up a joint account with my partner, how do I proceed to doing that."
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,E_forced_language,tiny,0.5833,0.0,0.6047,0.0,"I would like to set up a joint account with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,E_forced_language,tiny,0.5833,0.0526,0.5581,0.0435,"I would like to set up a joint account with my partner, how do I proceed to doing that."
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,F_model_base,base,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,F_model_base,base,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,G_model_small,small,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,G_model_small,small,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,H_model_medium,medium,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,H_model_medium,medium,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,I_model_large_v3,large-v3,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,I_model_large_v3,large-v3,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_pilot_results.csv,minds14_en_clean_01.wav,C_vad,tiny,0.5833,0.0,0.6047,0.0,"I would like to set up a joint account with my partner, how do I proceed with doing that."
+results/stt_eval_pilot_results.csv,minds14_en_noisy_01.wav,C_vad,tiny,0.9167,0.2105,0.7209,0.0725,"I would like to set up the join to count with my partner, how do I proceed with doing that."
+results/stt_eval_lora_results.csv,minds14_en_clean_01.wav,J0_small_hf_vanilla,whisper-small-hf-vanilla,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_lora_results.csv,minds14_en_noisy_01.wav,J0_small_hf_vanilla,whisper-small-hf-vanilla,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner. How do I proceed with doing that?
+results/stt_eval_lora_results.csv,minds14_en_clean_01.wav,J_lora_small,whisper-small+lora,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner how do I proceed with doing that
+results/stt_eval_lora_results.csv,minds14_en_noisy_01.wav,J_lora_small,whisper-small+lora,0.5833,0.0,0.6047,0.0,I would like to set up a joint account with my partner how do I proceed with doing that
+results/stt_eval_wav2vec_results.csv,minds14_en_clean_01.wav,K_wav2vec,mms-1b-all,0.6667,0.0526,0.6512,0.029,i would like to set up a jond account with my partner how do i proceed with doing that
+results/stt_eval_wav2vec_results.csv,minds14_en_noisy_01.wav,K_wav2vec,mms-1b-all,0.8333,0.2632,0.7442,0.1594,i would like to set up a draingt a count with my partner how do i proceive this doing that
+results/stt_eval_conformer_results.csv,minds14_en_clean_01.wav,L_conformer_en,nvidia/stt_en_conformer_ctc_large,0.4167,0.1053,0.3953,0.1304,i would like to set up a joint account with my partner how do i proceed with
+results/stt_eval_conformer_results.csv,minds14_en_noisy_01.wav,L_conformer_en,nvidia/stt_en_conformer_ctc_large,0.5833,0.0,0.6047,0.0,i would like to set up a joint account with my partner how do i proceed with doing that

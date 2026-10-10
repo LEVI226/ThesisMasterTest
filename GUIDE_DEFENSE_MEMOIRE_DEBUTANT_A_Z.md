@@ -7,6 +7,10 @@ Ce guide est fait pour toi si tu ne veux pas juste memoriser des phrases, mais v
 
 L'objectif final est simple : si un membre du jury te demande "pourquoi ?", "comment ?", "avec quoi ?", "qu'est-ce que ca veut dire ?", tu dois pouvoir reconstruire la reponse calmement.
 
+Ta soutenance sera en anglais : le parcours bilingue `GUIDE_SOUTENANCE_ANGLAIS_FR_EN.md` ajoute la lecture du memoire, le vocabulaire, la presentation, la comprehension des questions, les reponses et un entrainement audio dans `training/english_defense/`.
+
+Complement indispensable : lire `COMPLEMENTS_TOPIC2.md` pour le lien exact avec le Topic 2, les insuffisances, les protocoles restants et les reponses au jury. La latence historique porte sur 22 observations ; le journal actuel en contient 38 et inclut un delai de 11.021 s. Voir `results/topic2_readiness_audit.md`.
+
 ---
 
 ## 1. Le probleme de depart
@@ -572,13 +576,13 @@ Si A et B different seulement par `noisereduce`, alors la difference de WER entr
 Baseline :
 
 ```text
-audio propre : 47.0 % WER
+audio propre apparie : 61.1 % WER (12 enonces ayant chacun une copie bruitee)
 audio bruite : 96.4 % WER
 ```
 
 Interpretation :
 
-> Le bruit double presque l'erreur. C'est le facteur le plus violent.
+> Le bruit ajoute 35.3 points d'erreur sur les memes 12 enonces. Comparer les memes phrases permet d'isoler l'effet de l'ajout de bruit. Les 24 fichiers propres donnent 47.0 % en moyenne, mais les 12 phrases supplementaires rendent ce groupe different : ce contraste ne suffit pas a mesurer l'effet du bruit.
 
 ### 11.2 Nettoyer le bruit aide, mais pas toujours
 
@@ -1026,7 +1030,7 @@ Vraies donnees, fine-tuning domaine, integration securisee, Teams/Azure.
 >
 > J'ai donc construit et evalue un pipeline local base sur faster-whisper. Le pipeline permet d'activer ou non la reduction de bruit, le prompt de vocabulaire metier, la langue forcee et le VAD. J'ai ensuite mesure les performances avec WER, CER et RTF sur un dataset public trilingue, MInDS-14, compose de 36 clips propres et bruites.
 >
-> Les resultats montrent d'abord que le bruit est le facteur dominant : le WER passe de 47.0 % sur audio propre a 96.4 % sur audio bruite en baseline. La reduction de bruit aide sur le bruite mais degrade legerement le propre. La langue forcee est le resultat le plus directement actionnable, car elle corrige des erreurs de detection automatique, notamment en francais. La taille du modele est le plus grand levier de precision : le WER descend de 63.4 % avec tiny a 24.6 % avec large-v3. En revanche, le prompting et LoRA ne deplacent le WER que d'environ un point sur ce dataset.
+> Sur les 12 enonces apparies, le bruit fait passer le WER de 61.1 % a 96.4 %, soit +35.3 points. La reduction de bruit aide sur le bruite mais degrade legerement le propre. Fournir la langue attendue corrige plusieurs sorties dans un mauvais alphabet, notamment en francais. La taille du modele est le plus grand levier de precision : le WER descend de 63.4 % avec tiny a 24.6 % avec large-v3. Le prompting et LoRA ne deplacent le WER que d'environ un point ; le gain LoRA reste incertain. Les reunions reelles et le vocabulaire Nestle ne sont pas valides par ce corpus bancaire.
 >
 > La limite principale est que MInDS-14 n'est pas une vraie reunion Nestle. C'est un proxy public, choisi pour des raisons de confidentialite et de reproductibilite. Donc mon travail ne pretend pas prouver un deploiement final chez Nestle ; il fournit une evaluation controlee, traceable, et une hierarchie claire des leviers a tester ensuite sur de vraies donnees autorisees.
 

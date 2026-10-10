@@ -1,6 +1,17 @@
 # Nestlé AI Accessibility Platform
 **BIT / Nestlé — Master Thesis Research Project**
 
+## Maintenance and AI Traceability
+
+Before extending or repairing this project, read:
+
+- [MAINTENANCE_GUIDE.md](MAINTENANCE_GUIDE.md) — how to run, verify, repair, and preserve the project.
+- [CHANGELOG.md](CHANGELOG.md) — narrative history of major changes and lessons.
+- [PROMPTS_JOURNAL.md](PROMPTS_JOURNAL.md) — reusable prompts and AI workflow memory.
+- [AI_METHODOLOGY.md](AI_METHODOLOGY.md) — disclosed AI usage, rejected errors, and verification policy.
+
+These files exist so the project remains maintainable without depending on an AI-only explanation.
+
 | Topic | Student | Focus |
 |---|---|---|
 | Topic 1 — OCR Engine | Fadel ZONGO | Deep learning OCR for corporate documents |
