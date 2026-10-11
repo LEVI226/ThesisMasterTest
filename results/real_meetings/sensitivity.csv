@@ -1,0 +1,66 @@
+analysis_type,analysis,group,metric,estimate,ci_low,ci_high,n_pairs,n_excluded,n_clusters,wer_a,wer_b,note
+exploratory_post_freeze,P9 with loops (reference),all,wer_diff_a_minus_b,-0.1009,-0.1903,-0.0292,1949,0,28,,,same selection and seed as the pre-registered test
+exploratory_post_freeze,P9 loop-free,all,wer_diff_a_minus_b,-0.0110,-0.0166,-0.0056,1929,20,28,,,pairs where either side has repetition_loop=1 removed
+exploratory_post_freeze,P3 with loops (reference),all,wer_diff_a_minus_b,-0.0498,-0.0981,0.0114,68,0,11,,,same selection and seed as the pre-registered test
+exploratory_post_freeze,P3 loop-free,all,wer_diff_a_minus_b,-0.0893,-0.1103,-0.0681,65,3,11,,,pairs where either side has repetition_loop=1 removed
+exploratory_post_freeze,P8 per dataset,agm,wer_diff_a_minus_b,0.0026,0.0000,0.0081,203,0,32,,,"a = auto-snr5, b = forced-snr5"
+exploratory_post_freeze,P8 per dataset,ami-sdm,wer_diff_a_minus_b,0.0831,0.0228,0.1735,1300,0,16,,,"a = auto-clean, b = forced-clean"
+exploratory_post_freeze,P8 per dataset,summre,wer_diff_a_minus_b,0.0076,0.0040,0.0131,649,0,12,,,"a = auto-clean, b = forced-clean"
+exploratory_post_freeze,P8 wrong-language rate (auto),agm,share_detected_ne_language,0.0049,,,203,,,,,condition auto-snr5
+exploratory_post_freeze,P8 wrong-language rate (auto),ami-sdm,share_detected_ne_language,0.0885,,,1300,,,,,condition auto-clean
+exploratory_post_freeze,P8 wrong-language rate (auto),summre,share_detected_ne_language,0.1495,,,649,,,,,condition auto-clean
+exploratory_post_freeze,P5 per meeting,EN2002a,wer_diff_a_minus_b,0.2713,,,734,,,0.4792,0.2079,"a = SDM, b = IHM; point estimate, no CI"
+exploratory_post_freeze,P5 per meeting,ES2004a,wer_diff_a_minus_b,0.1746,,,183,,,0.3159,0.1413,"a = SDM, b = IHM; point estimate, no CI"
+exploratory_post_freeze,P5 per meeting,IS1009a,wer_diff_a_minus_b,0.1115,,,146,,,0.2544,0.1430,"a = SDM, b = IHM; point estimate, no CI"
+exploratory_post_freeze,P5 per meeting,TS3003a,wer_diff_a_minus_b,0.1820,,,237,,,0.3152,0.1332,"a = SDM, b = IHM; point estimate, no CI"
+exploratory_post_freeze,loop rate,conformer-ctc-large|agm|forced-clean,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|agm|forced-snr10,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|agm|forced-snr20,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|agm|forced-snr5,share_repetition_loop,0.0000,,,203,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|ami-ihm|forced-clean,share_repetition_loop,0.0000,,,1300,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|ami-sdm|forced-clean,share_repetition_loop,0.0000,,,1300,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|noise|forced-clean,share_repetition_loop,0.0000,,,30,,,,,
+exploratory_post_freeze,loop rate,conformer-ctc-large|summre|forced-clean,share_repetition_loop,0.0031,,,649,,,,,
+exploratory_post_freeze,loop rate,hf-whisper-small|ami-ihm|forced-clean,share_repetition_loop,0.0062,,,1300,,,,,
+exploratory_post_freeze,loop rate,hf-whisper-small|summre|forced-clean,share_repetition_loop,0.0154,,,649,,,,,
+exploratory_post_freeze,loop rate,hf-whisper-small-lora|ami-ihm|forced-clean,share_repetition_loop,0.0023,,,1300,,,,,
+exploratory_post_freeze,loop rate,hf-whisper-small-lora|summre|forced-clean,share_repetition_loop,0.0046,,,649,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|agm|forced-clean,share_repetition_loop,0.0000,,,203,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|agm|forced-snr10,share_repetition_loop,0.0000,,,203,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|agm|forced-snr20,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|agm|forced-snr5,share_repetition_loop,0.0000,,,203,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|ami-ihm|forced-clean,share_repetition_loop,0.0000,,,1300,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|ami-sdm|forced-clean,share_repetition_loop,0.0008,,,1300,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|noise|forced-clean,share_repetition_loop,0.3000,,,30,,,,,
+exploratory_post_freeze,loop rate,mms-1b-all|summre|forced-clean,share_repetition_loop,0.0031,,,649,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|auto-clean,share_repetition_loop,0.0148,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|auto-snr5,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-clean,share_repetition_loop,0.0148,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-clean-denoise,share_repetition_loop,0.0099,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-clean-prompt,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr10,share_repetition_loop,0.0099,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr10-denoise,share_repetition_loop,0.0148,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr20,share_repetition_loop,0.0148,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr20-denoise,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr5,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|agm|forced-snr5-denoise,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|ami-ihm|forced-clean,share_repetition_loop,0.0008,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|ami-sdm|auto-clean,share_repetition_loop,0.0046,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|ami-sdm|forced-clean,share_repetition_loop,0.0000,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|noise|auto-clean,share_repetition_loop,0.0000,,,30,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|noise|forced-clean,share_repetition_loop,0.0000,,,30,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|summre|auto-clean,share_repetition_loop,0.0062,,,649,,,,,
+exploratory_post_freeze,loop rate,whisper-large-v3|summre|forced-clean,share_repetition_loop,0.0062,,,649,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|auto-clean,share_repetition_loop,0.0099,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|auto-snr5,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|forced-clean,share_repetition_loop,0.0099,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|forced-snr10,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|forced-snr20,share_repetition_loop,0.0099,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|agm|forced-snr5,share_repetition_loop,0.0049,,,203,,,,,
+exploratory_post_freeze,loop rate,whisper-small|ami-ihm|forced-clean,share_repetition_loop,0.0046,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-small|ami-sdm|auto-clean,share_repetition_loop,0.0585,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-small|ami-sdm|forced-clean,share_repetition_loop,0.0131,,,1300,,,,,
+exploratory_post_freeze,loop rate,whisper-small|noise|auto-clean,share_repetition_loop,0.0333,,,30,,,,,
+exploratory_post_freeze,loop rate,whisper-small|noise|forced-clean,share_repetition_loop,0.0000,,,30,,,,,
+exploratory_post_freeze,loop rate,whisper-small|summre|auto-clean,share_repetition_loop,0.0046,,,649,,,,,
+exploratory_post_freeze,loop rate,whisper-small|summre|forced-clean,share_repetition_loop,0.0062,,,649,,,,,
