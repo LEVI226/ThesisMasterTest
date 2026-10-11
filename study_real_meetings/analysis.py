@@ -12,6 +12,10 @@ from study_real_meetings.stats import (
 )
 
 
+# detected_language is just the requested language for these (no language identification): rate is n/a.
+NO_LANG_DETECTION = ("hf-whisper-small", "hf-whisper-small-lora")
+
+
 def _int(row, key):
     return int(row[key])
 
@@ -48,7 +52,8 @@ def summarise(rows: list[dict]) -> list[dict]:
         summary |= {
             "term_recall": f"{sum(_int(r, 'term_hits') for r in rs) / terms_total:.3f}" if terms_total else "",
             "loop_rate": f"{sum(_int(r, 'repetition_loop') for r in rs) / len(rs):.3f}",
-            "lang_mismatch_rate": f"{sum(r['detected_language'] != r['language'] for r in rs) / len(rs):.3f}",
+            "lang_mismatch_rate": "" if dataset == "noise" or system in NO_LANG_DETECTION else
+            f"{sum(r['detected_language'] != r['language'] for r in rs) / len(rs):.3f}",
             "median_rtf": f"{sorted(float(r['rtf']) for r in rs)[len(rs) // 2]:.4f}",
         }
         out.append(summary)
@@ -113,6 +118,8 @@ def primary_tests(rows: list[dict]) -> list[dict]:
         base = {"key": comp.key, "hypothesis": comp.hypothesis,
                 "a": f"{comp.a.system}|{comp.a.condition}|{'+'.join(comp.a.datasets)}|{comp.a.language or 'all'}",
                 "b": f"{comp.b.system}|{comp.b.condition}|{'+'.join(comp.b.datasets)}|{comp.b.language or 'all'}"}
+        if comp.key == "P8":  # label only: states the pooling that the selectors above do not show
+            base |= {"a": f"{L3}|auto|agm-snr5+ami-sdm+summre|all", "b": f"{L3}|forced|agm-snr5+ami-sdm+summre|all"}
         if not a_rows or not b_rows:
             results.append(base | {"status": "missing"})
             continue
@@ -141,6 +148,25 @@ def primary_tests(rows: list[dict]) -> list[dict]:
         else:
             r |= {"p_holm": "", "reject_h0": ""}
     return results
+
+
+COMPARISON_LABELS = {
+    "P1": "large-v3 vs Conformer (AGM DE)", "P2": "large-v3 vs Conformer (AGM EN)",
+    "P3": "large-v3 vs Conformer (AGM FR)", "P4": "large-v3 SNR 10 dB vs clean (AGM)",
+    "P5": "large-v3 AMI-SDM vs AMI-IHM", "P6": "large-v3 AMI-IHM vs AGM EN (unpaired)",
+    "P7": "large-v3 SUMM-RE vs AGM FR (unpaired)", "P8": "large-v3 auto vs forced language (pooled)",
+    "P9": "whisper-small LoRA vs base (AMI-IHM + SUMM-RE)",
+}
+# Smallest attainable raw p with N_BOOTSTRAP resamples is 2/(N+1) = 0.0002; Holm-adjusted (m = 9): 0.0018.
+P_HOLM_FLOOR_DISPLAY = 0.002
+
+
+def format_p(value, *, floor: float) -> str:
+    """Presentation of a p-value: values at the bootstrap resolution are shown as '< floor'."""
+    if value in ("", None):
+        return "--"
+    p = float(value)
+    return f"$<${floor:g}" if p < floor + 1e-9 else f"{p:.3f}"
 
 
 def _tex(value) -> str:

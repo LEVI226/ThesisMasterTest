@@ -85,3 +85,34 @@ def test_primary_test_ignores_empty_reference_rows():
             rows.append(_row("conformer-ctc-large", "forced-clean", "agm", 77, 0, n=0, lang="de"))
         return {r["key"]: r for r in primary_tests(rows)}["P1"]
     assert build(True)["estimate"] == build(False)["estimate"]
+
+
+def test_p8_label_states_pooling_and_estimate_unchanged_by_label():
+    rows = []
+    for i in range(8):
+        rows += [_row("whisper-large-v3", "auto-snr5", "agm", i, 3), _row("whisper-large-v3", "forced-snr5", "agm", i, 1)]
+        rows += [_row("whisper-large-v3", "auto-clean", "summre", i, 3, lang="fr"),
+                 _row("whisper-large-v3", "forced-clean", "summre", i, 1, lang="fr")]
+    p8 = {r["key"]: r for r in primary_tests(rows)}["P8"]
+    assert p8["a"] == "whisper-large-v3|auto|agm-snr5+ami-sdm+summre|all"
+    assert p8["b"] == "whisper-large-v3|forced|agm-snr5+ami-sdm+summre|all"
+    assert float(p8["estimate"]) == pytest.approx(0.2) and p8["n_segments"] == 16
+
+
+def test_lang_mismatch_rate_is_na_for_noise_and_hf_baselines():
+    base = [_row("S", "forced-clean", "agm", i, 1) for i in range(4)]
+    base[0]["detected_language"] = "de"
+    noise = [dict(_row("whisper-small", "forced-clean", "noise", i, 0, n=0), ins="3") for i in range(3)]
+    hf = [_row("hf-whisper-small-lora", "forced-clean", "ami-ihm", i, 1) for i in range(4)]
+    out = {(s["dataset"], s["system"]): s for s in summarise(base + noise + hf)}
+    assert out[("agm", "S")]["lang_mismatch_rate"] == "0.250"
+    assert out[("noise", "whisper-small")]["lang_mismatch_rate"] == ""
+    assert out[("ami-ihm", "hf-whisper-small-lora")]["lang_mismatch_rate"] == ""
+    assert out[("ami-ihm", "hf-whisper-small-lora")]["wer"] == "0.1000"
+
+
+def test_format_p_shows_bootstrap_floor_as_bound():
+    from study_real_meetings.analysis import format_p
+    assert format_p("0.0018", floor=0.002) == "$<$0.002"
+    assert format_p("0.0048", floor=0.002) == "0.005"
+    assert format_p("", floor=0.002) == "--"

@@ -6,5 +6,5 @@ P4,H2,whisper-large-v3|forced-snr10|agm|all,whisper-large-v3|forced-clean|agm|al
 P5,H2,whisper-large-v3|forced-clean|ami-sdm|all,whisper-large-v3|forced-clean|ami-ihm|all,ok,0.2180,0.1600,0.2764,0.0002,1300,16,9,0.0018,1
 P6,H3,whisper-large-v3|forced-clean|ami-ihm|all,whisper-large-v3|forced-clean|agm|en,ok,0.1318,0.0977,0.1665,0.0002,1366,26,9,0.0018,1
 P7,H3,whisper-large-v3|forced-clean|summre|all,whisper-large-v3|forced-clean|agm|fr,ok,0.1960,0.1316,0.2487,0.0002,717,23,9,0.0018,1
-P8,H4a,whisper-large-v3|auto-snr5|agm|all,whisper-large-v3|forced-snr5|agm|all,ok,0.0344,0.0103,0.0672,0.0002,2152,60,9,0.0018,1
+P8,H4a,whisper-large-v3|auto|agm-snr5+ami-sdm+summre|all,whisper-large-v3|forced|agm-snr5+ami-sdm+summre|all,ok,0.0344,0.0103,0.0672,0.0002,2152,60,9,0.0018,1
 P9,H4d,hf-whisper-small-lora|forced-clean|ami-ihm+summre|all,hf-whisper-small|forced-clean|ami-ihm+summre|all,ok,-0.1009,-0.1903,-0.0292,0.0016,1949,28,9,0.0048,1

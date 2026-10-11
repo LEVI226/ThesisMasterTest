@@ -9,7 +9,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 from study_real_meetings import config as C  # noqa: E402
-from study_real_meetings.analysis import primary_tests, summarise, to_latex  # noqa: E402
+from study_real_meetings.analysis import (COMPARISON_LABELS, P_HOLM_FLOOR_DISPLAY, format_p,
+                                          primary_tests, summarise, to_latex)  # noqa: E402
 from study_real_meetings.runner import read_rows  # noqa: E402
 
 
@@ -35,12 +36,18 @@ def main() -> None:
                     ("wer_pct", "WER (\\%)"), ("ci", "95\\% CI")],
         "Corpus WER on real meeting and corporate audio (test split, forced language, clean).",
         "tab:rm_summary"), encoding="utf-8")
-    prim_rows = [r | {"est_pct": pct(r.get("estimate", "")),
-                      "ci": f"[{pct(r.get('ci_low', ''))}, {pct(r.get('ci_high', ''))}]"} for r in primary]
+    prim_rows = [r | {"comparison": COMPARISON_LABELS[r["key"]], "est_pct": pct(r.get("estimate", "")),
+                      "ci": f"[{pct(r.get('ci_low', ''))}, {pct(r.get('ci_high', ''))}]",
+                      "p_raw": format_p(r.get("p_value", ""), floor=0.001),
+                      "p_holm_disp": format_p(r.get("p_holm", ""), floor=P_HOLM_FLOOR_DISPLAY),
+                      "decision": {1: "reject", 0: "retain"}.get(r.get("reject_h0"), "--")} for r in primary]
     (C.GENERATED_TEX / "real_meetings_primary.tex").write_text(to_latex(
-        prim_rows, [("key", "Test"), ("hypothesis", "H"), ("est_pct", "$\\Delta$WER (pts)"), ("ci", "95\\% CI"),
-                    ("p_holm", "$p_{\\text{Holm}}$"), ("status", "Status")],
-        "Pre-registered primary comparisons (A $-$ B, cluster bootstrap, Holm-corrected).",
+        prim_rows, [("key", "Test"), ("comparison", "Comparison (A vs B)"), ("est_pct", "$\\Delta$WER (pts)"),
+                    ("ci", "95\\% CI"), ("p_raw", "$p$"), ("p_holm_disp", "$p_{\\text{Holm}}$"),
+                    ("decision", "$H_0$")],
+        "Pre-registered primary comparisons: difference A $-$ B in WER points (corpus WER, cluster bootstrap, "
+        "10\\,000 resamples, 95\\% CI), Holm correction with $m = 9$. Values at the bootstrap resolution "
+        "are shown as upper bounds ($p < 0.001$; $p_{\\text{Holm}} < 0.002$).",
         "tab:rm_primary"), encoding="utf-8")
     fig, ax = plt.subplots(figsize=(5, 3.2))
     for system in ("whisper-small", "whisper-large-v3", "mms-1b-all", "conformer-ctc-large"):
