@@ -106,7 +106,7 @@ Environnement code : Windows, `.venv` (torch 2.6.0+cu124, CUDA RTX 4060, NeMo 3.
 
 ---
 
-## 5. Étude complémentaire « réunions réelles » (branche `study/real-meetings`, ouverte le 10/10/2026)
+## 8. Étude complémentaire « réunions réelles » (branche `study/real-meetings`, ouverte le 10/10/2026)
 
 - **Statut :** runs de test terminés (11/10/2026). Jeu de validation EXTERNE distinct, déclaré ici pour ne pas être confondu
   avec un pipeline parallèle égaré. Il ne remplace PAS le jeu canonique MInDS-14 (§2).
@@ -146,7 +146,7 @@ Tableaux LaTeX générés : `Memoire_LaTeX/generated/`.
 | P8 (H4a) | large-v3 langue auto vs forcée (AGM snr5 + AMI-SDM + SUMM-RE) | +3,44 | [+1,03 ; +6,72] | 0,0018 | oui |
 | P9 (H4d) | hf-whisper-small-lora vs hf-whisper-small (AMI-IHM + SUMM-RE) | −10,09 | [−19,03 ; −2,92] | 0,0048 | oui |
 
-8 rejets sur 9 ; P3 (fr) et P4 non rejetés. Les 9 tests ont été calculés (9/9). Estimations
+7 rejets sur 9 ; P3 (fr) et P4 non rejetés. Les 9 tests ont été calculés (9/9). Estimations
 cohérentes avec les WER par groupe de `summary.csv` (recalcul manuel : voir rapport de tâche 14).
 
 **H5, points de fonctionnement** (`streaming.csv`, colonne `operating_point`, taille de chunk en s) :

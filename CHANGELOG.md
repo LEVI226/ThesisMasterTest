@@ -132,10 +132,10 @@ après libération du GPU, terminée en ~1 h 38. Ancrage externe : WER des trans
 **2026-10-11** — Analyse des runs de test (`python -m study_real_meetings.scripts.analyse`) :
 `summary: 101 groups; primary: 9/9 computed`. Sorties : `results/real_meetings/summary.csv`
 (WER/CER par groupe, IC 95 % bootstrap par grappes), `results/real_meetings/primary.csv` (9 tests
-pré-enregistrés, Holm m = 9 : 8 rejets, P3 et P4 non rejetés), tableaux LaTeX
+pré-enregistrés, Holm m = 9 : 7 rejets, P3 et P4 non rejetés), tableaux LaTeX
 `Memoire_LaTeX/generated/real_meetings_summary.tex` et `real_meetings_primary.tex`, figure
 `real_meetings_snr.pdf`. Vérification manuelle (WER large-v3 AGM fr recalculé à 0,1051 depuis
 `runs.csv`, signes et ordres de grandeur de P1 à P9 recoupés avec `summary.csv`) consignée dans
 `.superpowers/sdd/2026-10-10-real-meetings-study-pipeline/task-14-results-report.md`. Compilation
 LaTeX non testée (pas de pdflatex/lualatex dans le PATH). Résumé des résultats dans
-`ETAT_ACTUEL.md` §5. → `results/real_meetings/`, `Memoire_LaTeX/generated/`.
+`ETAT_ACTUEL.md` §8. → `results/real_meetings/`, `Memoire_LaTeX/generated/`.
