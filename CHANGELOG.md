@@ -114,3 +114,17 @@ uniquement sur des horodatages de fichiers.
 `.gitignore` exclut désormais l'audio privé, les sondes d'audit et `tmp/`. Ouverture de la branche
 `study/real-meetings` ; spec (`53248d7`) et plan d'implémentation rédigés. Les réunions privées sont
 exclues faute de consentement. → `docs/specs/`, `docs/plans/`.
+
+**2026-10-11** — Exécution des runs de test du protocole gelé (tag `protocol-frozen`, `eb080cb`) :
+6 systèmes via `run_experiments --plan ALL --split test` (un système par processus), puis H5
+(`run_streaming`) et D1 (`run_diarization`). `runs.csv` : 26 463 lignes (whisper-small 6 580,
+whisper-large-v3 7 595, conformer-ctc-large 4 151, mms-1b-all 4 151, hf-whisper-small 1 993,
+hf-whisper-small-lora 1 993), toutes sur le commit `eb080cb`, sans doublon ni « -dirty ».
+`streaming.csv` : 60 lignes ; `diarization.csv` : 3 réunions. Incidents : whisper-large-v3 a planté
+après ~1 h 20 (MemoryError « bad allocation » puis 3 relances immédiates en CUDA out of memory) ;
+les autres systèmes sont passés (conformer : 3 échecs de démarrage avant réussite) ; relance
+isolée de whisper-large-v3 le lendemain (1 h 07, reprise sans doublon). La première tentative de
+`run_streaming` a échoué au chargement de large-v3 (CUDA OOM, aucun CSV écrit) ; relancée seule
+après libération du GPU, terminée en ~1 h 38. Ancrage externe : WER des transcriptions publiées ASRU
+2023 sur nos segments SUMM-RE de test 0,297 contre 0,301 pour notre whisper-large-v3 (cohérent).
+→ `results/real_meetings/`, journaux dans `results/real_meetings/logs/`.

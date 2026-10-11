@@ -1,0 +1,27 @@
+23:07:19 start whisper-large-v3 attempt 1
+00:28:39 end whisper-large-v3 attempt 1 rc=1
+00:28:39 start whisper-large-v3 attempt 2
+00:29:29 end whisper-large-v3 attempt 2 rc=1
+00:29:29 start whisper-large-v3 attempt 3
+00:29:47 end whisper-large-v3 attempt 3 rc=1
+00:29:47 start whisper-large-v3 attempt 4
+00:30:05 end whisper-large-v3 attempt 4 rc=1
+00:30:05 start conformer-ctc-large attempt 1
+00:31:03 end conformer-ctc-large attempt 1 rc=1
+00:31:03 start conformer-ctc-large attempt 2
+00:31:32 end conformer-ctc-large attempt 2 rc=1
+00:31:32 start conformer-ctc-large attempt 3
+00:31:59 end conformer-ctc-large attempt 3 rc=127
+00:31:59 start conformer-ctc-large attempt 4
+00:39:45 end conformer-ctc-large attempt 4 rc=0
+00:39:45 start mms-1b-all attempt 1
+00:45:44 end mms-1b-all attempt 1 rc=0
+00:45:44 start hf-whisper-small attempt 1
+01:04:49 end hf-whisper-small attempt 1 rc=0
+01:04:49 start hf-whisper-small-lora attempt 1
+01:21:26 end hf-whisper-small-lora attempt 1 rc=0
+01:21:26 start streaming
+01:47:31 end streaming rc=0
+01:47:31 start diarization
+01:50:12 end diarization rc=0
+01:50:12 ALLDONE

@@ -1,0 +1,9 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+H1    mms-1b-all             agm      forced-clean           +203
+H2    mms-1b-all             agm      forced-snr20           +203
+H2    mms-1b-all             agm      forced-snr10           +203
+H2    mms-1b-all             agm      forced-snr5            +203
+H2    mms-1b-all             ami-ihm  forced-clean           +1316
+H2    mms-1b-all             ami-sdm  forced-clean           +1316
+H3    mms-1b-all             summre   forced-clean           +677
+NOISE mms-1b-all             noise    forced-clean           +30

@@ -1,0 +1,29 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_streaming.py", line 63, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_streaming.py", line 29, in main
+    t = make_transcriber(system)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 190, in make_transcriber
+    return FasterWhisperTranscriber("large-v3")
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 65, in __init__
+    self.model = WhisperModel(size, device=_DEVICE, compute_type=compute_type if _DEVICE == "cuda" else "int8")
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 689, in __init__
+    self.model = ctranslate2.models.Whisper(
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        model_path,
+        ^^^^^^^^^^^
+    ...<6 lines>...
+        **model_kwargs,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: CUDA failed with error out of memory
+whisper-small de operating point: 10.0
+whisper-small en operating point: 10.0
+whisper-small fr operating point: 20.0

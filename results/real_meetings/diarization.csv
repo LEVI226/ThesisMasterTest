@@ -1,0 +1,4 @@
+meeting,n_speakers_ref,n_speakers_hyp,der,collar,git_commit
+018a_EARZ,4,4,0.0786,0.25,eb080cba40ab4547c1ea30d3d93a9c23f6a5f8cb
+032b_EADH,4,5,0.2743,0.25,eb080cba40ab4547c1ea30d3d93a9c23f6a5f8cb
+069c_EEPL,4,4,0.1123,0.25,eb080cba40ab4547c1ea30d3d93a9c23f6a5f8cb

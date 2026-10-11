@@ -1,0 +1,15 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+H1    whisper-small          agm      forced-clean           +203
+H2    whisper-small          agm      forced-snr20           +203
+H2    whisper-small          agm      forced-snr10           +203
+H2    whisper-small          agm      forced-snr5            +203
+H2    whisper-small          ami-ihm  forced-clean           +1316
+H2    whisper-small          ami-sdm  forced-clean           +1316
+H3    whisper-small          summre   forced-clean           +677
+H4a   whisper-small          agm      auto-snr5              +203
+H4a   whisper-small          agm      auto-clean             +203
+H4a   whisper-small          ami-sdm  auto-clean             +1316
+H4a   whisper-small          summre   auto-clean             +677
+NOISE whisper-small          noise    forced-clean           +30
+NOISE whisper-small          noise    auto-clean             +30

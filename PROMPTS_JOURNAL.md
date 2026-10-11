@@ -185,3 +185,9 @@ Limite : les prompts exacts qui n'ont jamais été sauvegardés dans le dépôt 
 conversation ne peuvent pas être reconstruits mot pour mot. Ce journal capture ce qui est
 présent dans les artefacts visibles.
 
+
+## 2026-10-11 — Runs de test de l'étude réunions réelles
+
+Exécution des runs de test de l'étude réunions réelles (Claude Code, développement piloté par
+sous-agents) — prompts et décisions consignés dans
+`.superpowers/sdd/2026-10-10-real-meetings-study-pipeline/progress.md`.

@@ -1,0 +1,168 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 64, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 56, in main
+    n = run(segs, transcriber, job.condition, hypothesis_id=job.hypothesis_id,
+            out_csv=args.out, bank=bank, provenance=provenance)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\runner.py", line 101, in run
+    result = transcriber.transcribe(
+        audio, language=seg.language if condition.forced_language else None,
+        prompt=DOMAIN_PROMPT if condition.prompt else None)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in transcribe
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in <genexpr>
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+                                            ^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1213, in generate_segments
+    ) = self.generate_with_fallback(encoder_output, prompt, tokenizer, options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1446, in generate_with_fallback
+    result = self.model.generate(
+             ~~~~~~~~~~~~~~~~~~~^
+        encoder_output,
+        ^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )[0]
+    ^
+MemoryError: bad allocation
+H1    whisper-large-v3       agm      forced-clean           +203
+H2    whisper-large-v3       agm      forced-snr20           +203
+H2    whisper-large-v3       agm      forced-snr10           +203
+H2    whisper-large-v3       agm      forced-snr5            +203
+H2    whisper-large-v3       ami-ihm  forced-clean           +1316
+H2    whisper-large-v3       ami-sdm  forced-clean           +1316
+H3    whisper-large-v3       summre   forced-clean           +677
+H4a   whisper-large-v3       agm      auto-snr5              +203
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 64, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 56, in main
+    n = run(segs, transcriber, job.condition, hypothesis_id=job.hypothesis_id,
+            out_csv=args.out, bank=bank, provenance=provenance)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\runner.py", line 101, in run
+    result = transcriber.transcribe(
+        audio, language=seg.language if condition.forced_language else None,
+        prompt=DOMAIN_PROMPT if condition.prompt else None)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in transcribe
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in <genexpr>
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+                                            ^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1213, in generate_segments
+    ) = self.generate_with_fallback(encoder_output, prompt, tokenizer, options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1446, in generate_with_fallback
+    result = self.model.generate(
+             ~~~~~~~~~~~~~~~~~~~^
+        encoder_output,
+        ^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )[0]
+    ^
+RuntimeError: CUDA failed with error out of memory
+H1    whisper-large-v3       agm      forced-clean           +0
+H2    whisper-large-v3       agm      forced-snr20           +0
+H2    whisper-large-v3       agm      forced-snr10           +0
+H2    whisper-large-v3       agm      forced-snr5            +0
+H2    whisper-large-v3       ami-ihm  forced-clean           +0
+H2    whisper-large-v3       ami-sdm  forced-clean           +0
+H3    whisper-large-v3       summre   forced-clean           +0
+H4a   whisper-large-v3       agm      auto-snr5              +0
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 64, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 56, in main
+    n = run(segs, transcriber, job.condition, hypothesis_id=job.hypothesis_id,
+            out_csv=args.out, bank=bank, provenance=provenance)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\runner.py", line 101, in run
+    result = transcriber.transcribe(
+        audio, language=seg.language if condition.forced_language else None,
+        prompt=DOMAIN_PROMPT if condition.prompt else None)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in transcribe
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in <genexpr>
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+                                            ^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1213, in generate_segments
+    ) = self.generate_with_fallback(encoder_output, prompt, tokenizer, options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1446, in generate_with_fallback
+    result = self.model.generate(
+             ~~~~~~~~~~~~~~~~~~~^
+        encoder_output,
+        ^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )[0]
+    ^
+RuntimeError: CUDA failed with error out of memory
+H1    whisper-large-v3       agm      forced-clean           +0
+H2    whisper-large-v3       agm      forced-snr20           +0
+H2    whisper-large-v3       agm      forced-snr10           +0
+H2    whisper-large-v3       agm      forced-snr5            +0
+H2    whisper-large-v3       ami-ihm  forced-clean           +0
+H2    whisper-large-v3       ami-sdm  forced-clean           +0
+H3    whisper-large-v3       summre   forced-clean           +0
+H4a   whisper-large-v3       agm      auto-snr5              +0
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 64, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\scripts\run_experiments.py", line 56, in main
+    n = run(segs, transcriber, job.condition, hypothesis_id=job.hypothesis_id,
+            out_csv=args.out, bank=bank, provenance=provenance)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\runner.py", line 101, in run
+    result = transcriber.transcribe(
+        audio, language=seg.language if condition.forced_language else None,
+        prompt=DOMAIN_PROMPT if condition.prompt else None)
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in transcribe
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+  File "C:\Users\ulric\Documents\ThesisMasterTest\study_real_meetings\transcribers.py", line 74, in <genexpr>
+    text = " ".join(s.text.strip() for s in segments)  # consuming the generator runs decoding
+                                            ^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1213, in generate_segments
+    ) = self.generate_with_fallback(encoder_output, prompt, tokenizer, options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\faster_whisper\transcribe.py", line 1446, in generate_with_fallback
+    result = self.model.generate(
+             ~~~~~~~~~~~~~~~~~~~^
+        encoder_output,
+        ^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )[0]
+    ^
+RuntimeError: CUDA failed with error out of memory
+H1    whisper-large-v3       agm      forced-clean           +0
+H2    whisper-large-v3       agm      forced-snr20           +0
+H2    whisper-large-v3       agm      forced-snr10           +0
+H2    whisper-large-v3       agm      forced-snr5            +0
+H2    whisper-large-v3       ami-ihm  forced-clean           +0
+H2    whisper-large-v3       ami-sdm  forced-clean           +0
+H3    whisper-large-v3       summre   forced-clean           +0
+H4a   whisper-large-v3       agm      auto-snr5              +0
