@@ -1,0 +1,28 @@
+- generic [active] [ref=e1] [box=0,0,1026,5960]:
+  - link "Skip to research evidence" [ref=e2] [cursor=pointer] [box=16,-80,234,47]:
+    - /url: "#main-content"
+  - banner [ref=e3] [box=0,0,1026,68]:
+    - link "Back to the accessibility prototype" [ref=e4] [cursor=pointer] [box=31,14,247,40]:
+      - /url: /
+      - generic [ref=e9] [box=84,14,194,40]:
+        - strong [ref=e10] [box=84,14,194,22]: Nestlé Accessibility Platform
+        - generic [ref=e11] [box=84,36,194,18]: BIT/Nestlé Master Thesis · Topic 2
+    - generic [ref=e12] [box=741,15,254,38]:
+      - generic [ref=e13] [box=741,20,138,28]: Academic prototype
+      - link "Prototype" [ref=e14] [cursor=pointer] [box=889,15,106,38]:
+        - /url: /
+  - generic [ref=e18] [box=16,68,994,5810]:
+    - complementary "Research dashboard navigation" [ref=e19] [box=16,109,224,5672]:
+      - generic [ref=e20] [box=16,109,224,410]:
+        - paragraph [ref=e21] [box=16,109,224,18]: Evidence spine
+        - navigation [ref=e22] [box=16,142,224,280]
+        - paragraph [ref=e30] [box=16,461,224,58]: 24 source utterancesEnglish · French · GermanPreliminary academic prototype
+    - main [ref=e31] [box=281,109,729,5672]:
+      - generic [ref=e32] [box=281,109,729,5672]:
+        - generic [ref=e33] [box=281,109,729,504]
+        - generic [ref=e53] [box=281,667,729,1467]
+        - generic [ref=e165] [box=281,2135,729,1342]
+        - generic [ref=e276] [box=281,3476,729,1359]
+        - generic [ref=e362] [box=281,4835,729,466]
+        - generic [ref=e380] [box=281,5302,729,480]
+  - contentinfo [ref=e389] [box=0,5878,1026,83]: Topic 2 · Advanced Speech-to-Text Models for Noisy, Multilingual Meetings · Evidence is preliminary and scope-bound.

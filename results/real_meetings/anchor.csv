@@ -1,0 +1,3 @@
+system,wer,n_ref_words,n_segments
+asru-published-whisper (WX_vad_noprompt),0.2948,13063,649
+whisper-large-v3 forced-clean (ours),0.3012,13063,649

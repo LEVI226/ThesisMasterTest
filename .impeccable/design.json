@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-28T09:04:01+02:00",
+  "title": "Design System: Nestlé Accessibility Platform",
+  "extensions": {
+    "colorMeta": {
+      "canvas": { "role": "neutral", "displayName": "Research Canvas", "canonical": "#0d0f14", "tonalRamp": ["oklch(15% 0.012 270)", "oklch(25% 0.012 270)", "oklch(35% 0.012 270)", "oklch(47% 0.012 270)", "oklch(59% 0.012 270)", "oklch(71% 0.012 270)", "oklch(83% 0.012 270)", "oklch(95% 0.012 270)"] },
+      "surface": { "role": "neutral", "displayName": "Graphite Field", "canonical": "#13161e", "tonalRamp": ["oklch(15% 0.018 270)", "oklch(25% 0.018 270)", "oklch(35% 0.018 270)", "oklch(47% 0.018 270)", "oklch(59% 0.018 270)", "oklch(71% 0.018 270)", "oklch(83% 0.018 270)", "oklch(95% 0.018 270)"] },
+      "surface-raised": { "role": "neutral", "displayName": "Raised Graphite", "canonical": "#1a1e28", "tonalRamp": ["oklch(15% 0.022 270)", "oklch(25% 0.022 270)", "oklch(35% 0.022 270)", "oklch(47% 0.022 270)", "oklch(59% 0.022 270)", "oklch(71% 0.022 270)", "oklch(83% 0.022 270)", "oklch(95% 0.022 270)"] },
+      "surface-strong": { "role": "neutral", "displayName": "Strong Graphite", "canonical": "#202532", "tonalRamp": ["oklch(15% 0.025 270)", "oklch(25% 0.025 270)", "oklch(35% 0.025 270)", "oklch(47% 0.025 270)", "oklch(59% 0.025 270)", "oklch(71% 0.025 270)", "oklch(83% 0.025 270)", "oklch(95% 0.025 270)"] },
+      "measurement-blue": { "role": "primary", "displayName": "Measurement Blue", "canonical": "#4f8ef7", "tonalRamp": ["oklch(15% 0.15 255)", "oklch(25% 0.17 255)", "oklch(35% 0.18 255)", "oklch(47% 0.19 255)", "oklch(59% 0.18 255)", "oklch(71% 0.15 255)", "oklch(83% 0.10 255)", "oklch(95% 0.03 255)"] },
+      "measurement-violet": { "role": "secondary", "displayName": "Measurement Violet", "canonical": "#7c5cfb", "tonalRamp": ["oklch(15% 0.15 290)", "oklch(25% 0.18 290)", "oklch(35% 0.21 290)", "oklch(47% 0.23 290)", "oklch(59% 0.21 290)", "oklch(71% 0.17 290)", "oklch(83% 0.10 290)", "oklch(95% 0.03 290)"] },
+      "success": { "role": "tertiary", "displayName": "Supported Mint", "canonical": "#5ee2b2", "tonalRamp": ["oklch(15% 0.08 165)", "oklch(25% 0.10 165)", "oklch(35% 0.12 165)", "oklch(47% 0.14 165)", "oklch(59% 0.14 165)", "oklch(71% 0.12 165)", "oklch(83% 0.08 165)", "oklch(95% 0.025 165)"] },
+      "warning": { "role": "tertiary", "displayName": "Scope Amber", "canonical": "#ffd166", "tonalRamp": ["oklch(15% 0.07 80)", "oklch(25% 0.09 80)", "oklch(35% 0.11 80)", "oklch(47% 0.13 80)", "oklch(59% 0.14 80)", "oklch(71% 0.13 80)", "oklch(83% 0.09 80)", "oklch(95% 0.025 80)"] },
+      "danger": { "role": "tertiary", "displayName": "Error Coral", "canonical": "#ff8d91", "tonalRamp": ["oklch(15% 0.09 20)", "oklch(25% 0.12 20)", "oklch(35% 0.15 20)", "oklch(47% 0.17 20)", "oklch(59% 0.17 20)", "oklch(71% 0.14 20)", "oklch(83% 0.09 20)", "oklch(95% 0.025 20)"] },
+      "text": { "role": "neutral", "displayName": "Evidence White", "canonical": "#eef0f7", "tonalRamp": ["oklch(15% 0.008 270)", "oklch(25% 0.008 270)", "oklch(35% 0.008 270)", "oklch(47% 0.008 270)", "oklch(59% 0.008 270)", "oklch(71% 0.008 270)", "oklch(83% 0.008 270)", "oklch(95% 0.008 270)"] },
+      "text-muted": { "role": "neutral", "displayName": "Muted Copy", "canonical": "#a3a9be", "tonalRamp": ["oklch(15% 0.02 270)", "oklch(25% 0.02 270)", "oklch(35% 0.02 270)", "oklch(47% 0.02 270)", "oklch(59% 0.02 270)", "oklch(71% 0.02 270)", "oklch(83% 0.02 270)", "oklch(95% 0.02 270)"] },
+      "text-subtle": { "role": "neutral", "displayName": "Subtle Metadata", "canonical": "#7f879f", "tonalRamp": ["oklch(15% 0.025 270)", "oklch(25% 0.025 270)", "oklch(35% 0.025 270)", "oklch(47% 0.025 270)", "oklch(59% 0.025 270)", "oklch(71% 0.025 270)", "oklch(83% 0.025 270)", "oklch(95% 0.025 270)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Evidence Display", "purpose": "The short research-evidence title only." },
+      "headline": { "displayName": "Research Question", "purpose": "Research questions and major conclusions." },
+      "body": { "displayName": "Explanatory Body", "purpose": "Scope, interpretation, methodology, and limitations." },
+      "label": { "displayName": "Analytical Label", "purpose": "Verdicts, metadata, table headers, rail items, and controls." }
+    },
+    "shadows": [
+      { "name": "brand-ambient", "value": "0 8px 22px rgba(0,0,0,.3)", "purpose": "Separates the compact gradient brand mark from the sticky top bar." },
+      { "name": "raised-surface", "value": "0 18px 55px rgba(0,0,0,.34)", "purpose": "Reserved for genuinely elevated system surfaces." },
+      { "name": "modal-directional", "value": "-18px 0 55px rgba(0,0,0,.4)", "purpose": "Separates the right-side Evidence Trail dialog from its inert background." }
+    ],
+    "motion": [
+      { "name": "state-fast", "value": "150ms ease-out", "purpose": "Hover and active changes on rail links and evidence controls." },
+      { "name": "reveal", "value": "280ms cubic-bezier(.16,1,.3,1)", "purpose": "Evidence Trail dialog entrance and exit." },
+      { "name": "measurement-grow", "value": "700ms cubic-bezier(.16,1,.3,1)", "purpose": "One-time plot-bar reveal; disabled by reduced-motion preference." }
+    ],
+    "breakpoints": [
+      { "name": "rail-collapse", "value": "900px" },
+      { "name": "compact", "value": "620px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Inspect Evidence Button",
+      "kind": "button",
+      "refersTo": "inspect-button",
+      "description": "Opens a claim's modal provenance trail from a comparison row.",
+      "html": "<button class=\"ds-inspect\" type=\"button\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M4 19.5h16M6.5 16V8m5.5 8V4m5.5 12v-5\"/></svg><span>Inspect evidence</span></button>",
+      "css": ".ds-inspect{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:38px;padding:.45rem .7rem;border:1px solid rgba(232,234,242,.2);border-radius:9px;background:transparent;color:#eef0f7;font:650 .72rem Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:border-color 150ms ease-out,background 150ms ease-out}.ds-inspect svg{width:15px;height:15px}.ds-inspect:hover{border-color:rgba(79,142,247,.6);background:rgba(79,142,247,.12)}.ds-inspect:focus-visible{outline:3px solid #ffd166;outline-offset:3px}"
+    },
+    {
+      "name": "Active Research Rail Link",
+      "kind": "nav",
+      "refersTo": "rail-link-active",
+      "description": "Keeps the current research section visible in the sticky evidence spine.",
+      "html": "<a class=\"ds-rail-link ds-active\" href=\"#rq1\" aria-current=\"location\">RQ1 · Robustness</a>",
+      "css": ".ds-rail-link{position:relative;display:block;padding:.7rem .75rem .7rem 1rem;border-radius:9px;color:#a3a9be;font:600 .82rem Inter,ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:color 150ms ease-out,background 150ms ease-out}.ds-rail-link::before{content:\"\";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:#7f879f;transform:translateY(-50%)}.ds-rail-link:hover{color:#eef0f7;background:rgba(255,255,255,.035)}.ds-rail-link.ds-active{color:#eef0f7;background:rgba(79,142,247,.12)}.ds-rail-link.ds-active::before{height:22px;border-radius:4px;background:#4f8ef7}.ds-rail-link:focus-visible{outline:3px solid #ffd166;outline-offset:3px}"
+    },
+    {
+      "name": "Supported Verdict",
+      "kind": "chip",
+      "refersTo": "verdict-supported",
+      "description": "A text-first semantic verdict for evidence with measured support.",
+      "html": "<span class=\"ds-verdict\">Supported in tested conditions</span>",
+      "css": ".ds-verdict{display:inline-flex;align-items:center;width:fit-content;padding:.5rem .7rem;border:1px solid rgba(94,226,178,.23);border-radius:999px;background:rgba(94,226,178,.09);color:#5ee2b2;font:650 .72rem/1 Inter,ui-sans-serif,system-ui,sans-serif}"
+    },
+    {
+      "name": "Scope Status",
+      "kind": "chip",
+      "description": "States whether the dashboard evidence remains aligned with canonical sources.",
+      "html": "<span class=\"ds-status\"><span aria-hidden=\"true\"></span>Audit aligned with sources</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:.42rem;width:fit-content;padding:.48rem .68rem;border:1px solid rgba(232,234,242,.11);border-radius:999px;color:#a3a9be;font:650 .72rem/1 Inter,ui-sans-serif,system-ui,sans-serif}.ds-status>span{width:7px;height:7px;border-radius:50%;background:#5ee2b2}"
+    },
+    {
+      "name": "Evidence Finding",
+      "kind": "custom",
+      "description": "An open comparison field where the plot leads and the headline metric remains secondary.",
+      "html": "<section class=\"ds-finding\"><div class=\"ds-plot\"><h3>Matched evaluation comparison</h3><p>Lower word error rate is better.</p><div class=\"ds-track\"><span></span></div></div><div class=\"ds-headline\"><strong>8.4</strong><span>WER points</span><p>Mean paired difference</p></div></section>",
+      "css": ".ds-finding{display:grid;grid-template-columns:minmax(280px,1.5fr) minmax(150px,.5fr);gap:2rem;padding:1.5rem 0;border-top:1px solid rgba(232,234,242,.2);border-bottom:1px solid rgba(232,234,242,.11);color:#eef0f7;font-family:Inter,ui-sans-serif,system-ui,sans-serif}.ds-plot h3{margin:0;font-size:.95rem}.ds-plot p,.ds-headline p{color:#7f879f;font-size:.72rem}.ds-track{height:9px;overflow:hidden;border-radius:5px;background:#202532}.ds-track span{display:block;width:68%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#4f8ef7,#7c5cfb)}.ds-headline{align-self:end;padding-left:1.4rem;border-left:1px solid rgba(232,234,242,.11)}.ds-headline strong{font-size:1.65rem;font-variant-numeric:tabular-nums}.ds-headline>span{margin-left:.4rem;color:#a3a9be;font-size:.72rem;font-weight:650}"
+    },
+    {
+      "name": "Evidence Trail Dialog",
+      "kind": "custom",
+      "refersTo": "evidence-drawer",
+      "description": "A right-side modal that traces a claim through metric, experiment, source, and limitation.",
+      "html": "<section class=\"ds-drawer\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"ds-drawer-title\"><header><h2 id=\"ds-drawer-title\">Evidence trail</h2><button type=\"button\" aria-label=\"Close evidence trail\">×</button></header><div class=\"ds-trail\"><article><h3>Claim</h3><p>Supported in tested conditions.</p></article><article><h3>Metric</h3><p>Mean paired WER difference.</p></article><article><h3>Experiment</h3><p>Matched source utterances.</p></article><article><h3>Source</h3><p><code>results/example.csv</code></p></article><article><h3>Limitation</h3><p>Scope is corpus-bound.</p></article></div></section>",
+      "css": ".ds-drawer{width:min(480px,calc(100% - 1rem));min-height:520px;padding:1.2rem 2rem 3rem;border-left:1px solid rgba(232,234,242,.2);background:#11141c;color:#eef0f7;box-shadow:-18px 0 55px rgba(0,0,0,.4);font-family:Inter,ui-sans-serif,system-ui,sans-serif}.ds-drawer header{display:flex;align-items:center;justify-content:space-between}.ds-drawer h2{font-size:1rem}.ds-drawer button{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(232,234,242,.11);border-radius:50%;background:transparent;color:#eef0f7;font-size:1.2rem;cursor:pointer}.ds-drawer button:hover{background:#1a1e28}.ds-drawer button:focus-visible{outline:3px solid #ffd166;outline-offset:3px}.ds-trail{position:relative;display:grid;margin-top:.8rem}.ds-trail::before{content:\"\";position:absolute;top:1rem;bottom:1rem;left:7px;width:1px;background:linear-gradient(#4f8ef7,#7c5cfb)}.ds-trail article{position:relative;padding:0 0 1.3rem 2rem}.ds-trail article::before{content:\"\";position:absolute;left:2px;top:.42rem;width:11px;height:11px;border:3px solid #11141c;border-radius:50%;background:#4f8ef7;box-shadow:0 0 0 1px #4f8ef7}.ds-trail h3{margin:0;color:#7f879f;font-size:.67rem;letter-spacing:.07em;text-transform:uppercase}.ds-trail p{margin:.35rem 0 0;font-size:.79rem}.ds-trail code{color:#c5d8ff;font-family:SFMono-Regular,Consolas,monospace}"
+    },
+    {
+      "name": "Raised Graphite Input",
+      "kind": "input",
+      "description": "The established task-surface field treatment shared by prototype controls.",
+      "html": "<label class=\"ds-field\"><span>Language</span><input type=\"text\" placeholder=\"Automatic detection\"></label>",
+      "css": ".ds-field{display:grid;gap:.4rem;color:#a3a9be;font:500 .8rem Inter,ui-sans-serif,system-ui,sans-serif}.ds-field input{padding:.7rem .8rem;border:1px solid rgba(232,234,242,.11);border-radius:9px;background:#1a1e28;color:#eef0f7;font:inherit}.ds-field input::placeholder{color:#7f879f}.ds-field input:focus{border-color:#4f8ef7}.ds-field input:focus-visible{outline:3px solid #ffd166;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Inspectable Research Canvas",
+    "overview": "The platform is a precise dark workspace for an academic accessibility prototype. Its near-black canvas, graphite fields, blue-to-violet measurement marks, and compact Inter typography make technical work feel focused without borrowing the visual language of a generic enterprise dashboard. Existing product surfaces may remain more task-oriented and card-based; research surfaces extend the same identity into a quieter, editorial evidence system.\n\nThe research expression is built around inspection. A reader should encounter the question and comparison before the summary metric, then be able to follow any conclusion through claim, metric, experiment, source, and limitation. Status colors are sparse and always accompanied by words, while provenance and limitations remain first-class content rather than footnotes.",
+    "keyCharacteristics": [
+      "Near-black canvas with graphite tonal separation rather than large decorative panels.",
+      "Blue-violet lines and fills identify measurement, progress, selection, and provenance paths.",
+      "Restrained semantic color communicates supported, cautionary, mismatched, and error states with explicit text.",
+      "Large, tightly set evidence headings contrast with compact labels and tabular numeric annotations.",
+      "Research questions form a navigable evidence spine, not a grid of interchangeable KPI cards."
+    ],
+    "rules": [
+      { "name": "The Measurement Color Rule", "body": "Blue and violet mark evidence structure and interaction, never an unsupported positive conclusion.", "section": "colors" },
+      { "name": "The Status Is Language Rule", "body": "Semantic color is always paired with a verdict, status, or limitation label; color alone never carries meaning.", "section": "colors" },
+      { "name": "The Question Leads Rule", "body": "The research question and comparison graphic establish hierarchy before any isolated metric.", "section": "typography" },
+      { "name": "The Exact Numbers Rule", "body": "Measured values, timestamps, and intervals use tabular numerals; source paths use the mono stack.", "section": "typography" },
+      { "name": "The Reading Column Rule", "body": "Long interpretations and methodological prose stay near 68–70ch even when the evidence canvas is wider.", "section": "layout" },
+      { "name": "The Rail Remains Reachable Rule", "body": "Desktop and mobile navigation stay sticky; mobile overflow must expose an obvious scroll affordance.", "section": "layout" },
+      { "name": "The Flat Evidence Rule", "body": "Research findings use rules and whitespace at rest; do not turn each metric or comparison into a floating card.", "section": "elevation" },
+      { "name": "The Open Field Rule", "body": "Let major comparisons occupy the reading column with rules and whitespace; enclosure implies state or interaction.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do preserve the near-black, graphite, Inter, and blue-violet platform identity when adding research or prototype surfaces.",
+      "Do lead research findings with the question and comparison plot, keeping summary metrics as small secondary annotations.",
+      "Do provide a tabular equivalent for every chart and expose source paths, selectors, statistical method, and claim limitations.",
+      "Do keep active navigation programmatically current and keep modal focus contained while the background is inert.",
+      "Do distinguish VAD-segmented batch inference from native streaming and label preliminary evidence as scope-bound."
+    ],
+    "donts": [
+      "Don't replace the evidence spine with a generic grid of KPI cards or use cards to give every fact equal visual weight.",
+      "Don't use green, amber, coral, blue, or violet as the only carrier of status or inferential meaning.",
+      "Don't bury limitations in footnotes, tooltips, or a detached methodology page.",
+      "Don't imply production readiness, validated accessibility outcomes, clinical validation, persistent speaker identity, or representative meeting-corpus coverage without evidence.",
+      "Don't introduce a replacement brand language for /research; it is an exacting extension of the existing prototype world."
+    ]
+  }
+}

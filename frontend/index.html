@@ -118,6 +118,7 @@
       border-bottom-color: var(--surface);
       margin-bottom: -1px;
     }
+    .tab-link { text-decoration: none; }
 
     /* ── Main content ─────────────────────────────────────────────── */
     main { flex: 1; padding: 2rem; max-width: 900px; width: 100%; margin: 0 auto; }
@@ -546,6 +547,7 @@
     <div class="tab" onclick="switchTab('ask')" id="tab-ask">
       💬 Ask Questions
     </div>
+    <a class="tab tab-link" href="/research" id="tab-research">Research Evidence</a>
     <div class="tab" onclick="switchTab('live')" id="tab-live">
       🔴 Live STT
     </div>
@@ -667,6 +669,12 @@
         <span class="live-dot" id="liveDot"></span>
         <span id="liveStatusTxt" style="font-size:.82rem;color:var(--muted)">Disconnected</span>
         <input class="ws-input" id="liveWsUrl" value="ws://localhost:8001/ws/transcribe" spellcheck="false" />
+        <select id="liveLang" title="Language forced for this live session (added to the URL as ?lang=)" style="min-width:110px">
+          <option value="">Auto-detect</option>
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+        </select>
         <button class="btn btn-primary" id="liveBtnConn" onclick="liveConnect()" style="padding:.45rem 1rem;font-size:.82rem">Connect</button>
         <button class="btn" id="liveBtnDisconn" onclick="liveDisconnect()" disabled
           style="padding:.45rem 1rem;font-size:.82rem;background:var(--surface2);border:1px solid var(--border)">Disconnect</button>
@@ -806,7 +814,10 @@
           <span class="pill pill-blue">🌐 ${(data.language || 'unknown').toUpperCase()}</span>
           <span class="pill pill-green">✅ Ingested to RAG</span>
           <span class="pill pill-purple">🤖 Whisper ${data.whisper_model}</span>
-          <span class="pill pill-blue">⏱️ ${Math.round(data.duration_seconds)}s</span>
+          <span class="pill pill-blue" title="Audio duration">🎵 audio ${Math.round(data.duration_seconds)}s</span>
+          <span class="pill pill-blue" title="Server processing time (transcription; excludes model loading)">⏱️ processed in ${Math.round(data.processing_time_seconds)}s</span>
+          <span class="pill pill-blue" title="Real-time factor = processing / audio">RTF ${data.duration_seconds ? (data.processing_time_seconds / data.duration_seconds).toFixed(2) : '—'}</span>
+          ${data.diarization_available === false ? '<span class="pill" title="pyannote pipeline not loaded on this server">⚠️ no diarization</span>' : ''}
         `;
         document.getElementById('sttText').textContent = data.full_text;
 
@@ -1009,7 +1020,9 @@ registerProcessor('pcm-capture', PCMCapture);
     }
 
     function liveConnect() {
-      const url = document.getElementById('liveWsUrl').value.trim();
+      let url = document.getElementById('liveWsUrl').value.trim();
+      const lang = document.getElementById('liveLang').value;
+      if (lang && !/[?&]lang=/.test(url)) url += (url.includes('?') ? '&' : '?') + 'lang=' + lang;
       liveSetStatus('connecting', 'Connecting…');
       liveWs = new WebSocket(url);
       liveWs.binaryType = 'arraybuffer';
@@ -1022,7 +1035,11 @@ registerProcessor('pcm-capture', PCMCapture);
       };
       liveWs.onmessage = (e) => {
         if (typeof e.data === 'string') {
-          try { liveAppendSegment(JSON.parse(e.data)); } catch {}
+          try {
+            const m = JSON.parse(e.data);
+            if (m.type === 'flushed') { liveSetStatus('connected', 'Connected'); return; }
+            liveAppendSegment(m);
+          } catch {}
         }
       };
       liveWs.onerror  = () => { liveSetStatus('error', 'Error'); liveStopRecord(); };
@@ -1037,7 +1054,16 @@ registerProcessor('pcm-capture', PCMCapture);
 
     function liveDisconnect() {
       liveStopRecord();
-      if (liveWs) { liveWs.close(); liveWs = null; }
+      // Close only once the server acknowledges the flush ({type:'flushed'} is sent after
+      // the final transcription completed, however long it took). The long timeout only
+      // guards against a server that never answers.
+      const ws = liveWs; liveWs = null;
+      if (!ws) return;
+      let closed = false;
+      const done = () => { if (!closed) { closed = true; try { ws.close(); } catch {} } };
+      const prev = ws.onmessage;
+      ws.onmessage = (e) => { if (prev) prev(e); try { if (JSON.parse(e.data).type === 'flushed') done(); } catch {} };
+      setTimeout(done, 30000);
     }
 
     async function liveToggleRecord() {
@@ -1086,6 +1112,15 @@ registerProcessor('pcm-capture', PCMCapture);
 
     function liveStopRecord() {
       liveRecording = false;
+      if (liveWs && liveWs.readyState === WebSocket.OPEN) {
+        // 1) push the residual samples that never filled a 1 s packet (last word),
+        // 2) ask the server to transcribe whatever it now holds.
+        try {
+          if (livePcmBuf.length > 0) { liveWs.send(liveF32toI16(livePcmBuf).buffer); livePcmBuf = new Float32Array(0); }
+          liveWs.send('__end__');
+          liveSetStatus('connecting', 'Finishing…');
+        } catch {}
+      }
       if (liveProcessor) { try { liveProcessor.disconnect(); } catch {} liveProcessor = null; }
       if (liveSource)    { try { liveSource.disconnect(); }    catch {} liveSource    = null; }
       if (liveStream)    { liveStream.getTracks().forEach(t => t.stop()); liveStream = null; }

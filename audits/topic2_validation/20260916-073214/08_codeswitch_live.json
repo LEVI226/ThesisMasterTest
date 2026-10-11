@@ -1,0 +1,102 @@
+{
+  "scope": "real VAD + Whisper small via RealTimeSTTHandler; clips trimmed and joined; fake socket",
+  "model": {
+    "model": "small",
+    "device": "cuda",
+    "compute_type": "float16",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vad_loaded": true,
+    "diarization_loaded": false
+  },
+  "rows": [
+    {
+      "pair": "minds14_fr_clean_01 + minds14_en_clean_01",
+      "gap_s": 0.0,
+      "forced_language": null,
+      "utterances": 2,
+      "texts": [
+        "Je souhaite changer mon adresse.",
+        "How do I proceed with doing that?"
+      ],
+      "wer_vs_first_ref": 1.4,
+      "wer_vs_second_ref": 0.917,
+      "wer_vs_concatenated_refs": 0.647,
+      "ref_first": "je souhaite changer mon adresse",
+      "ref_second": "I would like to set up a joint account with my partner"
+    },
+    {
+      "pair": "minds14_fr_clean_01 + minds14_en_clean_01",
+      "gap_s": 1.5,
+      "forced_language": null,
+      "utterances": 2,
+      "texts": [
+        "Je souhaite changer mon adresse.  Je voudrais mettre un compte joint avec mon partner.",
+        "How do I proceed with doing that?"
+      ],
+      "wer_vs_first_ref": 3.2,
+      "wer_vs_second_ref": 1.583,
+      "wer_vs_concatenated_refs": 0.882,
+      "ref_first": "je souhaite changer mon adresse",
+      "ref_second": "I would like to set up a joint account with my partner"
+    },
+    {
+      "pair": "minds14_fr_clean_01 + minds14_de_clean_01",
+      "gap_s": 0.0,
+      "forced_language": null,
+      "utterances": 1,
+      "texts": [
+        "Je souhaite changer mon adresse.  Je me souviens d'avoir un geld sur mon compte en temps."
+      ],
+      "wer_vs_first_ref": 2.2,
+      "wer_vs_second_ref": 1.875,
+      "wer_vs_concatenated_refs": 0.769,
+      "ref_first": "je souhaite changer mon adresse",
+      "ref_second": "ich möchte gerne Geld auf mein Konto einzahlen"
+    },
+    {
+      "pair": "minds14_fr_clean_01 + minds14_de_clean_01",
+      "gap_s": 1.5,
+      "forced_language": null,
+      "utterances": 2,
+      "texts": [
+        "Je souhaite changer mon adresse",
+        "ន្႘៑៍្ក៑៑៍.  ្្្ក្ក្ក្ក្្,"
+      ],
+      "wer_vs_first_ref": 0.4,
+      "wer_vs_second_ref": 1.0,
+      "wer_vs_concatenated_refs": 0.615,
+      "ref_first": "je souhaite changer mon adresse",
+      "ref_second": "ich möchte gerne Geld auf mein Konto einzahlen"
+    },
+    {
+      "pair": "minds14_en_clean_04 + minds14_fr_clean_02",
+      "gap_s": 0.0,
+      "forced_language": null,
+      "utterances": 1,
+      "texts": [
+        "How do I start a join account?  Bonjour, je voudrais changer d'adresse."
+      ],
+      "wer_vs_first_ref": 0.857,
+      "wer_vs_second_ref": 1.4,
+      "wer_vs_concatenated_refs": 0.083,
+      "ref_first": "how do I start a joint account",
+      "ref_second": "Bonjour je voudrais changer d'adresse"
+    },
+    {
+      "pair": "minds14_en_clean_04 + minds14_fr_clean_02",
+      "gap_s": 1.5,
+      "forced_language": null,
+      "utterances": 2,
+      "texts": [
+        "How do I start a join account?",
+        "Bonjour, je voudrais changer d'adresse."
+      ],
+      "wer_vs_first_ref": 0.857,
+      "wer_vs_second_ref": 1.4,
+      "wer_vs_concatenated_refs": 0.083,
+      "ref_first": "how do I start a joint account",
+      "ref_second": "Bonjour je voudrais changer d'adresse"
+    }
+  ]
+}

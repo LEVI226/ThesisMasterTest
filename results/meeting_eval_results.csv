@@ -1,0 +1,8 @@
+meeting_id,language,noise_condition,n_speakers,total_duration_s,n_ref_segments,der,missed_speech,false_alarm,confusion,n_hyp_segments,hyp_n_speakers,limitation
+meeting_en_clean_2spk,en,clean,2,71.78,8,0.6495,0.3535,0.0,0.296,15,6,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_fr_clean_2spk,fr,clean,2,48.03,8,0.5976,0.4566,0.0,0.141,8,3,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_de_clean_2spk,de,clean,2,78.92,8,0.7407,0.365,0.0,0.3757,16,7,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_en_noisy_2spk,en,noisy,2,46.97,4,0.4972,0.3257,0.0,0.1715,11,3,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_fr_noisy_2spk,fr,noisy,2,28.8,4,0.4792,0.3608,0.0,0.1184,6,1,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_de_noisy_2spk,de,noisy,2,35.24,4,0.5395,0.3552,0.0,0.1843,6,3,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."
+meeting_trilingual_3spk,mixed,clean,3,48.27,6,0.5889,0.4294,0.0,0.1595,11,5,"Sequential turns, no overlap — weak diarization testbed; cross-talk not tested."

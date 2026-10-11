@@ -1,0 +1,105 @@
+===== PAGE 1 =====
+Global Research Proposal - BIT/Nestlé
+AI-Driven Multimodal Accessibility Platform for Inclusive Workplace 
+Communication
+Background
+In large multinational organizations like Nestlé, communication relies heavily on 
+visual and audio content—ranging from presentations and scanned documents to 
+video meetings. However, employees with visual or hearing impairments face 
+barriers in accessing this information. An integrated AI-driven accessibility platform, 
+leveraging Optical Character Recognition (OCR) and Speech-to-Text (STT), can 
+ensure inclusivity by automatically extracting and transcribing content, while also 
+adapting outputs to individual needs.
+This research initiative will be split into three complementary subtopics, each 
+addressing a critical AI challenge, with the final goal of delivering a unified 
+accessibility platform integrated into corporate tools such as Outlook, Teams, and 
+websites.
+Topic 1: Deep Learning for OCR in Real-World 
+Corporate Documents
+Objective:
+To design, evaluate, and fine-tune deep learning OCR models for extracting text 
+from diverse corporate visual materials (e.g., slides, PDFs, scanned reports, 
+screenshots).
+Research Questions:
+1. How can OCR models be optimized to handle noisy, low-resolution, or 
+multilingual corporate documents?
+2. What fine-tuning strategies best adapt OCR models to Nestlé-specific 
+vocabulary (brands, technical terms)?
+
+===== PAGE 2 =====
+3. How can OCR outputs be structured for seamless integration with 
+accessibility tools (screen readers)?
+Methodology:
+● Conduct literature review on deep learning-based OCR.
+● Build a dataset of corporate-like documents (scans, screenshots, slides).
+● Benchmark models such as TrOCR, LayoutLM, Donut, and Tesseract.
+● Apply transfer learning and fine-tuning with domain-specific data.
+● Evaluate with Character Error Rate (CER), Word Error Rate (WER), and 
+accessibility compliance.
+Expected Outcome:
+A fine-tuned OCR pipeline capable of extracting accurate text from complex 
+workplace visuals, ready for integration into Outlook, Teams, and web platforms.
+Topic 2: Advanced Speech-to-Text Models for Noisy, 
+Multilingual Meetings
+Objective:
+To develop robust AI-based STT systems that can accurately transcribe corporate 
+meetings and video calls in real time, handling multiple speakers, background noise, 
+and multilingual content.
+Research Questions:
+1. How do state-of-the-art transformer-based ASR models perform in noisy and 
+multilingual corporate settings?
+2. Which adaptation strategies (transfer learning, domain-specific fine-tuning) 
+improve transcription accuracy for workplace conversations?
+
+===== PAGE 3 =====
+3. How can real-time transcription latency be minimized without sacrificing 
+accuracy?
+Methodology:
+● Literature review on advanced ASR methods.
+● Collect/curate datasets simulating corporate meetings with multilingual and 
+accented speech.
+● Evaluate ASR models such as Whisper, wav2vec 2.0, and Conformer.
+● Experiment with noise reduction, speaker diarization, and domain adaptation.
+● Test prototypes for real-time transcription in simulated Teams meetings.
+Expected Outcome:
+A real-time STT engine optimized for corporate communications, capable of 
+delivering accessible transcripts for hearing-impaired employees.
+Topic 3: AI-Driven Personalization and Accessibility 
+Layer
+Objective:
+To design an intelligent accessibility interface that personalizes OCR and STT 
+outputs, making them adaptive, explainable, and inclusive for employees with 
+diverse accessibility needs.
+Research Questions:
+1. How can AI personalization improve accessibility for visually and hearing￾impaired users?
+2. What explainable AI methods (confidence indicators, error highlighting) 
+increase trust in AI outputs?
+
+===== PAGE 4 =====
+3. How can reinforcement learning from user feedback continuously improve 
+accessibility features?
+Methodology:
+● Literature review on personalization, explainable AI, and adaptive accessibility 
+design.
+● Prototype interfaces with customizable features (live captions, adjustable 
+fonts/contrast, multi-language subtitles).
+● Integrate confidence scoring and error feedback loops.
+● Conduct user studies with accessibility tool users (screen reader users, 
+hearing-impaired participants).
+● Explore reinforcement learning approaches for adaptive improvement.
+Expected Outcome:
+An adaptive accessibility layer that transforms raw OCR and STT outputs into 
+inclusive, user-friendly communication tools, ensuring compatibility with Outlook, 
+Teams, and assistive technologies.
+Final Integration
+● Topic 1 (OCR Engine): Extracts text from images, scanned documents, and 
+slides.
+● Topic 2 (STT Engine): Transcribes spoken content from meetings and videos 
+in real time.
+● Topic 3 (Accessibility Layer): Adapts and personalizes the extracted content 
+for inclusive use.
+Together, these three research paths will produce a comprehensive AI-powered 
+accessibility platform that fosters inclusivity, enhances communication, and 
+supports Nestlé’s goal of creating an accessible workplace for all employees.
+
+===== PAGE 5 =====

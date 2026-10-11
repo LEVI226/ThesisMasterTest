@@ -1,0 +1,20 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+H1    whisper-large-v3       agm      forced-clean           +0
+H2    whisper-large-v3       agm      forced-snr20           +0
+H2    whisper-large-v3       agm      forced-snr10           +0
+H2    whisper-large-v3       agm      forced-snr5            +0
+H2    whisper-large-v3       ami-ihm  forced-clean           +0
+H2    whisper-large-v3       ami-sdm  forced-clean           +0
+H3    whisper-large-v3       summre   forced-clean           +0
+H4a   whisper-large-v3       agm      auto-snr5              +0
+H4a   whisper-large-v3       agm      auto-clean             +147
+H4a   whisper-large-v3       ami-sdm  auto-clean             +1316
+H4a   whisper-large-v3       summre   auto-clean             +677
+H4b   whisper-large-v3       agm      forced-clean-prompt    +203
+H4c   whisper-large-v3       agm      forced-clean-denoise   +203
+H4c   whisper-large-v3       agm      forced-snr20-denoise   +203
+H4c   whisper-large-v3       agm      forced-snr10-denoise   +203
+H4c   whisper-large-v3       agm      forced-snr5-denoise    +203
+NOISE whisper-large-v3       noise    forced-clean           +30
+NOISE whisper-large-v3       noise    auto-clean             +30

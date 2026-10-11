@@ -1,0 +1,135 @@
+{
+  "scope": "real VAD + real Whisper small; clips truncated mid-speech; fixed vs pristine handler; fake socket",
+  "cut_fraction": 0.55,
+  "model_loaded": {
+    "model": "small",
+    "device": "cuda",
+    "compute_type": "float16",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vad_loaded": true,
+    "diarization_loaded": false
+  },
+  "rows": [
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_fr_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 2.06,
+      "tail_rms": 0.251
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_fr_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 1,
+      "text": "Je souhaite changer mon a...",
+      "flushed_ack": true,
+      "cut_seconds": 2.06,
+      "tail_rms": 0.251
+    },
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_fr_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 2.06,
+      "tail_rms": 0.251
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_fr_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 1,
+      "text": "Je souhaite changer mon a...",
+      "flushed_ack": false,
+      "cut_seconds": 2.06,
+      "tail_rms": 0.251
+    },
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_en_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 5.96,
+      "tail_rms": 0.0005
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_en_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 1,
+      "text": "I would like to set up a joint account with my partner.",
+      "flushed_ack": true,
+      "cut_seconds": 5.96,
+      "tail_rms": 0.0005
+    },
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_en_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 5.96,
+      "tail_rms": 0.0005
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_en_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 1,
+      "text": "I would like to set up a joint account with my partner.",
+      "flushed_ack": false,
+      "cut_seconds": 5.96,
+      "tail_rms": 0.0005
+    },
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_de_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 3.22,
+      "tail_rms": 0.09
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_de_clean_01",
+      "scenario": "end_signal",
+      "utterances_delivered": 1,
+      "text": "Hverste gjerne gelt?",
+      "flushed_ack": true,
+      "cut_seconds": 3.22,
+      "tail_rms": 0.09
+    },
+    {
+      "handler": "PRISTINE",
+      "file": "minds14_de_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 0,
+      "text": "",
+      "flushed_ack": false,
+      "cut_seconds": 3.22,
+      "tail_rms": 0.09
+    },
+    {
+      "handler": "FIXED",
+      "file": "minds14_de_clean_01",
+      "scenario": "disconnect",
+      "utterances_delivered": 1,
+      "text": "Hverste gjerne gelt?",
+      "flushed_ack": false,
+      "cut_seconds": 3.22,
+      "tail_rms": 0.09
+    }
+  ]
+}

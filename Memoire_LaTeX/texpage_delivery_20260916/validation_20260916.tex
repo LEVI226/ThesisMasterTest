@@ -1,0 +1,183 @@
+\section*{Annex: Supplementary Audit Conducted on 16 September 2026}
+\phantomsection
+\addcontentsline{toc}{section}{Annex: Supplementary Audit Conducted on 16 September 2026}
+
+This annex reports a supplementary audit conducted on 16~September~2026, while the manuscript above was being prepared for review. It is kept separate so that the
+original protocol, tables and figures of Chapters~II and~III remain the record of what was planned and
+measured. Nothing in this annex replaces a historical figure; where a revised figure is given, the original is
+shown beside it. Every item below is traceable to files under
+\texttt{audits/topic2\_validation/20260916-073214/} and \texttt{audits/diarization\_20260916/}.
+Software corrections are engineering facts, not scientific validation; they are listed first only because the
+observations that follow were obtained with the corrected software.
+
+\subsection*{A.1 Software contract corrections (dated, engineering)}
+Three defects of the prototype were reproduced with fake dependencies before any change, corrected, and covered
+by regression tests (suite: 68 tests, 0 failures): (i)~the upload endpoint ignored the language sent as a
+multipart form field and always auto-detected; (ii)~audio still buffered when the client stopped was never
+transcribed, so a sentence ending without a $0.6$\,s pause was lost (0 of 6 delivered before the fix on clips
+cut mid-speech; 6 of 6 after, including a browser-side residual shorter than one packet and decodes longer than
+the previous 2\,s close-out); (iii)~transcript side files were named without model or VAD and collided across
+72 of 180 historical paths (the CSV text columns, not the side files, remain the authoritative record).
+Per-session JSONL logging now records the model, device, numerical precision, package versions, options,
+packet sizes, trigger, latency and text of every utterance, with clock domains stated; the live page gained a
+language selector, which it did not have. The start-up log and \texttt{/health} now report what is actually
+loaded rather than what was requested. Separately, the pyannote pipeline failed to load in this environment
+until a dependency repair on the same day (Lightning 2.4.0, CTranslate2 4.6.0, corrected file-path call,
+\texttt{audits/diarization\_20260916/DIAGNOSTIC.md}); loading is now verified, attribution accuracy is not.
+
+\subsection*{A.2 Reference transcript integrity}
+All 24 local clean references were verified to be identical, after normalisation, to the
+\texttt{transcription} field of the published PolyAI/MInDS-14 (Hugging Face cache of 26~July~2026): the local
+extraction introduced no error. Three independent architectures (Whisper large-v3, MMS, Conformer) were used
+only to rank which clips to listen to first; model agreement was never treated as a verdict. The author then
+re-transcribed the 16 English and French clips by listening. \textbf{Seven} differ from the published reference after
+re-annotation: \texttt{en\_01}, \texttt{en\_03} and \texttt{fr\_03} end earlier than the audio, \texttt{en\_02} and
+\texttt{en\_07} differ in wording, and \texttt{en\_08} and \texttt{fr\_07} differ only in audible hesitations. These are
+differences between one annotator's hearing and the published text, not all established errors of the corpus, and some
+passages remain uncertain (below). \textbf{Nine} are
+confirmed identical. The 8 German references could not be checked (no German-speaking annotator was available)
+and keep their published text; they are reported as unverified. Noisy variants share the reference of their clean
+source, so 9 of the 36 evaluation files are affected.
+
+Limits of this re-annotation, stated so that they are not overstated later: it was not fully blind, because the
+author had seen the three-model hypotheses of the five priority clips and a word-level triage for two control
+clips before transcribing; there was no second annotator, so the second listening of the priority clips is a
+second pass by the same person, not an independent validation; three passages changed between the two passes
+(\texttt{fr\_03} ``je vais changer'' versus ``j'avais changé'', a hesitation in \texttt{en\_03}, a closing
+``thank you'' in \texttt{en\_07}) and are recorded as uncertain. References were transcribed verbatim, hesitations
+included; the canonical scorer does not strip them, so a system that cleans disfluencies is charged for it.
+Revised references are versioned under \texttt{reannotation/references\_v2/} with annotator, date and reason;
+the originals under \texttt{datasets/stt\_eval/references/} are untouched.
+
+\subsection*{A.3 Sensitivity revision with re-annotated references}
+Every stored hypothesis of the 468-run campaign was re-scored against the revised references (16 human, 8
+published), with no new inference. All figures are arithmetic means of per-file WER over the 36 files (24 clean,
+12 noisy; en/fr/de), the same estimator as Chapter~III; they are not corpus-level rates weighted by word count.
+Intervals are 95\,\% bootstrap intervals (10\,000 resamples, seed~42) clustered by \emph{source clip}: each
+noisy variant is resampled together with its clean source, never as an independent recording.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Condition} & \textbf{Original WER} & \textbf{Revised WER} & \textbf{95\,\% CI (revised)} \\ \hline
+A tiny, baseline & 63.4\,\% & 50.6\,\% & [35.0, 65.4] \\ \hline
+F base & 48.3\,\% & 35.5\,\% & [21.4, 50.0] \\ \hline
+G small (GPU) & 33.3\,\% & 19.4\,\% & [9.1, 32.1] \\ \hline
+H medium (GPU) & 25.9\,\% & 13.2\,\% & [6.2, 21.3] \\ \hline
+I large-v3 (GPU) & 24.6\,\% & 10.9\,\% & [4.4, 19.2] \\ \hline
+J0 whisper-small (HF, GPU) & 31.2\,\% & 18.9\,\% & [10.3, 28.3] \\ \hline
+J whisper-small + LoRA & 30.2\,\% & 18.3\,\% & [9.9, 27.1] \\ \hline
+K MMS (wav2vec 2.0) & 35.4\,\% & 23.9\,\% & [15.1, 32.7] \\ \hline
+L Conformer en / fr / de & 39.8 / 23.6 / 15.3\,\% & 16.1 / 15.1 / 15.3\,\% & -- \\ \hline
+\end{tabular}
+\caption{Sensitivity of the aggregate results to the re-annotated references (16 human, 8 published German).
+Original figures are those of Chapter~III and remain the record of what was scored.}
+\label{tab:annex_revision}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Paired contrast} & \textbf{Original} & \textbf{Revised} & \textbf{95\,\% CI (revised)} \\ \hline
+Model size, B (tiny) $-$ I (large-v3) & $+37.6$ [24.3, 50.7] & $+39.9$ & [$+26.3$, $+53.0$] \\ \hline
+Added noise, 12 matched pairs & $+35.3$ [7.0, 60.0] & $+36.9$ & [$+7.6$, $+62.8$] \\ \hline
+LoRA, J0 $-$ J & $+1.0$ [$-2.4$, 5.3] & $+0.6$ & [$-1.9$, $+3.0$] \\ \hline
+Prompt, B $-$ D & $+0.9$ & $-0.5$ & [$-3.2$, $+2.1$] \\ \hline
+Forced language, D $-$ E & $+1.7$ & $+2.4$ & [$-2.6$, $+7.0$] \\ \hline
+MMS $-$ whisper-small (J0) & $+4.2$ & $+5.0$ & [$-1.9$, $+13.0$] \\ \hline
+\end{tabular}
+\caption{Paired contrasts in WER points, clustered bootstrap by source clip. Positive values favour the second
+term of each difference.}
+\label{tab:annex_contrasts}
+\end{table}
+
+Reading. Absolute WER levels are lower than in Chapter~III by roughly 10 to 15 points on the 36-file conditions;
+the size of the change depends on language (the German Conformer figure is unchanged, the English one falls by
+24 points) and on references that are themselves provisional for German. The model-size ladder remains strictly
+monotone and the size and noise effects keep intervals that exclude zero. The four small contrasts (LoRA, prompt,
+forced language in aggregate, MMS versus whisper-small) all have intervals that contain zero. An interval that
+contains zero establishes neither the absence of an effect nor equivalence; the faithful statement for LoRA is
+that no benefit is established on this sample (estimate $+0.6$ points, interval [$-1.9$, $+3.0$]), and that the
+estimate moved between $-0.5$ and $+1.0$ across successive reference versions. The forced-language effect is
+therefore supported at the script level (Chapter~III) but not as an aggregate WER gain. Forcing the language can help when the expected language is known and stable, but it does not resolve language changes within a single intervention (A.5).
+
+Each contrast changes the factor named and, where stated, nothing else: B$-$D and D$-$E use the same tiny model,
+backend and preprocessing; J0$-$J use the same whisper-small weights path (Hugging Face, GPU) with only the LoRA
+weights differing; B$-$I changes the model size \emph{and} the backend (tiny on CPU/INT8, large-v3 on
+GPU/float16), the cross-backend divergence having been measured at $-1.1$ (tiny) and $-3.5$ (base) points.
+
+\subsection*{A.4 Live path: observations with one speaker and a microphone}
+All observations below come from one speaker (the author, native French, non-native German), one microphone,
+one day, model \texttt{small} on GPU, and are pilot observations, not measurements of a population.
+\begin{itemize}
+  \item \textbf{Language forcing on accented German.} Seven productions of one German sentence in automatic mode
+  were detected as Latin, Nynorsk, English or (once) German; two came out in phonetic (IPA) notation; mean WER
+  1.02, mean CER 0.64, server latency median 3.25\,s and maximum 14.2\,s (12\,s of audio, i.e.\ above real time).
+  Three productions with the language forced to German came out in German script only: mean WER 0.75, CER 0.37,
+  latency median 0.69\,s, maximum 0.88\,s. Forcing repaired the script and shortened the decode; it did not repair
+  accent-driven word errors (``möchte'', ``einzahlen'' wrong in all three). These are different productions, not
+  the same recording, so no causal claim about latency is made beyond ``lower latency was observed with the
+  language forced in these trials''.
+  \item \textbf{Three quantities that must not be conflated.} The real-time factor, the post-endpointing
+  computation time of Chapter~III, and the end-to-end caption delay are distinct. The live handler has
+  \emph{no maximum utterance length}: on continuous speech without a $0.6$\,s pause (a public speech replayed
+  through a loudspeaker), silence-triggered utterances of 35, 25, 30 and 70\,s were observed, and one block of
+  149\,s that was closed only by the user's stop command. The RTF stayed near 0.1 on GPU, yet the caption of a
+  149\,s stretch could not appear before 149\,s plus a 13.6\,s decode. A low RTF is therefore not evidence of a
+  low captioning delay; a maximum utterance length is the obvious correction and is left as future work.
+  \item \textbf{Other observations.} The first words of an utterance were lost when speech began before the
+  microphone pipeline was live; one flush of residual audio produced a one-word hallucination (``Thank you'')
+  that passed the energy guard. Both are recorded, not corrected.
+\end{itemize}
+
+\subsection*{A.5 Public Nestlé audio: the 2026 Annual General Meeting (English)}
+A public webcast recording (Chair and CEO speeches, 22\,min) was transcribed locally through the file path
+(\texttt{small}, GPU, 151\,s of processing, RTF 0.11). No verified verbatim exists for the 2026 meeting, so no
+WER is reported; the observations are qualitative and concern one file.
+\begin{itemize}
+  \item \textbf{Named entities.} Brands and institutions in the speech (Nescafé, Starbucks, Inditex, Procter \&
+  Gamble, Swiss National Bank) were all correct; five of nine surnames were wrong (e.g.\ ``Ineichen-Fleisch''
+  rendered as ``in Agent Flash'', ``Bulcke'' as ``Bulke'', ``de Mora'' as ``Hanny de Mora'') and ``centimes'' as
+  ``cent teams''. The static domain prompt of Chapter~II lists brands only; it protected what it lists and nothing
+  else. This is the entity-level blind spot of aggregate WER discussed in Chapter~I, observed on real Nestlé audio.
+  \item \textbf{A language switch inside one intervention.} At the handover, the CEO opened in French and then
+  German before continuing in English. On the file path, these 16.6\,s produced no segment at all: the language
+  is decided once, on the first 30\,s of the file, and the whole file is decoded with that token. Re-running the
+  isolated 40\,s window gave a German decision and all three languages; \texttt{large-v3} on the same window
+  decided English and dropped the French and German exactly as \texttt{small} had. Forcing French translated the
+  German and English into French. The failure is therefore a property of the single language decision, not of
+  model size, and it produces silent omission or silent translation, never an error. Forcing the language can help when the expected language is known and stable, but it does not resolve language changes within a single intervention.
+  \item \textbf{Loudspeaker replay through the live path.} The same passage played through a loudspeaker into
+  the microphone reached the live path as separate utterances; the handover utterance received its own decision
+  (German), and the German and English parts were kept while the French part was rendered through the German
+  token. Content was preserved where the file path had lost it. Because the acoustics (loudspeaker, room,
+  microphone) differ from the file, this comparison alone does not isolate the architecture causally; it is
+  consistent with the per-utterance decision mechanism and is reported as such.
+  \item \textbf{External comparison.} The same public file was also transcribed by a commercial cloud service to
+  locate omissions; that output is not a reference (it mis-spelt the CEO's name in two ways) and the comparison is
+  not a benchmark. Internal Nestlé recordings present in the project were processed only locally and are not
+  evaluated here.
+\end{itemize}
+
+\subsection*{A.6 Diarization status}
+After the environment repair, pyannote loads and runs together with Whisper on GPU, and on a 25\,s simulated
+two-speaker extract it emitted two labels. This verifies execution, not accuracy: no time-aligned speaker
+annotation exists, so no DER or attribution accuracy is claimed. On the live path the label is taken from the last
+active speaker in a 10\,s context window and assigned to the whole utterance; labels are local to that window and
+no mechanism guarantees a persistent identity across windows, so a recurring \texttt{SPEAKER\_00} does not
+establish one speaker. A loudspeaker replay in which two speakers share one loudspeaker and one microphone
+produced a single label throughout; this is consistent with the acoustic set-up and is not by itself a failure of
+the model, nor a validation of it.
+
+\subsection*{A.7 What remains undemonstrated}
+Meetings with real, distinct speakers and time-aligned identities (T1); adaptation on Nestlé vocabulary with
+verified references and entity recall (T2); a simulated Teams meeting (T6); the 8 German references; the
+end-to-end caption delay measured up to the browser; diarization accuracy; and any validation on internal
+Nestlé production data. Data used in this thesis fall into three classes that must not be conflated: the public
+MInDS-14 corpus, public Nestlé webcast audio, and simulated meetings built from MInDS-14 clips. No claim is made
+about corporate deployment conditions.

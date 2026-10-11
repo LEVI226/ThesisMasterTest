@@ -1,0 +1,4 @@
+language,segments,words,speech_s,words_per_s,coverage,flagged_segments
+de,69,2121,1117.2,1.90,0.969,0
+en,66,2038,1114.1,1.83,0.966,1
+fr,68,2515,1149.6,2.19,0.997,0

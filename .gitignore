@@ -31,3 +31,29 @@ models/*/checkpoint-*/
 
 # Audio files du train split (régénérable via build_train_split.py)
 datasets/lora_train/audio/
+
+# Audio files des réunions simulées (régénérables via build_meetings.py)
+datasets/meetings/audio/
+
+# Réunions privées : JAMAIS dans git (pas de consentement des participants)
+audioReunionréel/
+
+# Scories d'audit : sondes de dépendances, dossiers temporaires pytest, extraits audio
+audits/**/ct2_probe/
+audits/**/compat_probe/
+audits/**/pytest_*/
+audits/**/contract_uploads/
+audits/**/*.wav
+
+# Audio TTS de répétition (régénérable via training/english_defense/generate_audio.ps1)
+training/english_defense/*.wav
+
+# Fichiers temporaires (les fichiers déjà suivis restent suivis)
+tmp/
+
+# Real-meetings study: downloaded/converted audio (regenerable via study_real_meetings/scripts/build_data.py)
+datasets/real_meetings/
+
+# pytest scratch (tmp/ has a Windows ACL problem on this machine)
+.pytest_cache/
+.pytest_tmp/

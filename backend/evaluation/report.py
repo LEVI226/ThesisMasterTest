@@ -1,195 +1,170 @@
-"""
-Generates a Markdown evaluation report from STT results CSV.
-Thesis-ready format with tables, findings, and interpretations.
-"""
+"""Generate an auditable Markdown summary from a generic STT result CSV."""
+
+from __future__ import annotations
+
 import csv
 import math
 from collections import defaultdict
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from typing import Optional
 
 
-def _load_csv(csv_path: str) -> list[dict]:
-    with open(csv_path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+def _load_csv(csv_path: str) -> list[dict[str, str]]:
+    with open(csv_path, newline="", encoding="utf-8-sig") as stream:
+        return list(csv.DictReader(stream))
 
 
-def _safe_float(val: str) -> Optional[float]:
+def _safe_float(value: object) -> Optional[float]:
     try:
-        v = float(val)
-        return None if math.isnan(v) or math.isinf(v) else v
+        parsed = float(value)
+        return parsed if math.isfinite(parsed) else None
     except (ValueError, TypeError):
         return None
 
 
-def _avg(values: list[float]) -> Optional[float]:
-    clean = [v for v in values if v is not None]
-    return round(sum(clean) / len(clean), 4) if clean else None
+def _avg(values: list[Optional[float]]) -> Optional[float]:
+    finite = [value for value in values if value is not None]
+    return sum(finite) / len(finite) if finite else None
 
 
-def _pct(v: Optional[float]) -> str:
-    return f"{v * 100:.2f}%" if v is not None else "N/A"
+def _pct(value: Optional[float]) -> str:
+    return f"{value * 100:.2f}%" if value is not None else "N/A"
 
 
-def _fmt(v: Optional[float], decimals: int = 4) -> str:
-    return f"{v:.{decimals}f}" if v is not None else "N/A"
+def _fmt(value: Optional[float], decimals: int = 3) -> str:
+    return f"{value:.{decimals}f}" if value is not None else "N/A"
+
+
+def _is_true(value: object) -> bool:
+    return str(value).strip().lower() in {"true", "1", "yes"}
+
+
+def _condition_key(row: dict) -> tuple[str, str, str, str, str]:
+    return (
+        row.get("model", "?"),
+        row.get("preprocessing_enabled", "False"),
+        row.get("domain_prompt_enabled", "False"),
+        row.get("vad_enabled", "False"),
+        row.get("forced_language", ""),
+    )
 
 
 def generate_report(results_csv: str, output_path: str, hardware_notes: str = "") -> str:
-    """
-    Generate a Markdown evaluation report from results CSV.
-
-    Args:
-        results_csv: Path to the CSV produced by run_evaluation().
-        output_path: Where to write the .md report.
-        hardware_notes: Optional string describing the test hardware.
-
-    Returns:
-        The generated Markdown as a string.
-    """
+    """Create descriptive tables without inventing causal research findings."""
     rows = _load_csv(results_csv)
     if not rows:
         raise ValueError(f"No results found in {results_csv}")
 
-    # Parse numeric fields
     for row in rows:
-        for key in ("wer", "cer", "real_time_factor", "duration_audio_seconds", "processing_time_seconds"):
-            row[f"_{key}"] = _safe_float(row.get(key, ""))
+        for key in (
+            "wer",
+            "cer",
+            "real_time_factor",
+            "duration_audio_seconds",
+            "processing_time_seconds",
+        ):
+            row[f"_{key}"] = _safe_float(row.get(key))
 
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    model_sizes = sorted(set(r.get("model", "?") for r in rows))
-    languages   = sorted(set(r.get("language", "?") for r in rows))
-    conditions  = sorted(set(r.get("noise_condition", "?") for r in rows))
-
-    lines = []
-    a = lines.append
-
-    a("# STT Evaluation Report — Topic 2")
-    a(f"\n**Generated:** {now}  ")
-    a(f"**Results file:** `{results_csv}`\n")
-
-    a("---\n")
-    a("## 1. Experiment Setup\n")
-    a("### Objective")
-    a(
-        "Evaluate faster-whisper STT accuracy and efficiency across different preprocessing "
-        "configurations, domain adaptation strategies, and noise conditions — "
-        "in support of Master Thesis Topic 2: *Advanced Speech-to-Text Models for "
-        "Noisy, Multilingual Corporate Meetings*.\n"
-    )
-    a("### Evaluation Conditions")
-    a("| Condition Label | Preprocessing | Domain Prompt | Language |")
-    a("|---|---|---|---|")
-    cond_labels = {}
+    grouped: dict[tuple[str, str, str, str, str], list[dict]] = defaultdict(list)
     for row in rows:
-        key = (row["preprocessing_enabled"], row["domain_prompt_enabled"], row["forced_language"])
-        if key not in cond_labels:
-            label = f"C{len(cond_labels)+1}"
-            cond_labels[key] = label
-            prep  = "Yes" if row["preprocessing_enabled"] == "True" else "No"
-            prompt= "Yes" if row["domain_prompt_enabled"]  == "True" else "No"
-            lang  = row["forced_language"] if row["forced_language"] and row["forced_language"] != "None" else "Auto"
-            a(f"| {label} | {prep} | {prompt} | {lang} |")
-    a("")
+        grouped[_condition_key(row)].append(row)
+    labels = {key: f"C{index}" for index, key in enumerate(sorted(grouped), start=1)}
 
-    a("### Model Configuration")
-    a(f"- **STT Engine:** faster-whisper")
-    a(f"- **Model sizes tested:** {', '.join(model_sizes)}")
-    a(f"- **Languages in dataset:** {', '.join(languages)}")
-    a(f"- **Noise conditions:** {', '.join(conditions)}\n")
-
-    if hardware_notes:
-        a("### Hardware")
-        a(hardware_notes)
-        a("")
-
-    a("---\n")
-    a("## 2. Metrics Reference\n")
-    a("| Metric | Formula | Interpretation |")
-    a("|---|---|---|")
-    a("| **WER** | (S+D+I) / N_ref_words | 0 = perfect; lower is better |")
-    a("| **CER** | (S+D+I) / N_ref_chars | Stricter than WER; lower is better |")
-    a("| **RTF** | processing_time / audio_duration | <1 = faster than real-time (good) |")
-    a("")
-
-    a("---\n")
-    a("## 3. Results Table\n")
-    a("| File | Language | Noise | Model | Prep | Prompt | Lang | WER | CER | RTF | Time (s) |")
-    a("|---|---|---|---|---|---|---|---|---|---|---|")
-    for row in rows:
-        prep  = "✓" if row["preprocessing_enabled"] == "True" else "✗"
-        prompt= "✓" if row["domain_prompt_enabled"]  == "True" else "✗"
-        lang  = row.get("forced_language", "auto") or "auto"
-        a(
-            f"| {row['filename']} | {row['language']} | {row['noise_condition']} "
-            f"| {row['model']} | {prep} | {prompt} | {lang} "
-            f"| {_pct(row['_wer'])} | {_pct(row['_cer'])} "
-            f"| {_fmt(row['_real_time_factor'], 3)} | {_fmt(row['_processing_time_seconds'], 1)} |"
+    lines: list[str] = [
+        "# STT Evaluation Report — Topic 2",
+        "",
+        f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}  ",
+        f"**Results file:** `{results_csv}`",
+        "",
+        "## Experiment setup",
+        "",
+        "| Condition | Model | Preprocessing | Prompt | VAD | Forced language |",
+        "|---|---|---|---|---|---|",
+    ]
+    for key in sorted(grouped):
+        model, preprocessing, prompt, vad, language = key
+        lines.append(
+            f"| {labels[key]} | {model} | "
+            f"{'Yes' if _is_true(preprocessing) else 'No'} | "
+            f"{'Yes' if _is_true(prompt) else 'No'} | "
+            f"{'Yes' if _is_true(vad) else 'No'} | "
+            f"{language if language and language != 'None' else 'Auto'} |"
         )
-    a("")
+    if hardware_notes:
+        lines.extend(["", "**Hardware:** " + hardware_notes])
 
-    a("---\n")
-    a("## 4. Aggregated Results by Condition\n")
-    by_cond = defaultdict(list)
-    for row in rows:
-        key = (row["preprocessing_enabled"], row["domain_prompt_enabled"], row.get("forced_language", ""))
-        by_cond[key].append(row)
-
-    a("| Condition | n | Mean WER | Mean CER | Mean RTF |")
-    a("|---|---|---|---|---|")
-    for key, cond_rows in sorted(by_cond.items()):
-        label = cond_labels.get(key, str(key))
-        wers = [r["_wer"] for r in cond_rows]
-        cers = [r["_cer"] for r in cond_rows]
-        rtfs = [r["_real_time_factor"] for r in cond_rows]
-        a(f"| {label} | {len(cond_rows)} | {_pct(_avg(wers))} | {_pct(_avg(cers))} | {_fmt(_avg(rtfs), 3)} |")
-    a("")
-
-    a("### Aggregated Results by Noise Condition\n")
-    a("| Noise Condition | n | Mean WER | Mean CER | Mean RTF |")
-    a("|---|---|---|---|---|")
-    by_noise = defaultdict(list)
-    for row in rows:
-        by_noise[row["noise_condition"]].append(row)
-    for noise, nrows in sorted(by_noise.items()):
-        wers = [r["_wer"] for r in nrows]
-        cers = [r["_cer"] for r in nrows]
-        rtfs = [r["_real_time_factor"] for r in nrows]
-        a(f"| {noise} | {len(nrows)} | {_pct(_avg(wers))} | {_pct(_avg(cers))} | {_fmt(_avg(rtfs), 3)} |")
-    a("")
-
-    a("---\n")
-    a("## 5. Key Findings\n")
-    a("<!-- Fill in after reviewing the data above. Example findings: -->")
-    a("")
-    a("1. **Preprocessing impact:** Noise reduction (noisereduce) [improved/degraded] WER by X% on noisy recordings.")
-    a("2. **Domain prompt impact:** The Nestlé vocabulary prompt [reduced/had no effect on] WER for brand names.")
-    a("3. **RTF performance:** The system achieved RTF < 1 on [X%] of samples, confirming faster-than-real-time performance on this hardware.")
-    a("4. **Language detection accuracy:** Auto language detection [was/was not] reliable across the tested languages.")
-    a("5. **Proper noun limitation:** Names such as 'Navratil' were transcribed incorrectly, highlighting the need for fine-tuning.\n")
-
-    a("---\n")
-    a("## 6. Limitations\n")
-    a("- Evaluation dataset is small (see `datasets/stt_eval/README.md` for instructions on adding files).")
-    a("- Reference transcripts may contain stylistic differences not accounted for by WER normalization.")
-    a("- Diarization quality (speaker labelling) was not evaluated due to dataset constraints.")
-    a("- All results obtained on local hardware; GPU performance will differ on Azure NC-series VMs.\n")
-
-    a("---\n")
-    a("## 7. Thesis Interpretation\n")
-    a(
-        "These results constitute the empirical foundation for Topic 2. "
-        "The comparison across preprocessing conditions directly addresses **Research Question 1** "
-        "(*How can STT models be optimized for noisy corporate environments?*). "
-        "The domain prompt experiments address **Research Question 2** "
-        "(*What fine-tuning strategies best adapt STT to Nestlé-specific vocabulary?*). "
-        "The RTF measurements address **Research Question 3** "
-        "(*How can real-time transcription latency be minimized?*).\n"
+    lines.extend(
+        [
+            "",
+            "## Per-file results",
+            "",
+            "| File | Language | Noise | Condition | WER | CER | RTF | Error |",
+            "|---|---|---|---|---:|---:|---:|---|",
+        ]
     )
-    a("The next step is to run these experiments on a GPU-enabled Azure NC-series VM and compare RTF values.")
+    for row in rows:
+        error = row.get("error", "").replace("|", "\\|")
+        lines.append(
+            f"| {row.get('filename', '?')} | {row.get('language', '?')} | "
+            f"{row.get('noise_condition', '?')} | {labels[_condition_key(row)]} | "
+            f"{_pct(row['_wer'])} | {_pct(row['_cer'])} | "
+            f"{_fmt(row['_real_time_factor'])} | {error} |"
+        )
 
-    report_text = "\n".join(lines)
-    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    Path(output_path).write_text(report_text, encoding="utf-8")
-    return report_text
+    lines.extend(
+        [
+            "",
+            "## Descriptive aggregation",
+            "",
+            "| Condition | Valid WER / rows | Mean WER | Mean CER | Mean RTF |",
+            "|---|---:|---:|---:|---:|",
+        ]
+    )
+    condition_means: list[tuple[float, str]] = []
+    for key in sorted(grouped):
+        condition_rows = grouped[key]
+        mean_wer = _avg([row["_wer"] for row in condition_rows])
+        mean_cer = _avg([row["_cer"] for row in condition_rows])
+        mean_rtf = _avg([row["_real_time_factor"] for row in condition_rows])
+        valid = sum(row["_wer"] is not None for row in condition_rows)
+        if mean_wer is not None:
+            condition_means.append((mean_wer, labels[key]))
+        lines.append(
+            f"| {labels[key]} | {valid}/{len(condition_rows)} | {_pct(mean_wer)} | "
+            f"{_pct(mean_cer)} | {_fmt(mean_rtf)} |"
+        )
+
+    valid_rows = [row for row in rows if row["_wer"] is not None]
+    realtime_rows = [row for row in rows if row["_real_time_factor"] is not None]
+    faster_count = sum(row["_real_time_factor"] < 1 for row in realtime_rows)
+    lines.extend(
+        [
+            "",
+            "## Interpretation boundary",
+            "",
+            f"- Completeness: {len(valid_rows)}/{len(rows)} rows have a finite WER.",
+            f"- Throughput: {faster_count}/{len(realtime_rows)} finite RTF measurements are below 1."
+            if realtime_rows
+            else "- Throughput: no finite RTF measurement is available.",
+        ]
+    )
+    if condition_means:
+        best_wer, best_label = min(condition_means)
+        lines.append(f"- Lowest descriptive mean WER: {best_label} at {_pct(best_wer)}.")
+    lines.extend(
+        [
+            "- These aggregates are descriptive. Intervention claims require matched filenames and paired or clustered uncertainty estimates.",
+            "- RTF measures processing throughput, not complete user-perceived caption latency.",
+            "- The report does not establish performance on corporate meetings, overlapping speakers, organisation-specific vocabulary, or accessibility outcomes.",
+            "",
+            "For the thesis inferential results, run "
+            "`python -m backend.evaluation.run_statistical_audit` on the canonical CSVs.",
+        ]
+    )
+
+    report = "\n".join(lines) + "\n"
+    destination = Path(output_path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(report, encoding="utf-8")
+    return report

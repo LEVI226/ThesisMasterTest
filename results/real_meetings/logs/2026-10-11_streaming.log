@@ -1,0 +1,8 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\ctranslate2\__init__.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+whisper-small de operating point: 10.0
+whisper-small en operating point: 10.0
+whisper-small fr operating point: 20.0
+whisper-large-v3 de operating point: 10.0
+whisper-large-v3 en operating point: 20.0
+whisper-large-v3 fr operating point: 20.0

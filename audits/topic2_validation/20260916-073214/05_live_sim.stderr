@@ -1,0 +1,151 @@
+C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+* use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+* fix torchcodec installation. Error message was:
+
+Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.6.0+cu124) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torch\_ops.py", line 1357, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\ctypes\__init__.py", line 390, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\ulric\Documents\ThesisMasterTest\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+[end of libtorchcodec loading traceback].
+  warnings.warn(
+2026-09-16 07:48:01,910 | INFO | backend.stt.engine | Loading faster-whisper model: small on CUDA (float16)
+2026-09-16 07:48:02,477 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+2026-09-16 07:48:03,992 | INFO | backend.stt.engine | faster-whisper model 'small' loaded successfully.
+2026-09-16 07:48:03,992 | INFO | backend.stt.engine | Loading Silero VAD model...
+Using cache found in C:\Users\ulric/.cache\torch\hub\snakers4_silero-vad_master
+2026-09-16 07:48:04,566 | INFO | backend.stt.engine | Silero VAD loaded successfully.
+2026-09-16 07:48:07,574 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:07,836 | INFO | faster_whisper | Processing audio with duration 00:02.755
+2026-09-16 07:48:08,306 | INFO | faster_whisper | Detected language 'fr' with probability 0.99
+2026-09-16 07:48:08,531 | INFO | nestle-platform | Utterance 1 | audio=2.8s | latency=0.703s | SPEAKER_UNKNOWN | 'je souhaite changer mon adresse'
+2026-09-16 07:48:08,532 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:08,535 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:08,616 | INFO | faster_whisper | Processing audio with duration 00:02.755
+2026-09-16 07:48:08,707 | INFO | faster_whisper | Detected language 'fr' with probability 0.99
+2026-09-16 07:48:08,896 | INFO | nestle-platform | Utterance 1 | audio=2.8s | latency=0.288s | SPEAKER_UNKNOWN | 'je souhaite changer mon adresse'
+2026-09-16 07:48:08,897 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:08,901 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:08,961 | INFO | faster_whisper | Processing audio with duration 00:02.755
+2026-09-16 07:48:09,052 | INFO | faster_whisper | Detected language 'fr' with probability 0.99
+2026-09-16 07:48:09,336 | INFO | nestle-platform | Utterance 1 | audio=2.8s | latency=0.376s | SPEAKER_UNKNOWN | 'je souhaite changer mon adresse'
+2026-09-16 07:48:09,370 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:09,373 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:09,550 | INFO | faster_whisper | Processing audio with duration 00:06.000
+2026-09-16 07:48:09,651 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:09,874 | INFO | nestle-platform | Utterance 1 | audio=6.0s | latency=0.328s | SPEAKER_UNKNOWN | 'I would like to set up a joint account with my partner.'
+2026-09-16 07:48:09,929 | INFO | faster_whisper | Processing audio with duration 00:03.837
+2026-09-16 07:48:09,998 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:10,186 | INFO | nestle-platform | Utterance 2 | audio=3.8s | latency=0.258s | SPEAKER_UNKNOWN | 'How do I proceed with doing that?'
+2026-09-16 07:48:10,187 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:10,189 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:10,334 | INFO | faster_whisper | Processing audio with duration 00:05.000
+2026-09-16 07:48:10,456 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:10,706 | INFO | nestle-platform | Utterance 1 | audio=5.0s | latency=0.376s | SPEAKER_UNKNOWN | 'I would like to set up a joint account with my partner.'
+2026-09-16 07:48:10,794 | INFO | faster_whisper | Processing audio with duration 00:03.837
+2026-09-16 07:48:10,974 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:11,143 | INFO | nestle-platform | Utterance 2 | audio=3.8s | latency=0.350s | SPEAKER_UNKNOWN | 'How do I proceed with doing that?'
+2026-09-16 07:48:11,144 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:11,147 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:11,267 | INFO | faster_whisper | Processing audio with duration 00:05.000
+2026-09-16 07:48:11,377 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:11,587 | INFO | nestle-platform | Utterance 1 | audio=5.0s | latency=0.322s | SPEAKER_UNKNOWN | 'I would like to set up a joint account with my partner.'
+2026-09-16 07:48:11,647 | INFO | faster_whisper | Processing audio with duration 00:03.837
+2026-09-16 07:48:11,758 | INFO | faster_whisper | Detected language 'en' with probability 1.00
+2026-09-16 07:48:11,926 | INFO | nestle-platform | Utterance 2 | audio=3.8s | latency=0.279s | SPEAKER_UNKNOWN | 'How do I proceed with doing that?'
+2026-09-16 07:48:11,951 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:11,955 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:12,055 | INFO | faster_whisper | Processing audio with duration 00:03.851
+2026-09-16 07:48:12,158 | INFO | faster_whisper | Detected language 'no' with probability 0.32
+2026-09-16 07:48:12,405 | INFO | nestle-platform | Utterance 1 | audio=3.9s | latency=0.352s | SPEAKER_UNKNOWN | 'Møste gjerne gelt av meg kant og ansøg.'
+2026-09-16 07:48:12,406 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:12,411 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:12,522 | INFO | faster_whisper | Processing audio with duration 00:03.851
+2026-09-16 07:48:12,627 | INFO | faster_whisper | Detected language 'no' with probability 0.32
+2026-09-16 07:48:12,987 | INFO | nestle-platform | Utterance 1 | audio=3.9s | latency=0.467s | SPEAKER_UNKNOWN | 'Møste gjerne gelt av meg kant og ansøg.'
+2026-09-16 07:48:12,988 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:12,991 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:13,150 | INFO | faster_whisper | Processing audio with duration 00:03.851
+2026-09-16 07:48:13,225 | INFO | faster_whisper | Detected language 'no' with probability 0.32
+2026-09-16 07:48:13,479 | INFO | nestle-platform | Utterance 1 | audio=3.9s | latency=0.331s | SPEAKER_UNKNOWN | 'Møste gjerne gelt av meg kant og ansøg.'
+2026-09-16 07:48:13,506 | INFO | nestle-platform | WebSocket STT client disconnected.
+2026-09-16 07:48:13,511 | INFO | nestle-platform | WebSocket STT client connected.
+2026-09-16 07:48:13,608 | INFO | faster_whisper | Processing audio with duration 00:03.851
+2026-09-16 07:48:13,894 | INFO | nestle-platform | Utterance 1 | audio=3.9s | latency=0.287s | SPEAKER_UNKNOWN | 'Ich möchte gerne Geld auf mein Konto eintragen.'
+2026-09-16 07:48:13,896 | INFO | nestle-platform | WebSocket STT client disconnected.

@@ -1,0 +1,25 @@
+﻿order,file,language,duration_s,priority,needs_other_person,transcription_verbatim,uncertain_passages,annotator,date,notes
+1,datasets/stt_eval/audio/minds14_en_clean_01.wav,en,10.8,PRIORITY (confirmed defect),,I would like to set up a joint account with my partner. How do I proceed with doing that?,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+2,datasets/stt_eval/audio/minds14_en_clean_03.wav,en,24.2,PRIORITY (confirmed defect),,"Hi, I'd like to set up a joint account with my partner. I'm not seeing the option to do it on the app, so I called in to get some help. Can I just do it over the phone with you and give you the information? Or should I do it in the app and I'm missing something? Okay, I'd prefer to just do it over the phone if possible. Thanks.","(1st listening had 'Uh,' after 'partner.'; dropped on 2nd)",OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,priority clip listened twice; 2nd version kept
+3,datasets/stt_eval/audio/minds14_fr_clean_03.wav,fr,14.7,PRIORITY (confirmed defect),,"Bonjour, donc j'avais changé d'adresse dans quelques semaines et donc je voulais savoir quelles étaient les démarches à faire par rapport à ma carte bancaire, s'il y avait quelque chose à faire ou pas.",j'avais changé? (1st listening: 'je vais changer'),OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,priority clip listened twice; 2nd version kept
+4,datasets/stt_eval/audio/minds14_en_clean_02.wav,en,6.7,PRIORITY (confirmed defect),,Wondering how I would set up a joint account with my wife and where the app might be.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+5,datasets/stt_eval/audio/minds14_en_clean_07.wav,en,5.9,PRIORITY (confirmed defect),,"Hi, I'd like to open a joint account. Can you tell me what the process is?",(1st listening ended with 'Thank you'; dropped on 2nd),OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,priority clip listened twice; 2nd version kept
+6,datasets/stt_eval/audio/minds14_de_clean_01.wav,de,5.9,control,YES (German),,,,,
+7,datasets/stt_eval/audio/minds14_de_clean_02.wav,de,13.4,control,YES (German),,,,,
+8,datasets/stt_eval/audio/minds14_de_clean_03.wav,de,8.6,control,YES (German),,,,,
+9,datasets/stt_eval/audio/minds14_de_clean_04.wav,de,5.4,control,YES (German),,,,,
+10,datasets/stt_eval/audio/minds14_de_clean_05.wav,de,13.3,control,YES (German),,,,,
+11,datasets/stt_eval/audio/minds14_de_clean_06.wav,de,7.7,control,YES (German),,,,,
+12,datasets/stt_eval/audio/minds14_de_clean_07.wav,de,7.1,control,YES (German),,,,,
+13,datasets/stt_eval/audio/minds14_de_clean_08.wav,de,13.6,control,YES (German),,,,,
+14,datasets/stt_eval/audio/minds14_en_clean_04.wav,en,3.2,control,,How do I start a joint account?,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+15,datasets/stt_eval/audio/minds14_en_clean_05.wav,en,3.8,control,,Can you help me set up a joint bank account,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+16,datasets/stt_eval/audio/minds14_en_clean_06.wav,en,4.6,control,,How to set up a joint account,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+17,datasets/stt_eval/audio/minds14_en_clean_08.wav,en,8.5,control,,"Um, can I have an account with um my sister? I want to set up a joint account.",,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+18,datasets/stt_eval/audio/minds14_fr_clean_01.wav,fr,3.8,control,,Je souhaite changer mon adresse.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+19,datasets/stt_eval/audio/minds14_fr_clean_02.wav,fr,4.8,control,,"Bonjour, je voudrais changer d'adresse.",,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+20,datasets/stt_eval/audio/minds14_fr_clean_04.wav,fr,3.6,control,,Je souhaiterais modifier mon adresse.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+21,datasets/stt_eval/audio/minds14_fr_clean_05.wav,fr,3.3,control,,Je souhaite changer d'adresse.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+22,datasets/stt_eval/audio/minds14_fr_clean_06.wav,fr,4.0,control,,"Bonjour, j'aimerais changer d'adresse.",,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+23,datasets/stt_eval/audio/minds14_fr_clean_07.wav,fr,5.5,control,,Je vais veux savoir comment changer mon adresse.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,
+24,datasets/stt_eval/audio/minds14_fr_clean_08.wav,fr,4.4,control,,Je voudrais changer d'adresse.,,OUEDRAOGO Yannick Ulrich Levi (blind listening),2026-09-16,

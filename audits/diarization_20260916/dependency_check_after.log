@@ -1,0 +1,5 @@
+Checked 244 packages in 18ms
+Found 3 incompatibilities
+The package `wandb` requires `opentelemetry-api>=1.43.0`, but `1.40.0` is installed
+The package `pyannote-audio` requires `torch>=2.8.0`, but `2.6.0+cu124` is installed
+The package `pyannote-audio` requires `torchaudio>=2.8.0`, but `2.6.0+cu124` is installed

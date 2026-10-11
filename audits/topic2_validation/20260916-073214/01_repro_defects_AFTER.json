@@ -1,0 +1,41 @@
+{
+  "tag": "AFTER",
+  "scope": "contract probes with fake dependencies; no model inference",
+  "defect1_upload_language": {
+    "multipart_form_status": 200,
+    "query_string_status": 200,
+    "language_received_by_engine": {
+      "via_multipart_form": "fr",
+      "via_query_string": "fr"
+    },
+    "defect_present": false
+  },
+  "defect2_final_buffer_on_disconnect": {
+    "pending_bytes_after_disconnect": 0,
+    "transcription_calls": 1,
+    "defect_present": false
+  },
+  "defect3_transcript_path_collisions": {
+    "rows_with_path": 324,
+    "distinct_paths": 180,
+    "paths_shared_by_more_than_one_row": 72,
+    "paths_shared_across_different_model_or_condition": 72,
+    "rows_whose_stored_hypothesis_differs_from_file_on_disk": 219,
+    "rows_checked_on_disk": 324,
+    "example": [
+      "results/transcripts/minds14_en_clean_01__prep1_prompt0_langauto.txt",
+      [
+        [
+          "base",
+          "F_model_base"
+        ],
+        [
+          "tiny",
+          "B_noise_reduction"
+        ]
+      ]
+    ],
+    "note": "CSV columns reference_text/hypothesis_text remain authoritative; only the .txt side files collide.",
+    "defect_present": true
+  }
+}

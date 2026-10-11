@@ -11,7 +11,7 @@ import csv as _csv
 from pathlib import Path
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, UploadFile, File, Form, Query, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 import aiofiles
@@ -65,7 +65,12 @@ async def lifespan(_app: FastAPI):
         from backend.stt.engine import load_vad_model, load_diarization_pipeline
         await loop.run_in_executor(None, load_vad_model)
         await loop.run_in_executor(None, load_diarization_pipeline)
-        logger.info("✅ VAD and Diarization models loaded.")
+        from backend.stt.engine import get_model_info
+        info = get_model_info()
+        logger.info("Whisper=%s on %s/%s | VAD %s | Diarization %s",
+                    info["model"], info["device"], info["compute_type"],
+                    "loaded" if info["vad_loaded"] else "UNAVAILABLE",
+                    "loaded" if info["diarization_loaded"] else "UNAVAILABLE (speakers will be SPEAKER_UNKNOWN)")
     except Exception as e:
         logger.warning(f"⚠️ VAD/Diarization preload failed: {e}")
 
@@ -109,10 +114,16 @@ async def health():
     loop = asyncio.get_event_loop()
     count = await loop.run_in_executor(None, collection_count)
 
+    from backend.stt.engine import get_model_info
+    info = get_model_info()          # what is actually loaded, not what was requested
     return {
         "status": "ok",
         "ollama_available": ollama_ok,
-        "whisper_model": os.getenv("WHISPER_MODEL", "base"),
+        "whisper_model": info["model"] or os.getenv("WHISPER_MODEL", "small"),
+        "stt_device": info["device"],
+        "stt_compute_type": info["compute_type"],
+        "vad_available": info["vad_loaded"],
+        "diarization_available": info["diarization_loaded"],
         "llm_provider": os.getenv("LLM_PROVIDER", "ollama"),
         "chroma_collection_count": count,
     }
@@ -123,7 +134,8 @@ async def health():
 @app.post("/transcribe", tags=["STT — Topic 2"], summary="Transcribe audio/video file")
 async def transcribe(
     file: UploadFile = File(..., description="Audio or video file (mp3, mp4, wav, m4a…)"),
-    language: str | None = None,
+    language: str | None = Form(None, description="Force language (fr/en/de) as a form field"),
+    language_query: str | None = Query(None, alias="language", include_in_schema=False),
 ):
     """
     Upload an audio/video file → transcribe with Whisper → ingest to RAG.
@@ -149,17 +161,30 @@ async def transcribe(
     logger.info(f"STT request: {file.filename} ({len(content)/1024:.1f} KB) → {doc_id}")
 
     # Transcribe (CPU/GPU blocking call → run in executor)
-    from backend.stt.engine import transcribe_file
+    from backend.stt.engine import transcribe_file, get_model_info
+    from backend.stt.session_log import SessionLog
     loop = asyncio.get_event_loop()
+    # Per-request log (only when STT_SESSION_LOG_DIR is set), same format as the live path.
+    slog = SessionLog("file", options={"filename": file.filename, "size_kb": round(len(content) / 1024, 1),
+                                        "forced_language": language or language_query, "doc_id": doc_id})
+    t0 = time.monotonic()
 
     try:
         result = await loop.run_in_executor(
             None,
-            lambda: transcribe_file(str(save_path), forced_language=language),
+            lambda: transcribe_file(str(save_path), forced_language=(language or language_query)),
         )
     except Exception as e:
         logger.error(f"Transcription failed: {e}")
+        slog.close(status="error", error=repr(e), wall_s=round(time.monotonic() - t0, 3))
         raise HTTPException(status_code=500, detail=f"Transcription error: {str(e)}")
+    segs = result.get("segments", [])
+    slog.event("transcribed", detected_language=result.get("language"), audio_s=result.get("duration"),
+               engine_processing_s=result.get("processing_time"), wall_s=round(time.monotonic() - t0, 3),
+               segments=len(segs), chars=len(result.get("text", "")),
+               speakers=sorted({s.get("speaker") for s in segs if isinstance(s, dict) and s.get("speaker")}),
+               model_loaded=get_model_info(), text=result.get("text", ""))
+    slog.close(status="ok")
 
     # Ingest to RAG
     from backend.rag.vectorstore import ingest
@@ -175,6 +200,7 @@ async def transcribe(
         "duration_seconds": result.get("duration", 0),
         "processing_time_seconds": result.get("processing_time", 0),
         "whisper_model": result.get("model", ""),
+        "diarization_available": get_model_info()["diarization_loaded"],
         "ingested_to_rag": chunks_count > 0,
         "chunks_ingested": chunks_count,
     }
@@ -183,11 +209,15 @@ async def transcribe(
 # ─── WebSocket STT (Real-time) ───────────────────────────────────────────────
 
 class RealTimeSTTHandler:
-    LATENCY_CSV = Path("results/live_latency.csv")
+    # Historical file by default; validation runs override with LIVE_LATENCY_CSV.
+    LATENCY_CSV = Path(os.environ.get("LIVE_LATENCY_CSV", "results/live_latency.csv"))
+    END_SIGNAL = "__end__"   # text frame the client sends to flush the last utterance
 
     def __init__(self, websocket: WebSocket, language: str | None = None):
         self.websocket = websocket
         self.language = language          # None = Whisper auto-detect
+        # Read per session so validation runs can redirect with LIVE_LATENCY_CSV.
+        self.latency_csv = Path(os.environ.get("LIVE_LATENCY_CSV", str(self.LATENCY_CSV)))
         self.sample_rate = 16000
         self.silence_threshold = int(0.6 * self.sample_rate) # 0.6s silence
 
@@ -197,6 +227,17 @@ class RealTimeSTTHandler:
         self.silence_frames = 0
         self._utterance_id = 0
         self._t_silence_end: float = 0.0
+        self._flush_reason = "silence"
+        self._chunks = {"count": 0, "bytes": 0, "min": None, "max": 0}
+        from backend.stt.session_log import SessionLog
+        self.slog = SessionLog("live", options={
+            "language": language, "sample_rate": self.sample_rate,
+            "silence_threshold_s": 0.6, "vad_speech_prob": 0.5,
+            "min_utterance_bytes": 1600, "min_rms": 0.01,
+            "no_speech_threshold": 0.6, "log_prob_threshold": -1.0,
+            "compression_ratio_threshold": 2.4,
+            "latency_csv": str(self.latency_csv),
+        })
 
     async def process(self):
         from backend.stt.engine import _model, _vad_model, _diarization_pipeline
@@ -211,17 +252,32 @@ class RealTimeSTTHandler:
         
         try:
             while True:
-                # 1. Accept raw 16kHz mono PCM (binary)
+                # 1. Accept raw 16kHz mono PCM (binary) or the text end-signal
                 try:
-                    chunk = await self.websocket.receive_bytes()
+                    msg = await self.websocket.receive()
                 except WebSocketDisconnect:
                     break
                 except Exception as e:
                     logger.error(f"WS receive error: {e}")
                     break
 
+                if msg.get("type") == "websocket.disconnect":
+                    break
+                if msg.get("text") is not None:
+                    if msg["text"].strip() == self.END_SIGNAL:
+                        await self._flush_pending(_model, _diarization_pipeline, _vad_model, reason="end_signal")
+                        try:
+                            await self.websocket.send_json({"type": "flushed"})
+                        except Exception:
+                            pass
+                    continue
+                chunk = msg.get("bytes")
                 if not chunk:
                     continue
+                c = self._chunks
+                c["count"] += 1; c["bytes"] += len(chunk)
+                c["min"] = len(chunk) if c["min"] is None else min(c["min"], len(chunk))
+                c["max"] = max(c["max"], len(chunk))
 
                 audio_np = np.frombuffer(chunk, dtype=np.int16).astype(np.float32) / 32768.0
 
@@ -261,10 +317,34 @@ class RealTimeSTTHandler:
         except Exception as e:
             logger.error(f"WebSocket loop error: {e}")
         finally:
+            # Best effort: transcribe whatever was still buffered when the client
+            # left. Delivery may fail (socket gone) but the text is still logged.
+            await self._flush_pending(_model, _diarization_pipeline, _vad_model, reason="disconnect")
+            self.slog.close(utterances=self._utterance_id, chunks=self._chunks)
             logger.info("WebSocket STT client disconnected.")
+
+    async def _flush_pending(self, model, diarizer, vad_model, reason: str):
+        """Transcribe the pending buffer without waiting for a silence window."""
+        if not self.audio_buffer:
+            return
+        logger.info("Flushing pending audio (%d bytes, reason=%s)", len(self.audio_buffer), reason)
+        self._flush_reason = reason
+        self.is_speaking = False
+        self._t_silence_end = time.monotonic()
+        if vad_model is not None:
+            try:
+                vad_model.reset_states()
+            except Exception:
+                pass
+        await self._transcribe_and_diarize(model, diarizer)
+        self._flush_reason = "silence"
+        self.audio_buffer = bytearray()
+        self.silence_frames = 0
 
     async def _transcribe_and_diarize(self, model, diarizer):
         if len(self.audio_buffer) < 1600: # Ignore very short artifacts (<0.1s)
+            self.slog.event("skipped", reason="too_short", buffer_bytes=len(self.audio_buffer),
+                            trigger=self._flush_reason)
             return
 
         utterance_np = np.frombuffer(self.audio_buffer, dtype=np.int16).astype(np.float32) / 32768.0
@@ -273,6 +353,8 @@ class RealTimeSTTHandler:
         rms = float(np.sqrt(np.mean(utterance_np ** 2)))
         if rms < 0.01:
             logger.debug("Skipping utterance: RMS %.4f below threshold", rms)
+            self.slog.event("skipped", reason="low_rms", rms=round(rms, 5),
+                            buffer_bytes=len(self.audio_buffer), trigger=self._flush_reason)
             return
 
         try:
@@ -293,6 +375,8 @@ class RealTimeSTTHandler:
 
             text = " ".join([s.text for s in segments_gen]).strip()
             if not text:
+                self.slog.event("skipped", reason="empty_text",
+                                buffer_bytes=len(self.audio_buffer), trigger=self._flush_reason)
                 return
 
             # Reject hallucinated repetitions: split into words, check if any phrase
@@ -302,6 +386,8 @@ class RealTimeSTTHandler:
                 chunk = " ".join(words[:4])
                 if text.count(chunk) > 2:
                     logger.debug("Skipping hallucinated repetition: %r", text[:60])
+                    self.slog.event("skipped", reason="repetition", text=text,
+                                    buffer_bytes=len(self.audio_buffer), trigger=self._flush_reason)
                     return
                 
             # 4. Pyannote on last 10s context to identify speaker
@@ -334,16 +420,22 @@ class RealTimeSTTHandler:
             latency = round(time.monotonic() - self._t_silence_end, 3)
             duration_audio = round(len(self.audio_buffer) / (self.sample_rate * 2), 3)
             self._utterance_id += 1
-            self.LATENCY_CSV.parent.mkdir(parents=True, exist_ok=True)
-            new_file = not self.LATENCY_CSV.exists()
-            with open(self.LATENCY_CSV, "a", newline="", encoding="utf-8") as f:
+            self.latency_csv.parent.mkdir(parents=True, exist_ok=True)
+            new_file = not self.latency_csv.exists()
+            with open(self.latency_csv, "a", newline="", encoding="utf-8") as f:
                 w = _csv.DictWriter(f, fieldnames=["utterance_id", "duration_audio", "latency_seconds"])
                 if new_file:
                     w.writeheader()
                 w.writerow({"utterance_id": self._utterance_id,
                             "duration_audio": duration_audio,
                             "latency_seconds": latency})
-            logger.info("Utterance %d | audio=%.1fs | latency=%.3fs", self._utterance_id, duration_audio, latency)
+            logger.info("Utterance %d | audio=%.1fs | latency=%.3fs | %s | %r",
+                        self._utterance_id, duration_audio, latency, speaker, text)
+            self.slog.event("utterance", utterance_id=self._utterance_id,
+                            trigger=self._flush_reason, buffer_bytes=len(self.audio_buffer),
+                            duration_audio_s=duration_audio, latency_seconds=latency,
+                            speaker=speaker, text=text,
+                            start_s=round(start_sec, 2), end_s=round(end_sec, 2))
 
             # 6. Return JSON
             await self.websocket.send_json({
@@ -355,6 +447,8 @@ class RealTimeSTTHandler:
             
         except Exception as e:
             logger.error(f"WS Transcription/Diarization failed: {e}")
+            self.slog.event("error", where="transcribe_and_diarize", error=repr(e),
+                            buffer_bytes=len(self.audio_buffer), trigger=self._flush_reason)
 
 
 @app.websocket("/ws/transcribe")
@@ -479,3 +573,29 @@ async def serve_live():
     if not frontend_path.exists():
         return HTMLResponse("<h1>live_transcribe.html not found</h1>", status_code=404)
     return FileResponse(str(frontend_path))
+
+
+@app.get("/research", response_class=HTMLResponse, include_in_schema=False)
+async def serve_research_dashboard():
+    """Serve the Topic 2 academic evidence dashboard."""
+    frontend_path = Path("frontend/research.html")
+    if not frontend_path.exists():
+        return HTMLResponse("<h1>research.html not found</h1>", status_code=404)
+    return FileResponse(str(frontend_path))
+
+
+@app.get("/api/research/evidence", tags=["Evaluation — Topic 2"])
+async def research_evidence():
+    """Return current, provenance-rich summaries from canonical result files."""
+    from backend.evaluation.research_dashboard import build_research_dashboard
+
+    try:
+        return build_research_dashboard(Path("results"))
+    except (FileNotFoundError, ValueError) as exc:
+        logger.error("Research dashboard evidence unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+
+
+

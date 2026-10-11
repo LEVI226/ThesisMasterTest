@@ -1,0 +1,13 @@
+filename,language,noise_condition,speaker_count,model,preprocessing_enabled,domain_prompt_enabled,forced_language,duration_audio_seconds,processing_time_seconds,real_time_factor,wer,cer,detected_language,transcript_output_path,reference_text,hypothesis_text,error,vad_enabled
+en.wav,en,clean,1,tiny,False,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+en.wav,en,clean,1,tiny,True,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+en.wav,en,clean,1,tiny,True,True,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+en.wav,en,clean,1,tiny,True,True,en,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+fr.wav,fr,clean,1,tiny,False,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+fr.wav,fr,clean,1,tiny,True,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+fr.wav,fr,clean,1,tiny,True,True,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+fr.wav,fr,clean,1,tiny,True,True,fr,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+de.wav,de,clean,1,tiny,False,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+de.wav,de,clean,1,tiny,True,False,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+de.wav,de,clean,1,tiny,True,True,,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False
+de.wav,de,clean,1,tiny,True,True,de,1.0,0.1,0.1,0.0,0.0,,,bonjour,bonjour,,False

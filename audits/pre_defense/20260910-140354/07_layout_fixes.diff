@@ -1,0 +1,145 @@
+--- audits/pre_defense/20260910-140354/pristine/main_revised.tex.orig	2026-09-10 12:59:19.430597500 +0200
++++ Memoire_LaTeX/main_revised.tex	2026-09-10 14:36:10.746909700 +0200
+@@ -17,7 +17,6 @@
+ \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}.}
+ \renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+ \renewcommand{\thesubsubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+-\usepackage[margin=1in]{geometry}
+ \usepackage[
+   style=numeric-comp,
+   abbreviate=false,
+@@ -30,6 +29,7 @@
+   maxcitenames=3,
+   maxbibnames=100]{biblatex}
+ \renewcommand{\baselinestretch}{1.5}
++\usepackage{lmodern}
+ \usepackage[T1]{fontenc}
+ \setcounter{secnumdepth}{2}
+ \usepackage{fancyhdr}
+@@ -55,7 +55,7 @@
+ \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+ \makenomenclature
+ \definecolor{myColor}{rgb}{0,0.1,0.55}
+-\usepackage[colorlinks=true,linkcolor=myColor,citecolor=myColor,urlcolor=myColor]{hyperref}
++\usepackage[colorlinks=true,linkcolor=myColor,citecolor=myColor,urlcolor=myColor,plainpages=false,pdfpagelabels]{hyperref}
+ \colorlet{defaultcolor}{black!75!myColor}
+ \color{defaultcolor}
+ \newcommand{\hlinecolor}{\arrayrulecolor{myColor}\hline\arrayrulecolor{black}}
+@@ -156,7 +156,7 @@
+ \textbf{Defended on \defensedate\ before the jury composed of:}
+ \end{center}
+ \vspace*{0.3cm}
+-\begin{tabular}{p{0.20\textwidth} p{0.28\textwidth} p{0.62\textwidth}}
++\begin{tabular}{@{}p{0.20\textwidth}p{0.33\textwidth}p{0.41\textwidth}@{}}
+ \textbf{President:} & \jurypresident & Burkina Institute of Technology\\
+ \textbf{Supervisor:} & Dr.-Ing. Lebian Wilfried NIKIEMA & Burkina Institute of Technology\\
+ \textbf{Examiner:} & \juryexaminer & Burkina Institute of Technology\\
+@@ -168,6 +168,7 @@
+ \section*{Dedication}
+ \pagenumbering{Roman}
+ \setcounter{page}{2}
++\phantomsection
+ \addcontentsline{toc}{chapter}{Dedication}
+ \thispagestyle{fancy}
+ \vspace{2cm}
+@@ -180,6 +181,7 @@
+ \newgeometry{left=2.25cm,top=2.2cm,bottom=2.2cm}
+ %=========================== [Acknowledgements] =======================
+ \section*{Acknowledgements}
++\phantomsection
+ \addcontentsline{toc}{chapter}{Acknowledgements}
+ I would like to express my deep gratitude to:
+ \begin{itemize}
+@@ -193,6 +195,7 @@
+ \newpage
+ \newgeometry{left=2.25cm,top=2.2cm,bottom=2.2cm}
+ \section*{List of Abbreviations}
++\phantomsection
+ \addcontentsline{toc}{chapter}{List of Abbreviations} \setcounter{page}{4}
+ \begin{tabular}{p{0.135\textwidth} p{0.750\textwidth}}  \hlinecolor
+ \raggedright \textcolor{myColor}{AI:} & Artificial Intelligence \\
+@@ -225,6 +228,7 @@
+ %=========================== [Résumé] ===============================
+ \newpage
+ \section*{Résumé}
++\phantomsection
+ \addcontentsline{toc}{chapter}{Résumé}
+ \begin{otherlanguage}{french}
+ Dans les organisations multinationales, les réunions combinent bruit de fond, alternance de langues et vocabulaire spécifique, conditions dans lesquelles les systèmes de reconnaissance automatique de la parole (ASR) généralistes se dégradent fortement. Pour les employés malentendants, une transcription fiable est pourtant une voie essentielle d'accès au contenu des réunions. Ce mémoire présente une évaluation contrôlée d'un pipeline fondé sur \textit{faster-whisper}, d'abord étudié sur CPU puis étendu sur GPU. Un jeu trilingue de 36 échantillons a été construit à partir de MInDS-14 : 24 clips téléphoniques propres et 12 variantes bruitées appariées. Au total, 468 transcriptions couvrent une campagne CPU de 180 runs, une échelle de tailles Whisper, une condition VAD, une étude LoRA appariée et des baselines wav2vec~2.0/MMS et Conformer. Sur les 12 paires comparables, l'ajout de bruit à 8\,dB de SNR fait passer le WER moyen de 61{,}1\,\% à 96{,}4\,\%, soit une pénalité appariée de 35{,}3 points (IC bootstrap 95\,\% : [7{,}0 ; 60{,}0]). La réduction de bruit récupère 8{,}3 points sur les variantes bruitées mais dégrade légèrement l'ensemble propre. Forcer la langue corrige plusieurs sorties en mauvais alphabet sans coût de calcul mesurable. La taille du modèle reste le levier dominant : le WER décroît de 63{,}4\,\% avec \textit{tiny} à 24{,}6\,\% avec \textit{large-v3}. Le prompting et LoRA ne déplacent le WER que d'environ un point sur ce domaine, l'effet LoRA n'étant pas statistiquement établi. Le prototype WebSocket atteint, hors démarrage à froid, une latence médiane de 0{,}56\,s et un p95 de 0{,}84\,s après détection de fin de parole. Les limites sont déterminantes : MInDS-14 n'est ni un corpus de réunions multi-locuteurs ni un corpus Nestlé, la diarisation n'est validée que mécaniquement sur des réunions simulées, et l'utilisabilité auprès de personnes malentendantes n'est pas évaluée dans ce Topic~2.
+@@ -235,6 +239,7 @@
+ \newpage
+ %=========================== [Abstract] ===============================
+ \section*{Abstract}
++\phantomsection
+ \addcontentsline{toc}{chapter}{Abstract}
+ In multinational organisations, meetings combine background noise, language switching, and domain-specific vocabulary, conditions under which general-purpose automatic speech recognition (ASR) systems degrade substantially. For employees with hearing loss, a reliable transcript can be an essential channel of access to meeting content. This thesis presents a controlled evaluation of a \textit{faster-whisper} pipeline, first studied on CPU and subsequently extended on GPU. A trilingual set of 36 MInDS-14 samples was constructed from 24 clean telephone-speech clips and 12 paired noise-augmented variants. In total, 468 transcription runs cover a pre-specified 180-run CPU campaign, a Whisper model-size ladder, VAD, a paired LoRA study, and wav2vec~2.0/MMS and Conformer baselines. On the 12 matched pairs, adding white noise at 8\,dB SNR raises mean WER from 61.1\% to 96.4\%, a paired penalty of 35.3 points (95\% bootstrap CI: [7.0, 60.0]). Spectral-gating noise reduction recovers 8.3 points on noisy variants while slightly degrading the full clean set. Forcing the language repairs several wrong-script outputs at no measurable computational cost. Model size remains the dominant accuracy lever: WER falls from 63.4\% with \textit{tiny} to 24.6\% with \textit{large-v3}. Prompting and LoRA each shift WER by only about one point in this domain, and the paired LoRA effect is not statistically established. In the historical 22-observation live study, excluding first utterances yields a median server-side post-endpointing latency of 0.56\,s and a p95 of 0.84\,s. The extended-log audit at the end of this thesis reports additional slower observations; these historical values are not an end-to-end guarantee. The study's scope is deliberately bounded: MInDS-14 is neither multi-speaker meeting audio nor Nestlé-domain speech, the diarization experiment validates plumbing rather than accuracy, and end-user accessibility is not evaluated within Topic~2.
+ \\
+@@ -243,6 +248,7 @@
+ %===================================================================
+ \setcounter{page}{6}
+ \newpage
++\phantomsection
+ \addcontentsline{toc}{chapter}{Summary of Contents}
+ \setcounter{page}{7}
+ \shorttableofcontents{Summary of Contents}{1}
+@@ -250,13 +256,16 @@
+ \newpage
+ \listoffigures
+ \thispagestyle{fancy}
++\phantomsection
+ \addcontentsline{toc}{chapter}{List of Figures}
+ \newpage
+ \listoftables
+ \thispagestyle{fancy}
++\phantomsection
+ \addcontentsline{toc}{chapter}{List of Tables}
+ %=========================== [General Introduction] =======================
+ \newpage
++\phantomsection
+ \addcontentsline{toc}{chapter}{General Introduction}
+ \chapter*{General Introduction}
+ \thispagestyle{fancy}
+@@ -623,7 +632,7 @@
+ \subsubsection{Cross-Architecture Comparison: wav2vec 2.0 (MMS)}
+ The proposal's third named architecture family was benchmarked in a final extension: \texttt{facebook/mms-1b-all}, Meta's massively multilingual CTC model built on the wav2vec 2.0 encoder, run on the same 36 samples with the same scorer (whose normalisation, lower-casing and punctuation stripping applied to both reference and hypothesis, makes the comparison fair to a CTC model that natively outputs neither casing nor punctuation). MMS scores 35.4\,\% mean WER against 31.2\,\% for the paired \texttt{whisper-small} baseline (J0), with a slightly \emph{better} CER (23.6\,\% vs.\ 24.2\,\%) and near-parity on noisy audio (51.4\,\% vs.\ 51.7\,\%); its CTC decoding is also an order of magnitude faster (RTF 0.028). The per-language pattern is the interesting part: MMS collapses on English telephone speech (60.0\,\%) but beats Whisper-auto on French (25.4\,\% vs.\ 31.0\,\%) and German (20.7\,\% vs.\ 18.6\,\%, near-parity). One confound must be stated: MMS receives the language \emph{by construction} (one adapter is loaded per language) which is architecturally equivalent to forced language identification, whereas J0 ran in automatic detection. Part of MMS's French advantage is therefore this work's own H4 finding resurfacing in another architecture, rather than a pure encoder-quality difference. Overall, Whisper remains the better fit for this use case (native multilingual detection, punctuation, and timestamps) but MMS's noise-parity and speed make it a credible CTC alternative where the language is known in advance.
+ \subsubsection{Cross-Architecture Comparison: Conformer (NeMo CTC)}
+-The proposal's third named architecture family was benchmarked to complete the mandatory baseline set: a Conformer, evaluated as NVIDIA NeMo's language-specific \texttt{stt\_\{en,fr,de\}\_conformer\_ctc\_large} checkpoints (CTC decoding), run on the same 36 samples with the same scorer. Conformer scores 26.3\,\% mean WER against 31.2\,\% for the paired \texttt{whisper-small} baseline (J0) and 35.4\,\% for MMS, with a mean CER of 19.9\,\% and a median RTF of 0.014 (again an order of magnitude faster than Whisper, consistent with CTC decoding). The per-language pattern echoes the size ladder: German is strongest (15.3\,\%), French intermediate (23.6\,\%) and English the hardest (39.8\,\%), the last driven by a domain gap, since the English checkpoint is trained on LibriSpeech read speech far from MInDS-14 banking telephony. Noise remains dominant here too: a clean WER of 17.5\,\% degrades to 43.7\,\% on noisy audio ($+26.2$ points), a steeper noise penalty than Whisper shows, unsurprising given these checkpoints were trained on clean read and parliamentary speech with no telephony noise.
++The proposal's third named architecture family was benchmarked to complete the mandatory baseline set: a Conformer, evaluated as NVIDIA NeMo's language-specific \texttt{stt\_\allowbreak \{en,fr,de\}\_\allowbreak conformer\_\allowbreak ctc\_\allowbreak large} checkpoints (CTC decoding), run on the same 36 samples with the same scorer. Conformer scores 26.3\,\% mean WER against 31.2\,\% for the paired \texttt{whisper-small} baseline (J0) and 35.4\,\% for MMS, with a mean CER of 19.9\,\% and a median RTF of 0.014 (again an order of magnitude faster than Whisper, consistent with CTC decoding). The per-language pattern echoes the size ladder: German is strongest (15.3\,\%), French intermediate (23.6\,\%) and English the hardest (39.8\,\%), the last driven by a domain gap, since the English checkpoint is trained on LibriSpeech read speech far from MInDS-14 banking telephony. Noise remains dominant here too: a clean WER of 17.5\,\% degrades to 43.7\,\% on noisy audio ($+26.2$ points), a steeper noise penalty than Whisper shows, unsurprising given these checkpoints were trained on clean read and parliamentary speech with no telephony noise.
+ Two confounds must be stated, and they are the same discipline applied to MMS. First, the Conformer receives the language \emph{by construction} (one monolingual checkpoint per language), which is architecturally equivalent to forced language identification; part of its apparent margin over \texttt{whisper-small} auto-detection is therefore not a pure architecture effect. The cleaner comparison is Conformer versus MMS, both CTC and language-given. On the same 36 files, MMS minus Conformer equals 9.1 WER points, with a 95\,\% paired-bootstrap interval of [3.0, 16.3]; Conformer is therefore lower on this particular sample. This remains a checkpoint-and-training-data comparison, not a universal proof of Conformer superiority. Second, MInDS-14 is 8\,kHz telephony upsampled to the 16\,kHz these wideband-trained models expect, which cannot restore the high-frequency information absent from the original recording. The practical conclusion is conditional: CTC checkpoints are fast and competitive when language is known, while Whisper offers native multilingual detection, punctuation and timestamps.
+ \subsubsection{External Validity: Clean Read Speech (FLEURS)}
+ As a cross-corpus check, the pipeline was additionally run on a corpus of a different nature: FLEURS (Google, CC-BY-4.0), clean, wideband, read speech, twenty clips per language (English, French, German). This set lies \emph{outside} the canonical 468-run campaign and its figures are never merged into the MInDS-14 tables; it serves only to test whether the difficulty measured on MInDS-14 is intrinsic to the pipeline or to the input. On clean read speech, \texttt{large-v3} reaches a mean WER of 7.4\,\% (median 3.4\,\%), against 24.6\,\% on MInDS-14, which indicates that the MInDS-14 difficulty stems from its 8\,kHz telephony, added noise and spontaneous speech rather than from a pipeline defect. One honest caveat bounds this check: on the longer FLEURS utterances the smaller checkpoints (\texttt{tiny} to \texttt{medium}) frequently enter a repetition loop (for example a twelve-word reference decoded as the token \enquote{und} repeated several hundred times), a documented long-form failure mode of Whisper's autoregressive decoder that its official decoding heuristics are designed to suppress \cite{radford2023robust,koenecke2024careless}. Because the evaluation harness keeps a plain deterministic decoding path identical to the MInDS-14 campaign for comparability, those loops are not suppressed; the FLEURS results for \texttt{tiny} to \texttt{medium} are therefore treated as measurements of that failure mode, not of transcription quality, and are excluded, with rare residual loops observed even at \texttt{large-v3}.
+@@ -642,6 +651,7 @@
+ %=========================== [General Conclusion] =======================
+ \chapter*{General Conclusion and Perspectives}
+ \thispagestyle{fancy}
++\phantomsection
+ \addcontentsline{toc}{chapter}{General Conclusion and Perspectives}
+ \section*{Summary of the Work}
+ This work set out to measure, rather than assume, how a local, open-source Whisper-based pipeline performs on noisy multilingual speech and how far low-cost mitigations close the resulting gap. The engineering objectives were achieved: a licensed trilingual evaluation set was assembled (SO1), a configurable \textit{faster-whisper} pipeline was implemented (SO2), and a pre-specified 180-run CPU campaign plus 288 extension runs were completed without recorded runtime errors (SO3). The broader scientific objective is only partially met because the available corpus represents single-speaker banking telephony rather than corporate meetings. The contribution is therefore a reproducible pilot and component analysis, not a deployment validation.
+
+--- audits/pre_defense/20260910-140354/pristine/topic2_completion.tex.orig	2026-09-10 12:58:32.563956000 +0200
++++ Memoire_LaTeX/topic2_completion.tex	2026-09-10 14:36:10.748748400 +0200
+@@ -1,4 +1,5 @@
+ \section*{Topic 2 Completion Audit and Validation Protocol}
++\phantomsection
+ \addcontentsline{toc}{section}{Topic 2 Completion Audit and Validation Protocol}
+ 
+ This supplement distinguishes corrected analysis from experiments that remain
+@@ -10,7 +11,7 @@
+ 
+ \subsection*{Audit of the Extended Live Log}
+ The historical 22-observation study must be distinguished from the current
+-\texttt{results/live\_latency.csv}, which contains 38 observations. Inferring
++\texttt{results/\allowbreak live\_\allowbreak latency.csv}, which contains 38 observations. Inferring
+ session boundaries from the utterance counter restarting at one yields three
+ sessions. Excluding those three first observations gives 35 observations with
+ median 0.575\,s, p95 1.614\,s and maximum 11.021\,s. The third inferred session
+@@ -20,7 +21,7 @@
+ these observations is descriptive and does not establish comparable conditions.
+ The first observation is a cold-start proxy rather than an isolated measurement
+ of model loading. The audit is reproducible with
+-\texttt{python -m backend.evaluation.topic2\_readiness}; its report records the
++\texttt{python -m backend.\allowbreak evaluation.\allowbreak topic2\_\allowbreak readiness}; its report records the
+ input file's SHA-256 digest.
+ 
+ Code inspection further bounds the measurement: the elapsed time is recorded

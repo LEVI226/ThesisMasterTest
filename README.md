@@ -1,6 +1,17 @@
 # Nestlé AI Accessibility Platform
 **BIT / Nestlé — Master Thesis Research Project**
 
+## Maintenance and AI Traceability
+
+Before extending or repairing this project, read:
+
+- [MAINTENANCE_GUIDE.md](MAINTENANCE_GUIDE.md) — how to run, verify, repair, and preserve the project.
+- [CHANGELOG.md](CHANGELOG.md) — narrative history of major changes and lessons.
+- [PROMPTS_JOURNAL.md](PROMPTS_JOURNAL.md) — reusable prompts and AI workflow memory.
+- [AI_METHODOLOGY.md](AI_METHODOLOGY.md) — disclosed AI usage, rejected errors, and verification policy.
+
+These files exist so the project remains maintainable without depending on an AI-only explanation.
+
 | Topic | Student | Focus |
 |---|---|---|
 | Topic 1 — OCR Engine | Fadel ZONGO | Deep learning OCR for corporate documents |
@@ -37,6 +48,7 @@ uv run uvicorn backend.main:app --reload --host 0.0.0.0 --port 8001
 # 4. Open browser
 #    Main platform:        http://localhost:8001
 #    Live transcription:   http://localhost:8001/live
+#    Research evidence:    http://localhost:8001/research
 #    API docs:             http://localhost:8001/docs
 ```
 
@@ -75,6 +87,8 @@ Microphone   →  [Silero VAD]       →  [Whisper STT]  →  WebSocket →  Liv
 |---|---|---|
 | `GET` | `/` | Main platform UI |
 | `GET` | `/live` | Live transcription UI |
+| `GET` | `/research` | Topic 2 research evidence dashboard |
+| `GET` | `/api/research/evidence` | Current traceable evaluation summaries |
 | `GET` | `/health` | Platform health check |
 | `POST` | `/transcribe` | Upload audio/video → Whisper → RAG |
 | `POST` | `/ocr` | Upload PDF/image → Tesseract → RAG |

@@ -1,0 +1,637 @@
+\UseRawInputEncoding
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english,french]{babel} % french = langue principale ; english disponible pour l'Abstract
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{float}
+\usepackage{shorttoc}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{tocloft}
+\usepackage[pagestyles]{titlesec}
+\usepackage[Lenny]{fncychap}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\usepackage[margin=1in]{geometry}
+\usepackage[
+  style=numeric-comp,
+  abbreviate=false,
+  natbib=true,
+  sorting=none,
+  backend=bibtex,
+  bibencoding=utf8,
+  url=true,
+  doi=true,
+  maxcitenames=3,
+  maxbibnames=100]{biblatex}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage[T1]{fontenc}
+\setcounter{secnumdepth}{2}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhead[L]{Burkina Institute of Technology (BIT)}
+\fancyhead[R]{Année académique 2025--2026}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{OUEDRAOGO Yannick Ulrich Levi}
+\fancyfoot[R]{Mémoire de Master}
+\bibliography{bibitem}
+\usepackage{nomencl}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc}
+\usepackage{geometry}
+\usepackage{longtable}
+\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
+\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\makenomenclature
+\definecolor{myColor}{rgb}{0,0.1,0.55}
+\usepackage[colorlinks=true,linkcolor=myColor,citecolor=myColor,urlcolor=myColor]{hyperref}
+\colorlet{defaultcolor}{black!75!myColor}
+\color{defaultcolor}
+\newcommand{\hlinecolor}{\arrayrulecolor{myColor}\hline\arrayrulecolor{black}}
+% Marqueur TODO jaune, même convention que le canevas officiel
+\newcommand{\todo}[1]{\textsl{\colorbox[rgb]{1,1,0}{#1}}}
+\renewcommand{\thechapter}{\Roman{chapter}}
+\titleformat{\chapter}[display]
+{\normalfont\Large\filcenter\rmfamily \bfseries \scshape \color{myColor}}
+{\titlerule[1pt]%
+\vspace{1pt}%
+\titlerule
+\vspace{1pc}%
+\Large \chaptertitlename\ \thechapter}
+{1pc}
+{\titlerule
+\vspace{1pc}%
+\Large}
+\titleformat{\section}
+  {\normalfont\rmfamily\Large\bfseries \color{myColor}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\rmfamily\large\bfseries \color{myColor}}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\rmfamily\large\bfseries \color{myColor}}
+  {\thesubsubsection}{1em}{}
+\captionsetup[figure]{font={color=myColor},justification=centering}
+\captionsetup[table]{font={color=myColor},justification=centering}
+\linespread{1.25}
+\renewcommand{\familydefault}{\sfdefault}
+\title{Mémoire de Master : Modèles avancés de transcription de la parole pour des réunions d'entreprise bruitées et multilingues}
+\author{OUEDRAOGO Yannick Ulrich Levi}
+\date{2026}
+\graphicspath{{ps/}{fig/}{image/}}
+%--------------------------------------------
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=false,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=1
+}
+\lstset{style=mystyle}
+%--------------------------------------------
+\begin{document}
+%=========================== [Page de titre] =======================
+\begin{titlepage}
+\begin{center}
+\Large{\textbf{BURKINA INSTITUTE OF TECHNOLOGY (BIT)}} \\
+\rule{.50\linewidth}{0.5pt}
+\\
+\vspace{0.25cm}
+\large{\textsc{\textbf{Programme de Master en Intelligence Artificielle}}}
+\rule{.50\linewidth}{0.5pt}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.40\textwidth]{image/logoBIT.png}
+\end{figure}
+\large{\textsc{\textbf{Mémoire de Master}}}
+\begin{center}
+\begin{tabular}{p{0.95\textwidth}}
+\centering \large{\textbf{Filière :}} \large{ Sciences et Technologies } \\
+\centering \large{\textbf{Programme :}} \large{ Master Intelligence Artificielle } \\
+\centering \large{\textbf{Partenaire :}} \large{ Collaboration de recherche Nestl\'e / BIT }
+\end{tabular}
+\end{center}
+\large{{Année académique 2025--2026}\\}
+\textcolor{blue}{\noindent\rule{\textwidth}{0.25mm}}
+\large{\textbf{\textcolor{myColor}{MODÈLES AVANCÉS DE TRANSCRIPTION DE LA PAROLE POUR DES RÉUNIONS D'ENTREPRISE BRUITÉES ET MULTILINGUES : ÉVALUATION D'UN PIPELINE FONDÉ SUR WHISPER POUR L'ACCESSIBILITÉ EN MILIEU PROFESSIONNEL}}}
+\textcolor{blue}{\noindent\rule{\textwidth}{0.25mm}}
+\end{center}
+\vspace{0.3cm}
+\begin{tabular}{>{\centering\arraybackslash}p{\textwidth}}
+\textbf{Présenté par :} \\
+M. OUEDRAOGO Yannick Ulrich Levi \\ [4ex]
+\textbf{Sous la direction de :} \\
+Dr.-Ing. Lebian Wilfried NIKIEMA \\
+\end{tabular}
+\begin{center}
+\textbf{Soutenu le .... 2026 devant le jury composé de :}
+\end{center}
+\vspace*{0.3cm}
+\begin{tabular}{p{0.20\textwidth} p{0.30\textwidth} p{0.60\textwidth}}
+\textbf{Président :} & Dr .... & Burkina Institute of Technology\\
+\textbf{Directeur :} & Dr.-Ing. Lebian Wilfried NIKIEMA & Burkina Institute of Technology\\
+\textbf{Examinateur :} & Dr .... & Burkina Institute of Technology\\
+\end{tabular}
+\\
+\end{titlepage}
+%=========================== [Dédicace] =======================
+\newpage
+\section*{Dédicace}
+\pagenumbering{Roman}
+\setcounter{page}{2}
+\addcontentsline{toc}{chapter}{Dédicace}
+\thispagestyle{fancy}
+\vspace{2cm}
+\begin{center}
+À ma famille,\\
+à mes enseignants,\\
+et à toutes celles et ceux qui ont contribué à ce travail.
+\end{center}
+\todo{ ...}
+\newpage
+\newgeometry{left=2.25cm,top=2.2cm,bottom=2.2cm}
+%=========================== [Remerciements] =======================
+\section*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+Je tiens à exprimer ma profonde gratitude à :
+\begin{itemize}
+    \item mon directeur de mémoire, le Dr.-Ing.\ Lebian Wilfried NIKIEMA, pour ses conseils et sa disponibilité ;
+    \item le corps enseignant du Burkina Institute of Technology ;
+    \item l'équipe de la collaboration de recherche Nestl\'e/BIT, y compris Fadel ZONGO (Topic 1, OCR) ;
+    \item ma famille, pour son soutien moral indéfectible.
+\end{itemize}
+\todo{ ...}
+\thispagestyle{fancy}
+%=========================== [Abréviations] =======================
+\newpage
+\newgeometry{left=2.25cm,top=2.2cm,bottom=2.2cm}
+\section*{Liste des abréviations}
+\addcontentsline{toc}{chapter}{Liste des abréviations} \setcounter{page}{4}
+\begin{tabular}{p{0.135\textwidth} p{0.750\textwidth}}  \hlinecolor
+\raggedright \textcolor{myColor}{AI :} & Intelligence Artificielle (Artificial Intelligence) \\
+\raggedright \textcolor{myColor}{API :} & Interface de Programmation d'Application (Application Programming Interface) \\
+\raggedright \textcolor{myColor}{ASR :} & Reconnaissance Automatique de la Parole (Automatic Speech Recognition) \\
+\raggedright \textcolor{myColor}{CER :} & Taux d'Erreur sur les Caractères (Character Error Rate) \\
+\raggedright \textcolor{myColor}{CORS :} & Partage de Ressources entre Origines Multiples (Cross-Origin Resource Sharing) \\
+\raggedright \textcolor{myColor}{CPU :} & Processeur (Central Processing Unit) \\
+\raggedright \textcolor{myColor}{CTC :} & Classification Temporelle Connexionniste (Connectionist Temporal Classification) \\
+\raggedright \textcolor{myColor}{DER :} & Taux d'Erreur de Diarisation (Diarization Error Rate) \\
+\raggedright \textcolor{myColor}{DNN :} & Réseau de Neurones Profond (Deep Neural Network) \\
+\raggedright \textcolor{myColor}{GMM :} & Modèle de Mélange Gaussien (Gaussian Mixture Model) \\
+\raggedright \textcolor{myColor}{GPU :} & Processeur Graphique (Graphics Processing Unit) \\
+\raggedright \textcolor{myColor}{HMM :} & Modèle de Markov Caché (Hidden Markov Model) \\
+\raggedright \textcolor{myColor}{INT8 :} & Quantification sur Entiers 8 bits \\
+\raggedright \textcolor{myColor}{LLM :} & Grand Modèle de Langage (Large Language Model) \\
+\raggedright \textcolor{myColor}{LoRA :} & Adaptation de Bas Rang (Low-Rank Adaptation) \\
+\raggedright \textcolor{myColor}{NLP :} & Traitement Automatique du Langage Naturel (Natural Language Processing) \\
+\raggedright \textcolor{myColor}{OCR :} & Reconnaissance Optique de Caractères (Optical Character Recognition) \\
+\raggedright \textcolor{myColor}{PCM :} & Modulation d'Impulsion Codée (Pulse-Code Modulation) \\
+\raggedright \textcolor{myColor}{RAG :} & Génération Augmentée par Récupération (Retrieval-Augmented Generation) \\
+\raggedright \textcolor{myColor}{RNN :} & Réseau de Neurones Récurrent (Recurrent Neural Network) \\
+\raggedright \textcolor{myColor}{RTF :} & Facteur Temps Réel (Real-Time Factor) \\
+\raggedright \textcolor{myColor}{STT :} & Parole vers Texte (Speech-to-Text) \\
+\raggedright \textcolor{myColor}{VAD :} & Détection d'Activité Vocale (Voice Activity Detection) \\
+\raggedright \textcolor{myColor}{WER :} & Taux d'Erreur sur les Mots (Word Error Rate) \\
+\raggedright \textcolor{myColor}{WS :} & WebSocket \\
+\hlinecolor
+\end{tabular}
+%=========================== [Résumé] ===============================
+\newpage
+\section*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+Dans les organisations multinationales, les réunions combinent bruit de fond, alternance de langues et vocabulaire spécifique, conditions dans lesquelles les systèmes de reconnaissance automatique de la parole (ASR) généralistes se dégradent fortement. Pour les employés malentendants, une transcription fiable est pourtant la principale voie d'accès au contenu des réunions. Ce mémoire évalue, de manière contrôlée, un pipeline de transcription fondé sur \textit{faster-whisper} (implémentation optimisée de Whisper d'OpenAI) exécuté sur CPU uniquement. Un jeu d'évaluation multilingue (anglais, français, allemand ; audio propre et bruité) de 36 échantillons a été construit à partir du corpus MInDS-14, et 468 transcriptions ont été réalisées : une campagne pré-enregistrée de 180 runs sur CPU selon cinq conditions expérimentales (référence, réduction de bruit, injection de vocabulaire métier, langue forcée, modèle de taille supérieure), étendue par 288 runs sur GPU couvrant une échelle de tailles de modèles jusqu'à \textit{large-v3}, la condition VAD complétée après le pilote, une étude appariée de fine-tuning LoRA et un benchmark inter-architectures wav2vec 2.0 (MMS) et Conformer (NeMo), plus une évaluation de diarisation sur sept réunions multi-locuteurs simulées. Les deux stratégies d'adaptation à bas coût mesurées (injection de vocabulaire au décodage et fine-tuning LoRA sur 300 clips du domaine) ne déplacent le WER moyen que d'environ un point, soit un ordre de grandeur de moins que la taille du modèle. Les résultats montrent que le bruit est le facteur dominant de dégradation (le WER double, de 47{,}0\,\% à 96{,}4\,\%), que la réduction de bruit par \textit{spectral gating} récupère 8{,}3 points sur l'audio bruité au prix d'une légère dégradation sur l'audio propre, que le forçage de la langue corrige des sorties en mauvais alphabet sans coût de calcul, et que la taille du modèle est le levier de précision dominant : le WER moyen décroît de façon monotone de 63{,}4\,\% (\textit{tiny}) à 48{,}3\,\% (\textit{base}), 33{,}3\,\% (\textit{small}), 25{,}9\,\% (\textit{medium}) et 24{,}6\,\% (\textit{large-v3}), le WER sur audio bruité passant de 88{,}1\,\% à 40{,}7\,\% sur la même échelle. Les limites, notamment l'absence de données Nestlé réelles et les écarts entre l'architecture prévue et l'implémentation effective, sont documentées explicitement.
+\\
+\textbf{Mots clés :} reconnaissance automatique de la parole, Whisper, accessibilité, réunions multilingues, robustesse au bruit, WER.
+\thispagestyle{fancy}
+\newpage
+%=========================== [Abstract] ===============================
+\section*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\begin{otherlanguage}{english}
+In multinational organisations, meetings combine background noise, language switching, and domain-specific vocabulary, conditions under which general-purpose automatic speech recognition (ASR) systems degrade substantially. For hearing-impaired employees, however, a reliable transcript is often the primary channel of access to meeting content. This thesis presents a controlled evaluation of a transcription pipeline built on \textit{faster-whisper} (an optimised implementation of OpenAI's Whisper) running on CPU-only hardware. A multilingual evaluation set (English, French, German; clean and noise-augmented audio) of 36 samples was constructed from the MInDS-14 corpus, and 468 transcription runs were performed: a pre-registered 180-run CPU campaign across five conditions (baseline, noise reduction, domain-vocabulary prompting, forced language identification, larger checkpoint), extended by 288 GPU runs covering a model-size ladder up to \textit{large-v3}, the subsequently completed VAD condition, a paired LoRA fine-tuning study, and a wav2vec 2.0 (MMS) and Conformer (NeMo) cross-architecture benchmark, plus a diarization assessment on seven simulated multi-speaker meetings. Both low-cost adaptation strategies measured (decode-time prompting and LoRA fine-tuning on 300 in-domain clips) shifted mean WER by only about one point, an order of magnitude less than model scale. The results show that noise is the dominant degradation factor (WER doubles from 47.0\% to 96.4\%), that spectral-gating noise reduction recovers 8.3 points on noisy audio at a small cost on clean audio, that forcing the decoding language repairs wrong-script output at zero computational cost, and that model size is the dominant accuracy lever: mean WER falls monotonically from 63.4\% (\textit{tiny}) to 48.3\% (\textit{base}), 33.3\% (\textit{small}), 25.9\% (\textit{medium}) and 24.6\% (\textit{large-v3}), with noisy-audio WER dropping from 88.1\% to 40.7\% across the same ladder. Limitations (notably the absence of real Nestlé meeting data and the gaps between the planned architecture and the as-built implementation) are reported explicitly.
+\\
+\textbf{Keywords:} automatic speech recognition, Whisper, accessibility, multilingual meetings, noise robustness, WER.
+\end{otherlanguage}
+\thispagestyle{fancy}
+%===================================================================
+\setcounter{page}{6}
+\newpage
+\addcontentsline{toc}{chapter}{Sommaire}
+\setcounter{page}{7}
+\shorttableofcontents{Sommaire}{1}
+\thispagestyle{fancy}
+\newpage
+\listoffigures
+\thispagestyle{fancy}
+\addcontentsline{toc}{chapter}{Table des figures}
+\newpage
+\listoftables
+\thispagestyle{fancy}
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+%=========================== [Introduction générale] =======================
+\newpage
+\addcontentsline{toc}{chapter}{Introduction générale}
+\chapter*{Introduction générale}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\paragraph{Contexte, motivations et enjeux.}
+Les réunions d'entreprise dans des organisations multinationales telles que Nestlé rassemblent couramment des locuteurs de langues maternelles, d'accents et de niveaux d'aisance différents, souvent au sein d'une même conversation qui dérive entre l'anglais, le français et l'allemand sans prévenir. Cette variabilité linguistique, combinée à la réalité acoustique des bureaux ouverts, du matériel de visioconférence et des prises de parole simultanées, met à rude épreuve tout système qui tente de produire une trace écrite de ce qui a été dit. Pour la plupart des participants, ce n'est qu'un désagrément ; pour les employés malentendants, une transcription exacte et à faible latence est fréquemment le seul moyen pratique de participer à une réunion. La reconnaissance automatique de la parole (ASR) est la technologie naturelle pour combler ce fossé, mais les conditions mêmes qui rendent les réunions d'entreprise difficiles pour un auditeur humain (bruit, alternance de langues et vocabulaire spécifique) sont précisément celles où les systèmes ASR généralistes sont connus pour se dégrader \cite{radford2023robust,baevski2020wav2vec}. Ce travail a été développé dans le cadre d'une collaboration Nestlé/BIT visant à déterminer si un pipeline ASR construit exclusivement à partir de composants librement disponibles, en particulier Whisper d'OpenAI via l'implémentation \textit{faster-whisper} optimisée par CTranslate2 \cite{fasterwhisper2023}, peut être déployé, mesuré et amélioré de façon itérative pour ce cas d'usage d'accessibilité, sans recourir à un service de transcription propriétaire.
+\paragraph{Problématique.}
+Les modèles ASR multilingues généralistes obtiennent des résultats mesurablement moins bons dans les contextes d'entreprise bruités, à alternance de langues et à vocabulaire spécifique que ne le laissent penser les performances de référence rapportées dans leurs publications d'origine ; or l'ampleur de cette dégradation, ainsi que l'efficacité des atténuations courantes à faible coût, sont rarement quantifiées pour la combinaison précise de conditions qu'une organisation donnée rencontrera. Les éditeurs rapportent des taux d'erreur sur des jeux de référence sélectionnés, majoritairement propres et majoritairement monolingues ; une organisation qui doit décider si elle déploie l'ASR à des fins d'accessibilité dispose de comparativement peu d'éléments sur la manière dont ces chiffres se transposent à ses propres réunions. Trois sous-problèmes empiriques en découlent : (1) dans quelle mesure le bruit de fond dégrade-t-il réellement la précision de la transcription, et un prétraitement libre et léger peut-il en récupérer une partie ; (2) l'injection de vocabulaire propre à l'organisation dans le décodeur réduit-elle mesurablement les erreurs sur les noms et les termes métier ; et (3) l'identification automatique de la langue est-elle fiable dans un contexte réellement multilingue, ou introduit-elle des erreurs qui lui sont propres.
+\paragraph{Objectifs de recherche.}
+Pour répondre concrètement à cette problématique, l'objectif général de cette étude est d'\textbf{évaluer et optimiser, dans des conditions contrôlées et reproductibles, un pipeline de transcription de la parole fondé sur Whisper et exécuté sur CPU uniquement, pour de l'audio de réunion d'entreprise bruité et multilingue, en soutien à l'accessibilité en milieu professionnel pour les employés malentendants}. Cet objectif général se décline en trois objectifs spécifiques :
+\begin{itemize}
+    \item \textbf{OS1 :} Construire un jeu de données d'évaluation étiqueté avec une vérité terrain, multilingue (anglais, français, allemand) et couvrant les conditions propre et bruitée, adapté à la mesure des performances ASR dans un environnement contraint ;
+    \item \textbf{OS2 :} Implémenter et documenter un pipeline de transcription configurable fondé sur \textit{faster-whisper}, prenant en charge le prétraitement de réduction de bruit, l'injection de vocabulaire métier, ainsi que l'identification de langue automatique et forcée ;
+    \item \textbf{OS3 :} Évaluer les performances de ce pipeline au moyen d'une expérience multi-conditions contrôlée (une campagne pré-enregistrée de 180 runs sur CPU selon cinq conditions, étendue à 468 runs avec une échelle de tailles de modèles sur GPU, la condition VAD complétée, une étude appariée de fine-tuning LoRA et un benchmark inter-architectures wav2vec 2.0 (MMS) et Conformer (NeMo)), en rapportant le taux d'erreur sur les mots (WER), le taux d'erreur sur les caractères (CER) et le facteur temps réel (RTF), et en interprétant les résultats honnêtement, y compris là où les preuves sont non concluantes ou contredisent les attentes initiales.
+\end{itemize}
+\paragraph{Plan du mémoire.}
+La suite de ce travail est structurée de manière progressive.
+\begin{itemize}
+    \item Le \textbf{Chapitre I} présente l'état de l'art : les concepts fondamentaux de la reconnaissance automatique de la parole et ses métriques d'évaluation, suivis d'une revue critique de la littérature sur l'ASR robuste au bruit, l'adaptation au domaine, la transcription en flux et la diarisation des locuteurs, avant de clore sur un tableau de synthèse et le positionnement de ce travail.
+    \item Le \textbf{Chapitre II} présente l'approche méthodologique : le processus de recherche étape par étape, l'architecture système proposée, la construction du jeu de données d'évaluation et la conception des conditions expérimentales.
+    \item Le \textbf{Chapitre III} est consacré à l'implémentation du pipeline, à l'exécution de la campagne d'évaluation, ainsi qu'à l'analyse et à l'interprétation approfondies des résultats, y compris leur comparaison avec l'état de l'art. Le travail se conclut par une conclusion générale et des perspectives de recherche.
+\end{itemize}
+\newpage
+%=========================== [Chapitre 1] =======================
+\chapter{État de l'art}
+Ce chapitre pose les fondations conceptuelles et scientifiques du travail. Il introduit d'abord les concepts fondamentaux de la reconnaissance automatique de la parole et les métriques utilisées pour l'évaluer, ainsi que les caractéristiques de l'audio de réunion d'entreprise et les considérations d'accessibilité qui motivent cette étude. Il passe ensuite en revue les travaux connexes de manière critique, en examinant pour chaque famille d'approches ses forces et ses limites au regard du problème posé. Le chapitre se clôt sur un tableau de synthèse et le positionnement du présent travail.
+\section{Concepts fondamentaux}
+\subsection{Reconnaissance automatique de la parole}
+La reconnaissance automatique de la parole (ASR) convertit une forme d'onde acoustique en texte. Les systèmes classiques décomposaient la tâche en étapes entraînées séparément : un module d'extraction de caractéristiques (front end), un modèle acoustique estimant la probabilité d'unités phonétiques (historiquement un modèle de mélange gaussien sur des états de modèle de Markov caché, GMM-HMM), un lexique de prononciation et un modèle de langage statistique, le tout combiné lors d'une étape de décodage par recherche \cite{li2014overview}. Au cours de la dernière décennie, ce pipeline a été remplacé par des architectures neuronales de bout en bout qui apprennent directement la correspondance de l'audio vers le texte, à l'aide de la classification temporelle connexionniste (CTC) \cite{graves2012sequence}, d'encodeurs-décodeurs à attention \cite{bahdanau2016end}, ou de modèles séquence à séquence fondés sur les transformeurs \cite{vaswani2017attention}.
+Cette distinction importe pour les types d'erreurs propres à chaque architecture. La CTC suppose l'indépendance conditionnelle entre les positions de sortie, ce qui rend le décodage rapide mais peu apte à modéliser les dépendances grammaticales. Un décodeur à attention conditionne chaque jeton de sortie sur tous les jetons précédemment générés, produisant une sortie plus fluide mais aussi susceptible de poursuivre avec assurance une phrase plausible qui s'est éloignée de ce qui a réellement été dit, un mode de défaillance couramment appelé \textit{hallucination}, qui revient dans l'analyse d'erreurs du Chapitre III.
+Whisper \cite{radford2023robust}, la famille de modèles évaluée dans ce travail, est un transformeur encodeur-décodeur entraîné avec une supervision multitâche (transcription, traduction, identification de langue, segmentation) sur environ 680{,}000 heures d'audio web faiblement étiqueté. Il est publié sous forme d'une famille de points de contrôle (\textit{checkpoints}) de taille croissante : \texttt{tiny} (39M de paramètres), \texttt{base} (74M), \texttt{small} (244M), \texttt{medium} (769M) et \texttt{large} (1,55 milliard), chaque taille supérieure réduisant l'erreur au prix de la mémoire et du temps d'inférence. Ce travail utilise \textit{faster-whisper} \cite{fasterwhisper2023}, une réimplémentation fondée sur CTranslate2 prenant en charge la quantification INT8 sur CPU : la quantification réduit la précision numérique des poids et des activations, échangeant une petite perte de précision contre une empreinte mémoire nettement plus faible et une inférence plus rapide, ce qui est décisif pour un système destiné à fonctionner sans matériel GPU. Whisper accepte en outre un \textit{prompt initial} (\textit{initial prompt}), un court texte préfixé au contexte du décodeur pouvant biaiser la transcription vers un vocabulaire attendu ; ce mécanisme est à la base de la condition d'injection de vocabulaire métier évaluée au Chapitre III.
+\subsection{Métriques d'évaluation : WER, CER et RTF}
+Trois métriques sont utilisées tout au long de ce travail. Le taux d'erreur sur les mots (WER) est la distance d'édition au niveau des mots entre une hypothèse et une transcription de référence : la somme des substitutions, suppressions et insertions divisée par le nombre de mots de la référence. Le taux d'erreur sur les caractères (CER) applique le même calcul de Levenshtein au niveau des caractères, le rendant moins sensible à la tokenisation et plus informatif pour des langues morphologiquement riches comme le français et l'allemand, où une seule flexion erronée compte comme une erreur de mot entière sous le WER mais seulement comme une petite erreur fractionnaire sous le CER.
+Un exemple concret l'illustre. Étant donné la référence \enquote{the meeting starts at nine} (cinq mots) et l'hypothèse \enquote{the meeting start at nine a m} (sept mots), l'alignement trouve une substitution (\enquote{start} pour \enquote{starts}) et deux insertions (\enquote{a}, \enquote{m}), donnant $\mathrm{WER} = (1+0+2)/5 = 60\,\%$. Au niveau des caractères, la plupart des lettres de \enquote{starts} et \enquote{start} correspondent encore, de sorte que la même paire de transcriptions produit un CER bien plus faible, ce qui explique pourquoi les deux métriques sont rapportées côte à côte au Chapitre III.
+Le facteur temps réel (RTF) est le rapport entre le temps de traitement et la durée de l'audio ; un RTF inférieur à 1,0 signifie que le système transcrit plus vite que l'audio ne se joue, seuil pratique d'un usage quasi temps réel. Le RTF dépend fortement de la taille du modèle et du matériel, et les valeurs rapportées dans ce travail sont spécifiques à un environnement CPU uniquement. Le taux d'erreur de diarisation (DER) évalue l'attribution des locuteurs ; il ne s'applique pas au jeu de données pilote mono-locuteur, mais est rapporté pour les réunions multi-locuteurs simulées de l'étude d'extension au Chapitre III, avec des réserves explicites sur son interprétabilité dans ce cadre.
+\subsection{Caractéristiques de l'audio de réunion d'entreprise}
+Plusieurs traits distinguent l'audio de réunion d'entreprise des jeux de référence sélectionnés (LibriSpeech, Common Voice) sur lesquels les chiffres ASR publiés sont généralement obtenus. Les réunions sont fréquemment multilingues au niveau des énoncés individuels (\textit{alternance de langues}, ou \textit{code-switching}), en particulier dans les organisations à personnel francophone et anglophone : une phrase telle que \enquote{donc on va update le forecast, parce que la demand a été revised down for Q3} mêle des mots-outils français à des noms et verbes anglais, et ni un modèle de langue purement français ni purement anglais ne la gère bien. Whisper prend une seule décision de langue par segment traité, de sorte qu'un énoncé qui change de langue en milieu de phrase est un cas que l'architecture ne résout pas nativement. Une direction architecturale connexe intègre l'identification de langue dans le reconnaisseur plutôt que de la traiter comme une étape amont séparée : des modèles conjoints d'ASR et d'identification de langue construits sur un unique RNN-Transducteur ont été proposés pour prendre en charge le changement de langue dynamique \cite{punjabi2021joint}. Ce travail vise le changement entre énoncés successifs plutôt que l'alternance intra-énoncé, mais le principe sous-jacent (intégrer la décision de langue dans la reconnaissance au lieu de s'engager sur une seule langue par segment) est précisément celui que la conception de Whisper n'adopte pas. Les locuteurs varient aussi largement en accent, débit et qualité de microphone ; le bruit de fond est varié et non stationnaire (ronronnement de climatisation, frappe au clavier, conversations parallèles qui se chevauchent, artefacts de codec de visioconférence) ; et les réunions reposent fortement sur un vocabulaire propre à l'organisation (noms de marques, de projets, de collègues) qui est par construction sous-représenté dans les corpus d'entraînement publics. Enfin, un compte rendu de réunion utile requiert l'attribution des locuteurs, superposant une tâche de diarisation à la transcription. Chacun de ces facteurs est une source documentée d'erreur ASR \cite{farahani2017autocorrelation,yoshioka2019advances}.
+\subsection{L'accessibilité en milieu professionnel}
+Pour les employés malentendants, la transcription de réunion n'est pas une fonctionnalité de confort mais fréquemment le principal canal par lequel le contenu de la réunion est accessible \cite{marsja2025digital}. La littérature sur l'accessibilité du sous-titrage fondé sur l'ASR souligne que la précision brute, bien que nécessaire, n'est pas suffisante : la latence, la lisibilité des frontières de segments et la visibilité des erreurs influent toutes sur l'utilisabilité, et des erreurs ASR persistantes dégradent mesurablement la façon dont les lecteurs perçoivent à la fois le locuteur et le contenu \cite{kadoma2026lost}. Un système exact en moyenne mais qui produit occasionnellement des transcriptions erronées, d'apparence assurée, de noms propres, peut être plus perturbateur qu'un système à erreur moyenne légèrement supérieure mais à modes de défaillance prévisibles, car les noms propres erronés sont difficiles à corriger à partir du contexte. Des recherches en santé au travail montrent en outre que le bruit de fond interagit avec la perte auditive pour affecter la compréhension même en présence d'un équipement d'assistance \cite{giguere2010modelling,gygi2016background}, confirmant que le problème de robustesse au bruit étudié ici se rattache à une préoccupation d'accessibilité documentée plutôt qu'à une curiosité purement technique.
+\section{Revue critique des travaux connexes}
+\subsection{Évolution des architectures ASR}
+Trois générations architecturales structurent la littérature. Les systèmes GMM-HMM ont dominé jusqu'au début des années 2010 ; les hybrides DNN-HMM ont ensuite remplacé le modèle acoustique par un réseau profond tout en conservant la structure temporelle du HMM ; et la génération actuelle entraîne des modèles neuronaux de bout en bout de manière conjointe \cite{li2014overview,vaswani2017attention}. Au sein de cette troisième génération, trois lignes sont directement pertinentes. Whisper \cite{radford2023robust} doit sa large couverture multilingue et sa robustesse aux accents à l'échelle de sa supervision faible, mais cette distribution d'entraînement est biaisée vers l'audio qui abondait sur le web public, ce qui n'inclut pas de façon évidente les réunions d'entreprise, le vocabulaire de marque ou les profils de bruit de visioconférence. WhisperX \cite{bain2023whisperx} étend Whisper avec un alignement phonémique forcé pour des horodatages précis au niveau des mots et un support de diarisation. wav2vec 2.0 \cite{baevski2020wav2vec} représente la branche auto-supervisée : un pré-entraînement contrastif sur de l'audio non étiqueté suivi d'un fine-tuning sur un petit ensemble étiqueté, attrayant lorsque l'audio étiqueté adapté au domaine est rare, mais nécessitant une charge de fine-tuning liée au GPU. Le Conformer \cite{gulati2020conformer} augmente l'auto-attention de sous-couches convolutives pour capter les motifs acoustiques locaux et rapporte de solides résultats de référence. Parmi ceux-ci, les modèles dérivés de Whisper sont les systèmes principaux évalués dans ce travail ; un modèle de la famille wav2vec 2.0 (le MMS de Meta) ainsi que le Conformer (NeMo) sont en outre évalués en inférence dans l'étude d'extension du Chapitre III, tandis que le \emph{fine-tuning} de wav2vec 2.0 et du Conformer sont restés hors périmètre, une contrainte assumée explicitement plutôt que dissimulée.
+\subsection{ASR robuste au bruit}
+La robustesse au bruit a été recherchée à chaque étape du pipeline. Les méthodes du domaine du signal, telles que la soustraction spectrale et le \textit{spectral gating}, estiment un profil de bruit et atténuent les fréquences correspondantes avant la reconnaissance ; la bibliothèque \texttt{noisereduce} utilisée dans ce travail applique un \textit{spectral gating} adaptatif. Les méthodes du domaine des caractéristiques modélisent la distorsion attendue directement dans le domaine de Fourier à court terme \cite{astudillo2013computing} ou emploient des caractéristiques fondées sur l'autocorrélation, intrinsèquement moins sensibles au bruit additif \cite{farahani2017autocorrelation}. Les approches côté entraînement augmentent les données plutôt que de nettoyer les signaux : SpecAugment \cite{park2019specaugment} applique un masquage aléatoire en temps et en fréquence aux spectrogrammes afin que le modèle apprenne des représentations robustes à la perte partielle d'information, et l'adaptation du modèle acoustique le réentraîne vers la distribution de bruit cible \cite{li2014overview,bhardwaj2021usage}. Des travaux sur des langues africaines à faibles ressources ont proposé des cadres de bout en bout robustes au bruit précisément parce que les pipelines standard se transposent mal lorsque bruit et données d'entraînement limitées sont présents simultanément \cite{ejigu2025noise}, un parallèle méthodologique avec la présente étude, qui combine elle aussi du bruit ajouté à un petit jeu d'évaluation hors domaine. La formation de voies (\textit{beamforming}) matérielle par réseaux de microphones filtre spatialement le bruit et a été combinée à des réseaux d'extraction neuronaux pour la parole superposée \cite{chen2018multi}, mais requiert une capture multicanale non disponible ici. Enfin, la détection d'activité vocale (VAD) écarte les segments non vocaux avant qu'ils n'atteignent le modèle, réduisant les calculs inutiles et les hallucinations issues du silence ; Silero VAD est le modèle libre nommé dans le code de ce projet, et la question de savoir si le système implémenté l'exerce réellement est traitée honnêtement au Chapitre II.
+\subsection{Adaptation au domaine et personnalisation du vocabulaire}
+Les modèles ASR génériques sous-performent systématiquement sur le vocabulaire rare ou absent de leurs données d'entraînement, ce qui inclut la plupart des noms de marques et des noms de projets internes. Deux stratégies d'atténuation dominent. Le fine-tuning poursuit l'entraînement sur de l'audio étiqueté adapté au domaine et s'est révélé efficace pour adapter Whisper à des langues et accents sous-représentés \cite{daouad2024optimizing,polat2024implementation} ; des comparaisons systématiques entre langues à faibles ressources constatent qu'il réduit l'écart sans toujours le combler, les gains dépendant fortement de la quantité d'audio étiqueté disponible \cite{whisperfinetune2024}. Parce que le fine-tuning complet de modèles à des centaines de millions de paramètres est coûteux en calcul, des méthodes à paramètres efficaces telles que l'adaptation de bas rang (LoRA) n'entraînent que de petites matrices de poids additionnelles et récupèrent une grande partie du bénéfice à une fraction du coût \cite{ankita2026exploring}. Des approches d'adaptation à partir de texte seul et en deux étapes réduisent encore la charge d'étiquetage audio \cite{fang2025textonly,zheng2026twostage}. La seconde stratégie, employée dans ce travail, est l'injection au décodage (\textit{prompting}) : fournir un court prompt textuel afin que la capacité de modélisation du langage du modèle soit orientée vers le vocabulaire attendu, sans entraînement additionnel. C'est l'intervention la moins coûteuse et la plus faible : elle ne peut pas changer la façon dont le modèle acoustique représente un mot qu'il n'a jamais entendu de manière fiable, seulement rendre un candidat déjà plausible plus probable lors du décodage. Deux mises en garde de la littérature encadrent son évaluation ici : des données d'adaptation synthétiques ou étroites peuvent surévaluer les gains réels lorsque les conditions de test ne correspondent pas aux conditions de déploiement \cite{tran2025das}, et le WER agrégé peut masquer de mauvaises performances sur exactement les entités nommées auxquelles une organisation tient, puisque ces entités ne représentent qu'une petite fraction du total des mots \cite{durmus2026contextual}, la raison méthodologique centrale pour laquelle le Chapitre III rapporte des erreurs qualitatives au niveau d'exemples aux côtés du WER agrégé.
+\subsection{ASR en flux et diarisation des locuteurs}
+Whisper est nativement un modèle par lots (\textit{batch}) : il traite un segment complet ou découpé plutôt que d'émettre des hypothèses à mesure que l'audio arrive. Des architectures en flux spécialisées (le RNN-Transducteur et ses variantes à transformeur \cite{moritz2020streaming,tsunoo2021streaming,chen2021developing}) prennent en charge un sous-titrage réellement en direct ; Sainath et al. \cite{sainath2020streaming} ont montré un modèle en flux embarqué égalant la qualité du traitement par lots côté serveur, le flux multi-locuteurs a été traité en combinant un RNN-T à un suivi de locuteurs en ligne \cite{sklyar2021streaming}, et des déploiements en périphérie ont rapporté une latence inférieure à la seconde sur matériel contraint \cite{dileo2025realtime}. Des conceptions plus récentes en duplex intégral unifient le module d'entrée audio à l'intérieur d'un grand modèle de langage \cite{li2026uaf}, effaçant tout à fait la distinction par lots / en flux. Le système construit pour ce travail adopte un compromis d'ingénierie intermédiaire décrit au Chapitre II : une voie WebSocket segmentée par VAD qui exécute des appels Whisper de style par lots sur des énoncés mis en tampon.
+La diarisation des locuteurs ajoute la dimension \enquote{qui a parlé quand}. Les pipelines fondés sur le regroupement (\textit{clustering}) extraient des empreintes de locuteurs par fenêtre et les regroupent par agrégation ascendante ; des approches neuronales de bout en bout telles que pyannote \cite{bredin2020pyannote} apprennent conjointement segmentation et regroupement, améliorant la robustesse sur les tours de parole courts, et des conceptions locales-globales gèrent un nombre inconnu de locuteurs \cite{maiti2021endtoend}. La diarisation se dégrade fortement en cas de parole superposée, et l'intégrer conjointement à l'ASR surpasse un post-traitement indépendant dans les systèmes dédiés de transcription de réunions \cite{raj2021integration,yoshioka2019advances,wang2021exploring}. L'implémentation décrite au Chapitre II suit le schéma de post-traitement plus simple, une réduction de périmètre délibérée et documentée, adaptée à une étude pilote.
+\section{Synthèse et positionnement}
+Le Tableau~\ref{tab:sota_synthesis} résume les familles d'approches passées en revue, leurs forces et leurs limites au regard du problème traité ici.
+\begin{table}[htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{2.2cm}|p{2.8cm}|p{4.4cm}|p{4.6cm}|}
+\hline
+\textbf{Catégorie} & \textbf{Auteurs} & \textbf{Forces} & \textbf{Limites} \\ \hline
+\multirow{3}{2.2cm}{Architectures ASR}
+& Radford et al. (2023) \cite{radford2023robust}
+& Large couverture multilingue ; robuste aux accents ; usage \textit{zero-shot}.
+& Évalué sur données sélectionnées ; décodeur sujet aux hallucinations ; une décision de langue par segment. \\ \cline{2-4}
+& Baevski et al. (2020) \cite{baevski2020wav2vec}
+& Pré-entraînement auto-supervisé ; performant avec peu de données étiquetées.
+& Requiert un fine-tuning lié au GPU par domaine ; pas d'identification multilingue intégrée. \\ \cline{2-4}
+& Gulati et al. (2020) \cite{gulati2020conformer}
+& Convolution + attention captent motifs locaux et globaux.
+& Entraîné par tâche ; pas de checkpoint multilingue public comparable à Whisper. \\ \hline
+\multirow{2}{2.2cm}{Robustesse au bruit}
+& Park et al. (2019) \cite{park2019specaugment}
+& L'augmentation à l'entraînement améliore la robustesse sans modèle de bruit.
+& Requiert un réentraînement ; inapplicable à un checkpoint pré-entraîné figé. \\ \cline{2-4}
+& Chen et al. (2018) \cite{chen2018multi}
+& Le filtrage spatial gère la parole superposée.
+& Requiert des réseaux de microphones multicanaux. \\ \hline
+\multirow{2}{2.2cm}{Adaptation au domaine}
+& Daouad et al. (2024) \cite{daouad2024optimizing} ; Polat et al. (2024) \cite{polat2024implementation}
+& Le fine-tuning adapte Whisper à des variétés sous-représentées.
+& Nécessite de l'audio étiqueté du domaine et un entraînement GPU ; gains fonction du volume de données \cite{whisperfinetune2024}. \\ \cline{2-4}
+& Durmus et al. (2026) \cite{durmus2026contextual}
+& Des \textit{benchmarks} centrés entités exposent les échecs sur noms propres masqués par le WER agrégé.
+& Simple benchmark ; pas de mécanisme d'atténuation en soi. \\ \hline
+\multirow{2}{2.2cm}{Flux \& diarisation}
+& Sainath et al. (2020) \cite{sainath2020streaming} ; Sklyar et al. (2021) \cite{sklyar2021streaming}
+& Transcription à faible latence réellement synchrone à la trame.
+& Architectures dédiées ; indisponibles en checkpoints multilingues ouverts. \\ \cline{2-4}
+& Bredin et al. (2020) \cite{bredin2020pyannote}
+& Boîte à outils de diarisation ouverte de bout en bout.
+& Se dégrade en cas de chevauchement ; alignement a posteriori plus faible que la modélisation conjointe \cite{raj2021integration}. \\ \hline
+\multirow{1}{2.2cm}{Accessibilité}
+& Kadoma et al. (2026) \cite{kadoma2026lost}
+& Montre que les erreurs ASR affectent la perception du locuteur et du contenu.
+& La précision seule ne détermine pas l'utilisabilité ; latence et visibilité des erreurs comptent. \\ \hline
+\end{tabular}
+\caption{Synthèse critique des travaux connexes}
+\label{tab:sota_synthesis}
+\end{table}
+La revue révèle un fossé étroit mais d'importance pratique. L'ASR robuste au bruit, l'adaptation au domaine, le flux et la diarisation sont chacun bien étudiés individuellement, généralement sur leurs propres jeux de référence et souvent sur de la parole lue ou radiodiffusée. Ce qui est comparativement rare, ce sont des preuves publiques et reproductibles sur la façon dont un \textbf{unique pipeline réellement déployable, exécuté sur CPU uniquement}, se comporte lorsque bruit, parole multilingue et vocabulaire métier sont présents \textbf{simultanément}, les conditions qu'un employé malentendant affronte réellement dans une réunion d'entreprise. Le présent travail se positionne précisément à cette intersection : il maintient le pipeline fixe et mesure l'\textbf{effet marginal} de chaque technique candidate (réduction de bruit, injection de vocabulaire, langue forcée, checkpoint plus grand) sur le même jeu de données, avec le WER, le CER et le RTF comme métriques communes. Il ne prétend pas combler définitivement le fossé plus large : il rapporte une petite évaluation pilote au périmètre honnête, visant cette intersection, dont les réserves de taille de jeu de données et de périmètre sont traitées comme des limites de premier plan aux Chapitres II et III.
+\vspace{0.5em}
+En résumé, ce chapitre a établi les fondations conceptuelles de l'ASR et de son évaluation, passé en revue les forces et limites des approches existantes, et identifié l'intersection (bruit, multilinguisme et vocabulaire métier dans un unique pipeline CPU déployable) où les preuves sont rares. Le chapitre suivant présente l'approche méthodologique conçue pour produire ces preuves.
+%=========================== [Chapitre 2] =======================
+\chapter{Approche méthodologique}
+Ce chapitre présente l'approche méthodologique adoptée pour répondre aux questions de recherche posées dans l'introduction générale. Il décrit d'abord le processus de recherche étape par étape, puis présente l'architecture système proposée, la construction du jeu de données d'évaluation et la conception des conditions expérimentales et des hypothèses. Tout au long, les points où l'implémentation diverge de la conception initialement prévue sont énoncés explicitement, afin que les résultats du Chapitre III puissent être interprétés au regard de ce qui a réellement été construit et mesuré.
+\section{Processus de recherche}
+L'approche méthodologique repose sur un processus progressif et structuré en six étapes principales, représenté à la Figure~\ref{fig:process} :
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  pstep/.style={rectangle, rounded corners=2pt, draw=myColor, fill=myColor!8, text width=3.4cm, minimum height=1.15cm, align=center, font=\small},
+  arr/.style={-{Stealth}, thick, myColor}]
+\node[pstep] (s1) {1. Revue de la littérature};
+\node[pstep, right=0.55cm of s1] (s2) {2. Construction du jeu de données (MInDS-14 + ajout de bruit)};
+\node[pstep, right=0.55cm of s2] (s3) {3. Implémentation du pipeline (faster-whisper)};
+\node[pstep, below=0.7cm of s3] (s4) {4. Définition des conditions et hypothèses};
+\node[pstep, left=0.55cm of s4] (s5) {5. Campagne d'évaluation (180 runs)};
+\node[pstep, left=0.55cm of s5] (s6) {6. Analyse et interprétation};
+\draw[arr] (s1) -- (s2);
+\draw[arr] (s2) -- (s3);
+\draw[arr] (s3) -- (s4);
+\draw[arr] (s4) -- (s5);
+\draw[arr] (s5) -- (s6);
+\end{tikzpicture}
+\caption{Processus de recherche}
+\label{fig:process}
+\end{figure}
+\begin{enumerate}
+    \item \textbf{Revue de la littérature} (Chapitre I), identifiant les architectures pertinentes, les techniques de robustesse et d'adaptation, et les métriques d'évaluation du domaine ;
+    \item \textbf{Construction d'un jeu de données d'évaluation avec vérité terrain}, multilingue (anglais, français, allemand) et couvrant les conditions propre et bruitée ;
+    \item \textbf{Implémentation d'un pipeline de transcription configurable} fondé sur \textit{faster-whisper}, exposant le prétraitement de réduction de bruit, l'injection de vocabulaire métier, et l'identification de langue automatique ou forcée ;
+    \item \textbf{Définition des conditions expérimentales et des hypothèses}, fixées par écrit \emph{avant} tout run d'évaluation, afin que les résultats soient jugés au regard d'une cible pré-enregistrée ;
+    \item \textbf{Exécution de la campagne d'évaluation}, 180 runs de transcription selon cinq conditions ;
+    \item \textbf{Analyse et interprétation des résultats} au regard des hypothèses, y compris là où les preuves sont non concluantes ou négatives.
+\end{enumerate}
+Ce processus relie de manière cohérente la conception de la solution à son implémentation et à son évaluation expérimentale ; les étapes 2 à 5 sont détaillées dans la suite de ce chapitre, et l'étape 6 fait l'objet du Chapitre III.
+\section{Approche proposée et architecture}
+\subsection{Architecture système}
+Le pipeline de transcription de la parole étudié ici est l'un des composants d'une plateforme d'accessibilité à trois volets développée dans le cadre de la collaboration Nestl\'e/BIT : un moteur d'OCR pour les documents d'entreprise numérisés (Topic 1), le moteur STT qui fait l'objet de ce travail (Topic 2), et une couche de questions-réponses augmentée par récupération au-dessus des deux (Topic 3). Les trois sont exposés via un unique backend FastAPI fonctionnant entièrement sur des composants locaux et libres : \textit{faster-whisper} pour la transcription \cite{fasterwhisper2023}, un OCR fondé sur Tesseract, des plongements de phrases multilingues avec ChromaDB comme magasin vectoriel, et un modèle Ollama hébergé localement pour la génération des réponses. Le code qualifie cette configuration de \enquote{Phase~1}, avec une migration \enquote{Phase~2} prévue vers des services gérés Azure ; ce travail évalue le pipeline STT de la Phase~1, hébergé localement, et la migration Azure est abordée au Chapitre III strictement comme une proposition de déploiement, non comme un système construit ou mesuré. La Figure~\ref{fig:architecture} présente l'architecture globale.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={rectangle, rounded corners=2pt, draw=myColor, fill=myColor!8, text width=2.9cm, minimum height=1.0cm, align=center, font=\small},
+  wide/.style={rectangle, rounded corners=2pt, draw=myColor, fill=myColor!15, text width=10.6cm, minimum height=0.9cm, align=center, font=\small\bfseries},
+  arr/.style={-{Stealth}, thick, myColor}]
+\node[wide] (front) {Interface (page d'upload / page d'enregistrement en direct)};
+\node[box, below=0.8cm of front.south west, anchor=north west, xshift=-0.0cm] (api) {Backend FastAPI\\ \texttt{POST /transcribe}};
+\node[box, right=0.5cm of api] (ws) {WebSocket\\ \texttt{/ws/transcribe}\\ (Silero VAD)};
+\node[box, right=0.5cm of ws] (rag) {Couche RAG\\ \texttt{POST /ask}\\ (ChromaDB + Ollama)};
+\node[box, below=0.8cm of api] (prep) {Prétraitement\\ 16 kHz mono +\\ \texttt{noisereduce}};
+\node[box, below=0.8cm of ws] (whisper) {faster-whisper\\ (INT8 sur CPU)\\ prompt / langue};
+\node[box, below=0.8cm of rag] (diar) {diarisation\\ pyannote\\ (optionnelle, jeton)};
+\draw[arr] (front.south -| api.north) -- (api.north);
+\draw[arr] (front.south -| ws.north) -- (ws.north);
+\draw[arr] (front.south -| rag.north) -- (rag.north);
+\draw[arr] (api) -- (prep);
+\draw[arr] (prep) -- (whisper);
+\draw[arr] (ws) -- (whisper);
+\draw[arr] (whisper) -- (diar);
+\draw[arr, dashed] (whisper.east) to[out=-20,in=-160] (rag.south);
+\end{tikzpicture}
+\caption{Architecture globale de la plateforme implémentée (Phase 1, entièrement locale)}
+\label{fig:architecture}
+\end{figure}
+La voie de transcription centrale s'organise autour d'une structure \texttt{TranscribeConfig} centralisant les options exposées : taille du modèle, langue cible (ou détection automatique), prétraitement de réduction de bruit, injection de vocabulaire métier et horodatage au niveau des mots. Un appel à \texttt{transcribe\_file()} rééchantillonne facultativement l'entrée en 16\,kHz mono et applique une réduction de bruit par \textit{spectral gating} (\texttt{noisereduce}), avant de transmettre l'audio à une instance \texttt{WhisperModel} mise en cache et fonctionnant avec la quantification INT8 sur CPU. Lorsque l'injection de vocabulaire métier est activée, une chaîne fixe de vocabulaire lié à Nestl\'e est injectée comme prompt initial du décodeur. La fonction renvoie la transcription, les segments horodatés, la langue détectée et la durée de traitement. Une voie WebSocket distincte assure la transcription en direct : les fragments audio entrants sont classés par un modèle Silero VAD, mis en tampon jusqu'à ce que 0,6\,s de silence marque la fin d'un énoncé, puis transcrits par le même modèle mis en cache. La diarisation des locuteurs (pyannote \cite{bredin2020pyannote}) est appliquée en alignant chaque segment Whisper au tour de diarisation présentant le chevauchement temporel maximal, lorsqu'un jeton d'accès Hugging Face est disponible.
+Deux divergences entre la conception prévue et le système réellement construit ont été identifiées durant la campagne pilote et sont rapportées ici explicitement, car elles ont façonné ce que cette campagne pouvait mesurer ; toutes deux ont ensuite été comblées lors d'une itération d'ingénierie post-pilote. Premièrement, le composant VAD, bien que chargé au démarrage, n'était \textbf{jamais invoqué} par la voie de transcription par lots au moment du pilote ; il a depuis été raccordé via l'option native \texttt{vad\_filter} de faster-whisper (le même modèle Silero, intégré à l'inférence), permettant de mesurer la Condition C initialement prévue (Chapitre III). Deuxièmement, la langue détectée par Whisper pour chaque énoncé n'était pas conservée dans les journaux d'évaluation, de sorte que les résultats de détection par run du pilote ont dû être reconstitués indirectement en comparant les textes d'hypothèses entre les runs à détection automatique et à langue forcée du même fichier ; le harnais enregistre désormais une colonne \texttt{detected\_language} pour tous les runs ultérieurs. La voie WebSocket en direct, qui au moment du pilote codait en dur le français comme langue de décodage ainsi que son propre prompt en ligne, a de même été paramétrée : la langue est désormais un paramètre de connexion (\texttt{?lang=fr|en|de|auto}, avec la détection automatique par défaut), et le prompt en ligne a été retiré après l'observation d'hallucinations par fuite de prompt sur des segments silencieux, cohérent avec le constat d'injection de prompt du Chapitre III. Transcription en direct et par lots restent architecturalement distinctes, et seule la voie par lots a été évaluée dans le pilote.
+\subsection{Construction du jeu de données}
+L'évaluation du pipeline requiert de l'audio à transcriptions de vérité terrain connues, couvrant plusieurs langues et au moins deux conditions de bruit. Aucun enregistrement de réunion interne à Nestl\'e n'a pu être utilisé : la politique de données du projet interdit de verser de l'audio confidentiel au jeu d'évaluation. Les corpus publics initialement recommandés (Common Voice, LibriSpeech, FLEURS, VoxPopuli) ont été tentés en premier et se sont révélés impraticables dans l'environnement bac à sable du projet (téléchargements en flux interrompus, fragments de plusieurs centaines de mégaoctets sans indexation au niveau des lignes). Cette contrainte est rapportée plutôt qu'omise, car elle explique pourquoi le jeu de données finalement utilisé n'est pas l'un des corpus recommandés à l'origine.
+Le jeu de données réellement utilisé est \textbf{PolyAI/MInDS-14} \cite{gerz2021multilingual}, un corpus sous licence CC-BY-4.0 de parole téléphonique bancaire réelle et spontanée, dont ont été échantillonnés les sous-ensembles anglais, français et allemand. Vingt-quatre clips propres ont été tirés directement du corpus (huit par langue) avec leurs transcriptions de référence authentiques. Douze variantes bruitées (quatre par langue) ont été générées en ajoutant du bruit blanc synthétique à un rapport signal sur bruit contrôlé de 8\,dB à un sous-ensemble des enregistrements propres, en réutilisant la même transcription de vérité terrain que le clip propre sous-jacent ; le bruit blanc gaussien additif à un RSB contrôlé est une manière standard et bien caractérisée de dégrader l'intelligibilité de la parole de façon reproductible \cite{graetzer2021intelligibility}. Ce choix de conception maintient le contenu linguistique fixe tout en ne faisant varier que la condition de bruit, isolant l'effet du bruit de l'effet des mots qui se trouvent être prononcés. Le Tableau~\ref{tab:dataset} résume les 36 échantillons obtenus.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Langue} & \textbf{Propre} & \textbf{Bruité} & \textbf{Total} \\ \hline
+Anglais (en) & 8 & 4 & 12 \\ \hline
+Français (fr) & 8 & 4 & 12 \\ \hline
+Allemand (de) & 8 & 4 & 12 \\ \hline
+\textbf{Total} & \textbf{24} & \textbf{12} & \textbf{36} \\ \hline
+\end{tabular}
+\caption{Échantillons d'évaluation par langue et condition de bruit}
+\label{tab:dataset}
+\end{table}
+Deux limites découlent directement de cette substitution et sont traitées comme des limites de premier plan plutôt que comme des notes de bas de page. Premièrement, la parole est mono-locuteur, en téléphonie 8\,kHz plutôt que de l'audio de réunion multi-locuteurs à pleine bande passante, de sorte qu'elle n'exerce ni la diarisation ni toute la variabilité acoustique d'une salle de réunion. Deuxièmement, elle ne contient aucun du vocabulaire propre à Nestl\'e que l'injection de vocabulaire est censée aider, ce qui limite directement ce que les résultats de cette condition peuvent démontrer, une contrainte que l'analyse du Chapitre III prend explicitement en compte.
+\subsection{Conditions expérimentales et hypothèses}
+Cinq conditions expérimentales ont été exécutées, chacune appliquée aux 36 échantillons, pour un total de \textbf{180 runs de transcription} (Tableau~\ref{tab:conditions}).
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Condition} & \textbf{Modèle} & \textbf{Prétraitement} & \textbf{Prompt métier} & \textbf{Langue} \\ \hline
+A -- Référence & tiny & non & non & auto-détection \\ \hline
+B -- Réduction de bruit & tiny & oui & non & auto-détection \\ \hline
+D -- Prompt métier & tiny & oui & oui & auto-détection \\ \hline
+E -- Langue forcée & tiny & oui & oui & langue réelle \\ \hline
+F -- Modèle base & base & oui & non & auto-détection \\ \hline
+\end{tabular}
+\caption{Conditions expérimentales ($n=36$ échantillons par condition, 180 runs au total)}
+\label{tab:conditions}
+\end{table}
+Les Conditions A à E forment une \textbf{chaîne cumulative} délibérée : B ajoute la réduction de bruit à A, D ajoute l'injection de vocabulaire à B, et E ajoute la langue forcée à D, de sorte que comparer toute paire adjacente isole l'effet marginal d'exactement une intervention tout en maintenant tout ce qui est en amont fixe. La Condition F correspond exactement à B, sauf qu'elle substitue le modèle \texttt{base} à \texttt{tiny}, faisant de F~vs.~B la comparaison la plus nette pour isoler la taille du modèle. Cette conception chaînée est ce qui permet au Chapitre III d'attribuer chaque changement observé de WER, CER ou RTF à un unique choix méthodologique nommé plutôt qu'à une combinaison de changements non spécifiée.
+Une sixième condition initialement prévue (Condition C, prétraitement Silero VAD) n'a \textbf{pas été exécutée durant le pilote} : comme rapporté ci-dessus, le composant VAD était défini dans le code mais jamais invoqué par la voie de transcription évaluée, et son absence a été consignée comme un constat méthodologique plutôt que discrètement écartée. Après le pilote, le VAD a été raccordé à la voie par lots via l'intégration Silero native de faster-whisper, et la Condition C (configurée à l'identique de B plus le VAD) a été complétée comme une extension GPU de 36 runs, rapportée au Chapitre III. De même, la Condition F était initialement spécifiée comme une comparaison \texttt{small}/\texttt{medium}/\texttt{large-v2} et a été exécutée en \texttt{tiny}/\texttt{base} à la place, pour la raison matérielle divulguée (environnement CPU uniquement) ; l'intention de la comparaison (taille du modèle contre précision et vitesse) est préservée avec des tailles de checkpoint réalisables, et l'échelle complète (\texttt{small}, \texttt{medium}, \texttt{large-v3}) a ensuite été complétée comme étude d'extension GPU, avec une étude appariée de fine-tuning LoRA traitant directement la question de l'adaptation, toutes deux rapportées au Chapitre III.
+Quatre hypothèses ont été formulées \emph{avant} l'exécution de l'évaluation, correspondant aux objectifs de recherche, et sont énoncées telles qu'initialement formulées afin que le Chapitre III rende compte au regard de celles-ci plutôt que de reconstruire des hypothèses à partir de résultats favorables :
+\begin{itemize}
+    \item \textbf{H1 :} le prétraitement de réduction de bruit réduit le WER sur l'audio bruité sans augmenter matériellement le WER sur l'audio propre ;
+    \item \textbf{H2 :} l'injection de vocabulaire métier réduit spécifiquement les erreurs sur les entités nommées, avec un effet négligeable sur la précision générale ;
+    \item \textbf{H3 :} le pipeline sur CPU uniquement atteint un facteur temps réel inférieur à 1,0 pour les tailles de modèles testées ;
+    \item \textbf{H4 :} forcer la langue correcte surpasse la détection automatique, en particulier sur les clips courts ou bruités.
+\end{itemize}
+Les métriques (WER, CER, RTF) sont calculées par une implémentation de Levenshtein autonome, en Python pur, avec une normalisation fixe et auditable (mise en minuscules, suppression de la ponctuation, réduction des espaces), plutôt que par un outil de scoring tiers opaque. Chaque run ajoute une ligne à un fichier de résultats portant l'intégralité du texte de référence et d'hypothèse aux côtés de ses métriques, de sorte que tout chiffre rapporté peut être retracé jusqu'à la paire de textes exacte qui l'a produit et re-scoré indépendamment ; le décodage est déterministe pour des poids et des réglages fixés, et les versions des dépendances sont épinglées. Les 180 runs se sont tous achevés sans erreur d'exécution ni valeur de métrique manquante.
+\vspace{0.5em}
+En résumé, ce chapitre a présenté un processus de recherche en six étapes, une architecture de transcription entièrement locale dont les divergences entre conception prévue et système construit sont documentées plutôt que dissimulées, un jeu de données d'évaluation trilingue de 36 échantillons à ajout de bruit contrôlé, et un plan expérimental pré-enregistré de cinq conditions chaînées et quatre hypothèses. Le chapitre suivant présente l'environnement d'implémentation, l'exécution de cette campagne d'évaluation et l'analyse de ses résultats.
+%=========================== [Chapitre 3] =======================
+\chapter{Implémentation, expériences et résultats}
+Ce chapitre présente l'environnement d'implémentation (matériel et logiciel), la justification des choix technologiques, le processus de réalisation de la campagne d'évaluation et les résultats obtenus. La matrice pilote de 180 runs définie au Chapitre II est exécutée, puis étendue sur GPU avec une échelle de tailles de modèles, la condition VAD complétée par la suite, une étude appariée de fine-tuning LoRA, un benchmark inter-architectures wav2vec 2.0 (MMS) et Conformer (NeMo) (468 runs de transcription au total) et une évaluation de diarisation sur sept réunions simulées, analysée question de recherche par question de recherche, et discutée au regard des hypothèses pré-enregistrées et de l'état de l'art.
+\section{Environnement d'implémentation}
+\subsection{Environnement matériel}
+Le développement et la campagne d'évaluation canonique ont été menés dans un environnement bac à sable sur CPU uniquement, en utilisant le chemin de code CPU quantifié INT8 de faster-whisper (Tableau~\ref{tab:hardware}). Cette configuration était un cadrage délibéré autant qu'une contrainte : elle caractérise ce qu'une organisation peut déployer sur du matériel de bureau standard, sans serveurs GPU dédiés, et les facteurs temps réel rapportés constituent donc une borne inférieure conservatrice du débit en production. Une exécution complémentaire de la matrice identique a ensuite été réalisée sur une machine GPU compatible CUDA en précision float16, afin de mesurer comment le versant vitesse du compromis se déplace sous accélération (Section 3.3.1).
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Caractéristique} & \textbf{Valeur} \\ \hline
+Environnement d'évaluation & Bac à sable Linux sur CPU uniquement (sans GPU) \\ \hline
+Système d'exploitation & Ubuntu 22.04 \\ \hline
+Version de Python & 3.10 \\ \hline
+Type de calcul Whisper & Quantification INT8 (CPU) \\ \hline
+Exécution d'extension GPU & NVIDIA GeForce RTX 4060 Laptop GPU (8\,Go VRAM), float16 \\ \hline
+\end{tabular}
+\caption{Environnement matériel}
+\label{tab:hardware}
+\end{table}
+\subsection{Environnement logiciel}
+Le Tableau~\ref{tab:software} liste les principaux outils logiciels utilisés, avec leur rôle dans l'implémentation. \todo{[Ajouter les logos des outils]}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|p{9.5cm}|}
+\hline
+\textbf{Outil} & \textbf{Rôle} \\ \hline
+faster-whisper & Inférence Whisper optimisée par CTranslate2 ; INT8 sur CPU, float16 sur GPU \\ \hline
+FastAPI & Framework web exposant les points de terminaison de transcription, OCR et RAG \\ \hline
+noisereduce & Prétraitement de réduction de bruit par \textit{spectral gating} \\ \hline
+Silero VAD & Détection d'activité vocale (voie WebSocket en direct) \\ \hline
+pyannote.audio & Diarisation des locuteurs (optionnelle, protégée par jeton) \\ \hline
+ChromaDB & Magasin vectoriel pour la récupération des fragments de transcription et d'OCR \\ \hline
+Ollama (Llama 3.2) & Modèle de langage hébergé localement pour la génération des réponses \\ \hline
+librosa / soundfile & Chargement, rééchantillonnage de l'audio et ajout de bruit \\ \hline
+Python 3.10 / uv & Langage d'implémentation et gestion des dépendances (versions épinglées) \\ \hline
+\end{tabular}
+\caption{Environnement logiciel}
+\label{tab:software}
+\end{table}
+\subsection{Justification des choix technologiques}
+Quatre choix méritent une justification explicite. \textbf{faster-whisper plutôt que Whisper standard ou wav2vec 2.0} : la réimplémentation CTranslate2 prend en charge la quantification INT8 sur CPU, permettant une transcription en deçà du temps réel sans matériel GPU, alors que wav2vec 2.0 requiert un fine-tuning lié au GPU par domaine pour être compétitif et n'offre aucune identification de langue multilingue intégrée. \textbf{Pile locale et libre (Phase 1)} : audio, transcriptions et plongements ne quittent jamais la machine (il n'y a aucun appel d'API externe dans la voie de transcription, de plongement ou de génération des réponses), une propriété de confidentialité délibérée pour un contenu de réunion potentiellement sensible, non un effet secondaire accidentel. \textbf{MInDS-14 comme corpus d'évaluation} : le corpus Nestl\'e est confidentiel et n'était pas disponible ; Common Voice, LibriSpeech, FLEURS et VoxPopuli se sont révélés impraticables dans l'environnement bac à sable ; MInDS-14 est sous licence CC-BY-4.0, réellement multilingue, et constitué de parole spontanée réelle, un choix contraint, documenté et assumé. \textbf{Implémentation autonome des métriques} : le WER et le CER sont calculés par une implémentation de Wagner-Fischer auditable, à règles de normalisation fixes, afin que tout chiffre rapporté puisse être retracé et re-scoré indépendamment, plutôt qu'hérité d'un réglage tiers opaque par défaut.
+\section{Processus de réalisation}
+Le harnais d'évaluation charge les 36 échantillons via un pipeline validé en deux étapes (analyse des métadonnées avec vérification explicite des colonnes, puis validation de l'existence de chaque fichier avec avertissements journalisés), puis itère sur les cinq conditions du Tableau~\ref{tab:conditions}. Le script de matrice est reprenable : chaque run achevé est immédiatement ajouté au fichier de résultats, et les paires (condition, fichier) déjà achevées sont sautées à la ré-invocation, ce qui a permis à la campagne de 180 runs de s'achever sur plusieurs exécutions à durée limitée sans perte ni doublon de travail. Chaque run enregistre l'intégralité du texte de référence et d'hypothèse aux côtés de son WER, CER et RTF, et écrit sa transcription dans un fichier séparé par run. Le décodage est déterministe pour des poids et des réglages fixés (aucun repli par échantillonnage de température), et les versions des dépendances sont épinglées. Les 180 runs se sont tous achevés avec zéro erreur d'exécution et zéro valeur de métrique manquante ; un authentique bug d'implémentation (un \texttt{import torch} mal placé) a été trouvé et corrigé durant la campagne.
+De façon cohérente avec le Chapitre II, deux lacunes du système construit ont borné ce que la campagne pilote pouvait mesurer : le prétraitement VAD (Condition C prévue) n'a pas été exécuté parce que le composant n'était jamais invoqué par la voie de transcription par lots, et la langue détectée par run de Whisper n'était pas conservée, de sorte que le comportement d'identification de langue a dû être reconstitué en comparant directement les textes d'hypothèses entre les runs à détection automatique et à langue forcée des mêmes fichiers. Les deux lacunes ont été comblées après le pilote : le VAD a été raccordé via l'intégration Silero native de faster-whisper et la Condition C mesurée (Section sur la Condition C ci-dessous), et le harnais conserve désormais une colonne \texttt{detected\_language} ; les 288 lignes pilotes existantes ont été migrées sans altération, vérifié en recalculant le WER moyen de la Condition B (inchangé à 62,2\,\%) après migration.
+\section{Résultats et discussion}
+\subsection{Présentation des résultats}
+Le Tableau~\ref{tab:results_agg} présente les résultats agrégés par condition ; le Tableau~\ref{tab:results_noise} les ventile par condition de bruit, et le Tableau~\ref{tab:results_lang} par langue. Toutes les valeurs sont calculées directement à partir du fichier de résultats de la campagne pilote.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Condition} & \textbf{Modèle} & \textbf{WER moyen} & \textbf{CER moyen} & \textbf{RTF moyen} \\ \hline
+A -- Référence & tiny & 63,4\,\% & 43,6\,\% & 0,323 \\ \hline
+B -- Réduction de bruit & tiny & 62,2\,\% & 44,6\,\% & 0,372 \\ \hline
+D -- Prompt métier & tiny & 61,3\,\% & 45,2\,\% & 0,351 \\ \hline
+E -- Langue forcée & tiny & 59,6\,\% & 41,1\,\% & 0,260 \\ \hline
+F -- Modèle base & base & \textbf{48,3\,\%} & \textbf{33,6\,\%} & 0,635 \\ \hline
+\end{tabular}
+\caption{Résultats agrégés par condition ($n=36$ par condition)}
+\label{tab:results_agg}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Condition} & \textbf{WER propre} & \textbf{CER propre} & \textbf{WER bruité} & \textbf{CER bruité} \\ \hline
+A -- Référence & 47,0\,\% & 29,7\,\% & 96,4\,\% & 71,3\,\% \\ \hline
+B -- Réduction de bruit & 49,2\,\% & 32,4\,\% & 88,1\,\% & 68,8\,\% \\ \hline
+D -- Prompt métier & 49,5\,\% & 33,3\,\% & 84,9\,\% & 69,1\,\% \\ \hline
+E -- Langue forcée & 47,3\,\% & 30,9\,\% & 84,1\,\% & 61,3\,\% \\ \hline
+F -- Modèle base & 32,9\,\% & 22,3\,\% & 79,2\,\% & 56,2\,\% \\ \hline
+\end{tabular}
+\caption{WER et CER moyens par condition de bruit ($n=24$ propre / 12 bruité par condition)}
+\label{tab:results_noise}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Condition} & \textbf{Anglais} & \textbf{Français} & \textbf{Allemand} \\ \hline
+A -- Référence & 69,6\,\% & 69,1\,\% & 51,6\,\% \\ \hline
+B -- Réduction de bruit & 64,3\,\% & 73,3\,\% & 48,9\,\% \\ \hline
+D -- Prompt métier & 60,2\,\% & 74,8\,\% & 48,9\,\% \\ \hline
+E -- Langue forcée & 60,2\,\% & 74,8\,\% & 43,9\,\% \\ \hline
+F -- Modèle base & 47,7\,\% & 64,1\,\% & \textbf{33,2\,\%} \\ \hline
+\end{tabular}
+\caption{WER moyen par langue ($n=12$ par langue par condition)}
+\label{tab:results_lang}
+\end{table}
+Deux observations orientent l'analyse qui suit. Premièrement, le WER absolu est élevé (48 à 63\,\%) au regard des performances de référence de Whisper. Ceci est attendu plutôt qu'alarmant : le jeu de données est de la parole téléphonique 8\,kHz réelle et spontanée plutôt que de la parole lue en qualité studio, les modèles testés sont les deux plus petits checkpoints, et un tiers des échantillons sont délibérément dégradés par le bruit. L'inspection manuelle de transcriptions individuelles (\enquote{bank} reconnu comme \enquote{bake}, l'allemand \enquote{einzuzahlen} comme \enquote{einzuzeilen}) confirme d'authentiques erreurs de confusion acoustique plutôt que des défaillances du pipeline, cohérent avec l'absence d'erreur d'exécution. Deuxièmement, le plus grand effet unique de toute la campagne est la taille du modèle (Condition F), devant toute intervention de prétraitement ou d'injection.
+\subsubsection*{Extension : l'échelle complète de tailles de modèles (GPU)}
+Pour compléter la courbe précision/vitesse amorcée par la comparaison tiny/base, la matrice d'évaluation a été étendue avec trois conditions supplémentaires (G : \texttt{small}, H : \texttt{medium}, I : \texttt{large-v3}), identiques en configuration à la Condition B à l'exception de la taille du modèle, exécutées sur un GPU NVIDIA RTX 4060 Laptop (8\,Go VRAM) en float16, soit 108 runs supplémentaires portant la campagne à 288 runs au total. Le Tableau~\ref{tab:ladder} rapporte l'échelle obtenue ; pour une comparaison de vitesse équitable, la colonne RTF rapporte des valeurs GPU-float16 pour \emph{toutes} les tailles (tiny et base re-mesurés sur le même GPU), puisque les RTF CPU canoniques du Tableau~\ref{tab:results_agg} ne sont pas comparables d'un backend à l'autre.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Modèle} & \textbf{Param.} & \textbf{WER moyen} & \textbf{CER moyen} & \textbf{WER propre} & \textbf{WER bruité} & \textbf{RTF (GPU)} \\ \hline
+tiny (B) & 39M & 62,2\,\% & 44,6\,\% & 49,2\,\% & 88,1\,\% & 0,144 \\ \hline
+base (F) & 74M & 48,3\,\% & 33,6\,\% & 32,9\,\% & 79,2\,\% & 0,188 \\ \hline
+small (G) & 244M & 33,3\,\% & 24,6\,\% & 21,6\,\% & 56,7\,\% & 0,146 \\ \hline
+medium (H) & 769M & 25,9\,\% & 21,1\,\% & 17,3\,\% & 43,3\,\% & 0,195 \\ \hline
+large-v3 (I) & 1.55B & \textbf{24,6\,\%} & \textbf{20,5\,\%} & \textbf{16,6\,\%} & \textbf{40,7\,\%} & 0,359 \\ \hline
+\end{tabular}
+\caption{Échelle de tailles de modèles ($n=36$ par taille ; G/H/I et la colonne RTF mesurés sur GPU, float16 ; les WER/CER de tiny/base sont les chiffres CPU canoniques)}
+\label{tab:ladder}
+\end{table}
+Trois résultats ressortent. Premièrement, la courbe de WER est \textbf{strictement monotone} sur les cinq tailles (62,2 $\to$ 48,3 $\to$ 33,3 $\to$ 25,9 $\to$ 24,6\,\%), avec des rendements clairement décroissants après \texttt{medium} : le dernier facteur $21\times$ d'augmentation des paramètres (74M $\to$ 1,55 milliard) achète 23,7 points, mais l'étape finale (\texttt{medium} $\to$ \texttt{large-v3}) seulement 1,3. Deuxièmement, la taille du modèle fait plus contre le bruit que toute atténuation explicite testée : le WER bruité chute de 88,1\,\% (tiny) à 40,7\,\% (large-v3), éclipsant le gain de 8,3 points du prétraitement de réduction de bruit. Troisièmement, la pathologie d'identification de langue de la Section 3.3.2.3 disparaît largement à grande échelle : le WER français s'effondre de 64,1\,\% (base) à 21,8\,\% (large-v3) et l'allemand atteint 8,3\,\%, tandis que l'anglais devient la \emph{pire} langue aux tailles supérieures (43,8\,\%), sous l'effet d'un petit nombre de clips durablement difficiles, un rappel que les agrégats par langue sur douze clips restent sensibles à l'échantillon. Côté vitesse, le RTF de \texttt{small} ($0{,}146$) est essentiellement égal à celui de \texttt{tiny} ($0{,}144$) sur GPU malgré $6\times$ plus de paramètres : les modèles plus précis terminent le décodage plus tôt sur l'audio difficile au lieu d'allonger de longues hypothèses hallucinées, compensant partiellement leur coût par étape plus élevé. Deux réserves encadrent l'échelle : les chiffres de précision G/H/I ont été produits sous float16 sur GPU, alors que les chiffres canoniques tiny/base sont INT8-CPU (la divergence inter-backends mesurée à ces tailles était faible au regard des effets de taille de 14 à 24 points) ; et aucun RTF CPU n'a été mesuré pour \texttt{small} et au-dessus, de sorte que la question de savoir s'ils restent en deçà du temps réel \emph{sans} GPU n'est explicitement pas affirmée ici. En termes de déploiement, \texttt{small} émerge comme le meilleur point de précision par coût sur ce jeu de données, et \texttt{medium} comme le point d'équilibre en précision lorsqu'un GPU est disponible.
+\subsection{Analyse des résultats}
+\subsubsection{Bruit et réduction de bruit (H1)}
+Le bruit de fond est, de loin, le plus grand facteur d'erreur : sous la référence, le WER double environ de l'audio propre à l'audio bruité (47,0\,\% contre 96,4\,\%), et un quasi-doublement similaire tient dans chaque condition. Aucune autre manipulation (prétraitement, injection, forçage de langue ou taille de modèle) n'approche cette ampleur. Comparer B à A isole l'effet du prétraitement par \textit{spectral gating} : sur l'audio bruité, le WER chute de 96,4\,\% à 88,1\,\% ($-8{,}3$ points) ; sur l'audio propre, il \emph{augmente} de 47,0\,\% à 49,2\,\% ($+2{,}2$ points). C'est une confirmation partielle de H1 : la réduction de bruit aide là où c'est nécessaire mais n'est pas gratuite sur un signal propre, car le \textit{spectral gating}, étant aveugle, atténue aussi les fricatives faibles (s, f, ch) sur l'audio propre. Pour un déploiement qui ne peut prédire si une réunion donnée sera propre ou bruitée, ce compromis, et non la moyenne nette, est le constat pertinent pour la décision.
+\subsubsection{Injection de vocabulaire métier (H2)}
+Comparer D à B isole le prompt fixe de vocabulaire Nestl\'e. L'effet agrégé est faible (62,2\,\% à 61,3\,\% de WER), le CER se déplaçant légèrement en sens inverse. Ceci doit se lire comme un \textbf{résultat nul pour une raison précise et divulguée} : le jeu de données MInDS-14 ne contient aucun du vocabulaire Nestl\'e que le prompt vise, de sorte que la Condition D ne peut mesurer que le \emph{coût} de l'injection lorsque le vocabulaire prompté est absent, non son bénéfice lorsqu'il est présent. La campagne a toutefois capté le versant coût de façon concrète : sur un clip allemand bruité, le modèle a halluciné le texte prompté directement dans sa sortie, produisant \enquote{...it's Nestl\'e Ghana, the center of the conference room...} dans une transcription sans rapport avec Nestl\'e. Cette \emph{fuite de prompt} survient lorsqu'une passe de décodage à faible confiance (audio bruité plus détection automatique de langue) se rabat sur le contexte injecté plutôt que sur le contenu acoustique. L'injection statique de prompt est donc une atténuation à double tranchant, cohérente avec la mise en garde sur les entités du Chapitre I \cite{durmus2026contextual}.
+\subsubsection{Identification automatique de la langue (H4)}
+Comparer E à D isole l'identification de la langue. Le gain agrégé est modeste (1,7 point de WER, 4,1 points de CER), mais masque le constat le plus fort de la campagne. La comparaison directe des textes d'hypothèses entre runs automatiques et forcés montre un gradient de discordance marqué : anglais 0/12 (0\,\%), allemand 2/12 ($\approx$17\,\%), français 5/12 ($\approx$42\,\%). Plusieurs échecs français sont catastrophiques au niveau de l'alphabet : la référence \enquote{bonjour je voudrais changer d'adresse} a été auto-détectée et transcrite en caractères cyrilliques sans rapport avec le contenu parlé ; d'autres clips français courts et bruités sont sortis en alphabet hébreu, turc ou chinois, un comportement de sortie en mauvaise langue documenté comme mode de défaillance de Whisper par \cite{koenecke2024careless}. Forcer \texttt{fr} a rétabli une sortie en alphabet français dans chacun de ces cas. Notamment, ce rétablissement ne déplace guère le WER français agrégé (74,8\,\% en D comme en E) : le WER au niveau des mots pénalise de façon similaire une hallucination en mauvais alphabet et une transcription du bon alphabet mais inexacte, alors même que la seconde est qualitativement bien plus utilisable pour un lecteur humain. Le résultat quantitatif comme le résultat qualitatif sont donc rapportés. H4 est \textbf{fortement soutenue} : dans un déploiement réellement multilingue, la détection automatique ne devrait pas être considérée comme fiable pour les énoncés courts ou bruités, et forcer la langue attendue par locuteur, canal ou réunion est une atténuation à coût nul, immédiatement déployable.
+\subsubsection{Taille du modèle et facteur temps réel (H3)}
+Comparer F à B (configuration identique, \texttt{base} vs.\ \texttt{tiny}) isole la taille du modèle. Le WER moyen chute de 62,2\,\% à 48,3\,\% ($-13{,}9$ points) et le CER de 44,6\,\% à 33,6\,\%, de façon cohérente sur les deux conditions de bruit (propre : 49,2\,\% à 32,9\,\% ; bruité : 88,1\,\% à 79,2\,\%) et les trois langues (EN $-16{,}6$, FR $-9{,}2$, DE $-15{,}7$ points). Le coût est borné : le RTF moyen passe de 0,372 à 0,635 (environ $1{,}9\times$ plus lent) mais reste confortablement en deçà du seuil temps réel de 1,0. Sur l'ensemble de la campagne, 169 des 180 runs (93,9\,\%) sont restés sous un RTF de 1,0 sur du matériel CPU uniquement ; les exceptions se concentrent sur deux clips français bruités précis dont le décodage à faible confiance est démesurément coûteux (pire cas RTF 2,877), un schéma cohérent avec le comportement d'hallucination ci-dessus. Un exemple par fichier illustre le plafond : un clip transcrit à 71,4\,\% de WER par la Condition A atteint 0,0\,\% de WER (une transcription parfaite) sous la Condition F. H3 est \textbf{soutenue} pour les deux tailles testées. L'échelle étendue (Tableau~\ref{tab:ladder}) confirme que la tendance se poursuit de façon monotone à travers \texttt{small}, \texttt{medium} et \texttt{large-v3}, avec des rendements clairement décroissants après \texttt{medium}.
+\subsubsection{CPU contre GPU}
+La réexécution de la matrice identique sur un GPU CUDA en float16 a confirmé la marge de débit : le RTF s'est amélioré uniformément (tiny : 0,323 à 0,143, $2{,}3\times$ ; base : 0,635 à 0,188, $3{,}4\times$), le gain le plus important portant sur le modèle le plus lourd. Deux réserves encadrent cette comparaison : des runs uniques par paire, et, plus fondamentalement, le passage d'INT8 à float16 change la représentation numérique des poids, ce qui s'est propagé à travers le décodeur autorégressif et a fait différer légèrement environ 52 des 180 transcriptions d'un backend à l'autre. Le déterminisme tient donc \emph{au sein} d'un couple (matériel, type de calcul) fixé, non d'un couple à l'autre ; les chiffres de WER/CER rapportés ci-dessus restent ceux, canoniques, du CPU.
+\subsubsection{Condition C complétée : prétraitement VAD}
+Après avoir comblé la lacune VAD rapportée au Chapitre II, la Condition C initialement prévue (configuration de B plus Silero VAD, via l'option native \texttt{vad\_filter} de faster-whisper) a été exécutée sur les 36 échantillons comme une extension GPU. Comme ces runs s'exécutent en float16 sur GPU, la référence honnête est la Condition B \emph{re-mesurée sur le même backend}, non les chiffres CPU canoniques : C atteint un WER moyen de 62,2\,\% contre 62,7\,\% pour B-sur-GPU, un CER de 45,6\,\% contre 46,4\,\%, et un RTF de 0,130 contre 0,144, une amélioration modeste et cohérente sur les trois agrégats. La ventilation par bruit révèle toutefois un compromis réel masqué par l'agrégat : sur l'audio propre, le VAD \emph{améliore} le WER de 51,5\,\% à 47,7\,\% ($-3{,}8$ points, cohérent avec son rôle prévu d'écarter les segments non vocaux avant qu'ils ne soient hallucinés en texte), mais sur l'audio bruité il \emph{dégrade} le WER de 85,0\,\% à 91,0\,\% ($+6{,}0$ points), plausiblement parce que la parole noyée dans le bruit est mal classée comme non vocale et discrètement écartée avant transcription. C'est l'image miroir du compromis de réduction de bruit mesuré pour H1 : chaque technique de prétraitement aide dans un régime et coûte dans l'autre, ce qui renforce la conclusion plus large du chapitre selon laquelle aucun interrupteur de prétraitement unique n'est sûr à activer aveuglément sur des conditions acoustiques inconnues. Avec douze clips bruités, cette ventilation est directionnelle plutôt qu'établie statistiquement, et est rapportée avec cette réserve.
+\subsubsection{Latence de la voie en direct}
+Pour traiter la dimension temps réel du problème de recherche, la voie WebSocket en direct a été instrumentée pour journaliser, pour chaque énoncé, l'intervalle entre le déclenchement du seuil de silence du VAD (fin d'énoncé) et la remise de la transcription au client. Un test informel sur deux sessions (22 énoncés, mono-locuteur, langues mélangées, GPU RTX 4060 en float16) a donné une \textbf{latence médiane de 0,56\,s} et un \textbf{95\textsuperscript{e} centile de 1,18\,s} une fois exclu le premier énoncé de chaque session ; ce premier énoncé coûte de 2,6 à 3,6\,s de préchauffage ponctuel du modèle, que la configuration de production atténue déjà en préchargeant les modèles au démarrage. Deux réserves gardent ceci honnête : le délai perçu par l'utilisateur inclut en plus la fenêtre de silence de 0,6\,s que le VAD utilise pour décider qu'un énoncé s'est terminé, de sorte que la latence perçue de bout en bout est d'environ 1,2\,s dans le cas médian ; et il s'agit d'une mesure informelle, mono-locuteur, sur de la parole auto-enregistrée, non d'un benchmark contrôlé, de sorte qu'aucun WER n'est rapporté pour elle : il n'y a pas de transcription de vérité terrain. Qualitativement, la session a reproduit les constats par lots : l'anglais était transcrit de façon fiable, l'identification automatique de langue par énoncé gérait les tours propres à une seule langue, et les modes de défaillance connus sont apparus à point nommé : un nom de marque rare transcrit comme un mot courant (\enquote{Magie} pour \emph{Maggi}) et un segment occasionnel halluciné sur de l'audio ambigu, cohérent avec les analyses de reconnaissance d'entités et d'hallucination ci-dessus.
+\subsubsection{RQ2 complétée : fine-tuning LoRA contre injection de prompt}
+La question de l'adaptation laissée ouverte par le pilote (l'injection n'était mesurable que sur son versant coût) a été traitée directement dans une extension post-pilote finale : le fine-tuning LoRA à paramètres efficaces de \texttt{whisper-small}. Un ensemble d'entraînement de 300 clips (100 par langue) a été tiré de MInDS-14 avec une procédure de non-contamination documentée : tout candidat dont la transcription normalisée correspondait à l'une des références d'évaluation a été exclu (8 exclusions en anglais, 12 en français, l'excédent révélant des doublons de transcriptions dans le corpus lui-même, et 8 en allemand), la sélection a été randomisée sous une graine fixe, et une assertion finale a vérifié qu'aucune transcription d'entraînement ne recoupe le jeu d'évaluation. L'entraînement a employé LoRA de rang 16 sur les projections d'attention (1,77M de paramètres entraînables, 0,73\,\% du modèle), trois époques en float16 sur le RTX 4060 ; la perte est passée de 4,71 à 1,95 en un peu plus de deux minutes de calcul.
+L'évaluation a été délibérément \emph{appariée} : le modèle fine-tuné et la référence \texttt{whisper-small} non modifiée ont tous deux été exécutés sur les 36 échantillons canoniques via un chemin d'inférence HuggingFace direct identique, avec le même outil de scoring, de sorte que seuls les poids diffèrent entre les deux passes. La référence (J0) obtient 31,2\,\% de WER / 24,2\,\% de CER ; le modèle fine-tuné (J) obtient 30,2\,\% / 23,0\,\%, une amélioration de 1,0 point de WER que l'analyse par fichier montre reposer sur une poignée de clips (7 améliorés, 6 dégradés, 23 inchangés), c'est-à-dire non significative statistiquement à $n=36$. Le gain se concentre sur l'audio propre (21,0\,\% à 19,2\,\%) et sur l'allemand et l'anglais ; le français est inchangé. Contrairement à l'injection de prompt, le fine-tuning n'a présenté aucun effet secondaire d'hallucination.
+Deux conclusions découlent pour RQ2. Premièrement, sur ce jeu de données, \textbf{les deux stratégies d'adaptation à bas coût aboutissent au même point} : l'injection au décodage a déplacé le WER agrégé d'environ 1 point (D vs.\ B) et le fine-tuning LoRA du domaine d'environ 1 point (J vs.\ J0), chacun d'un ordre de grandeur en deçà de l'effet de taille du modèle (14 à 38 points) et en deçà de l'effet qualitatif de la langue forcée. La raison probable est divulguée plutôt qu'esquivée : l'ensemble d'entraînement provient du \emph{même} domaine de téléphonie bancaire que le pré-entraînement de Whisper couvre déjà correctement, de sorte qu'il restait peu d'écart de domaine à combler ; la valeur attendue du fine-tuning réside dans des domaines cibles réellement divergents, le vocabulaire propre à l'organisation avant tout, que la contrainte de données de ce travail a empêché de tester. Deuxièmement, un constat incident mais instructif : le \texttt{whisper-small} standard obtient 31,2\,\% via le chemin HuggingFace/PyTorch (sans prétraitement) contre 33,3\,\% via faster-whisper/CTranslate2 avec réduction de bruit (Condition G), un écart de 2,1 points entre des poids \emph{nominalement identiques}, comparable en ampleur à l'effet du fine-tuning lui-même. Ceci renforce la discipline de comparaison à backend constant appliquée tout au long de ce chapitre : les choix d'implémentation et de prétraitement peuvent compter autant que l'adaptation étudiée.
+\subsubsection{Comparaison inter-architectures : wav2vec 2.0 (MMS)}
+La troisième famille d'architectures nommée dans le proposal a été évaluée dans une extension finale : \texttt{facebook/mms-1b-all}, le modèle CTC massivement multilingue de Meta construit sur l'encodeur wav2vec 2.0, exécuté sur les 36 mêmes échantillons avec le même outil de scoring (dont la normalisation, mise en minuscules et suppression de la ponctuation appliquées à la référence comme à l'hypothèse, rend la comparaison équitable envers un modèle CTC qui ne produit nativement ni casse ni ponctuation). MMS obtient 35,4\,\% de WER moyen contre 31,2\,\% pour la référence appariée \texttt{whisper-small} (J0), avec un CER légèrement \emph{meilleur} (23,6\,\% contre 24,2\,\%) et une quasi-parité sur l'audio bruité (51,4\,\% contre 51,7\,\%) ; son décodage CTC est aussi d'un ordre de grandeur plus rapide (RTF 0,028). Le schéma par langue est la partie intéressante : MMS s'effondre sur la parole téléphonique anglaise (60,0\,\%) mais bat Whisper-auto sur le français (25,4\,\% contre 31,0\,\%) et l'allemand (20,7\,\% contre 18,6\,\%, quasi-parité). Une confusion doit être énoncée : MMS reçoit la langue \emph{par construction} (un adaptateur est chargé par langue), ce qui est architecturalement équivalent à la langue forcée, alors que J0 fonctionnait en détection automatique. Une partie de l'avantage français de MMS est donc le propre constat H4 de ce travail resurgissant dans une autre architecture, plutôt qu'une pure différence de qualité d'encodeur. Globalement, Whisper reste le meilleur choix pour ce cas d'usage (détection multilingue native, ponctuation et horodatages), mais la parité au bruit et la vitesse de MMS en font une alternative CTC crédible lorsque la langue est connue à l'avance.
+\subsubsection{Comparaison inter-architectures : Conformer (NeMo CTC)}
+La troisième famille d'architectures nommée dans le proposal a été évaluée pour compléter l'ensemble des baselines obligatoires : un Conformer, évalué via les points de contrôle NeMo monolingues \texttt{stt\_\{en,fr,de\}\_conformer\_ctc\_large} de NVIDIA (décodage CTC), exécuté sur les 36 mêmes échantillons avec le même outil de scoring. Le Conformer obtient 26,3\,\% de WER moyen contre 31,2\,\% pour le baseline apparié \texttt{whisper-small} (J0) et 35,4\,\% pour MMS, avec un CER moyen de 19,9\,\% et un RTF médian de 0,014 (là encore un ordre de grandeur plus rapide que Whisper, cohérent avec le décodage CTC). Le schéma par langue prolonge la courbe de tailles : l'allemand est le plus fort (15,3\,\%), le français intermédiaire (23,6\,\%) et l'anglais le plus difficile (39,8\,\%), ce dernier étant dû à un écart de domaine, le checkpoint anglais étant entraîné sur la lecture à voix haute de LibriSpeech, loin de la téléphonie bancaire de MInDS-14. Le bruit reste ici aussi le facteur dominant : un WER propre de 17,5\,\% se dégrade à 43,7\,\% sur l'audio bruité ($+26{,}2$ points), une pénalité de bruit plus prononcée que celle de Whisper, ce qui n'est pas surprenant étant donné que ces checkpoints ont été entraînés sur de la parole lue et parlementaire propre sans bruit téléphonique.
+
+Deux confusions doivent être énoncées, et ce sont les mêmes que celles appliquées à MMS. Premièrement, le Conformer reçoit la langue \emph{par construction} (un checkpoint monolingue par langue), ce qui est architecturalement équivalent à la langue forcée ; une partie de son avantage apparent sur \texttt{whisper-small} (qui fonctionnait en détection automatique et a payé le taux d'échec de 42\,\% d'identification de langue française signalé plus haut) est donc le propre constat H4 de ce travail resurgissant dans une autre architecture, non une différence de qualité d'encodeur. La lecture architecturale équitable est Conformer contre MMS, tous deux CTC et tous deux avec langue donnée, sur quoi le Conformer est plus bas sur ce jeu de données (26,3\,\% contre 35,4\,\%), bien que les deux intervalles de confiance bootstrap se chevauchent à $n=36$, de sorte que l'ordre est une estimation ponctuelle plutôt qu'un écart statistiquement établi. Deuxièmement, MInDS-14 est de la téléphonie 8\,kHz suréchantillonnée à 16\,kHz que ces modèles entraînés sur de la parole à large bande attendent, ce qui supprime les indices haute fréquence sur lesquels ils s'appuient et les pénalise par rapport à Whisper. La conclusion globale correspond à celle de MMS : avec la langue et un audio propre à large bande, un modèle Conformer CTC est rapide et précis, mais Whisper reste le meilleur choix pour le cas d'usage réel, avec la détection multilingue native, la ponctuation, les horodatages et la robustesse à la téléphonie bruitée.
+\subsubsection{Validité externe : parole lue propre (FLEURS)}
+À titre de vérification inter-corpus, le pipeline a également été exécuté sur un corpus de nature différente : FLEURS (Google, CC-BY-4.0), parole lue propre à large bande, vingt clips par langue (anglais, français, allemand). Ce jeu se trouve \emph{en dehors} de la campagne canonique de 468 runs et ses chiffres ne sont jamais fusionnés avec les tableaux MInDS-14 ; il sert uniquement à tester si la difficulté mesurée sur MInDS-14 est intrinsèque au pipeline ou aux entrées. Sur de la parole lue propre, \texttt{large-v3} atteint un WER moyen de 7,4\,\% (médiane 3,4\,\%), contre 24,6\,\% sur MInDS-14, ce qui indique que la difficulté de MInDS-14 provient de sa téléphonie 8\,kHz, du bruit ajouté et de la parole spontanée plutôt que d'un défaut du pipeline. Une honnête réserve encadre cette vérification : sur les énoncés plus longs de FLEURS, les plus petits checkpoints (\texttt{tiny} à \texttt{medium}) entrent fréquemment dans une boucle de répétition (par exemple une référence de douze mots décodée comme le jeton \enquote{und} répété plusieurs centaines de fois), un mode de défaillance documenté du décodeur autorégressif de Whisper sur les longues séquences, que ses heuristiques de décodage officielles sont conçues à supprimer \cite{radford2023robust,koenecke2024careless}. Le harnais conservant un chemin de décodage déterministe simple identique à la campagne MInDS-14 pour la comparabilité, ces boucles ne sont pas supprimées ; les résultats FLEURS pour \texttt{tiny} à \texttt{medium} sont donc traités comme des mesures de ce mode de défaillance, non de la qualité de transcription, et sont exclus, des boucles résiduelles rares étant observées même à \texttt{large-v3}.
+\subsubsection{Diarisation des locuteurs sur réunions simulées}
+Le composant de diarisation, implémenté depuis le pilote mais jamais exercé sur de l'audio multi-locuteurs, a enfin été testé de bout en bout sur sept réunions simulées construites en concaténant séquentiellement des clips MInDS-14 (trois réunions à 2 locuteurs par langue en condition propre, trois variantes bruitées, et une réunion trilingue à 3 locuteurs), avec des horodatages de vérité terrain exacts consignés à la construction. Le pipeline pyannote 3.1 s'est exécuté avec succès sur les sept ; le taux d'erreur de diarisation (DER) moyen était de 0,585, décomposé en parole manquée (33 à 46\,\%), confusion de locuteurs (12 à 38\,\%), et, notamment, zéro fausse alarme.
+Ces chiffres de DER sont rapportés par souci d'exhaustivité mais doivent se lire comme une mesure de l'\textbf{artificialité du banc d'essai plus que de la qualité de pyannote}, pour trois raisons vérifiables. Premièrement, la vérité terrain marque toute l'étendue de chaque clip comme parole, y compris ses pauses internes, de sorte que les régions de parole plus resserrées de pyannote s'enregistrent comme \enquote{parole manquée} par construction. Deuxièmement, la sur-segmentation apparente (3 à 7 locuteurs hypothétiques contre 2 à 3 étiquetés) est en grande partie pyannote ayant \emph{raison} : les clips MInDS-14 concaténés proviennent réellement de locuteurs réels différents, et c'est l'étiquetage SPEAKER\_A/B qui est la fiction. Troisièmement, l'élément révélateur, les réunions bruitées obtiennent un \emph{meilleur} DER que les propres (0,505 contre 0,644), car le bruit masque les différences de voix inter-locuteurs et pousse pyannote vers moins de groupes qui correspondent accidentellement aux étiquettes artificielles ; une amélioration réelle de la diarisation par ajout de bruit n'est pas plausible. La conclusion honnête est architecturale plutôt que métrique : la voie de diarisation fonctionne mécaniquement de bout en bout, la parole croisée reste non testée (les tours sont séquentiels par construction), et une évaluation de précision valide requiert de véritables enregistrements multi-locuteurs à continuité par locuteur, précisément les données de réunion confidentielles dont l'absence borne ce travail de part en part.
+\subsection{Discussion et comparaison avec l'état de l'art}
+\textbf{Hypothèses revisitées.} H1 est partiellement soutenue (aide sur le bruité, coûte sur le propre, une nuance que l'hypothèse n'anticipait pas). H2 n'est ni confirmée ni réfutée : la limite du jeu de données fait que le versant bénéfice n'a pu être mesuré, et seul le versant coût (globalement neutre, plus une hallucination par fuite de prompt mesurée) a été établi. H3 est soutenue pour \texttt{tiny} et \texttt{base}. H4 est fortement soutenue et constitue le constat le plus robuste et actionnable de la campagne. Rendre compte de ces verdicts au regard d'hypothèses fixées \emph{avant} les runs (y compris les deux qui n'étaient que partiellement soutenues ou non testables) est une discipline méthodologique délibérée.
+\textbf{Positionnement face aux performances publiées.} Les niveaux de WER absolus rapportés ici sont bien au-dessus des performances de référence de Whisper \cite{radford2023robust}, et l'écart est précisément l'objet de l'étude : les chiffres publiés sont obtenus avec de plus grands checkpoints sur des jeux de référence sélectionnés, propres et majoritairement monolingues, alors que cette campagne mesure les deux plus petits checkpoints sur de la parole téléphonique 8\,kHz spontanée, un tiers délibérément bruitée, sur trois langues. Les résultats quantifient, pour un déploiement contraint réaliste, quelle part de la performance de référence survit, et quels leviers à bas coût (taille du modèle d'abord, langue forcée ensuite, réduction de bruit sur l'audio bruité en troisième) récupèrent le plus. La conception à conditions chaînées montre aussi que des atténuations individuellement modestes se cumulent : le WER bruité chute cumulativement de 96,4\,\% à 84,1\,\% de A à E, même si aucune étape isolée de cette chaîne n'est importante.
+\textbf{Intégration et déploiement.} Le contexte de déploiement importe pour positionner ce travail : la pile collaborative de Nestl\'e est bâtie sur Microsoft Teams, complétée par Microsoft 365 Copilot et par NesGPT, un assistant d'IA générative interne, vérifié en sécurité, utilisé par des dizaines de milliers d'employés \cite{worklife2024nesgpt,arec2023nestle}. La transcription cloud générique (comme les notes de réunion de Copilot) existe bien dans cette pile, mais elle n'est ni orientée accessibilité en premier lieu (elle n'offre aucune couche personnalisée pour les utilisateurs malentendants, ni de garanties mesurées sur la parole à alternance de langues ou à vocabulaire de marque) ni auditable, puisque sa précision sur l'audio propre à une organisation ne peut être mesurée ou adaptée de l'extérieur. L'existence même de NesGPT, créé parce que Nestl\'e exige que l'IA générative fonctionne sous contrôle de sécurité interne, appuie la prémisse de conception de la Phase 1 de ce travail : un pipeline d'accessibilité dont l'audio, les transcriptions et les plongements ne quittent jamais l'environnement local, et dont le comportement d'erreur est mesuré plutôt que supposé. Au sein de la plateforme plus large, chaque transcription achevée est fragmentée, plongée avec un modèle multilingue et stockée dans ChromaDB, de sorte qu'un employé malentendant peut poser une question en langage naturel et recevoir une réponse ancrée dans la transcription réelle de la réunion, ce qui est stratégiquement plus important pour l'accessibilité que la transcription brute seule. La qualité de récupération et de génération de réponses de cette couche relève du Topic 3 et n'a pas été évaluée ici. Le code documente un chemin de migration Phase 2 vers des services gérés Azure (Azure AI Speech, Document Intelligence, AI Search, Azure OpenAI) ; un seul chemin dispose d'un code d'ébauche, qui échoue délibérément de façon bruyante (\texttt{NotImplementedError}) plutôt que de se dégrader silencieusement, et aucun service Azure n'a été provisionné ou mesuré dans ce travail : la migration est consignée comme une intention documentée, non comme un résultat. Enfin, le pilote actuel n'a ni authentification ni cloisonnement par utilisateur sur ses points de terminaison : tout client capable d'atteindre le point de terminaison de questions-réponses peut récupérer le contenu de n'importe quelle transcription ingérée. Ce sont des lacunes connues et explicitement hors périmètre pour un système au stade pilote, énoncées ici parce qu'elles portent directement sur un déploiement auprès d'utilisateurs réels.
+\vspace{0.5em}
+En résumé, ce chapitre a présenté un environnement d'implémentation entièrement local et sa justification, un processus d'évaluation traçable et reprenable, et les résultats d'une campagne de 180 runs : le bruit est le facteur d'erreur dominant, la réduction de bruit est un compromis réel, l'injection de vocabulaire n'a pu être mesurée que sur son versant coût, la langue forcée est le gain le plus clairement actionnable, et la taille du modèle est le plus grand levier de précision unique à coût de calcul borné. La conclusion générale rassemble ces constats et les perspectives qu'ils ouvrent.
+%=========================== [Conclusion générale] =======================
+\chapter*{Conclusion générale et perspectives}
+\thispagestyle{fancy}
+\addcontentsline{toc}{chapter}{Conclusion générale et perspectives}
+\section*{Synthèse du travail}
+Ce travail s'est donné pour but de mesurer, plutôt que de supposer, comment un pipeline de transcription de la parole fondé sur Whisper, sur CPU uniquement et libre, se comporte sur de la parole bruitée et multilingue, et dans quelle mesure des atténuations simples et à bas coût comblent l'écart qui en résulte, en soutien à l'accessibilité en milieu professionnel pour les employés malentendants dans le cadre de la collaboration Nestl\'e/BIT. Les trois objectifs spécifiques fixés dans l'introduction générale ont été atteints : un jeu de données d'évaluation trilingue et sous licence, à ajout de bruit contrôlé, a été construit (OS1) ; un pipeline \textit{faster-whisper} configurable prenant en charge le prétraitement, l'injection de vocabulaire et la langue forcée a été implémenté et documenté, y compris ses divergences entre conception prévue et système construit (OS2) ; et une campagne d'évaluation pré-enregistrée de 180 runs, sans erreur, a été exécutée et interprétée au regard d'hypothèses fixées (OS3).
+\section*{Principaux résultats}
+Quatre constats mesurés ressortent. Le bruit de fond est de loin la source d'erreur dominante, doublant environ le WER (47,0\,\% à 96,4\,\% sous la référence), devant tout autre facteur étudié. Le prétraitement de réduction de bruit est un compromis réel : $-8{,}3$ points de WER sur l'audio bruité, $+2{,}2$ sur le propre ; le prétraitement VAD, complété après le pilote, montre le compromis miroir ($-3{,}8$ sur le propre, $+6{,}0$ sur le bruité, comparaison à backend identique). L'identification automatique de la langue a échoué sur 42\,\% des clips français, produisant occasionnellement une sortie en mauvais alphabet (cyrillique, hébreu) ; forcer la langue a rétabli une transcription utilisable dans chaque cas à coût de calcul nul, le constat le plus robuste et immédiatement actionnable. La taille du modèle s'est révélée le levier de précision dominant : l'étude d'extension GPU a complété l'échelle entière, avec un WER moyen chutant de façon monotone de 63,4\,\% (\texttt{tiny}) à 24,6\,\% (\texttt{large-v3}) et un WER bruité de 88,1\,\% à 40,7\,\%, loin devant toute atténuation de prétraitement explicite, avec des rendements décroissants après \texttt{medium} et \texttt{small} émergeant comme le meilleur point de précision par coût. La question de l'adaptation a été tranchée par la mesure sur les deux fronts : l'injection au décodage et le fine-tuning LoRA du domaine (300 clips, contamination vérifiée, évaluation appariée) n'ont chacun déplacé le WER moyen que d'environ un point : la méthode fonctionne, mais sur un domaine que le pré-entraînement de Whisper couvre déjà, il reste peu d'écart à combler ; l'intérêt du fine-tuning repose sur un vocabulaire cible réellement divergent. L'injection de vocabulaire métier n'a pu être testée sur son versant bénéfice, pour la raison divulguée du jeu de données, et s'est montrée capable de fuite de prompt, hallucinant \enquote{Nestl\'e Ghana} dans une transcription allemande sans rapport. La conception expérimentale chaînée a permis d'attribuer chacun de ces effets à une cause unique nommée, et les limites de l'étude (jeu de données au stade pilote, bruit synthétique, runs uniques par paire, et une évaluation de diarisation bornée par son banc d'essai simulé) sont rapportées comme des résultats de premier plan plutôt que minimisées ; les composants VAD et diarisation, non exercés au moment du pilote, ont tous deux été raccordés et mesurés dans les études d'extension.
+\section*{Perspectives}
+Plusieurs extensions concrètes et cadrées découlent directement des limites. Mesurer les facteurs temps réel CPU pour les checkpoints \texttt{small} et supérieurs établirait si les gains de précision de l'échelle restent déployables sans matériel GPU, et des mesures de RTF à essais répétés remplaceraient les valeurs indicatives à run unique rapportées ici. Deux des propres lacunes du pilote ont déjà été comblées après la campagne : le VAD est désormais raccordé à la voie par lots et mesuré (Condition C), et la langue détectée est conservée par run ; réexécuter la matrice complète avec cette journalisation en place rendrait la mesure d'identification de langue du pilote directe plutôt qu'inférée. Obtenir même un petit jeu d'évaluation sous licence contenant un véritable vocabulaire Nestl\'e permettrait enfin de mesurer le versant bénéfice de l'injection de vocabulaire. La machinerie de fine-tuning LoRA est désormais construite, sa non-contamination vérifiée et validée de bout en bout ; son effet mesuré dans le domaine était marginal, ce qui aiguise plutôt qu'il ne clôt la question de l'adaptation : l'étape naturelle suivante est d'appliquer le même pipeline à des données cibles réellement divergentes, le vocabulaire propre à l'organisation avant tout, et le fine-tuning à partir de texte seul \cite{fang2025textonly} ou l'adaptation LoRA découplée en deux étapes avec pseudo-étiquetage \cite{zheng2026twostage} visent exactement la contrainte de rareté des données rencontrée ici, puisque comptes rendus écrits et glossaires de marque sont disponibles là où l'audio de réunion confidentiel ne l'est pas. Enfin, avant tout déploiement auprès d'utilisateurs réels, la voie WebSocket en direct doit être paramétrée (sa langue de décodage française codée en dur retirée), et une authentification ainsi qu'un cloisonnement d'accès par utilisateur ajoutés aux points de terminaison de la plateforme, que le système reste local ou suive le chemin de migration Phase 2 vers Azure documenté.
+%=============================[Bibliographie]===================================
+\renewcommand{\cftchappresnum}{\chaptername~}
+\renewcommand{\cftchapnumwidth}{6em}
+\cleardoublepage
+\printbibliography[heading=subbibliography,
+                    title={\textsc{Bibliographie}}]
+\thispagestyle{fancy}
+\newpage
+\tableofcontents
+\thispagestyle{fancy}
+\end{document}

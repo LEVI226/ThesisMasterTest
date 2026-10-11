@@ -1,0 +1,15 @@
+{
+  "scope": "Contract probes with fake dependencies; no model inference",
+  "upload_language": {
+    "multipart_status": 200,
+    "query_status": 200,
+    "forwarded_values": [
+      null,
+      "fr"
+    ]
+  },
+  "disconnect_without_silence": {
+    "pending_bytes": 32000,
+    "transcription_calls": 0
+  }
+}
