@@ -128,3 +128,14 @@ isolée de whisper-large-v3 le lendemain (1 h 07, reprise sans doublon). La prem
 après libération du GPU, terminée en ~1 h 38. Ancrage externe : WER des transcriptions publiées ASRU
 2023 sur nos segments SUMM-RE de test 0,297 contre 0,301 pour notre whisper-large-v3 (cohérent).
 → `results/real_meetings/`, journaux dans `results/real_meetings/logs/`.
+
+**2026-10-11** — Analyse des runs de test (`python -m study_real_meetings.scripts.analyse`) :
+`summary: 101 groups; primary: 9/9 computed`. Sorties : `results/real_meetings/summary.csv`
+(WER/CER par groupe, IC 95 % bootstrap par grappes), `results/real_meetings/primary.csv` (9 tests
+pré-enregistrés, Holm m = 9 : 8 rejets, P3 et P4 non rejetés), tableaux LaTeX
+`Memoire_LaTeX/generated/real_meetings_summary.tex` et `real_meetings_primary.tex`, figure
+`real_meetings_snr.pdf`. Vérification manuelle (WER large-v3 AGM fr recalculé à 0,1051 depuis
+`runs.csv`, signes et ordres de grandeur de P1 à P9 recoupés avec `summary.csv`) consignée dans
+`.superpowers/sdd/2026-10-10-real-meetings-study-pipeline/task-14-results-report.md`. Compilation
+LaTeX non testée (pas de pdflatex/lualatex dans le PATH). Résumé des résultats dans
+`ETAT_ACTUEL.md` §5. → `results/real_meetings/`, `Memoire_LaTeX/generated/`.

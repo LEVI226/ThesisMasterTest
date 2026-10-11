@@ -108,9 +108,63 @@ Environnement code : Windows, `.venv` (torch 2.6.0+cu124, CUDA RTX 4060, NeMo 3.
 
 ## 5. Étude complémentaire « réunions réelles » (branche `study/real-meetings`, ouverte le 10/10/2026)
 
-- **Statut :** en cours. Jeu de validation EXTERNE distinct, déclaré ici pour ne pas être confondu
+- **Statut :** runs de test terminés (11/10/2026). Jeu de validation EXTERNE distinct, déclaré ici pour ne pas être confondu
   avec un pipeline parallèle égaré. Il ne remplace PAS le jeu canonique MInDS-14 (§2).
 - **Spec :** `docs/specs/2026-10-10-real-meetings-study-design.md` ; **plan :** `docs/plans/2026-10-10-real-meetings-study-pipeline.md`.
 - **Données :** AGM Nestlé 2026 (DE/EN/FR, sous-titres Nestlé), AMI (EN), SUMM-RE (FR), bruit DEMAND.
   Les enregistrements privés de `audioReunionréel/` sont EXCLUS (pas de consentement des participants).
 - **Résultats :** `results/real_meetings/` (CSV = source de vérité, comme pour le reste du mémoire).
+
+### Résultats des runs de test (analyse du 11/10/2026, protocole gelé `protocol-frozen`)
+
+Sources : `results/real_meetings/summary.csv` (WER agrégé, IC 95 % bootstrap par grappes),
+`primary.csv` (9 tests pré-enregistrés, Holm m = 9), `streaming.csv` (H5), `diarization.csv` (D1).
+Tableaux LaTeX générés : `Memoire_LaTeX/generated/`.
+
+**WER corpus whisper-large-v3, langue forcée, sans bruit** (`summary.csv`) :
+
+| Jeu | Langue | n seg. | WER | IC 95 % |
+|---|---|---|---|---|
+| AGM | de | 69 | 9,16 % | [7,04 ; 11,20] |
+| AGM | en | 66 | 4,32 % | [2,86 ; 6,00] |
+| AGM | fr | 68 | 10,51 % | [6,14 ; 16,84] |
+| AMI-IHM | en | 1 300 | 17,50 % | [14,47 ; 20,59] |
+| AMI-SDM | en | 1 300 | 39,30 % | [30,86 ; 47,69] |
+| SUMM-RE | fr | 649 | 30,12 % | [27,69 ; 32,83] |
+
+**Tests primaires** (`primary.csv`, A − B en points de WER, p_Holm = p corrigé) :
+
+| Test | Comparaison (A vs B) | Estimation | IC 95 % | p_Holm | H0 rejetée |
+|---|---|---|---|---|---|
+| P1 (H1) | large-v3 vs conformer, AGM de | −5,76 | [−6,68 ; −4,81] | 0,0018 | oui |
+| P2 (H1) | large-v3 vs conformer, AGM en | −5,35 | [−7,40 ; −3,22] | 0,0018 | oui |
+| P3 (H1) | large-v3 vs conformer, AGM fr | −4,98 | [−9,81 ; +1,14] | 0,2060 | non |
+| P4 (H2) | large-v3 snr10 vs clean, AGM | +0,08 | [−0,84 ; +0,82] | 0,8215 | non |
+| P5 (H2) | large-v3 AMI-SDM vs AMI-IHM (apparié) | +21,80 | [16,00 ; 27,64] | 0,0018 | oui |
+| P6 (H3) | large-v3 AMI-IHM vs AGM-en | +13,18 | [9,77 ; 16,65] | 0,0018 | oui |
+| P7 (H3) | large-v3 SUMM-RE vs AGM-fr | +19,60 | [13,16 ; 24,87] | 0,0018 | oui |
+| P8 (H4a) | large-v3 langue auto vs forcée (AGM snr5 + AMI-SDM + SUMM-RE) | +3,44 | [+1,03 ; +6,72] | 0,0018 | oui |
+| P9 (H4d) | hf-whisper-small-lora vs hf-whisper-small (AMI-IHM + SUMM-RE) | −10,09 | [−19,03 ; −2,92] | 0,0048 | oui |
+
+8 rejets sur 9 ; P3 (fr) et P4 non rejetés. Les 9 tests ont été calculés (9/9). Estimations
+cohérentes avec les WER par groupe de `summary.csv` (recalcul manuel : voir rapport de tâche 14).
+
+**H5, points de fonctionnement** (`streaming.csv`, colonne `operating_point`, taille de chunk en s) :
+whisper-small de 10, en 10, fr 20 ; whisper-large-v3 de 10, en 20, fr 20. WER test à ces points :
+whisper-small 17,71 % (de), 21,75 % (en), 18,04 % (fr) ; whisper-large-v3 17,29 % (de), 7,02 % (en),
+8,88 % (fr). Latence médiane de l'ordre de la taille du chunk (10,3 à 22,1 s).
+
+**D1, DER SUMM-RE** (`diarization.csv`, collar 0,25 s) : 018a_EARZ 7,86 % (4 locuteurs réf. / 4 hyp.) ;
+032b_EADH 27,43 % (4 / 5) ; 069c_EEPL 11,23 % (4 / 4).
+
+**Ancrage externe** : WER des transcriptions publiées ASRU 2023 sur nos segments SUMM-RE de test
+0,297 contre 0,301 pour notre whisper-large-v3 (rapport 1,01).
+
+**Références vides exclues** (règle R16, colonne `n_excluded_empty_ref` de `summary.csv`, par
+condition) : AMI-IHM 16, AMI-SDM 16, SUMM-RE 28, AGM 0.
+
+**Points à noter (constats neutres)** : l'IC de P3 contient 0 ; P8 est positif (la langue auto est
+moins bonne que la langue forcée sur le jeu poolé) alors que sur AGM snr5 seul les WER sont proches
+(8,12 % auto vs 7,86 % forcé, `summary.csv`) ; la diarisation de 032b_EADH est nettement plus
+mauvaise que celle des deux autres réunions (5 locuteurs détectés pour 4).
+
