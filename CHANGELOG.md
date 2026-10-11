@@ -139,3 +139,10 @@ pré-enregistrés, Holm m = 9 : 7 rejets, P3 et P4 non rejetés), tableaux LaTeX
 `.superpowers/sdd/2026-10-10-real-meetings-study-pipeline/task-14-results-report.md`. Compilation
 LaTeX non testée (pas de pdflatex/lualatex dans le PATH). Résumé des résultats dans
 `ETAT_ACTUEL.md` §8. → `results/real_meetings/`, `Memoire_LaTeX/generated/`.
+
+**2026-10-11** (revue finale, modifications post-gel limitées à la présentation, à la documentation et à des analyses EXPLORATOIRES ; protocole `protocol-frozen` et estimations pré-enregistrées inchangés, journal dans `study_real_meetings/PROTOCOL.md` §9) :
+- Correction du décompte : 7 rejets sur 9 (P1, P2, P5, P6, P7, P8, P9), P3 et P4 non rejetés (l'entrée précédente indiquait 8 sur 9) ; la section de l'étude dans `ETAT_ACTUEL.md` est renumérotée §8.
+- Analyses exploratoires (post-gel) `study_real_meetings/scripts/sensitivity.py` -> `results/real_meetings/sensitivity.csv` : P9 sans boucles −1,10 points [−1,66 ; −0,56] (20 paires exclues sur 1 949) contre −10,09 ; P3 sans boucles −8,93 [−11,03 ; −6,81] (3 paires exclues sur 68) contre −4,98 [−9,81 ; +1,14] ; P8 par jeu, auto − forcé : AGM snr5 +0,26 [0,00 ; 0,81], AMI-SDM +8,31 [2,28 ; 17,35], SUMM-RE +0,76 [0,40 ; 1,31], langue détectée erronée (auto) 0,5 % / 8,9 % / 15,0 % ; P5 par réunion (SDM − IHM) : EN2002a +27,13, ES2004a +17,46, IS1009a +11,15, TS3003a +18,20 ; taux de boucles par système, jeu et condition.
+- Ancrage externe recalculé avec R16 (`scripts/anchor.py` -> `anchor.csv`) : ASRU publié 0,2948 (0,2967 sans R16, valeur 0,297 citée plus haut) contre 0,3012 pour whisper-large-v3.
+- Présentation : libellés a/b de P8 explicites sur le pooling (`primary.csv`, seules colonnes modifiées) ; tableau LaTeX des tests primaires avec comparaison, p brut, p_Holm (plancher du bootstrap affiché « < 0,002 ») et décision ; `lang_mismatch_rate` vide (n/a) pour `noise` et les baselines HF dans `summary.csv` (colonnes WER inchangées).
+- `ETAT_ACTUEL.md` §8 : résultats exploratoires et liste « Limites » ajoutés. → `results/real_meetings/`, `study_real_meetings/PROTOCOL.md`.

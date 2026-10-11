@@ -158,7 +158,7 @@ whisper-small 17,71 % (de), 21,75 % (en), 18,04 % (fr) ; whisper-large-v3 17,29 
 032b_EADH 27,43 % (4 / 5) ; 069c_EEPL 11,23 % (4 / 4).
 
 **Ancrage externe** : WER des transcriptions publiées ASRU 2023 sur nos segments SUMM-RE de test
-0,297 contre 0,301 pour notre whisper-large-v3 (rapport 1,01).
+0,295 (R16 appliquée ; 0,297 sans R16) contre 0,301 pour notre whisper-large-v3 (rapport 1,02 ; `anchor.csv`).
 
 **Références vides exclues** (règle R16, colonne `n_excluded_empty_ref` de `summary.csv`, par
 condition) : AMI-IHM 16, AMI-SDM 16, SUMM-RE 28, AGM 0.
@@ -168,3 +168,33 @@ moins bonne que la langue forcée sur le jeu poolé) alors que sur AGM snr5 seul
 (8,12 % auto vs 7,86 % forcé, `summary.csv`) ; la diarisation de 032b_EADH est nettement plus
 mauvaise que celle des deux autres réunions (5 locuteurs détectés pour 4).
 
+### Analyses exploratoires (post-gel, 11/10/2026)
+
+Source : `results/real_meetings/sensitivity.csv` (colonne `analysis_type = exploratory_post_freeze`), produit par `study_real_meetings/scripts/sensitivity.py`. IC seulement, sans p-valeur ni
+correction de Holm ; aucune estimation pré-enregistrée n'est modifiée (lignes de référence « with loops » identiques à `primary.csv`).
+
+- **P9 sans boucles (exploratoire, post-gel)** : −1,10 points [−1,66 ; −0,56], 1 929 paires (20 exclues), contre −10,09 [−19,03 ; −2,92]
+  avec boucles (1 949 paires). L'essentiel du gain de P9 vient des paires où le modèle de base boucle.
+- **P3 sans boucles (exploratoire, post-gel)** : −8,93 points [−11,03 ; −6,81], 65 paires (3 exclues), contre −4,98 [−9,81 ; +1,14] avec boucles.
+  Les boucles de large-v3 sur AGM fr (taux 4,4 % dans `summary.csv`) pèsent donc lourd dans la non-significativité de P3 (exploratoire).
+- **P8 par jeu (exploratoire, post-gel)**, auto − forcé : AGM snr5 +0,26 points [0,00 ; 0,81] (203 paires) ; AMI-SDM +8,31 [2,28 ; 17,35]
+  (1 300 paires) ; SUMM-RE +0,76 [0,40 ; 1,31] (649 paires). Langue détectée ≠ langue réelle (condition auto) : AGM 0,5 %, AMI-SDM 8,9 %,
+  SUMM-RE 15,0 %. L'effet poolé de P8 (+3,44) est donc porté par AMI-SDM.
+- **P5 par réunion (exploratoire, post-gel)**, SDM − IHM, estimations ponctuelles : EN2002a +27,13 (47,92 vs 20,79) ; ES2004a +17,46 (31,59 vs 14,13) ;
+  IS1009a +11,15 (25,44 vs 14,30) ; TS3003a +18,20 (31,52 vs 13,32). Le signe est le même dans les quatre réunions.
+- **Taux de boucles** (exploratoire, post-gel), part des segments avec `repetition_loop = 1` : hf-whisper-small 0,62 % (AMI-IHM) et 1,54 % (SUMM-RE) ;
+  hf-whisper-small-lora 0,23 % et 0,46 % ; whisper-small AMI-SDM 5,85 % en langue auto contre 1,31 % en langue forcée ; mms-1b-all sur les clips de bruit seul 30 %.
+  Tableau complet : lignes `loop rate` de `sensitivity.csv`.
+- **Ancrage externe (valeurs exactes, `anchor.csv`)** : transcriptions ASRU publiées 0,2948 (R16 appliquée ; 0,2967 sans R16) contre 0,3012 pour whisper-large-v3
+  (13 063 mots de référence, 649 segments), rapport 1,02.
+
+### Limites (étude réunions réelles)
+
+- Pas de repli en température : les boucles de répétition sont comptées dans le WER ; elles pilotent P3 et P9 et le motif de bruit en français.
+- H4d compare deux baselines HF (hf-whisper-small et sa version LoRA) : le gain (−10,09 points) correspond surtout à une suppression de boucles (voir P9 sans boucles).
+- Bootstrap par grappes avec seulement 10 à 16 grappes pour P1 à P3 et P5 (P4 : 32, P6 : 26, P7 : 23, P8 : 60, P9 : 28) : les IC sont probablement un peu trop étroits ; les p-valeurs sont plafonnées à la résolution du bootstrap (2/10 001 brut, 0,0018 après Holm).
+- H3 est non apparié et confondu (conventions de référence, longueur des énoncés, chevauchements de parole).
+- SNR global, pauses incluses ; seulement 3 environnements DEMAND.
+- D1 : 3 mélanges synthétiques de casques, sans UEM, descriptif seulement.
+- H5 : un seul flux par langue, sans IC ; la latence inclut la taille du chunk par construction.
+- AGM allemand partiellement vérifié ; sous-titrage possiblement assisté par ASR chez Nestlé : menace résiduelle pour H1.
